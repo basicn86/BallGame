@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsvrwggj6oei0"]
+
+[ext_resource type="ArrayMesh" uid="uid://bl3pytr4culjv" path="res://Jetpack.obj" id="1_swgnx"]
+[ext_resource type="Script" path="res://jetpack.cs" id="2_so8q0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3edls"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="PrismMesh" id="PrismMesh_ai12r"]
+material = SubResource("StandardMaterial3D_3edls")
+size = Vector3(0.2, 0.1, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k4ug6"]
+albedo_color = Color(1, 0.666667, 0.341176, 1)
+
+[node name="jetpack" type="MeshInstance3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = ExtResource("1_swgnx")
+script = ExtResource("2_so8q0")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -1.048, 0)
+amount = 20
+lifetime = 0.3
+mesh = SubResource("PrismMesh_ai12r")
+direction = Vector3(0, 0, 0)
+scale_amount_min = 0.25
+color = Color(0.184314, 1, 1, 1)
+
+[node name="CPUParticles3D2" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -1.048, 0)
+material_override = SubResource("StandardMaterial3D_k4ug6")
+amount = 20
+lifetime = 0.3
+mesh = SubResource("PrismMesh_ai12r")
+direction = Vector3(0, 0, 0)
+scale_amount_min = 0.25
