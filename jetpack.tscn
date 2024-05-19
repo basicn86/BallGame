@@ -1,37 +1,56 @@
-[gd_scene load_steps=6 format=3 uid="uid://dsvrwggj6oei0"]
+[gd_scene load_steps=10 format=3 uid="uid://dsvrwggj6oei0"]
 
 [ext_resource type="ArrayMesh" uid="uid://bl3pytr4culjv" path="res://Jetpack.obj" id="1_swgnx"]
 [ext_resource type="Script" path="res://jetpack.cs" id="2_so8q0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3edls"]
+[sub_resource type="Gradient" id="Gradient_6p1pq"]
+offsets = PackedFloat32Array(0.473934, 0.990521)
+colors = PackedColorArray(1, 0, 0, 1, 0.921795, 0.548321, 3.85046e-07, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jiw2m"]
+gradient = SubResource("Gradient_6p1pq")
+
+[sub_resource type="Curve" id="Curve_6atki"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.782427, 0.428571), -0.0691151, -0.0691151, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_n4cio"]
+curve = SubResource("Curve_6atki")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nskvf"]
+direction = Vector3(0, -1, 0)
+spread = 10.0
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_n4cio")
+color_ramp = SubResource("GradientTexture1D_jiw2m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwbad"]
 vertex_color_use_as_albedo = true
+disable_receive_shadows = true
 
-[sub_resource type="PrismMesh" id="PrismMesh_ai12r"]
-material = SubResource("StandardMaterial3D_3edls")
-size = Vector3(0.2, 0.1, 0.2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k4ug6"]
-albedo_color = Color(1, 0.666667, 0.341176, 1)
+[sub_resource type="BoxMesh" id="BoxMesh_a76et"]
+material = SubResource("StandardMaterial3D_cwbad")
+size = Vector3(0.3, 0.3, 0.3)
 
 [node name="jetpack" type="MeshInstance3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = ExtResource("1_swgnx")
 script = ExtResource("2_so8q0")
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -1.048, 0)
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.719226, -0.965862, 0)
 amount = 20
-lifetime = 0.3
-mesh = SubResource("PrismMesh_ai12r")
-direction = Vector3(0, 0, 0)
-scale_amount_min = 0.25
-color = Color(0.184314, 1, 1, 1)
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_nskvf")
+draw_pass_1 = SubResource("BoxMesh_a76et")
 
-[node name="CPUParticles3D2" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -1.048, 0)
-material_override = SubResource("StandardMaterial3D_k4ug6")
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.719, -0.966, 0)
 amount = 20
-lifetime = 0.3
-mesh = SubResource("PrismMesh_ai12r")
-direction = Vector3(0, 0, 0)
-scale_amount_min = 0.25
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_nskvf")
+draw_pass_1 = SubResource("BoxMesh_a76et")
