@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dsvrwggj6oei0"]
 
 [ext_resource type="ArrayMesh" uid="uid://bl3pytr4culjv" path="res://Jetpack.obj" id="1_swgnx"]
-[ext_resource type="Script" path="res://jetpack.cs" id="2_so8q0"]
+[ext_resource type="Script" path="res://scripts/jetpack.cs" id="2_kiapg"]
 
 [sub_resource type="Gradient" id="Gradient_6p1pq"]
 offsets = PackedFloat32Array(0.473934, 0.990521)
@@ -37,7 +37,7 @@ size = Vector3(0.3, 0.3, 0.3)
 [node name="jetpack" type="MeshInstance3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = ExtResource("1_swgnx")
-script = ExtResource("2_so8q0")
+script = ExtResource("2_kiapg")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.719226, -0.965862, 0)
@@ -54,3 +54,15 @@ fixed_fps = 60
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_nskvf")
 draw_pass_1 = SubResource("BoxMesh_a76et")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.742411, -1.19169, 0)
+light_color = Color(0.866276, 0.473464, 0, 1)
+light_energy = 0.2
+omni_range = 1.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.742, -1.192, 0)
+light_color = Color(0.866276, 0.473464, 0, 1)
+light_energy = 0.2
+omni_range = 1.0

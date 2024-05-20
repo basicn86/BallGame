@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfncrprg4epon"]
 
-[ext_resource type="Script" path="res://player.cs" id="1_n4536"]
+[ext_resource type="Script" path="res://scripts/player.cs" id="1_n4536"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_862pg"]
 

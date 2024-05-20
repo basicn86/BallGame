@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bycuwkrqgkrc3"]
+
+[ext_resource type="Script" path="res://scripts/PlayerCamera.cs" id="1_e54em"]
+
+[node name="TwistPivot" type="Node3D"]
+script = ExtResource("1_e54em")
+
+[node name="PitchPivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 1, 3)

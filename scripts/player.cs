@@ -3,12 +3,12 @@ using System;
 
 public partial class player : RigidBody3D
 {
-
+	private Node3D twist;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-
+		twist = GetNode<Node3D>("../TwistPivot");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,6 +17,8 @@ public partial class player : RigidBody3D
 		Vector3 moveVector = new Vector3();
 		moveVector.X = Input.GetAxis("left", "right");
 		moveVector.Z = Input.GetAxis("forward", "backward");
+		moveVector *= twist.Basis.Inverse();
+		moveVector.Y = 0;
 
 		moveVector = moveVector.Normalized();
 

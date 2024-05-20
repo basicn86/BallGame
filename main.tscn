@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene load_steps=10 format=3 uid="uid://jc4p2lep7gmi"]
 
-[ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://player.tscn" id="1_ygeui"]
-[ext_resource type="PackedScene" uid="uid://dsvrwggj6oei0" path="res://jetpack.tscn" id="2_ptdgs"]
+[ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://prefabs/player.tscn" id="1_ygeui"]
+[ext_resource type="PackedScene" uid="uid://dsvrwggj6oei0" path="res://prefabs/jetpack.tscn" id="2_ptdgs"]
+[ext_resource type="PackedScene" uid="uid://bycuwkrqgkrc3" path="res://prefabs/playerCamera.tscn" id="3_b8veb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7rmk5"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -16,7 +17,10 @@ sky = SubResource("Sky_oh15a")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qd7fs"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_dftdu"]
+material = SubResource("StandardMaterial3D_qd7fs")
 size = Vector3(10, 1, 10)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_niqyd"]
@@ -33,9 +37,7 @@ environment = SubResource("Environment_jt2xw")
 
 [node name="Player" parent="." instance=ExtResource("1_ygeui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 1.97486, 3.11378)
+continuous_cd = true
 
 [node name="jetpack" parent="." instance=ExtResource("2_ptdgs")]
 
@@ -47,3 +49,5 @@ mesh = SubResource("BoxMesh_dftdu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_niqyd")
+
+[node name="TwistPivot" parent="." instance=ExtResource("3_b8veb")]
