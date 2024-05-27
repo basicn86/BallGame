@@ -1,8 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfncrprg4epon"]
 
 [ext_resource type="Script" path="res://scripts/player.cs" id="1_n4536"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_862pg"]
+[ext_resource type="ArrayMesh" uid="uid://bk60o4evjj67t" path="res://PlayerBall.obj" id="2_76w44"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_08omv"]
 
@@ -10,7 +9,7 @@
 script = ExtResource("1_n4536")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_862pg")
+mesh = ExtResource("2_76w44")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_08omv")
