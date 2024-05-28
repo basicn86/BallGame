@@ -21,10 +21,10 @@ glow_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_dftdu"]
 material = SubResource("StandardMaterial3D_qd7fs")
-size = Vector3(10, 1, 10)
+size = Vector3(100, 1, 10)
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_niqyd"]
-data = PackedVector3Array(-5, 0.5, 5, 5, 0.5, 5, -5, -0.5, 5, 5, 0.5, 5, 5, -0.5, 5, -5, -0.5, 5, 5, 0.5, -5, -5, 0.5, -5, 5, -0.5, -5, -5, 0.5, -5, -5, -0.5, -5, 5, -0.5, -5, 5, 0.5, 5, 5, 0.5, -5, 5, -0.5, 5, 5, 0.5, -5, 5, -0.5, -5, 5, -0.5, 5, -5, 0.5, -5, -5, 0.5, 5, -5, -0.5, -5, -5, 0.5, 5, -5, -0.5, 5, -5, -0.5, -5, 5, 0.5, 5, -5, 0.5, 5, 5, 0.5, -5, -5, 0.5, 5, -5, 0.5, -5, 5, 0.5, -5, -5, -0.5, 5, 5, -0.5, 5, -5, -0.5, -5, 5, -0.5, 5, 5, -0.5, -5, -5, -0.5, -5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_2n3o7"]
+size = Vector3(100, 1, 10)
 
 [node name="Node3D" type="Node3D"]
 
@@ -47,6 +47,6 @@ mesh = SubResource("BoxMesh_dftdu")
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_niqyd")
+shape = SubResource("BoxShape3D_2n3o7")
 
 [node name="TwistPivot" parent="." instance=ExtResource("3_b8veb")]

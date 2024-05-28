@@ -19,7 +19,7 @@ public partial class PlayerCamera : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Position = player.Position;
+		Position = Position.Lerp(player.GlobalTransform.Origin, 10.0f * (float)delta);
 
 		if (Input.IsActionJustPressed("ui_cancel"))
 		{
