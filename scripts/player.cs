@@ -30,4 +30,9 @@ public partial class player : RigidBody3D
 			ApplyCentralImpulse(new Vector3(0, 5f, 0));
 		}
 	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		GD.Print("Player Y: " + GlobalTransform.Origin.Y);
+	}
 }

@@ -37,7 +37,6 @@ environment = SubResource("Environment_jt2xw")
 
 [node name="Player" parent="." instance=ExtResource("1_ygeui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-continuous_cd = true
 
 [node name="jetpack" parent="." instance=ExtResource("2_ptdgs")]
 
