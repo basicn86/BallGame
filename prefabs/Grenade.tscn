@@ -1,11 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmclnyunnsjjs"]
+[gd_scene load_steps=7 format=3 uid="uid://cmclnyunnsjjs"]
 
 [ext_resource type="Script" path="res://scripts/Grenade.cs" id="1_ys7bf"]
 [ext_resource type="PackedScene" uid="uid://ur6yyp0n0nlb" path="res://prefabs/grenade_particles.tscn" id="2_b5bvk"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_tb6kf"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mfss2"]
+albedo_color = Color(0.104017, 0.559832, 1.92523e-07, 1)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_4jmn4"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_x6pu0"]
+material = SubResource("StandardMaterial3D_mfss2")
+radius = 0.1
+height = 0.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yy42j"]
+radius = 0.1
+height = 0.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bira6"]
 radius = 3.0
@@ -16,10 +24,10 @@ explosionArea = NodePath("AOE")
 explosionScene = ExtResource("2_b5bvk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_tb6kf")
+mesh = SubResource("CapsuleMesh_x6pu0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_4jmn4")
+shape = SubResource("CapsuleShape3D_yy42j")
 
 [node name="AOE" type="Area3D" parent="."]
 
