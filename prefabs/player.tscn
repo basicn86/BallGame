@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfncrprg4epon"]
 
-[ext_resource type="Script" path="res://scripts/player.cs" id="1_n4536"]
+[ext_resource type="Script" path="res://scripts/Player.cs" id="1_8wcbe"]
 [ext_resource type="ArrayMesh" uid="uid://bk60o4evjj67t" path="res://PlayerBall.obj" id="2_76w44"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_08omv"]
 
 [node name="Player" type="RigidBody3D"]
 continuous_cd = true
-script = ExtResource("1_n4536")
+script = ExtResource("1_8wcbe")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("2_76w44")

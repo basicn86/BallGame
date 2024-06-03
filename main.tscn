@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene load_steps=11 format=3 uid="uid://jc4p2lep7gmi"]
 
 [ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://prefabs/player.tscn" id="1_ygeui"]
-[ext_resource type="PackedScene" uid="uid://dsvrwggj6oei0" path="res://prefabs/jetpack.tscn" id="2_ptdgs"]
 [ext_resource type="PackedScene" uid="uid://bycuwkrqgkrc3" path="res://prefabs/playerCamera.tscn" id="3_b8veb"]
+[ext_resource type="PackedScene" uid="uid://bfs203kgfe78t" path="res://prefabs/tree.tscn" id="3_ee0te"]
+[ext_resource type="PackedScene" uid="uid://cmclnyunnsjjs" path="res://prefabs/Grenade.tscn" id="4_ceibg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7rmk5"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -38,8 +39,6 @@ environment = SubResource("Environment_jt2xw")
 [node name="Player" parent="." instance=ExtResource("1_ygeui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="jetpack" parent="." instance=ExtResource("2_ptdgs")]
-
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.481879, 0)
 mesh = SubResource("BoxMesh_dftdu")
@@ -50,3 +49,9 @@ mesh = SubResource("BoxMesh_dftdu")
 shape = SubResource("BoxShape3D_2n3o7")
 
 [node name="TwistPivot" parent="." instance=ExtResource("3_b8veb")]
+
+[node name="Tree" parent="." instance=ExtResource("3_ee0te")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -2)
+
+[node name="Grenade" parent="." instance=ExtResource("4_ceibg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36011, 0.958258, -2.52539)
