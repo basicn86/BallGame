@@ -5,9 +5,10 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_08omv"]
 
-[node name="Player" type="RigidBody3D"]
+[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("playerModel")]
 continuous_cd = true
 script = ExtResource("1_8wcbe")
+playerModel = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("2_76w44")

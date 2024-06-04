@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 public partial class Grenade : RigidBody3D
 {
@@ -9,15 +10,21 @@ public partial class Grenade : RigidBody3D
 	PackedScene explosionScene;
 	public override void _Ready()
 	{
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+
 	}
 
 	private void _on_timer_timeout()
 	{
+		//stopwatch start
+		Stopwatch sw = new Stopwatch();
+		sw.Start();
+
 		var bodies = explosionArea.GetOverlappingBodies();
 
 		foreach (var body in bodies)
@@ -44,5 +51,9 @@ public partial class Grenade : RigidBody3D
 		_explosionScene.Position = GlobalTransform.Origin;
 		GetParent().AddChild(_explosionScene);
 		QueueFree();
+		
+		//stopwatch stop
+		sw.Stop();
+		GD.Print("Time elapsed to explode: " + sw.ElapsedMilliseconds + "ms");
 	}
 }
