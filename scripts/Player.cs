@@ -40,7 +40,7 @@ public partial class Player : RigidBody3D
 		if (Input.IsKeyPressed(Key.Key1))
 		{
 			GD.Print("Set FPS to 120");
-			Engine.MaxFps = 120;
+			Engine.MaxFps = 122;
 		}
 		if (Input.IsKeyPressed(Key.Key2))
 		{
@@ -59,18 +59,19 @@ public partial class Player : RigidBody3D
 		}
 	}
 
+	private Vector3 previousPos;
+	private Vector3 currentPos;
 	private void SmoothPlayerMotion(double delta)
 	{
 		playerModel.TopLevel = true;
-		Vector3 targetPosition = GlobalTransform.Origin + LinearVelocity / (float)Engine.PhysicsTicksPerSecond;
 		playerModel.Rotation = Rotation;
-		playerModel.GlobalPosition = GlobalTransform.Origin.Lerp(targetPosition, (float)Engine.GetPhysicsInterpolationFraction());
+		playerModel.GlobalPosition = previousPos.Lerp(currentPos, (float)Engine.GetPhysicsInterpolationFraction());
+	}
 
-		//this prints how much the player has penetrated the wall
-		if(playerModel.GlobalPosition.X < -20.00)
-		{
-			GD.Print(playerModel.GlobalPosition.X);
-		}
+	public override void _PhysicsProcess(double delta)
+	{
+		previousPos = currentPos;
+		currentPos = GlobalTransform.Origin;
 	}
 
 	//version 1, save it for later

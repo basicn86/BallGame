@@ -4,13 +4,13 @@ using System;
 public partial class PlayerCamera : Node3D
 {
 	private float sensitivity = 0.1f;
-	private RigidBody3D player;
+	private Node3D player;
 	private Node3D pitch;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		player = GetNode<RigidBody3D>("../Player");
+		player = GetNode<Node3D>("../Player/MeshInstance3D");
 		pitch = GetNode<Node3D>("PitchPivot");
 		//capture the mouse
 		Input.MouseMode = Input.MouseModeEnum.Captured;

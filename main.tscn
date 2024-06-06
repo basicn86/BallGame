@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://jc4p2lep7gmi"]
 
 [ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://prefabs/player.tscn" id="1_ygeui"]
-[ext_resource type="PackedScene" uid="uid://bycuwkrqgkrc3" path="res://prefabs/playerCamera.tscn" id="3_b8veb"]
 [ext_resource type="PackedScene" uid="uid://bfs203kgfe78t" path="res://prefabs/tree.tscn" id="3_ee0te"]
 [ext_resource type="PackedScene" uid="uid://cmclnyunnsjjs" path="res://prefabs/Grenade.tscn" id="4_ceibg"]
+[ext_resource type="PackedScene" uid="uid://bycuwkrqgkrc3" path="res://prefabs/playerCamera.tscn" id="5_6lr1a"]
 [ext_resource type="PackedScene" uid="uid://csiqtfnx8jbmn" path="res://prefabs/GrenadeThrower.tscn" id="5_wbk44"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7rmk5"]
@@ -59,20 +59,17 @@ mesh = SubResource("BoxMesh_dftdu")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
 shape = SubResource("BoxShape3D_2n3o7")
 
-[node name="TwistPivot" parent="." instance=ExtResource("3_b8veb")]
-
 [node name="Tree" parent="." instance=ExtResource("3_ee0te")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -2)
 
 [node name="Grenade" parent="." instance=ExtResource("4_ceibg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36011, 0.958258, -2.52539)
 
-[node name="GrenadeThrower" parent="." node_paths=PackedStringArray("player", "camera") instance=ExtResource("5_wbk44")]
+[node name="GrenadeThrower" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_wbk44")]
 Offset = Vector3(1, 0, 0)
 Direction = Vector3(0, 300, -300)
 grenadeScene = ExtResource("4_ceibg")
 player = NodePath("../Player")
-camera = NodePath("../TwistPivot")
 
 [node name="Wall" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8374, 3.32438, 0)
@@ -82,3 +79,5 @@ mesh = SubResource("BoxMesh_hh11a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D"]
 shape = SubResource("BoxShape3D_7smtx")
+
+[node name="TwistPivot" parent="." instance=ExtResource("5_6lr1a")]

@@ -24,6 +24,10 @@ window/vsync/vsync_mode=0
 
 project/assembly_name="BallGame"
 
+[editor_plugins]
+
+enabled=PackedStringArray()
+
 [input]
 
 forward={
@@ -54,7 +58,6 @@ throw_grenade={
 
 [physics]
 
-common/physics_jitter_fix=0.0
 3d/physics_engine="JoltPhysics3D"
 
 [rendering]
