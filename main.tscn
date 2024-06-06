@@ -63,7 +63,8 @@ shape = SubResource("BoxShape3D_2n3o7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -2)
 
 [node name="Grenade" parent="." instance=ExtResource("4_ceibg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36011, 0.958258, -2.52539)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9107, 0.958258, -2.52539)
+mass = 0.2
 
 [node name="GrenadeThrower" parent="." node_paths=PackedStringArray("player", "camera") instance=ExtResource("5_wbk44")]
 Offset = Vector3(1, 0, 0)
@@ -81,4 +82,5 @@ mesh = SubResource("BoxMesh_hh11a")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D"]
 shape = SubResource("BoxShape3D_7smtx")
 
-[node name="TwistPivot" parent="." instance=ExtResource("5_6lr1a")]
+[node name="TwistPivot" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_6lr1a")]
+player = NodePath("../Player")
