@@ -40,6 +40,15 @@ public partial class PlayerCamera : Node3D
 
 		MoveCameraAwayFromEnvironment();
 
+		if (Input.IsActionJustPressed("fullscreen"))
+		{
+			//Exclusive fullscreen is needed for FreeSync/G-Sync to work
+			if (DisplayServer.WindowGetMode() == DisplayServer.WindowMode.ExclusiveFullscreen)
+				DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+			else
+				DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
+		}
+
 		if (Input.IsActionJustPressed("ui_cancel"))
 		{
 			Input.MouseMode = Input.MouseModeEnum.Visible;
