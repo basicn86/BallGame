@@ -49,6 +49,8 @@ environment = SubResource("Environment_jt2xw")
 
 [node name="Player" parent="." instance=ExtResource("1_ygeui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 3
+collision_mask = 5
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.481879, 0)
@@ -61,6 +63,8 @@ shape = SubResource("BoxShape3D_2n3o7")
 
 [node name="Tree" parent="." instance=ExtResource("3_ee0te")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -2)
+collision_layer = 4
+collision_mask = 3
 
 [node name="Grenade" parent="." instance=ExtResource("4_ceibg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9107, 0.958258, -2.52539)

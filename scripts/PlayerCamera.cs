@@ -46,25 +46,25 @@ public partial class PlayerCamera : Node3D
 		}
 	}
 
-    /// <summary>
-    /// Adjusts the camera's position to avoid clipping into the environment.
-    /// If the camera is colliding with the environment, it calculates the distance to the collision point
-    /// and moves the camera closer to the player. If the camera is not colliding with anything, it sets the camera's position
-    /// to its normal position.
-    /// </summary>
-    private void MoveCameraAwayFromEnvironment()
-    {
+	/// <summary>
+	/// Adjusts the camera's position to avoid clipping into the environment.
+	/// If the camera is colliding with the environment, it calculates the distance to the collision point
+	/// and moves the camera closer to the player. If the camera is not colliding with anything, it sets the camera's position
+	/// to its normal position.
+	/// </summary>
+	private void MoveCameraAwayFromEnvironment()
+	{
 
-        if (cameraCast.IsColliding())
-        {
-            GD.Print(cameraCast.GetCollisionPoint().DistanceTo(cameraCast.GlobalPosition));
-            Vector3 localCollisionPoint = cameraCast.GetCollisionPoint() - cameraCast.GlobalPosition;
-            float localDistance = localCollisionPoint.Length();
-            camera.Position = normalCameraPosition * (localDistance / normalCameraDistance) * 0.9f;
-        }
-        else
-            camera.Position = normalCameraPosition;
-    }
+		if (cameraCast.IsColliding())
+		{
+			GD.Print(cameraCast.GetCollisionPoint().DistanceTo(cameraCast.GlobalPosition));
+			Vector3 localCollisionPoint = cameraCast.GetCollisionPoint() - cameraCast.GlobalPosition;
+			float localDistance = localCollisionPoint.Length();
+			camera.Position = normalCameraPosition * (localDistance / normalCameraDistance) * 0.9f;
+		}
+		else
+			camera.Position = normalCameraPosition;
+	}
 
 	public override void _UnhandledInput(InputEvent @event)
 	{
