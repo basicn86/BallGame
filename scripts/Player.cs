@@ -9,16 +9,23 @@ public partial class Player : RigidBody3D
 
 	[Export]
 	public MeshInstance3D playerModel;
+	[Export]
+	public RayCast3D groundCast;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		twist = GetNode<Node3D>("../TwistPivot");
+		groundCast.TopLevel = true;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		UpdateGroundCast();
+
+		Jump();
+
 		Vector3 moveVector = new Vector3();
 		moveVector.X = Input.GetAxis("left", "right");
 		moveVector.Z = Input.GetAxis("forward", "backward");
@@ -29,13 +36,9 @@ public partial class Player : RigidBody3D
 
 		ApplyCentralForce(moveVector * 1000f * (float)delta);
 
-
-		if (Input.IsActionJustPressed("ui_accept"))
-		{
-			ApplyCentralImpulse(new Vector3(0, 5f, 0));
-		}
-
 		SmoothPlayerMotion(delta);
+
+		
 
 		if (Input.IsKeyPressed(Key.Key1))
 		{
@@ -66,6 +69,29 @@ public partial class Player : RigidBody3D
 		playerModel.TopLevel = true;
 		playerModel.Rotation = Rotation;
 		playerModel.GlobalPosition = previousPos.Lerp(currentPos, (float)Engine.GetPhysicsInterpolationFraction());
+	}
+
+	private void Jump()
+	{
+		if (Input.IsActionJustPressed("ui_accept") && groundCast.IsColliding())
+		{
+			ApplyCentralImpulse(new Vector3(0, 10f, 0));
+		}
+
+		//Let the player jump higher if the jump button is held down
+		if (!Input.IsActionPressed("ui_accept") && !groundCast.IsColliding())
+		{
+			GravityScale = 2f;
+		}
+		else
+		{
+			GravityScale = 1f;
+		}
+	}
+
+	private void UpdateGroundCast()
+	{
+		groundCast.Position = GlobalTransform.Origin;
 	}
 
 	public override void _PhysicsProcess(double delta)
