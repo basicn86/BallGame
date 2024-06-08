@@ -10,6 +10,8 @@ albedo_color = Color(0.104017, 0.559832, 1.92523e-07, 1)
 material = SubResource("StandardMaterial3D_mfss2")
 radius = 0.1
 height = 0.5
+radial_segments = 8
+rings = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yy42j"]
 radius = 0.1

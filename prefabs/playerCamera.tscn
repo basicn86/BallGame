@@ -16,3 +16,4 @@ transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 
 [node name="RayCast3D" type="RayCast3D" parent="PitchPivot"]
 target_position = Vector3(0, 0, -1)
 hit_from_inside = true
+debug_shape_thickness = 1
