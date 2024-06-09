@@ -34,12 +34,17 @@ public partial class Player : RigidBody3D
 		if(groundCast.IsColliding()) moveVector = AdjustMoveVectorBySlope(moveVector, groundCast.GetCollisionNormal());
 
 		if (moveVector.Length() > 1f) moveVector = moveVector.Normalized();
-		GD.Print(moveVector.Length());
+		GD.Print(moveVector);
 
 		ApplyCentralForce(moveVector * 1000f * (float)delta);
 
 		SmoothPlayerMotion(delta);
 
+		RunFpsDebug();
+	}
+
+	private void RunFpsDebug()
+	{
 		if (Input.IsKeyPressed(Key.Key1))
 		{
 			GD.Print("Set FPS to 120");
@@ -55,7 +60,7 @@ public partial class Player : RigidBody3D
 			GD.Print("Set FPS to 30");
 			Engine.MaxFps = 30;
 		}
-		if(Input.IsKeyPressed(Key.Key4))
+		if (Input.IsKeyPressed(Key.Key4))
 		{
 			GD.Print("Set FPS to 1000");
 			Engine.MaxFps = 1000;

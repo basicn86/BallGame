@@ -40,19 +40,44 @@ public partial class PlayerCamera : Node3D
 
 		MoveCameraAwayFromEnvironment();
 
+		ToggleFullscreen();
+
+		if (Input.IsActionJustPressed("ui_cancel")) Input.MouseMode = Input.MouseModeEnum.Visible;
+
+		HandleJoystickCameraRotation(delta);
+	}
+
+	private void ToggleFullscreen()
+	{
 		if (Input.IsActionJustPressed("fullscreen"))
 		{
+			Input.MouseMode = Input.MouseModeEnum.Captured;
+
 			//Exclusive fullscreen is needed for FreeSync/G-Sync to work
 			if (DisplayServer.WindowGetMode() == DisplayServer.WindowMode.ExclusiveFullscreen)
 				DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
-			else
+			else 
 				DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
 		}
+	}
 
-		if (Input.IsActionJustPressed("ui_cancel"))
-		{
-			Input.MouseMode = Input.MouseModeEnum.Visible;
-		}
+	private void HandleJoystickCameraRotation(double delta)
+	{
+		float horizontalAxis = Input.GetAxis("look_left", "look_right") * 1500f * (float)delta;
+		float verticalAxis = Input.GetAxis("look_up", "look_down") * 1500f * (float)delta;
+		RotateCamera(horizontalAxis, verticalAxis);
+	}
+
+	private void RotateCamera(float X, float Y)
+	{
+		RotationDegrees += new Vector3(0, -X * sensitivity, 0);
+		pitch.RotationDegrees += new Vector3(-Y * sensitivity, 0, 0);
+
+		pitch.RotationDegrees = new Vector3(
+			Mathf.Clamp(pitch.RotationDegrees.X, -80f, 80f),
+			pitch.RotationDegrees.Y,
+			pitch.RotationDegrees.Z
+	   );
 	}
 
 	/// <summary>
@@ -78,14 +103,10 @@ public partial class PlayerCamera : Node3D
 	{
 		if (@event is InputEventMouseMotion)
 		{
-			RotationDegrees += new Vector3(0, -((InputEventMouseMotion)@event).Relative.X * sensitivity, 0);
-			pitch.RotationDegrees += new Vector3(-((InputEventMouseMotion)@event).Relative.Y * sensitivity, 0, 0);
-
-			pitch.RotationDegrees = new Vector3(
-				Mathf.Clamp(pitch.RotationDegrees.X, -80f, 80f),
-				pitch.RotationDegrees.Y,
-				pitch.RotationDegrees.Z
-		   );
+			RotateCamera(
+				((InputEventMouseMotion)@event).Relative.X,
+				((InputEventMouseMotion)@event).Relative.Y
+			);
 		}
 	}
 }

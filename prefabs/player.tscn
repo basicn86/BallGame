@@ -14,6 +14,7 @@ playerModel = NodePath("MeshInstance3D")
 groundCast = NodePath("GroundRaycast")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+gi_mode = 2
 mesh = ExtResource("2_76w44")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
