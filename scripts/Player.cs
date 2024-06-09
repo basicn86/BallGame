@@ -31,14 +31,14 @@ public partial class Player : RigidBody3D
 		moveVector.Z = Input.GetAxis("forward", "backward");
 		moveVector *= twist.Basis.Inverse();
 		moveVector.Y = 0;
+		if(groundCast.IsColliding()) moveVector = AdjustMoveVectorBySlope(moveVector, groundCast.GetCollisionNormal());
 
-		moveVector = moveVector.Normalized();
+		if (moveVector.Length() > 1f) moveVector = moveVector.Normalized();
+		GD.Print(moveVector.Length());
 
 		ApplyCentralForce(moveVector * 1000f * (float)delta);
 
 		SmoothPlayerMotion(delta);
-
-		
 
 		if (Input.IsKeyPressed(Key.Key1))
 		{
@@ -73,13 +73,13 @@ public partial class Player : RigidBody3D
 
 	private void Jump()
 	{
-		if (Input.IsActionJustPressed("ui_accept") && groundCast.IsColliding())
+		if (Input.IsActionJustPressed("jump") && groundCast.IsColliding())
 		{
 			ApplyCentralImpulse(new Vector3(0, 10f, 0));
 		}
 
 		//Let the player jump higher if the jump button is held down
-		if (!Input.IsActionPressed("ui_accept") && !groundCast.IsColliding())
+		if (!Input.IsActionPressed("jump") && !groundCast.IsColliding())
 		{
 			GravityScale = 2f;
 		}
@@ -87,6 +87,20 @@ public partial class Player : RigidBody3D
 		{
 			GravityScale = 1f;
 		}
+	}
+
+	private Vector3 AdjustMoveVectorBySlope(Vector3 moveVector, Vector3 slopeNormal)
+	{
+		Vector3 result = new Vector3();
+
+		Plane p = new Plane(slopeNormal);
+		result = p.Project(moveVector);
+		if(result.Length() > 0)
+		{
+			result *= moveVector.Length() / result.Length();
+		}
+
+		return result;
 	}
 
 	private void UpdateGroundCast()

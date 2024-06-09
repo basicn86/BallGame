@@ -66,7 +66,6 @@ public partial class PlayerCamera : Node3D
 
 		if (cameraCast.IsColliding())
 		{
-			GD.Print(cameraCast.GetCollisionPoint().DistanceTo(cameraCast.GlobalPosition));
 			Vector3 localCollisionPoint = cameraCast.GetCollisionPoint() - cameraCast.GlobalPosition;
 			float localDistance = localCollisionPoint.Length();
 			camera.Position = normalCameraPosition * (localDistance / normalCameraDistance) * 0.9f;
