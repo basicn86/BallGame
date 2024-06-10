@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" path="res://scripts/PlayerCamera.cs" id="1_e54em"]
 
-[node name="TwistPivot" type="Node3D" node_paths=PackedStringArray("pitch", "cameraCast", "camera")]
+[node name="TwistPivot" type="Node3D" node_paths=PackedStringArray("pitch", "obstacleRaycast", "crosshairRaycast", "camera")]
 script = ExtResource("1_e54em")
 pitch = NodePath("PitchPivot")
-cameraCast = NodePath("PitchPivot/RayCast3D")
+obstacleRaycast = NodePath("PitchPivot/ObstacleRaycast")
+crosshairRaycast = NodePath("PitchPivot/Camera3D/CrosshairRaycast")
 camera = NodePath("PitchPivot/Camera3D")
 
 [node name="PitchPivot" type="Node3D" parent="."]
@@ -13,7 +14,13 @@ camera = NodePath("PitchPivot/Camera3D")
 [node name="Camera3D" type="Camera3D" parent="PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 1.5, 3)
 
-[node name="RayCast3D" type="RayCast3D" parent="PitchPivot"]
+[node name="CrosshairRaycast" type="RayCast3D" parent="PitchPivot/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+target_position = Vector3(0, 0, -5)
+collision_mask = 5
+debug_shape_thickness = 4
+
+[node name="ObstacleRaycast" type="RayCast3D" parent="PitchPivot"]
 target_position = Vector3(0, 0, -1)
 hit_from_inside = true
 debug_shape_thickness = 1

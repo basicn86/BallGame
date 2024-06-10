@@ -11,10 +11,14 @@ public partial class PlayerCamera : Node3D
 	[Export]
 	private Node3D pitch;
 	[Export]
-	private RayCast3D cameraCast;
+	private RayCast3D obstacleRaycast;
+	[Export]
+	private RayCast3D crosshairRaycast;
 
 	private Vector3 normalCameraPosition;
 	private float normalCameraDistance;
+	private Vector3 normalObstacleRaycastPosition;
+
 	[Export]
 	public Camera3D camera;
 
@@ -23,11 +27,14 @@ public partial class PlayerCamera : Node3D
 	{
 		playerModel = player.playerModel;
 
-		cameraCast.TargetPosition = camera.Position;
-		cameraCast.AddExceptionRid(player.GetRid());
+		obstacleRaycast.TargetPosition = camera.Position;
+		obstacleRaycast.AddExceptionRid(player.GetRid());
 
 		normalCameraPosition = camera.Position;
 		normalCameraDistance = camera.Position.DistanceTo(new Vector3());
+
+		normalObstacleRaycastPosition = crosshairRaycast.Position; //must be relative to the camera
+		crosshairRaycast.AddExceptionRid(player.GetRid());
 
 		//capture the mouse
 		Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -45,6 +52,8 @@ public partial class PlayerCamera : Node3D
 		if (Input.IsActionJustPressed("ui_cancel")) Input.MouseMode = Input.MouseModeEnum.Visible;
 
 		HandleJoystickCameraRotation(delta);
+
+		GD.Print(crosshairRaycast.GetCollisionPoint());
 	}
 
 	private void ToggleFullscreen()
@@ -85,18 +94,27 @@ public partial class PlayerCamera : Node3D
 	/// If the camera is colliding with the environment, it calculates the distance to the collision point
 	/// and moves the camera closer to the player. If the camera is not colliding with anything, it sets the camera's position
 	/// to its normal position.
+	/// We also need to update the crosshairRaycast position to match the camera position when the camera is colliding with the environment. When it is not colliding with the environment, we set the crosshairRaycast position to its normal position, which is usually a little bit ahead of the player. This prevents entities from being selected when an entity walks in between the player and the camera, and prevents the player from attacking backwards.
 	/// </summary>
 	private void MoveCameraAwayFromEnvironment()
 	{
 
-		if (cameraCast.IsColliding())
+		if (obstacleRaycast.IsColliding())
 		{
-			Vector3 localCollisionPoint = cameraCast.GetCollisionPoint() - cameraCast.GlobalPosition;
+			Vector3 localCollisionPoint = obstacleRaycast.GetCollisionPoint() - obstacleRaycast.GlobalPosition;
 			float localDistance = localCollisionPoint.Length();
 			camera.Position = normalCameraPosition * (localDistance / normalCameraDistance) * 0.9f;
+
+            //move the camera up a little bit when it is colliding with the environment
+            camera.Position += new Vector3(0, 0.5f * Math.Clamp((1f-(localDistance/normalCameraDistance))*2f, 0f, 1f), 0);
+
+			crosshairRaycast.Position = normalObstacleRaycastPosition * (localDistance / normalCameraDistance);
 		}
 		else
+		{
 			camera.Position = normalCameraPosition;
+			crosshairRaycast.Position = normalObstacleRaycastPosition;
+		}
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
