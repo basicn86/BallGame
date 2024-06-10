@@ -72,8 +72,8 @@ public partial class PlayerCamera : Node3D
 
 	private void HandleJoystickCameraRotation(double delta)
 	{
-		float horizontalAxis = Input.GetAxis("look_left", "look_right") * 1500f * (float)delta;
-		float verticalAxis = Input.GetAxis("look_up", "look_down") * 1500f * (float)delta;
+		float horizontalAxis = Input.GetAxis("look_left", "look_right") * 2000f * (float)delta;
+		float verticalAxis = Input.GetAxis("look_up", "look_down") * 2000f * (float)delta;
 		RotateCamera(horizontalAxis, verticalAxis);
 	}
 
