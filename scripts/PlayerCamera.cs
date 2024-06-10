@@ -27,7 +27,7 @@ public partial class PlayerCamera : Node3D
 	{
 		playerModel = player.playerModel;
 
-		obstacleRaycast.TargetPosition = camera.Position;
+		obstacleRaycast.TargetPosition = camera.Position + new Vector3(0, -0.1f, 0);
 		obstacleRaycast.AddExceptionRid(player.GetRid());
 
 		normalCameraPosition = camera.Position;
@@ -103,10 +103,9 @@ public partial class PlayerCamera : Node3D
 		{
 			Vector3 localCollisionPoint = obstacleRaycast.GetCollisionPoint() - obstacleRaycast.GlobalPosition;
 			float localDistance = localCollisionPoint.Length();
-			camera.Position = normalCameraPosition * (localDistance / normalCameraDistance) * 0.9f;
-
-            //move the camera up a little bit when it is colliding with the environment
-            camera.Position += new Vector3(0, 0.5f * Math.Clamp((1f-(localDistance/normalCameraDistance))*2f, 0f, 1f), 0);
+			camera.Position = normalCameraPosition * (localDistance / normalCameraDistance);
+			//move the camera up a little bit when it is colliding with the environment
+			camera.Position += new Vector3(0, 0.5f * Math.Clamp((1f-(localDistance/normalCameraDistance))*2f, 0f, 1f), 0);
 
 			crosshairRaycast.Position = normalObstacleRaycastPosition * (localDistance / normalCameraDistance);
 		}
