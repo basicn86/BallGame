@@ -11,7 +11,7 @@ public partial class GrenadeThrower : Node3D
 	[Export]
 	PackedScene grenadeScene;
 	[Export]
-	Node3D player;
+	Player player;
 	[Export]
 	Node3D camera;
 
@@ -29,6 +29,7 @@ public partial class GrenadeThrower : Node3D
 
 			GetParent().AddChild(grenade);
 
+			grenade.LinearVelocity = player.LinearVelocity;
 			grenade.ApplyCentralForce(Direction * camera.Basis.Inverse());
 		}
 	}
