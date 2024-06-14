@@ -96,6 +96,7 @@ look_up={
 3d_physics/layer_1="Environment"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Entity"
+3d_physics/layer_4="Projectile"
 
 [physics]
 

@@ -81,7 +81,7 @@ mass = 0.2
 
 [node name="GrenadeThrower" parent="." node_paths=PackedStringArray("player", "camera") instance=ExtResource("5_wbk44")]
 Offset = Vector3(1, 0, 0)
-Direction = Vector3(0, 300, -300)
+Direction = Vector3(-50, 200, -400)
 grenadeScene = ExtResource("4_ceibg")
 player = NodePath("../Player")
 camera = NodePath("../TwistPivot")

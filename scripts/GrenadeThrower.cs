@@ -13,7 +13,7 @@ public partial class GrenadeThrower : Node3D
 	[Export]
 	Player player;
 	[Export]
-	Node3D camera;
+	PlayerCamera camera;
 
 	public override void _Ready()
 	{
@@ -30,7 +30,9 @@ public partial class GrenadeThrower : Node3D
 			GetParent().AddChild(grenade);
 
 			grenade.LinearVelocity = player.LinearVelocity;
-			grenade.ApplyCentralForce(Direction * camera.Basis.Inverse());
+			Vector3 finalDirection = Direction.Rotated(Vector3.Right, camera.Pitch);
+			finalDirection *= camera.Basis.Inverse();
+			grenade.ApplyCentralForce(finalDirection);
 		}
 	}
 }

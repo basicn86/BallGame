@@ -21,8 +21,8 @@ height = 0.5
 radius = 3.0
 
 [node name="Grenade" type="RigidBody3D" node_paths=PackedStringArray("explosionArea")]
-collision_layer = 4
-collision_mask = 7
+collision_layer = 8
+collision_mask = 15
 script = ExtResource("1_ys7bf")
 explosionArea = NodePath("AOE")
 explosionScene = ExtResource("2_b5bvk")

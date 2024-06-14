@@ -22,6 +22,11 @@ public partial class PlayerCamera : Node3D
 	[Export]
 	public Camera3D camera;
 
+	public float Pitch
+	{
+		get { return pitch.Rotation.X; }
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
