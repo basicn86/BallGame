@@ -57,8 +57,6 @@ public partial class PlayerCamera : Node3D
 		if (Input.IsActionJustPressed("ui_cancel")) Input.MouseMode = Input.MouseModeEnum.Visible;
 
 		HandleJoystickCameraRotation(delta);
-
-		GD.Print(crosshairRaycast.GetCollisionPoint());
 	}
 
 	private void ToggleFullscreen()

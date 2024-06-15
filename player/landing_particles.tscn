@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbv12oqcf8r40"]
+[gd_scene load_steps=9 format=3 uid="uid://dbv12oqcf8r40"]
+
+[ext_resource type="Script" path="res://player/LandingParticles.cs" id="1_x0wqm"]
 
 [sub_resource type="Curve" id="Curve_c6fpl"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.447699, 1), 0.0, 0.0, 0, 0, Vector2(0.824268, 0), 0.0, 0.0, 0, 0]
@@ -41,3 +43,4 @@ fixed_fps = 60
 interpolate = false
 process_material = SubResource("ParticleProcessMaterial_8krmk")
 draw_pass_1 = SubResource("BoxMesh_pl0be")
+script = ExtResource("1_x0wqm")

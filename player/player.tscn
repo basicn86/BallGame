@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_8wcbe"]
 [ext_resource type="ArrayMesh" uid="uid://bk60o4evjj67t" path="res://PlayerBall.obj" id="2_76w44"]
-[ext_resource type="PackedScene" uid="uid://dbv12oqcf8r40" path="res://landing_particles.tscn" id="2_bhhwf"]
+[ext_resource type="PackedScene" uid="uid://dbv12oqcf8r40" path="res://player/landing_particles.tscn" id="2_vu4ki"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_08omv"]
 
@@ -13,7 +13,7 @@ continuous_cd = true
 script = ExtResource("1_8wcbe")
 playerModel = NodePath("MeshInstance3D")
 groundCast = NodePath("GroundRaycast")
-jumpParticles = ExtResource("2_bhhwf")
+jumpParticles = ExtResource("2_vu4ki")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 gi_mode = 2
