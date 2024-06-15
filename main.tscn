@@ -1,9 +1,9 @@
 [gd_scene load_steps=22 format=3 uid="uid://jc4p2lep7gmi"]
 
-[ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://prefabs/player.tscn" id="1_ygeui"]
+[ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://player/player.tscn" id="1_ygeui"]
 [ext_resource type="PackedScene" uid="uid://bfs203kgfe78t" path="res://prefabs/tree.tscn" id="3_ee0te"]
 [ext_resource type="PackedScene" uid="uid://cmclnyunnsjjs" path="res://prefabs/Grenade.tscn" id="4_ceibg"]
-[ext_resource type="PackedScene" uid="uid://bycuwkrqgkrc3" path="res://prefabs/playerCamera.tscn" id="5_6lr1a"]
+[ext_resource type="PackedScene" uid="uid://bycuwkrqgkrc3" path="res://player/playerCamera.tscn" id="5_6lr1a"]
 [ext_resource type="PackedScene" uid="uid://csiqtfnx8jbmn" path="res://prefabs/GrenadeThrower.tscn" id="5_wbk44"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7rmk5"]

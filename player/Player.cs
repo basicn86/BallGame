@@ -11,6 +11,10 @@ public partial class Player : RigidBody3D
 	public MeshInstance3D playerModel;
 	[Export]
 	public RayCast3D groundCast;
+	[Export]
+	public PackedScene jumpParticles;
+
+	private bool hasLanded = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -24,7 +28,7 @@ public partial class Player : RigidBody3D
 	{
 		UpdateGroundCast();
 
-		Jump();
+		TryJumping();
 
 		Vector3 moveVector = new Vector3();
 		moveVector.X = Input.GetAxis("left", "right");
@@ -75,7 +79,7 @@ public partial class Player : RigidBody3D
 		playerModel.GlobalPosition = previousPos.Lerp(currentPos, (float)Engine.GetPhysicsInterpolationFraction());
 	}
 
-	private void Jump()
+	private void TryJumping()
 	{
 		if (Input.IsActionJustPressed("jump") && groundCast.IsColliding())
 		{
@@ -91,6 +95,14 @@ public partial class Player : RigidBody3D
 		{
 			GravityScale = 1f;
 		}
+	}
+
+	private void SpawnLandingParticles()
+	{
+		GpuParticles3D jumpParticlesInstance = (GpuParticles3D)jumpParticles.Instantiate();
+		GetParent().AddChild(jumpParticlesInstance);
+		jumpParticlesInstance.GlobalPosition = groundCast.GetCollisionPoint() + new Vector3(0, 0.15f, 0);
+		jumpParticlesInstance.Emitting = true;
 	}
 
 	private Vector3 AdjustMoveVectorBySlope(Vector3 moveVector, Vector3 slopeNormal)
@@ -110,6 +122,15 @@ public partial class Player : RigidBody3D
 	private void UpdateGroundCast()
 	{
 		groundCast.Position = GlobalTransform.Origin;
+		if (groundCast.IsColliding() && !hasLanded)
+		{
+			hasLanded = true;
+			SpawnLandingParticles();
+		}
+		else if (!groundCast.IsColliding() && hasLanded)
+		{
+			hasLanded = false;
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)

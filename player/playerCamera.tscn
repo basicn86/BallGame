@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://bycuwkrqgkrc3"]
 
-[ext_resource type="Script" path="res://scripts/PlayerCamera.cs" id="1_e54em"]
+[ext_resource type="Script" path="res://player/PlayerCamera.cs" id="1_iw32j"]
 
 [node name="TwistPivot" type="Node3D" node_paths=PackedStringArray("pitch", "obstacleRaycast", "crosshairRaycast", "camera")]
-script = ExtResource("1_e54em")
+script = ExtResource("1_iw32j")
 pitch = NodePath("PitchPivot")
 obstacleRaycast = NodePath("PitchPivot/ObstacleRaycast")
 crosshairRaycast = NodePath("PitchPivot/Camera3D/CrosshairRaycast")
