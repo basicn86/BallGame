@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|c:\\users\\nedim\\desktop\\godot_v4.2.2-stable_mono_win64\\ballgame\\scripts\\grenadethrower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|solutionrelative:scripts\\grenadethrower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|c:\\users\\nedim\\desktop\\godot_v4.2.2-stable_mono_win64\\ballgame\\scripts\\playercamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|solutionrelative:scripts\\playercamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|solutionrelative:scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\grenade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|solutionrelative:scripts\\grenade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|solutionrelative:scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,11 +26,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GrenadeThrower.cs",
+              "DocumentMoniker": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\GrenadeThrower.cs",
+              "RelativeDocumentMoniker": "scripts\\GrenadeThrower.cs",
+              "ToolTip": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\GrenadeThrower.cs",
+              "RelativeToolTip": "scripts\\GrenadeThrower.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAQwBkAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T05:05:55.395Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -36,31 +53,33 @@
               "RelativeDocumentMoniker": "scripts\\Grenade.cs",
               "ToolTip": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\Grenade.cs",
               "RelativeToolTip": "scripts\\Grenade.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAA1wDMAAAACAAAA",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAQwBkAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-09T05:56:59.91Z"
+              "WhenOpened": "2024-06-09T05:56:59.91Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\Player.cs",
               "RelativeDocumentMoniker": "scripts\\Player.cs",
               "ToolTip": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\Player.cs",
               "RelativeToolTip": "scripts\\Player.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAiwBwAAAASAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T02:10:11.252Z"
+              "WhenOpened": "2024-05-20T02:10:11.252Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "PlayerCamera.cs",
               "DocumentMoniker": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\PlayerCamera.cs",
               "RelativeDocumentMoniker": "scripts\\PlayerCamera.cs",
               "ToolTip": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\PlayerCamera.cs",
               "RelativeToolTip": "scripts\\PlayerCamera.cs",
-              "ViewState": "AQIAAE0AAAAAAAAAAAAqwGsAAAAmAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAwBoAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-20T01:43:02.5Z",
               "EditorCaption": ""
