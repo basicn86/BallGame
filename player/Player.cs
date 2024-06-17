@@ -41,8 +41,6 @@ public partial class Player : RigidBody3D
 
 		ApplyCentralForce(moveVector * 1000f * (float)delta);
 
-		SmoothPlayerMotion(delta);
-
 		RunFpsDebug();
 	}
 
@@ -68,15 +66,6 @@ public partial class Player : RigidBody3D
 			GD.Print("Set FPS to 1000");
 			Engine.MaxFps = 1000;
 		}
-	}
-
-	private Vector3 previousPos;
-	private Vector3 currentPos;
-	private void SmoothPlayerMotion(double delta)
-	{
-		playerModel.TopLevel = true;
-		playerModel.Rotation = Rotation;
-		playerModel.GlobalPosition = previousPos.Lerp(currentPos, (float)Engine.GetPhysicsInterpolationFraction());
 	}
 
 	private void TryJumping()
@@ -131,12 +120,6 @@ public partial class Player : RigidBody3D
 		{
 			hasLanded = false;
 		}
-	}
-
-	public override void _PhysicsProcess(double delta)
-	{
-		previousPos = currentPos;
-		currentPos = GlobalTransform.Origin;
 	}
 
 	//version 1, save it for later
