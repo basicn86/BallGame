@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|c:\\users\\nedim\\desktop\\godot_v4.2.2-stable_mono_win64\\ballgame\\weapons\\laserpistol\\laserprojectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|solutionrelative:weapons\\laserpistol\\laserprojectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|solutionrelative:player\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|c:\\users\\nedim\\desktop\\godot_v4.2.2-stable_mono_win64\\ballgame\\player\\playermodelcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|solutionrelative:player\\playermodelcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|c:\\users\\nedim\\desktop\\godot_v4.2.2-stable_mono_win64\\ballgame\\scripts\\grenadethrower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|solutionrelative:scripts\\grenadethrower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\playercamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|solutionrelative:scripts\\playercamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\grenade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|solutionrelative:scripts\\grenade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{754C9529-6322-4854-B75F-CDC1CD3414B7}|BallGame.csproj|solutionrelative:scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,19 +39,58 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "LaserProjectile.cs",
+              "DocumentMoniker": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\weapons\\LaserPistol\\LaserProjectile.cs",
+              "RelativeDocumentMoniker": "weapons\\LaserPistol\\LaserProjectile.cs",
+              "ToolTip": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\weapons\\LaserPistol\\LaserProjectile.cs",
+              "RelativeToolTip": "weapons\\LaserPistol\\LaserProjectile.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-17T00:42:32.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlayerModelComponent.cs",
+              "DocumentMoniker": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\player\\PlayerModelComponent.cs",
+              "RelativeDocumentMoniker": "player\\PlayerModelComponent.cs",
+              "ToolTip": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\player\\PlayerModelComponent.cs",
+              "RelativeToolTip": "player\\PlayerModelComponent.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAgwBQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-17T00:30:14.7Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Player.cs",
+              "DocumentMoniker": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\player\\Player.cs",
+              "RelativeDocumentMoniker": "player\\Player.cs",
+              "ToolTip": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\player\\Player.cs",
+              "RelativeToolTip": "player\\Player.cs",
+              "ViewState": "AQIAAEkAAAAAAAAAAAAuwFAAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-15T21:53:37.979Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "GrenadeThrower.cs",
               "DocumentMoniker": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\GrenadeThrower.cs",
               "RelativeDocumentMoniker": "scripts\\GrenadeThrower.cs",
               "ToolTip": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\GrenadeThrower.cs",
               "RelativeToolTip": "scripts\\GrenadeThrower.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAxwBkAAAADAAAA",
+              "ViewState": "AQIAABMAAAAAAAAAAAAgwBgAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-14T05:05:55.395Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Grenade.cs",
               "DocumentMoniker": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\Grenade.cs",
               "RelativeDocumentMoniker": "scripts\\Grenade.cs",
@@ -56,30 +99,6 @@
               "ViewState": "AQIAAAsAAAAAAAAAAAAQwBkAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-09T05:56:59.91Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Player.cs",
-              "DocumentMoniker": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\Player.cs",
-              "RelativeDocumentMoniker": "scripts\\Player.cs",
-              "ToolTip": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\Player.cs",
-              "RelativeToolTip": "scripts\\Player.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T02:10:11.252Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PlayerCamera.cs",
-              "DocumentMoniker": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\PlayerCamera.cs",
-              "RelativeDocumentMoniker": "scripts\\PlayerCamera.cs",
-              "ToolTip": "C:\\Users\\Nedim\\Desktop\\Godot_v4.2.2-stable_mono_win64\\BallGame\\scripts\\PlayerCamera.cs",
-              "RelativeToolTip": "scripts\\PlayerCamera.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAwBoAAAAdAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T01:43:02.5Z"
             }
           ]
         }

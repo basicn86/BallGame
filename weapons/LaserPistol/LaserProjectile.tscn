@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnp2bm7va434i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gr3c6"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 0.482353, 1, 1)
+grow = true
+grow_amount = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xue6g"]
+next_pass = SubResource("StandardMaterial3D_gr3c6")
+shading_mode = 0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_nt5qy"]
+material = SubResource("StandardMaterial3D_xue6g")
+radius = 0.15
+height = 1.0
+radial_segments = 8
+rings = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qe8tm"]
+size = Vector3(0.4, 1, 0.4)
+
+[node name="LaserProjectile" type="MeshInstance3D"]
+mesh = SubResource("CapsuleMesh_nt5qy")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_qe8tm")
