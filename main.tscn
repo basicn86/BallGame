@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene load_steps=23 format=3 uid="uid://jc4p2lep7gmi"]
 
 [ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://player/player.tscn" id="1_ygeui"]
 [ext_resource type="PackedScene" uid="uid://bfs203kgfe78t" path="res://prefabs/tree.tscn" id="3_ee0te"]
 [ext_resource type="PackedScene" uid="uid://cmclnyunnsjjs" path="res://prefabs/Grenade.tscn" id="4_ceibg"]
 [ext_resource type="PackedScene" uid="uid://bycuwkrqgkrc3" path="res://player/playerCamera.tscn" id="5_6lr1a"]
 [ext_resource type="PackedScene" uid="uid://csiqtfnx8jbmn" path="res://prefabs/GrenadeThrower.tscn" id="5_wbk44"]
+[ext_resource type="PackedScene" uid="uid://11b4biydrmn2" path="res://weapons/LaserPistol/LaserPistol.tscn" id="6_u33ec"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7rmk5"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -179,3 +180,7 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Slope2/StaticBody3D"]
 shape = SubResource("BoxShape3D_nil25")
+
+[node name="LaserPistol" parent="." node_paths=PackedStringArray("player", "camera") instance=ExtResource("6_u33ec")]
+player = NodePath("../Player")
+camera = NodePath("../TwistPivot")

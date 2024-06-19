@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnp2bm7va434i"]
+[gd_scene load_steps=6 format=3 uid="uid://cnp2bm7va434i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gr3c6"]
 cull_mode = 1
@@ -21,10 +21,22 @@ rings = 2
 [sub_resource type="BoxShape3D" id="BoxShape3D_qe8tm"]
 size = Vector3(0.4, 1, 0.4)
 
-[node name="LaserProjectile" type="MeshInstance3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_7xhij"]
+size = Vector3(0.2, 1, 0.2)
+
+[node name="RigidBody3D" type="RigidBody3D"]
+collision_layer = 8
+gravity_scale = 0.0
+
+[node name="LaserProjectile" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_nt5qy")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="LaserProjectile"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LaserProjectile/Area3D"]
 shape = SubResource("BoxShape3D_qe8tm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_7xhij")

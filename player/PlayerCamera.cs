@@ -15,6 +15,11 @@ public partial class PlayerCamera : Node3D
 	[Export]
 	private RayCast3D crosshairRaycast;
 
+	public RayCast3D CrosshairRaycast
+	{
+		get { return crosshairRaycast; }
+	}
+
 	private Vector3 normalCameraPosition;
 	private float normalCameraDistance;
 	private Vector3 normalObstacleRaycastPosition;
