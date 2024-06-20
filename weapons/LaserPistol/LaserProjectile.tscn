@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnp2bm7va434i"]
+[gd_scene load_steps=7 format=3 uid="uid://cnp2bm7va434i"]
+
+[ext_resource type="Script" path="res://weapons/LaserPistol/LaserProjectile.cs" id="1_ahsb0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gr3c6"]
 cull_mode = 1
@@ -27,6 +29,9 @@ size = Vector3(0.2, 1, 0.2)
 [node name="RigidBody3D" type="RigidBody3D"]
 collision_layer = 8
 gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_ahsb0")
 
 [node name="LaserProjectile" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -40,3 +45,11 @@ shape = SubResource("BoxShape3D_qe8tm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("BoxShape3D_7xhij")
+
+[node name="Lifetime" type="Timer" parent="."]
+process_callback = 0
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]
