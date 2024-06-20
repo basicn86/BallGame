@@ -29,6 +29,7 @@ size = Vector3(0.2, 1, 0.2)
 [node name="RigidBody3D" type="RigidBody3D"]
 collision_layer = 8
 gravity_scale = 0.0
+can_sleep = false
 max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_ahsb0")
