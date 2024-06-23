@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 
 public partial class Player : RigidBody3D
 {
-	private Node3D twist;
-
+	[Export]
+	private PlayerCamera cameraNode;
 
 	[Export]
 	public MeshInstance3D playerModel;
@@ -19,7 +19,8 @@ public partial class Player : RigidBody3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		twist = GetNode<Node3D>("../TwistPivot");
+		cameraNode.PlayerRid = GetRid();
+
 		groundCast.TopLevel = true;
 	}
 
@@ -30,10 +31,11 @@ public partial class Player : RigidBody3D
 
 		TryJumping();
 
+		//TODO: Need to move this to _PhysicsProcess
 		Vector3 moveVector = new Vector3();
 		moveVector.X = Input.GetAxis("left", "right");
 		moveVector.Z = Input.GetAxis("forward", "backward");
-		moveVector *= twist.Basis.Inverse();
+		moveVector *= cameraNode.Basis.Inverse();
 		moveVector.Y = 0;
 		if(groundCast.IsColliding()) moveVector = AdjustMoveVectorBySlope(moveVector, groundCast.GetCollisionNormal());
 
@@ -42,6 +44,8 @@ public partial class Player : RigidBody3D
 		ApplyCentralForce(moveVector * 1000f * (float)delta);
 
 		RunFpsDebug();
+
+		cameraNode.TargetPosition = GlobalTransform.Origin;
 	}
 
 	private void RunFpsDebug()

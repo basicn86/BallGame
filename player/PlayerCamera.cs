@@ -5,9 +5,18 @@ public partial class PlayerCamera : Node3D
 {
 	private float sensitivity = 0.1f;
 
-	[Export]
-	public Player player;
-	private Node3D playerModel;
+	
+	public Rid PlayerRid
+	{
+		get { return playerRid; }
+		set {
+			playerRid = value;
+			obstacleRaycast.AddExceptionRid(playerRid);
+			crosshairRaycast.AddExceptionRid(playerRid);
+		}
+	}
+	private Rid playerRid;
+	public Vector3 TargetPosition;
 	[Export]
 	private Node3D pitch;
 	[Export]
@@ -35,16 +44,12 @@ public partial class PlayerCamera : Node3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		playerModel = player.playerModel;
-
 		obstacleRaycast.TargetPosition = camera.Position + new Vector3(0, -0.1f, 0);
-		obstacleRaycast.AddExceptionRid(player.GetRid());
 
 		normalCameraPosition = camera.Position;
 		normalCameraDistance = camera.Position.DistanceTo(new Vector3());
 
 		normalObstacleRaycastPosition = crosshairRaycast.Position; //must be relative to the camera
-		crosshairRaycast.AddExceptionRid(player.GetRid());
 
 		//capture the mouse
 		Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -53,7 +58,7 @@ public partial class PlayerCamera : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Position = Position.Lerp(playerModel.GlobalTransform.Origin, 20.0f * (float)delta);
+		Position = Position.Lerp(TargetPosition, 20.0f * (float)delta);
 
 		MoveCameraAwayFromEnvironment();
 

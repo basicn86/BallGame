@@ -69,9 +69,10 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jt2xw")
 
-[node name="Player" parent="." instance=ExtResource("1_ygeui")]
+[node name="Player" parent="." node_paths=PackedStringArray("cameraNode") instance=ExtResource("1_ygeui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_mask = 5
+cameraNode = NodePath("../TwistPivot")
 
 [node name="Tree" parent="." instance=ExtResource("3_ee0te")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -2)
@@ -88,8 +89,7 @@ grenadeScene = ExtResource("4_ceibg")
 player = NodePath("../Player")
 camera = NodePath("../TwistPivot")
 
-[node name="TwistPivot" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_6lr1a")]
-player = NodePath("../Player")
+[node name="TwistPivot" parent="." instance=ExtResource("5_6lr1a")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_317cg")
