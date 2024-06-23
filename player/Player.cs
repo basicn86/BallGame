@@ -45,7 +45,7 @@ public partial class Player : RigidBody3D
 
 		RunFpsDebug();
 
-		cameraNode.TargetPosition = GlobalTransform.Origin;
+		cameraNode.TargetPosition = playerModel.Transform.Origin;
 	}
 
 	private void RunFpsDebug()
