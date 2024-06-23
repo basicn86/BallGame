@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxe6dxk3uc1eq"]
+
+[ext_resource type="Script" path="res://scripts/GrenadeParticles.cs" id="1_y0wia"]
+
+[sub_resource type="Curve" id="Curve_mpe8b"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.506276, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_56tyk"]
+curve = SubResource("Curve_mpe8b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rtmka"]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_56tyk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_we340"]
+albedo_color = Color(0, 0.686275, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gsjb5"]
+material = SubResource("StandardMaterial3D_we340")
+radius = 0.1
+height = 0.5
+radial_segments = 8
+rings = 4
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("particles")]
+script = ExtResource("1_y0wia")
+particles = [NodePath("LaserParticles")]
+
+[node name="LaserParticles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 16
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_rtmka")
+draw_pass_1 = SubResource("CapsuleMesh_gsjb5")
