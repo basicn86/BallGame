@@ -1,10 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene load_steps=24 format=3 uid="uid://jc4p2lep7gmi"]
 
 [ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://player/player.tscn" id="1_ygeui"]
 [ext_resource type="PackedScene" uid="uid://bfs203kgfe78t" path="res://prefabs/tree.tscn" id="3_ee0te"]
 [ext_resource type="PackedScene" uid="uid://cmclnyunnsjjs" path="res://prefabs/Grenade.tscn" id="4_ceibg"]
 [ext_resource type="PackedScene" uid="uid://bycuwkrqgkrc3" path="res://player/playerCamera.tscn" id="5_6lr1a"]
 [ext_resource type="PackedScene" uid="uid://csiqtfnx8jbmn" path="res://prefabs/GrenadeThrower.tscn" id="5_wbk44"]
+[ext_resource type="PackedScene" uid="uid://11b4biydrmn2" path="res://weapons/LaserPistol/LaserPistol.tscn" id="6_u33ec"]
+[ext_resource type="Script" path="res://Crosshair.cs" id="7_gtrsf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7rmk5"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -67,12 +69,17 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jt2xw")
 
-[node name="Player" parent="." instance=ExtResource("1_ygeui")]
+[node name="Player" parent="." node_paths=PackedStringArray("cameraNode") instance=ExtResource("1_ygeui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-collision_layer = 3
+collision_mask = 5
+cameraNode = NodePath("../TwistPivot")
 
 [node name="Tree" parent="." instance=ExtResource("3_ee0te")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -2)
+collision_mask = 3
+
+[node name="Tree2" parent="." instance=ExtResource("3_ee0te")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.7395, 1, 6.82912)
 collision_mask = 3
 
 [node name="Grenade" parent="." instance=ExtResource("4_ceibg")]
@@ -86,8 +93,7 @@ grenadeScene = ExtResource("4_ceibg")
 player = NodePath("../Player")
 camera = NodePath("../TwistPivot")
 
-[node name="TwistPivot" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_6lr1a")]
-player = NodePath("../Player")
+[node name="TwistPivot" parent="." instance=ExtResource("5_6lr1a")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_317cg")
@@ -179,3 +185,32 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Slope2/StaticBody3D"]
 shape = SubResource("BoxShape3D_nil25")
+
+[node name="LaserPistol" parent="." node_paths=PackedStringArray("player", "camera") instance=ExtResource("6_u33ec")]
+velocity = 20.0
+player = NodePath("../Player")
+camera = NodePath("../TwistPivot")
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Crosshair" type="CenterContainer" parent="GUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_gtrsf")

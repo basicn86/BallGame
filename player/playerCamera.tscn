@@ -16,7 +16,7 @@ transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 
 
 [node name="CrosshairRaycast" type="RayCast3D" parent="PitchPivot/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
-target_position = Vector3(0, 0, -5)
+target_position = Vector3(0, 0, -50)
 collision_mask = 5
 debug_shape_thickness = 4
 

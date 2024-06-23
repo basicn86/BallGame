@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://11b4biydrmn2"]
+
+[ext_resource type="Script" path="res://weapons/LaserPistol/LaserPistol.cs" id="1_wb4el"]
+[ext_resource type="PackedScene" uid="uid://cnp2bm7va434i" path="res://weapons/LaserPistol/LaserProjectile.tscn" id="2_uhqxf"]
+
+[node name="LaserPistol" type="Node3D"]
+script = ExtResource("1_wb4el")
+offset = Vector3(1, 0, 0)
+velocity = 10.0
+projectileScene = ExtResource("2_uhqxf")
