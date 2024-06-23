@@ -16,6 +16,9 @@ public partial class Player : RigidBody3D
 
 	private bool hasLanded = false;
 
+	[Export]
+	LaserPistol laserPistol;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -46,6 +49,12 @@ public partial class Player : RigidBody3D
 		RunFpsDebug();
 
 		cameraNode.TargetPosition = playerModel.Transform.Origin;
+
+		laserPistol.UpdatePosition(GlobalPosition, cameraNode.Basis);
+		if (Input.IsActionJustPressed("attack") && cameraNode.CrosshairRaycast.IsColliding())
+		{
+			laserPistol.Fire(cameraNode.CrosshairRaycast.GetCollisionPoint());
+		}
 	}
 
 	private void RunFpsDebug()
