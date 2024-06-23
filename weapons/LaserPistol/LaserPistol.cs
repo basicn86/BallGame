@@ -11,9 +11,6 @@ public partial class LaserPistol : Node3D
 	[Export]
 	PackedScene projectileScene;
 
-	[Export]
-	AnimationPlayer animationPlayer;
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -46,7 +43,5 @@ public partial class LaserPistol : Node3D
 		finalDirection = finalDirection.Normalized() * velocity;
 		projectile.LinearVelocity = finalDirection;
 		projectile.LookAt(targetPos);
-
-		animationPlayer.Play("FirePistol");
 	}
 }

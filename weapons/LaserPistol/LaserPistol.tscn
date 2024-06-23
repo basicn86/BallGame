@@ -6,12 +6,11 @@
 [sub_resource type="BoxMesh" id="BoxMesh_26pde"]
 size = Vector3(0.2, 0.2, 0.5)
 
-[node name="LaserPistol" type="Node3D" node_paths=PackedStringArray("animationPlayer")]
+[node name="LaserPistol" type="Node3D"]
 script = ExtResource("1_wb4el")
 offset = Vector3(1, 0, 0)
 velocity = 20.0
 projectileScene = ExtResource("2_uhqxf")
-animationPlayer = NodePath("")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
