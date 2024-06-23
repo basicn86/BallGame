@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxe6dxk3uc1eq"]
+[gd_scene load_steps=8 format=3 uid="uid://bxe6dxk3uc1eq"]
 
 [ext_resource type="Script" path="res://scripts/GrenadeParticles.cs" id="1_y0wia"]
 
@@ -17,8 +17,16 @@ initial_velocity_max = 5.0
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_56tyk")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hjbgn"]
+shading_mode = 0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_we340"]
-albedo_color = Color(0, 0.686275, 1, 1)
+next_pass = SubResource("StandardMaterial3D_hjbgn")
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 0.482353, 1, 1)
+grow = true
+grow_amount = 0.05
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gsjb5"]
 material = SubResource("StandardMaterial3D_we340")
