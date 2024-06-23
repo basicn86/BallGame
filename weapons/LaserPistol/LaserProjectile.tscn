@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cnp2bm7va434i"]
+[gd_scene load_steps=9 format=3 uid="uid://cnp2bm7va434i"]
 
 [ext_resource type="Script" path="res://weapons/LaserPistol/LaserProjectile.cs" id="1_ahsb0"]
 [ext_resource type="PackedScene" uid="uid://bxe6dxk3uc1eq" path="res://weapons/LaserPistol/LaserParticles.tscn" id="2_6cs73"]
+[ext_resource type="Script" path="res://weapons/LaserPistol/LaserProjectileInterpolator.cs" id="3_7ttqd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gr3c6"]
 cull_mode = 1
@@ -37,9 +38,11 @@ script = ExtResource("1_ahsb0")
 particleSpawnPoint = NodePath("ParticleSpawnPoint")
 particleScene = ExtResource("2_6cs73")
 
-[node name="LaserProjectile" type="MeshInstance3D" parent="."]
+[node name="LaserProjectile" type="MeshInstance3D" parent="." node_paths=PackedStringArray("projectile")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_nt5qy")
+script = ExtResource("3_7ttqd")
+projectile = NodePath("..")
 
 [node name="Area3D" type="Area3D" parent="LaserProjectile"]
 
@@ -57,6 +60,6 @@ one_shot = true
 autostart = true
 
 [node name="ParticleSpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999989, -0.00471237, 0, 0.00471237, 0.999989, 0, 0, -0.324931)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.35)
 
 [connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]
