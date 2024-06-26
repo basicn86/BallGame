@@ -104,6 +104,14 @@ public partial class Player : RigidBody3D
 		GpuParticles3D jumpParticlesInstance = (GpuParticles3D)jumpParticles.Instantiate();
 		GetParent().AddChild(jumpParticlesInstance);
 		jumpParticlesInstance.GlobalPosition = groundCast.GetCollisionPoint() + new Vector3(0, 0.15f, 0);
+		//rotate the particles to match the ground normal
+		jumpParticlesInstance.RotateX(groundCast.GetCollisionNormal().AngleTo(Vector3.Up));
+		Vector3 groundNormalHeightless = groundCast.GetCollisionNormal();
+		groundNormalHeightless.Y = 0;
+		if(groundNormalHeightless.X > 0)
+			jumpParticlesInstance.RotateY(-groundNormalHeightless.AngleTo(Vector3.Forward) + Mathf.Pi);
+		else
+			jumpParticlesInstance.RotateY(groundNormalHeightless.AngleTo(Vector3.Forward) + Mathf.Pi);
 		jumpParticlesInstance.Emitting = true;
 	}
 
