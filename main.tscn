@@ -211,6 +211,16 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Slope4/StaticBody3D"]
 shape = SubResource("BoxShape3D_nil25")
 
+[node name="Slope5" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(-1, -6.18172e-08, -6.18172e-08, 0, 0.707107, -0.707107, 8.74228e-08, -0.707107, -0.707107, -2.0513, 0.299953, 7.07405)
+mesh = SubResource("BoxMesh_224x6")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Slope5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Slope5/StaticBody3D"]
+shape = SubResource("BoxShape3D_nil25")
+
 [node name="Slope2" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 3.28298, 0.299953, -8.28083)
 mesh = SubResource("BoxMesh_224x6")
