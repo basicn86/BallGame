@@ -13,6 +13,11 @@ public partial class Player : RigidBody3D
 	public RayCast3D groundCast;
 	[Export]
 	public PackedScene jumpParticles;
+	[Export]
+	public float MaxVelocity = 10f;
+	[Export]
+	public float MaxVelocityPushback; //this is the amount of force to apply to the player when they exceed the max velocity
+
 
 	private bool hasLanded = false;
 
@@ -48,6 +53,7 @@ public partial class Player : RigidBody3D
 	public override void _PhysicsProcess(double delta)
 	{
 		MovePlayer(delta);
+		RestrictPlayerVelocity(delta);
 	}
 
 	//moves player based on input horizontally, but not vertically
@@ -63,6 +69,13 @@ public partial class Player : RigidBody3D
 		if (moveVector.Length() > 1f) moveVector = moveVector.Normalized();
 
 		ApplyCentralForce(moveVector * 1000f * (float)delta);
+	}
+
+	private void RestrictPlayerVelocity(double delta)
+	{
+		Vector3 velocity = LinearVelocity;
+		velocity.Y = 0; //don't restrict vertical velocity
+		if (velocity.Length() > MaxVelocity) ApplyCentralForce(-velocity.Normalized() * MaxVelocityPushback * (float)delta);
 	}
 
 	private void RunFpsDebug()
