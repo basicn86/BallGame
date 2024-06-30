@@ -23,11 +23,8 @@ public partial class PlayerCamera : Node3D
 	private RayCast3D obstacleRaycast;
 	[Export]
 	private RayCast3D crosshairRaycast;
-
-	public RayCast3D CrosshairRaycast
-	{
-		get { return crosshairRaycast; }
-	}
+	[Export]
+	private Node3D crosshairNoncollidingPoint;
 
 	private Vector3 normalCameraPosition;
 	private float normalCameraDistance;
@@ -36,10 +33,30 @@ public partial class PlayerCamera : Node3D
 	[Export]
 	public Camera3D camera;
 
+	#region Publicly accessible properties
 	public float Pitch
 	{
 		get { return pitch.Rotation.X; }
 	}
+	/// <summary>
+	/// Gets the collision point of the crosshair raycast if it is colliding with something. If it is not colliding with anything, it returns the ending point of the crosshair raycast. This allows us to get the point where the player is aiming at, even if the crosshair is not colliding with anything.
+	/// </summary>
+	public Vector3 GetCrosshairCollisionPoint()
+	{
+		if (crosshairRaycast.IsColliding())
+		{
+			return crosshairRaycast.GetCollisionPoint();
+		}
+		else
+		{
+			return crosshairNoncollidingPoint.GlobalTransform.Origin;
+		}
+	}
+	public RayCast3D CrosshairRaycast
+	{
+		get { return crosshairRaycast; }
+	}
+	#endregion
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

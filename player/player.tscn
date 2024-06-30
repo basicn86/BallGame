@@ -14,6 +14,7 @@ script = ExtResource("1_8wcbe")
 playerModel = NodePath("PlayerModel")
 groundCast = NodePath("GroundRaycast")
 jumpParticles = ExtResource("2_vu4ki")
+MaxVelocityPushback = 2000.0
 
 [node name="PlayerModel" type="MeshInstance3D" parent="." node_paths=PackedStringArray("player")]
 gi_mode = 2

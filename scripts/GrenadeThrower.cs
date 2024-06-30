@@ -10,10 +10,11 @@ public partial class GrenadeThrower : Node3D
 	Vector3 Direction;
 	[Export]
 	PackedScene grenadeScene;
+
 	[Export]
-	Player player;
+	public float throwForce = 10f;
 	[Export]
-	PlayerCamera camera;
+	public float throwHeight = 2.5f;
 
 	public override void _Ready()
 	{
@@ -22,17 +23,22 @@ public partial class GrenadeThrower : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (Input.IsActionJustPressed("throw_grenade"))
-		{
-			RigidBody3D grenade = (RigidBody3D)grenadeScene.Instantiate();
-			grenade.Position = player.GlobalTransform.Origin + (Offset * camera.Basis.Inverse());
 
-			GetParent().AddChild(grenade);
+	}
 
-			grenade.LinearVelocity = player.LinearVelocity;
-			Vector3 finalDirection = Direction.Rotated(Vector3.Right, camera.Pitch);
-			finalDirection *= camera.Basis.Inverse();
-			grenade.ApplyCentralForce(finalDirection);
-		}
+	public void UpdatePosition(Vector3 position, Basis basis)
+	{
+		GlobalPosition = position + Offset * basis.Inverse();
+		Rotation = basis.GetEuler();
+	}
+
+	public void Fire(Vector3 targetPos)
+	{
+		RigidBody3D grenade = (RigidBody3D)grenadeScene.Instantiate();
+		grenade.Position = GlobalTransform.Origin + (Offset * Basis.Inverse());
+
+		GetParent().AddChild(grenade);
+
+		grenade.ApplyImpulse(throwForce * (targetPos - GlobalTransform.Origin).Normalized() + new Vector3(0f,throwHeight,0f));
 	}
 }

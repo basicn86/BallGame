@@ -10,15 +10,11 @@ public partial class LaserPistol : Node3D
 	float velocity;
 	[Export]
 	PackedScene projectileScene;
-	[Export]
-	Player player;
-	[Export]
-	PlayerCamera camera;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		if (projectileScene == null || player == null || camera == null)
+		if (projectileScene == null)
 		{
 			QueueFree();
 		}
@@ -27,17 +23,25 @@ public partial class LaserPistol : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (!Input.IsActionJustPressed("attack")) return;
-		if (camera.CrosshairRaycast.GetCollider() == null) return;
 
+	}
+
+	public void UpdatePosition(Vector3 position, Basis basis)
+	{
+		GlobalPosition = position + offset * basis.Inverse();
+		Rotation = basis.GetEuler();
+	}
+
+	public void Fire(Vector3 targetPos)
+	{
 		RigidBody3D projectile = (RigidBody3D)projectileScene.Instantiate();
-		projectile.Position = player.GlobalTransform.Origin + (offset * camera.Basis.Inverse());
+		projectile.Position = GlobalTransform.Origin;
 
 		GetParent().AddChild(projectile);
 
-		Vector3 finalDirection = camera.CrosshairRaycast.GetCollisionPoint() - projectile.GlobalPosition;
+		Vector3 finalDirection = targetPos - projectile.GlobalPosition;
 		finalDirection = finalDirection.Normalized() * velocity;
 		projectile.LinearVelocity = finalDirection;
-		projectile.LookAt(camera.CrosshairRaycast.GetCollisionPoint());
+		projectile.LookAt(targetPos);
 	}
 }
