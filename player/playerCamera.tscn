@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" path="res://player/PlayerCamera.cs" id="1_iw32j"]
 
-[node name="TwistPivot" type="Node3D" node_paths=PackedStringArray("pitch", "obstacleRaycast", "crosshairRaycast", "camera")]
+[node name="PlayerCamera" type="Node3D" node_paths=PackedStringArray("pitch", "obstacleRaycast", "crosshairRaycast", "crosshairNoncollidingPoint", "camera")]
 script = ExtResource("1_iw32j")
 pitch = NodePath("PitchPivot")
 obstacleRaycast = NodePath("PitchPivot/ObstacleRaycast")
 crosshairRaycast = NodePath("PitchPivot/Camera3D/CrosshairRaycast")
+crosshairNoncollidingPoint = NodePath("PitchPivot/Camera3D/CrosshairNoncollidingPoint")
 camera = NodePath("PitchPivot/Camera3D")
 
 [node name="PitchPivot" type="Node3D" parent="."]
@@ -19,6 +20,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 target_position = Vector3(0, 0, -50)
 collision_mask = 5
 debug_shape_thickness = 4
+
+[node name="CrosshairNoncollidingPoint" type="Node3D" parent="PitchPivot/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -55)
 
 [node name="ObstacleRaycast" type="RayCast3D" parent="PitchPivot"]
 target_position = Vector3(0, 0, -1)

@@ -46,15 +46,15 @@ public partial class Player : RigidBody3D
 		cameraNode.TargetPosition = playerModel.Transform.Origin;
 
 		laserPistol.UpdatePosition(GlobalPosition, cameraNode.Basis);
-		if (Input.IsActionJustPressed("attack") && cameraNode.CrosshairRaycast.IsColliding())
+		if (Input.IsActionJustPressed("attack"))
 		{
-			laserPistol.Fire(cameraNode.CrosshairRaycast.GetCollisionPoint());
+			laserPistol.Fire(cameraNode.GetCrosshairCollisionPoint());
 		}
 
 		grenadeThrower.UpdatePosition(GlobalPosition, cameraNode.Basis);
-		if (Input.IsActionJustPressed("throw_grenade") && cameraNode.CrosshairRaycast.IsColliding())
+		if (Input.IsActionJustPressed("throw_grenade"))
 		{
-			grenadeThrower.Fire(cameraNode.CrosshairRaycast.GetCollisionPoint());
+			grenadeThrower.Fire(cameraNode.GetCrosshairCollisionPoint());
 		}
 	}
 
