@@ -23,6 +23,8 @@ public partial class Player : RigidBody3D
 
 	[Export]
 	LaserPistol laserPistol;
+	[Export]
+	GrenadeThrower grenadeThrower;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -47,6 +49,12 @@ public partial class Player : RigidBody3D
 		if (Input.IsActionJustPressed("attack") && cameraNode.CrosshairRaycast.IsColliding())
 		{
 			laserPistol.Fire(cameraNode.CrosshairRaycast.GetCollisionPoint());
+		}
+
+		grenadeThrower.UpdatePosition(GlobalPosition, cameraNode.Basis);
+		if (Input.IsActionJustPressed("throw_grenade") && cameraNode.CrosshairRaycast.IsColliding())
+		{
+			grenadeThrower.Fire(cameraNode.CrosshairRaycast.GetCollisionPoint());
 		}
 	}
 

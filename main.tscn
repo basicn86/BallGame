@@ -77,13 +77,19 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jt2xw")
 
-[node name="Player" parent="." node_paths=PackedStringArray("cameraNode", "laserPistol") instance=ExtResource("1_ygeui")]
+[node name="Player" parent="." node_paths=PackedStringArray("cameraNode", "laserPistol", "grenadeThrower") instance=ExtResource("1_ygeui")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_mask = 5
 cameraNode = NodePath("../TwistPivot")
 laserPistol = NodePath("../LaserPistol")
+grenadeThrower = NodePath("../GrenadeThrower")
 
 [node name="LaserPistol" parent="." instance=ExtResource("6_u33ec")]
+
+[node name="GrenadeThrower" parent="." instance=ExtResource("5_wbk44")]
+Offset = Vector3(0.5, 0, 0)
+Direction = Vector3(-50, 200, -400)
+grenadeScene = ExtResource("4_ceibg")
 
 [node name="Tree" parent="." instance=ExtResource("3_ee0te")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -2)
@@ -100,13 +106,6 @@ collision_mask = 3
 [node name="Grenade" parent="." instance=ExtResource("4_ceibg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9107, 0.958258, -8.30605)
 mass = 0.2
-
-[node name="GrenadeThrower" parent="." node_paths=PackedStringArray("player", "camera") instance=ExtResource("5_wbk44")]
-Offset = Vector3(1, 0, 0)
-Direction = Vector3(-50, 200, -400)
-grenadeScene = ExtResource("4_ceibg")
-player = NodePath("../Player")
-camera = NodePath("../TwistPivot")
 
 [node name="TwistPivot" parent="." instance=ExtResource("5_6lr1a")]
 
