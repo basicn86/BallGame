@@ -34,18 +34,6 @@ public partial class Player : RigidBody3D
 
 		TryJumping();
 
-		//TODO: Need to move this to _PhysicsProcess
-		Vector3 moveVector = new Vector3();
-		moveVector.X = Input.GetAxis("left", "right");
-		moveVector.Z = Input.GetAxis("forward", "backward");
-		moveVector *= cameraNode.Basis.Inverse();
-		moveVector.Y = 0;
-		if(groundCast.IsColliding()) moveVector = AdjustMoveVectorBySlope(moveVector, groundCast.GetCollisionNormal());
-
-		if (moveVector.Length() > 1f) moveVector = moveVector.Normalized();
-
-		ApplyCentralForce(moveVector * 1000f * (float)delta);
-
 		RunFpsDebug();
 
 		cameraNode.TargetPosition = playerModel.Transform.Origin;
@@ -55,6 +43,26 @@ public partial class Player : RigidBody3D
 		{
 			laserPistol.Fire(cameraNode.CrosshairRaycast.GetCollisionPoint());
 		}
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		MovePlayer(delta);
+	}
+
+	//moves player based on input horizontally, but not vertically
+	private void MovePlayer(double delta)
+	{
+		Vector3 moveVector = new Vector3();
+		moveVector.X = Input.GetAxis("left", "right");
+		moveVector.Z = Input.GetAxis("forward", "backward");
+		moveVector *= cameraNode.Basis.Inverse();
+		moveVector.Y = 0;
+		if (groundCast.IsColliding()) moveVector = AdjustMoveVectorBySlope(moveVector, groundCast.GetCollisionNormal());
+
+		if (moveVector.Length() > 1f) moveVector = moveVector.Normalized();
+
+		ApplyCentralForce(moveVector * 1000f * (float)delta);
 	}
 
 	private void RunFpsDebug()
