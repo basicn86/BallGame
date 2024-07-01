@@ -40,7 +40,7 @@ public partial class Grenade : RigidBody3D
 
 				forceDirection = forceDirection.Normalized();
 
-				i.ApplyCentralForce(forceDirection * 1000f / distance);
+				i.ApplyCentralForce(forceDirection * 100f / distance);
 
 				//for debug output, print the name of the object that was hit
 				GD.Print(i.Name);
