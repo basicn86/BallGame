@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfncrprg4epon"]
+[gd_scene load_steps=7 format=3 uid="uid://dfncrprg4epon"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_8wcbe"]
-[ext_resource type="ArrayMesh" uid="uid://bk60o4evjj67t" path="res://PlayerBall.obj" id="2_76w44"]
+[ext_resource type="ArrayMesh" uid="uid://bk60o4evjj67t" path="res://player/PlayerBall.obj" id="2_76w44"]
 [ext_resource type="PackedScene" uid="uid://dbv12oqcf8r40" path="res://player/landing_particles.tscn" id="2_vu4ki"]
+[ext_resource type="PackedScene" uid="uid://ip6yt1528pgy" path="res://player/PlayerSpeedingParticle.tscn" id="3_g8bhx"]
 [ext_resource type="Script" path="res://player/PlayerModelComponent.cs" id="4_ie68q"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_08omv"]
@@ -14,6 +15,7 @@ script = ExtResource("1_8wcbe")
 playerModel = NodePath("PlayerModel")
 groundCast = NodePath("GroundRaycast")
 jumpParticles = ExtResource("2_vu4ki")
+excessSpeedParticles = ExtResource("3_g8bhx")
 MaxVelocityPushback = 2000.0
 
 [node name="PlayerModel" type="MeshInstance3D" parent="." node_paths=PackedStringArray("player")]

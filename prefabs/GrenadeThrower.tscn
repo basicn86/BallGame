@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://csiqtfnx8jbmn"]
-
-[ext_resource type="Script" path="res://scripts/GrenadeThrower.cs" id="1_2ylsm"]
-
-[node name="GrenadeThrower" type="Node3D"]
-script = ExtResource("1_2ylsm")

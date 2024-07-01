@@ -111,6 +111,7 @@ alt_attack={
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Entity"
 3d_physics/layer_4="Projectile"
+3d_physics/layer_5="Particle"
 
 [physics]
 

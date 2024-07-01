@@ -26,7 +26,7 @@ rings = 2
 size = Vector3(0.4, 1, 0.4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7xhij"]
-size = Vector3(0.2, 1, 0.2)
+size = Vector3(0.2, 0.6, 0.2)
 
 [node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("particleSpawnPoint")]
 collision_layer = 8
@@ -60,6 +60,6 @@ one_shot = true
 autostart = true
 
 [node name="ParticleSpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.35)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.270493)
 
 [connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]
