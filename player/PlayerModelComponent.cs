@@ -9,6 +9,9 @@ public partial class PlayerModelComponent : MeshInstance3D
 	private Vector3 previousPos;
 	private Vector3 currentPos;
 
+	private Quaternion previousRotation;
+	private Quaternion currentRotation;
+
 	public override void _Ready()
 	{
 		if(player == null) QueueFree();
@@ -23,7 +26,15 @@ public partial class PlayerModelComponent : MeshInstance3D
 	private void SmoothPlayerMotion(double delta)
 	{
 		TopLevel = true;
-		Rotation = player.Rotation;
+		//just to test the interpolation to see if it works
+		if (Input.IsKeyPressed(Key.E)) {
+			Quaternion = previousRotation.Slerp(currentRotation, (float)Engine.GetPhysicsInterpolationFraction());
+		}
+		else
+		{
+			Quaternion = currentRotation;
+		}
+		
 		GlobalPosition = previousPos.Lerp(currentPos, (float)Engine.GetPhysicsInterpolationFraction());
 	}
 
@@ -31,5 +42,9 @@ public partial class PlayerModelComponent : MeshInstance3D
 	{
 		previousPos = currentPos;
 		currentPos = player.GlobalTransform.Origin;
+
+		previousRotation = currentRotation;
+		currentRotation = player.Quaternion;
+		GD.Print(currentRotation.IsNormalized());
 	}
 }
