@@ -16,7 +16,8 @@ public partial class PlayerModelComponent : MeshInstance3D
 	public override void _Ready()
 	{
 		if(player == null) QueueFree();
-	}
+        TopLevel = true;
+    }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -26,7 +27,6 @@ public partial class PlayerModelComponent : MeshInstance3D
 
 	private void SmoothPlayerMotion(double delta)
 	{
-		TopLevel = true;
 		//just to test the interpolation to see if it works
 		if (Input.IsKeyPressed(Key.E)) {
 			Quaternion = previousRotation.Slerp(currentRotation, (float)Engine.GetPhysicsInterpolationFraction());
