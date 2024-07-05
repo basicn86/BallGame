@@ -9,7 +9,8 @@ public partial class PlayerModelComponent : MeshInstance3D
 	private Vector3 previousPos;
 	private Vector3 currentPos;
 
-	private Quaternion previousRotation;
+    //we need to use quaternions for rotation interpolation, euler angles cause snapping when the rotation overflows from 360 to 0
+    private Quaternion previousRotation;
 	private Quaternion currentRotation;
 
 	public override void _Ready()
