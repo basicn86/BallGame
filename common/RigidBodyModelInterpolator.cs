@@ -6,6 +6,9 @@ public partial class RigidBodyModelInterpolator : MeshInstance3D
 	private Vector3 previousPos;
 	private Vector3 currentPos;
 
+	private Quaternion previousRotation;
+	private Quaternion currentRotation;
+
 	[Export]
 	public RigidBody3D targetRigidBody;
 
@@ -17,12 +20,15 @@ public partial class RigidBodyModelInterpolator : MeshInstance3D
 		TopLevel = true;
 		previousPos = targetRigidBody.GlobalTransform.Origin;
 		currentPos = targetRigidBody.GlobalTransform.Origin;
+		previousRotation = targetRigidBody.Quaternion;
+		currentRotation = targetRigidBody.Quaternion;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		//We have to set the initial position in the first frame. We cannot do it in the _Ready function because the _Ready function runs when the scene is loaded, before the position can be set.
+		//TODO: Possibly remove this, this does not seem to do anything anymore.
 		if (firstFrame)
 		{
 			GlobalPosition = targetRigidBody.GlobalTransform.Origin;
@@ -31,7 +37,7 @@ public partial class RigidBodyModelInterpolator : MeshInstance3D
 			firstFrame = false;
 			return;
 		}
-		Rotation = targetRigidBody.Rotation;
+		Quaternion = previousRotation.Slerp(currentRotation, (float)Engine.GetPhysicsInterpolationFraction());
 		GlobalPosition = previousPos.Lerp(currentPos, (float)Engine.GetPhysicsInterpolationFraction());
 	}
 
@@ -39,5 +45,8 @@ public partial class RigidBodyModelInterpolator : MeshInstance3D
 	{
 		previousPos = currentPos;
 		currentPos = targetRigidBody.GlobalTransform.Origin;
+
+		previousRotation = currentRotation;
+		currentRotation = targetRigidBody.Quaternion;
 	}
 }
