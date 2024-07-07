@@ -9,15 +9,15 @@ public partial class PlayerModelComponent : MeshInstance3D
 	private Vector3 previousPos;
 	private Vector3 currentPos;
 
-    //we need to use quaternions for rotation interpolation, euler angles cause snapping when the rotation overflows from 360 to 0
-    private Quaternion previousRotation;
+	//we need to use quaternions for rotation interpolation, euler angles cause snapping when the rotation overflows from 360 to 0
+	private Quaternion previousRotation;
 	private Quaternion currentRotation;
 
 	public override void _Ready()
 	{
 		if(player == null) QueueFree();
-        TopLevel = true;
-    }
+		TopLevel = true;
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -27,15 +27,7 @@ public partial class PlayerModelComponent : MeshInstance3D
 
 	private void SmoothPlayerMotion(double delta)
 	{
-		//just to test the interpolation to see if it works
-		if (Input.IsKeyPressed(Key.E)) {
-			Quaternion = previousRotation.Slerp(currentRotation, (float)Engine.GetPhysicsInterpolationFraction());
-		}
-		else
-		{
-			Quaternion = currentRotation;
-		}
-		
+		Quaternion = previousRotation.Slerp(currentRotation, (float)Engine.GetPhysicsInterpolationFraction());
 		GlobalPosition = previousPos.Lerp(currentPos, (float)Engine.GetPhysicsInterpolationFraction());
 	}
 

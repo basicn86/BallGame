@@ -105,8 +105,8 @@ public partial class Player : RigidBody3D
 		}
 		if (Input.IsKeyPressed(Key.Key4))
 		{
-			GD.Print("Set FPS to 1000");
-			Engine.MaxFps = 1000;
+			GD.Print("Set FPS to 165");
+			Engine.MaxFps = 165;
 		}
 	}
 
