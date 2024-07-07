@@ -38,6 +38,5 @@ public partial class PlayerModelComponent : MeshInstance3D
 
 		previousRotation = currentRotation;
 		currentRotation = player.Quaternion;
-		GD.Print(currentRotation.IsNormalized());
 	}
 }
