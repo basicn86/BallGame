@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene load_steps=28 format=3 uid="uid://jc4p2lep7gmi"]
 
 [ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://player/player.tscn" id="1_ygeui"]
 [ext_resource type="PackedScene" uid="uid://bfs203kgfe78t" path="res://prefabs/tree.tscn" id="3_ee0te"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://csiqtfnx8jbmn" path="res://weapons/Grenade/GrenadeThrower.tscn" id="5_wbk44"]
 [ext_resource type="PackedScene" uid="uid://11b4biydrmn2" path="res://weapons/LaserPistol/LaserPistol.tscn" id="6_u33ec"]
 [ext_resource type="Script" path="res://Crosshair.cs" id="7_gtrsf"]
+[ext_resource type="PackedScene" uid="uid://dcojo2t0kpp15" path="res://environment/Elevator.tscn" id="7_isqio"]
 [ext_resource type="PackedScene" uid="uid://mqbycbrcjyk4" path="res://PhysicsBox.tscn" id="7_xb6ro"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7rmk5"]
@@ -109,6 +110,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9107, 0.958258, -8.30605)
 mass = 0.2
 
 [node name="TwistPivot" parent="." instance=ExtResource("5_6lr1a")]
+
+[node name="Elevator" parent="." instance=ExtResource("7_isqio")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.758442, 3.13111, -13.3401)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_317cg")

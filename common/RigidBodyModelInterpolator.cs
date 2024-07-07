@@ -10,7 +10,7 @@ public partial class RigidBodyModelInterpolator : MeshInstance3D
 	private Quaternion currentRotation;
 
 	[Export]
-	public RigidBody3D targetRigidBody;
+	public Node3D targetRigidBody;
 
 	private bool firstFrame = true;
 

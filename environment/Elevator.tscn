@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcojo2t0kpp15"]
+
+[ext_resource type="Script" path="res://environment/Elevator.cs" id="1_ojij7"]
+[ext_resource type="Script" path="res://common/RigidBodyModelInterpolator.cs" id="2_4tu4o"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lmjen"]
+bounce = 0.75
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_57gxs"]
+size = Vector3(4, 1, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6b7r5"]
+size = Vector3(4, 1, 4)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D"]
+collision_layer = 4
+collision_mask = 31
+physics_material_override = SubResource("PhysicsMaterial_lmjen")
+script = ExtResource("1_ojij7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_57gxs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
+mesh = SubResource("BoxMesh_6b7r5")
+skeleton = NodePath("")
+script = ExtResource("2_4tu4o")
+targetRigidBody = NodePath("..")
