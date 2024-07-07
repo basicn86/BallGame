@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class RigidBodyModelInterpolator : MeshInstance3D
+public partial class ModelInterpolator : MeshInstance3D
 {
 	private Vector3 previousPos;
 	private Vector3 currentPos;

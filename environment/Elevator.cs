@@ -14,6 +14,6 @@ public partial class Elevator : AnimatableBody3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
-		GlobalPosition = spawnPosition + new Vector3(0f, Mathf.Sin(Engine.GetPhysicsFrames() / 15f) * 2f,0f);
+		GlobalPosition = spawnPosition + new Vector3(0f, Mathf.Sin(Engine.GetPhysicsFrames() / 30f) * 2f,0f);
 	}
 }

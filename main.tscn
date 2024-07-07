@@ -301,6 +301,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9584, 6.03307, 14.8629)
 [node name="PhysicsBox21" parent="NavigationRegion3D" instance=ExtResource("7_xb6ro")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.57362, 7.20227, 14.8629)
 
+[node name="PhysicsBox22" parent="NavigationRegion3D" instance=ExtResource("7_xb6ro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.016, 4.86316, -13.7813)
+
 [node name="PhysicsBox8" parent="NavigationRegion3D" instance=ExtResource("7_xb6ro")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.36505, 2.39323, 14.8629)
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://mqbycbrcjyk4"]
 
-[ext_resource type="Script" path="res://common/RigidBodyModelInterpolator.cs" id="1_ipnu3"]
+[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="1_ipnu3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ecnr7"]
 albedo_color = Color(0, 0.454902, 1, 1)

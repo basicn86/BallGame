@@ -1,10 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://dcojo2t0kpp15"]
 
 [ext_resource type="Script" path="res://environment/Elevator.cs" id="1_ojij7"]
-[ext_resource type="Script" path="res://common/RigidBodyModelInterpolator.cs" id="2_4tu4o"]
+[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="2_vhjx8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lmjen"]
-bounce = 0.75
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_57gxs"]
 size = Vector3(4, 1, 4)
@@ -24,5 +23,5 @@ shape = SubResource("BoxShape3D_57gxs")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
 mesh = SubResource("BoxMesh_6b7r5")
 skeleton = NodePath("")
-script = ExtResource("2_4tu4o")
+script = ExtResource("2_vhjx8")
 targetRigidBody = NodePath("..")
