@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Grenade.cs" id="1_ys7bf"]
 [ext_resource type="PackedScene" uid="uid://ur6yyp0n0nlb" path="res://weapons/Grenade/grenade_particles.tscn" id="2_xa176"]
-[ext_resource type="Script" path="res://common/RigidBodyModelInterpolator.cs" id="3_if508"]
+[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="3_2so0q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mfss2"]
 albedo_color = Color(0.104017, 0.559832, 1.92523e-07, 1)
@@ -30,7 +30,7 @@ explosionScene = ExtResource("2_xa176")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
 mesh = SubResource("CapsuleMesh_x6pu0")
-script = ExtResource("3_if508")
+script = ExtResource("3_2so0q")
 targetRigidBody = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

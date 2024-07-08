@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class RigidBodyModelInterpolator : MeshInstance3D
+public partial class ModelInterpolator : MeshInstance3D
 {
 	private Vector3 previousPos;
 	private Vector3 currentPos;
@@ -10,7 +10,7 @@ public partial class RigidBodyModelInterpolator : MeshInstance3D
 	private Quaternion currentRotation;
 
 	[Export]
-	public RigidBody3D targetRigidBody;
+	public Node3D targetRigidBody;
 
 	private bool firstFrame = true;
 

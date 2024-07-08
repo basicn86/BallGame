@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ohms2j2sa4oi"]
+
+[ext_resource type="Script" path="res://environment/MovingPlatform.cs" id="1_hqdva"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_705ds"]
+size = Vector3(4, 0.5, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_11ugu"]
+size = Vector3(4, 0.5, 4)
+
+[node name="MovingPlatform" type="AnimatableBody3D"]
+script = ExtResource("1_hqdva")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_705ds")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_11ugu")
