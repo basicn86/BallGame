@@ -17,6 +17,8 @@ public partial class PlayerModelComponent : MeshInstance3D
 	{
 		if(player == null) QueueFree();
 		TopLevel = true;
+		previousRotation = player.Quaternion;
+		currentRotation = player.Quaternion;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

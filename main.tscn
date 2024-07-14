@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene load_steps=31 format=3 uid="uid://jc4p2lep7gmi"]
 
 [ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://player/player.tscn" id="1_ygeui"]
 [ext_resource type="PackedScene" uid="uid://bfs203kgfe78t" path="res://prefabs/tree.tscn" id="3_ee0te"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dcojo2t0kpp15" path="res://environment/Elevator.tscn" id="7_isqio"]
 [ext_resource type="PackedScene" uid="uid://mqbycbrcjyk4" path="res://PhysicsBox.tscn" id="7_xb6ro"]
 [ext_resource type="PackedScene" uid="uid://ohms2j2sa4oi" path="res://environment/MovingPlatform.tscn" id="10_cub7q"]
+[ext_resource type="Script" path="res://scripts/ResetScene.cs" id="11_0pohk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7rmk5"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -355,3 +356,6 @@ loop = false
 
 [node name="MovingPlatform" parent="Path3D/PathFollow3D" node_paths=PackedStringArray("PathFollow") instance=ExtResource("10_cub7q")]
 PathFollow = NodePath("..")
+
+[node name="SceneResetter" type="Node3D" parent="."]
+script = ExtResource("11_0pohk")
