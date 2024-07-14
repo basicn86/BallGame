@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ohms2j2sa4oi"]
+[gd_scene load_steps=5 format=3 uid="uid://ohms2j2sa4oi"]
 
 [ext_resource type="Script" path="res://environment/MovingPlatform.cs" id="1_hqdva"]
+[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="2_h0uxr"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_705ds"]
 size = Vector3(4, 0.5, 4)
@@ -11,8 +12,11 @@ size = Vector3(4, 0.5, 4)
 [node name="MovingPlatform" type="AnimatableBody3D"]
 script = ExtResource("1_hqdva")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
+gi_mode = 2
 mesh = SubResource("BoxMesh_705ds")
+script = ExtResource("2_h0uxr")
+targetRigidBody = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_11ugu")

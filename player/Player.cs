@@ -88,6 +88,7 @@ public partial class Player : RigidBody3D
 
 	private void RunFpsDebug()
 	{
+		
 		if (Input.IsKeyPressed(Key.Key1))
 		{
 			GD.Print("Set FPS to 120");
@@ -107,6 +108,17 @@ public partial class Player : RigidBody3D
 		{
 			GD.Print("Set FPS to 165");
 			Engine.MaxFps = 165;
+		}
+		//potato mode
+		if(Input.IsKeyPressed(Key.Key5))
+		{
+			//set the shadow res size to 256
+			RenderingServer.DirectionalShadowAtlasSetSize(256, true);
+			RenderingServer.DirectionalSoftShadowFilterSetQuality(RenderingServer.ShadowQuality.Hard);
+			//turns off MSAA
+			GetViewport().Msaa3D = Viewport.Msaa.Disabled;
+			//unlock FPS
+			Engine.MaxFps = 0;
 		}
 	}
 
