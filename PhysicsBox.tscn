@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://mqbycbrcjyk4"]
+[gd_scene load_steps=9 format=3 uid="uid://mqbycbrcjyk4"]
 
 [ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="1_ipnu3"]
 [ext_resource type="Script" path="res://PhysicsBox.cs" id="1_veju4"]
 [ext_resource type="Script" path="res://HitBoxComponent.cs" id="2_4app6"]
+[ext_resource type="PackedScene" uid="uid://ckjg8vgokuseq" path="res://PhysicsBoxExplosion.tscn" id="2_ga5aj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ecnr7"]
 albedo_color = Color(0, 0.454902, 1, 1)
@@ -20,6 +21,7 @@ collision_mask = 7
 mass = 0.1
 can_sleep = false
 script = ExtResource("1_veju4")
+explosionScene = ExtResource("2_ga5aj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
 mesh = SubResource("BoxMesh_f7o52")
