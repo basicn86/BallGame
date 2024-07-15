@@ -126,17 +126,17 @@ public partial class Player : RigidBody3D
 	{
 		if (Input.IsActionJustPressed("jump") && groundCast.IsColliding())
 		{
-			ApplyCentralImpulse(new Vector3(0, 7f, 0));
+			ApplyCentralImpulse(new Vector3(0, 9f, 0));
 		}
 
 		//Let the player jump higher if the jump button is held down
 		if (!Input.IsActionPressed("jump") && !groundCast.IsColliding())
 		{
-			GravityScale = 2f;
+			GravityScale = 2.5f;
 		}
 		else
 		{
-			GravityScale = 1f;
+			GravityScale = 1.5f;
 		}
 	}
 

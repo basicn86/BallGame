@@ -9,6 +9,7 @@
 
 [node name="Player" type="RigidBody3D" node_paths=PackedStringArray("playerModel", "groundCast")]
 collision_layer = 2
+gravity_scale = 1.5
 continuous_cd = true
 script = ExtResource("1_8wcbe")
 playerModel = NodePath("PlayerModel")

@@ -1,5 +1,6 @@
-[gd_scene load_steps=31 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene load_steps=32 format=3 uid="uid://jc4p2lep7gmi"]
 
+[ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_sj0rc"]
 [ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://player/player.tscn" id="1_ygeui"]
 [ext_resource type="PackedScene" uid="uid://bfs203kgfe78t" path="res://prefabs/tree.tscn" id="3_ee0te"]
 [ext_resource type="PackedScene" uid="uid://cmclnyunnsjjs" path="res://weapons/Grenade/Grenade.tscn" id="4_ceibg"]
@@ -12,18 +13,17 @@
 [ext_resource type="PackedScene" uid="uid://ohms2j2sa4oi" path="res://environment/MovingPlatform.tscn" id="10_cub7q"]
 [ext_resource type="Script" path="res://scripts/ResetScene.cs" id="11_0pohk"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7rmk5"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_epn03"]
+panorama = ExtResource("1_sj0rc")
 
-[sub_resource type="Sky" id="Sky_oh15a"]
-sky_material = SubResource("ProceduralSkyMaterial_7rmk5")
+[sub_resource type="Sky" id="Sky_l3pop"]
+sky_material = SubResource("PanoramaSkyMaterial_epn03")
+radiance_size = 0
 
 [sub_resource type="Environment" id="Environment_jt2xw"]
 background_mode = 2
-sky = SubResource("Sky_oh15a")
-tonemap_mode = 2
-glow_enabled = true
+sky = SubResource("Sky_l3pop")
+tonemap_exposure = 1.5
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_317cg"]
 
@@ -80,7 +80,7 @@ point_count = 2
 [node name="Node3D" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(0.79653, 0.46315, -0.388629, 0, 0.642788, 0.766044, 0.604599, -0.610177, 0.512, 0, 0, 0)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
