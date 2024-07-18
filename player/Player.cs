@@ -4,23 +4,32 @@ using System.Threading.Tasks;
 
 public partial class Player : RigidBody3D
 {
+	[ExportCategory("Player References")]
 	[Export]
 	private PlayerCamera cameraNode;
-
 	[Export]
 	public MeshInstance3D playerModel;
 	[Export]
 	public RayCast3D groundCast;
 	[Export]
 	public PackedScene jumpParticles;
+
+	[ExportGroup("Movement")]
 	[Export]
 	public float MaxVelocity = 10f;
 	[Export]
 	public float MaxVelocityPushback; //this is the amount of force to apply to the player when they exceed the max velocity
+	[Export]
+	public float GroundAcceleration = 2000f;
+	[Export]
+	public float AirAcceleration = 750f;
+	[Export]
+	public float NoInputDeceleration = 100f;
 
 
 	private bool hasLanded = false;
 
+	[ExportCategory("Weapons")]
 	[Export]
 	LaserPistol laserPistol;
 	[Export]
@@ -72,11 +81,23 @@ public partial class Player : RigidBody3D
 		moveVector.Z = Input.GetAxis("forward", "backward");
 		moveVector *= cameraNode.Basis.Inverse();
 		moveVector.Y = 0;
+
+		if (moveVector.IsZeroApprox())
+		{
+			Vector3 vel = LinearVelocity;
+			vel.Y = 0;
+			ApplyCentralForce(-vel * NoInputDeceleration * (float)delta);
+			return;
+		}
+
 		if (groundCast.IsColliding()) moveVector = AdjustMoveVectorBySlope(moveVector, groundCast.GetCollisionNormal());
 
 		if (moveVector.Length() > 1f) moveVector = moveVector.Normalized();
 
-		ApplyCentralForce(moveVector * 1000f * (float)delta);
+		if (groundCast.IsColliding())
+			ApplyCentralForce(moveVector * GroundAcceleration * (float)delta);
+		else
+			ApplyCentralForce(moveVector * AirAcceleration * (float)delta);
 	}
 
 	private void RestrictPlayerVelocity(double delta)

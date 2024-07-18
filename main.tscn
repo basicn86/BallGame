@@ -13,17 +13,21 @@
 [ext_resource type="PackedScene" uid="uid://ohms2j2sa4oi" path="res://environment/MovingPlatform.tscn" id="10_cub7q"]
 [ext_resource type="Script" path="res://scripts/ResetScene.cs" id="11_0pohk"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_epn03"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1ws2m"]
 panorama = ExtResource("1_sj0rc")
+filter = false
 
-[sub_resource type="Sky" id="Sky_l3pop"]
-sky_material = SubResource("PanoramaSkyMaterial_epn03")
-radiance_size = 0
+[sub_resource type="Sky" id="Sky_p2gfp"]
+sky_material = SubResource("PanoramaSkyMaterial_1ws2m")
 
 [sub_resource type="Environment" id="Environment_jt2xw"]
 background_mode = 2
-sky = SubResource("Sky_l3pop")
-tonemap_exposure = 1.5
+sky = SubResource("Sky_p2gfp")
+ambient_light_sky_contribution = 0.75
+reflected_light_source = 1
+tonemap_mode = 3
+tonemap_exposure = 0.5
+tonemap_white = 8.0
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_317cg"]
 
@@ -105,7 +109,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -2)
 collision_mask = 3
 
 [node name="Tree3" parent="." instance=ExtResource("3_ee0te")]
-transform = Transform3D(0.5, 0.5, -0.707107, -0.707107, 0.707107, 0, 0.5, 0.5, 0.707107, -3.95786, 2.7408, 1.71976)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.7066, 2.7408, 1.71976)
 collision_mask = 3
 
 [node name="Tree2" parent="." instance=ExtResource("3_ee0te")]

@@ -1,23 +1,25 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnp2bm7va434i"]
+[gd_scene load_steps=11 format=3 uid="uid://cnp2bm7va434i"]
 
 [ext_resource type="Script" path="res://weapons/LaserPistol/LaserProjectile.cs" id="1_ahsb0"]
 [ext_resource type="PackedScene" uid="uid://bxe6dxk3uc1eq" path="res://weapons/LaserPistol/LaserParticles.tscn" id="2_6cs73"]
 [ext_resource type="Script" path="res://weapons/LaserPistol/LaserProjectileInterpolator.cs" id="3_7ttqd"]
+[ext_resource type="Shader" path="res://weapons/LaserPistol/LaserProjectile.gdshader" id="3_fg8j6"]
 [ext_resource type="Script" path="res://weapons/LaserPistol/LaserPistolProjectile.cs" id="4_ri4uu"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gr3c6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2pwt"]
 cull_mode = 1
 shading_mode = 0
 albedo_color = Color(0, 0.482353, 1, 1)
 grow = true
 grow_amount = 0.05
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xue6g"]
-next_pass = SubResource("StandardMaterial3D_gr3c6")
-shading_mode = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s050c"]
+render_priority = 0
+next_pass = SubResource("StandardMaterial3D_e2pwt")
+shader = ExtResource("3_fg8j6")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_nt5qy"]
-material = SubResource("StandardMaterial3D_xue6g")
+material = SubResource("ShaderMaterial_s050c")
 radius = 0.15
 height = 1.0
 radial_segments = 8
