@@ -1,5 +1,6 @@
-[gd_scene load_steps=31 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene load_steps=32 format=3 uid="uid://jc4p2lep7gmi"]
 
+[ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_sj0rc"]
 [ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://player/player.tscn" id="1_ygeui"]
 [ext_resource type="PackedScene" uid="uid://bfs203kgfe78t" path="res://prefabs/tree.tscn" id="3_ee0te"]
 [ext_resource type="PackedScene" uid="uid://cmclnyunnsjjs" path="res://weapons/Grenade/Grenade.tscn" id="4_ceibg"]
@@ -12,18 +13,21 @@
 [ext_resource type="PackedScene" uid="uid://ohms2j2sa4oi" path="res://environment/MovingPlatform.tscn" id="10_cub7q"]
 [ext_resource type="Script" path="res://scripts/ResetScene.cs" id="11_0pohk"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7rmk5"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1ws2m"]
+panorama = ExtResource("1_sj0rc")
+filter = false
 
-[sub_resource type="Sky" id="Sky_oh15a"]
-sky_material = SubResource("ProceduralSkyMaterial_7rmk5")
+[sub_resource type="Sky" id="Sky_p2gfp"]
+sky_material = SubResource("PanoramaSkyMaterial_1ws2m")
 
 [sub_resource type="Environment" id="Environment_jt2xw"]
 background_mode = 2
-sky = SubResource("Sky_oh15a")
-tonemap_mode = 2
-glow_enabled = true
+sky = SubResource("Sky_p2gfp")
+ambient_light_sky_contribution = 0.75
+reflected_light_source = 1
+tonemap_mode = 3
+tonemap_exposure = 0.5
+tonemap_white = 8.0
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_317cg"]
 
@@ -80,7 +84,7 @@ point_count = 2
 [node name="Node3D" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(0.79653, 0.46315, -0.388629, 0, 0.642788, 0.766044, 0.604599, -0.610177, 0.512, 0, 0, 0)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -105,7 +109,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, -2)
 collision_mask = 3
 
 [node name="Tree3" parent="." instance=ExtResource("3_ee0te")]
-transform = Transform3D(0.5, 0.5, -0.707107, -0.707107, 0.707107, 0, 0.5, 0.5, 0.707107, -3.95786, 2.7408, 1.71976)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.7066, 2.7408, 1.71976)
 collision_mask = 3
 
 [node name="Tree2" parent="." instance=ExtResource("3_ee0te")]

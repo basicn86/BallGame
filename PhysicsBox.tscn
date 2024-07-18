@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://mqbycbrcjyk4"]
+[gd_scene load_steps=9 format=3 uid="uid://mqbycbrcjyk4"]
 
 [ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="1_ipnu3"]
+[ext_resource type="Script" path="res://PhysicsBox.cs" id="1_veju4"]
+[ext_resource type="Script" path="res://HitBoxComponent.cs" id="2_4app6"]
+[ext_resource type="PackedScene" uid="uid://ckjg8vgokuseq" path="res://PhysicsBoxExplosion.tscn" id="2_ga5aj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ecnr7"]
 albedo_color = Color(0, 0.454902, 1, 1)
@@ -10,10 +13,15 @@ material = SubResource("StandardMaterial3D_ecnr7")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6mou2"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5nm4g"]
+
 [node name="PhysicsBox" type="RigidBody3D"]
 collision_layer = 4
 collision_mask = 7
 mass = 0.1
+can_sleep = false
+script = ExtResource("1_veju4")
+explosionScene = ExtResource("2_ga5aj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
 mesh = SubResource("BoxMesh_f7o52")
@@ -23,3 +31,11 @@ targetRigidBody = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_6mou2")
+
+[node name="Area3D" type="Area3D" parent="."]
+script = ExtResource("2_4app6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_5nm4g")
+
+[connection signal="TakeDamage" from="Area3D" to="." method="_on_area_3d_take_damage"]
