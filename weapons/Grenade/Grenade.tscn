@@ -1,8 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmclnyunnsjjs"]
+[gd_scene load_steps=10 format=3 uid="uid://cmclnyunnsjjs"]
 
 [ext_resource type="Script" path="res://scripts/Grenade.cs" id="1_ys7bf"]
 [ext_resource type="PackedScene" uid="uid://ur6yyp0n0nlb" path="res://weapons/Grenade/grenade_particles.tscn" id="2_xa176"]
 [ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="3_2so0q"]
+
+[sub_resource type="Curve" id="Curve_vhnsf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.516605, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.56122, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_mmixd"]
+texture_mode = 1
+curve = SubResource("Curve_vhnsf")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mfss2"]
 albedo_color = Color(0.104017, 0.559832, 1.92523e-07, 1)
@@ -27,6 +35,8 @@ collision_mask = 15
 script = ExtResource("1_ys7bf")
 explosionArea = NodePath("AOE")
 explosionScene = ExtResource("2_xa176")
+forceCurve = SubResource("CurveTexture_mmixd")
+explosionForce = 1.5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
 mesh = SubResource("CapsuleMesh_x6pu0")

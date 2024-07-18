@@ -4,10 +4,20 @@ using System.Diagnostics;
 
 public partial class Grenade : RigidBody3D
 {
+	[ExportGroup("References")]
 	[Export]
 	Area3D explosionArea;
 	[Export]
 	PackedScene explosionScene;
+
+	[ExportGroup("Forces")]
+	[Export]
+	public CurveTexture forceCurve;
+	[Export]
+	public float explosionForce = 1f;
+	[Export]
+	public float explosionRadius = 3f;
+
 	public override void _Ready()
 	{
 		
@@ -36,11 +46,9 @@ public partial class Grenade : RigidBody3D
 				RigidBody3D i = (RigidBody3D)body;
 
 				Vector3 forceDirection = i.GlobalTransform.Origin - GlobalTransform.Origin;
-				float distance = forceDirection.Length();
+				float finalForce = forceCurve.Curve.Sample(forceDirection.Length() / explosionRadius);
 
-				forceDirection = forceDirection.Normalized();
-
-				i.ApplyCentralForce(forceDirection * 100f / distance);
+				i.ApplyCentralImpulse(forceDirection.Normalized() * finalForce * explosionForce);
 
 				//for debug output, print the name of the object that was hit
 				GD.Print(i.Name);
