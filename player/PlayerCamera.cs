@@ -94,8 +94,8 @@ public partial class PlayerCamera : Node3D
 
 			//Exclusive fullscreen is needed for FreeSync/G-Sync to work
 			if (DisplayServer.WindowGetMode() == DisplayServer.WindowMode.ExclusiveFullscreen)
-				DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
-			else 
+				DisplayServer.WindowSetMode(DisplayServer.WindowMode.Maximized);
+			else
 				DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
 		}
 	}
