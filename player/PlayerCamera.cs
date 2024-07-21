@@ -109,8 +109,10 @@ public partial class PlayerCamera : Node3D
 
 	private void RotateCamera(float X, float Y)
 	{
-		RotationDegrees += new Vector3(0, -X * sensitivity, 0);
-		pitch.RotationDegrees += new Vector3(-Y * sensitivity, 0, 0);
+        //this is stupid, but the UI scaling also affects the mouse sensitivity, so we need to do this to keep the mouse sensitivity consistent across different UI scales
+        float UIScale = GetWindow().ContentScaleFactor; 
+		RotationDegrees += new Vector3(0, -X * sensitivity * UIScale, 0);
+		pitch.RotationDegrees += new Vector3(-Y * sensitivity * UIScale, 0, 0);
 
 		pitch.RotationDegrees = new Vector3(
 			Mathf.Clamp(pitch.RotationDegrees.X, -80f, 80f),
