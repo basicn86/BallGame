@@ -45,4 +45,3 @@ public partial class PauseMenu : MarginContainer
 		GetTree().Quit();
 	}
 }
-

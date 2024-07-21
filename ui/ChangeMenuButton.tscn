@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwor6aejvqbhb"]
+
+[ext_resource type="Script" path="res://ui/ChangeMenuButton.cs" id="1_tcw3h"]
+
+[node name="ChangeMenuButton" type="Button"]
+script = ExtResource("1_tcw3h")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
