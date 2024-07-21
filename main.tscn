@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene load_steps=34 format=3 uid="uid://jc4p2lep7gmi"]
 
 [ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_sj0rc"]
 [ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://player/player.tscn" id="1_ygeui"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://mqbycbrcjyk4" path="res://PhysicsBox.tscn" id="7_xb6ro"]
 [ext_resource type="PackedScene" uid="uid://ohms2j2sa4oi" path="res://environment/MovingPlatform.tscn" id="10_cub7q"]
 [ext_resource type="Script" path="res://scripts/ResetScene.cs" id="11_0pohk"]
+[ext_resource type="Script" path="res://FPSCounter.cs" id="11_4h4rb"]
+[ext_resource type="PackedScene" uid="uid://cnpb27we1lbh3" path="res://ui/PauseMenu.tscn" id="12_elqkh"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1ws2m"]
 panorama = ExtResource("1_sj0rc")
@@ -349,6 +351,31 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_gtrsf")
+
+[node name="FPSPanel" type="Panel" parent="GUI"]
+layout_mode = 1
+offset_right = 73.0
+offset_bottom = 37.0
+mouse_filter = 2
+
+[node name="FPSCounter" type="Label" parent="GUI/FPSPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.5
+offset_top = -11.5
+offset_right = 28.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "FPS: ----"
+script = ExtResource("11_4h4rb")
+
+[node name="MarginContainer" parent="GUI" instance=ExtResource("12_elqkh")]
+layout_mode = 1
 
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 1)
