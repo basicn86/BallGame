@@ -13,6 +13,8 @@ public partial class Player : RigidBody3D
 	public RayCast3D groundCast;
 	[Export]
 	public PackedScene jumpParticles;
+	[Export]
+	public PackedScene deathParticles;
 
 	[ExportGroup("Movement")]
 	[Export]
@@ -210,6 +212,9 @@ public partial class Player : RigidBody3D
 		if (team == (long)BallGame.Common.Team.Player) return;
 
 		ProcessMode = ProcessModeEnum.Disabled;
+		Node3D _deathParticles = (Node3D)deathParticles.Instantiate();
+		GetParent().AddChild(_deathParticles);
+		_deathParticles.GlobalPosition = GlobalPosition;
 		EmitSignal("PlayerDied");
 	}
 
