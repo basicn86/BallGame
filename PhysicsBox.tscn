@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="1_ipnu3"]
 [ext_resource type="Script" path="res://PhysicsBox.cs" id="1_veju4"]
-[ext_resource type="Script" path="res://HitBoxComponent.cs" id="2_4app6"]
 [ext_resource type="PackedScene" uid="uid://ckjg8vgokuseq" path="res://PhysicsBoxExplosion.tscn" id="2_ga5aj"]
+[ext_resource type="Script" path="res://common/HitBoxComponent.cs" id="4_n6r5e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ecnr7"]
 albedo_color = Color(0, 0.454902, 1, 1)
@@ -33,7 +33,7 @@ targetRigidBody = NodePath("..")
 shape = SubResource("BoxShape3D_6mou2")
 
 [node name="Area3D" type="Area3D" parent="."]
-script = ExtResource("2_4app6")
+script = ExtResource("4_n6r5e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_5nm4g")

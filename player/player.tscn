@@ -4,7 +4,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bk60o4evjj67t" path="res://player/PlayerBall.obj" id="2_76w44"]
 [ext_resource type="PackedScene" uid="uid://dbv12oqcf8r40" path="res://player/landing_particles.tscn" id="2_vu4ki"]
 [ext_resource type="Script" path="res://player/PlayerModelComponent.cs" id="4_ie68q"]
-[ext_resource type="Script" path="res://HitBoxComponent.cs" id="5_rnpcn"]
+[ext_resource type="Script" path="res://common/HitBoxComponent.cs" id="5_rnpcn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0d2g"]
 
