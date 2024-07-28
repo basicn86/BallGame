@@ -1,7 +1,8 @@
-[gd_scene load_steps=34 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene load_steps=38 format=3 uid="uid://jc4p2lep7gmi"]
 
 [ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_sj0rc"]
 [ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://player/player.tscn" id="1_ygeui"]
+[ext_resource type="PackedScene" uid="uid://b4e4fq5r5oyg5" path="res://player/PlayerRespawner.tscn" id="3_6dfjw"]
 [ext_resource type="PackedScene" uid="uid://bfs203kgfe78t" path="res://prefabs/tree.tscn" id="3_ee0te"]
 [ext_resource type="PackedScene" uid="uid://cmclnyunnsjjs" path="res://weapons/Grenade/Grenade.tscn" id="4_ceibg"]
 [ext_resource type="PackedScene" uid="uid://bycuwkrqgkrc3" path="res://player/playerCamera.tscn" id="5_6lr1a"]
@@ -14,6 +15,8 @@
 [ext_resource type="Script" path="res://scripts/ResetScene.cs" id="11_0pohk"]
 [ext_resource type="Script" path="res://FPSCounter.cs" id="11_4h4rb"]
 [ext_resource type="PackedScene" uid="uid://cnpb27we1lbh3" path="res://ui/PauseMenu.tscn" id="12_elqkh"]
+[ext_resource type="PackedScene" uid="uid://c5nkr1epkcv1t" path="res://environment/Spikes/Spike.tscn" id="15_ispr2"]
+[ext_resource type="Script" path="res://environment/Spikes/SpikeArea.cs" id="16_ug8nn"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1ws2m"]
 panorama = ExtResource("1_sj0rc")
@@ -83,6 +86,9 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_oulp5"]
+size = Vector3(1.97601, 1.15973, 3.92987)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -98,6 +104,10 @@ collision_mask = 5
 cameraNode = NodePath("../TwistPivot")
 laserPistol = NodePath("../LaserPistol")
 grenadeThrower = NodePath("../GrenadeThrower")
+
+[node name="PlayerRespawner" parent="." instance=ExtResource("3_6dfjw")]
+
+[node name="TwistPivot" parent="." instance=ExtResource("5_6lr1a")]
 
 [node name="LaserPistol" parent="." instance=ExtResource("6_u33ec")]
 
@@ -121,8 +131,6 @@ collision_mask = 3
 [node name="Grenade" parent="." instance=ExtResource("4_ceibg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9107, 0.958258, -8.30605)
 mass = 0.2
-
-[node name="TwistPivot" parent="." instance=ExtResource("5_6lr1a")]
 
 [node name="Elevator" parent="." instance=ExtResource("7_isqio")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.758442, 3.13111, -13.3401)
@@ -187,6 +195,9 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Floor/StaticBody3D"]
 shape = SubResource("BoxShape3D_2n3o7")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="NavigationRegion3D/Floor"]
+size = Vector3(100, 1, 100)
 
 [node name="Wall" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8374, 3.32438, 0)
@@ -328,6 +339,39 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.36505, 2.39323, 14.8629)
 [node name="PhysicsBox9" parent="Entities" instance=ExtResource("7_xb6ro")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.10297, 2.39323, 14.8629)
 
+[node name="PhysicsBox24" parent="Entities" instance=ExtResource("7_xb6ro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1633, 1.0727, 9.92002)
+
+[node name="PhysicsBox25" parent="Entities" instance=ExtResource("7_xb6ro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1633, 1.0727, 11.2347)
+
+[node name="PhysicsBox26" parent="Entities" instance=ExtResource("7_xb6ro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1633, 1.0727, 12.4707)
+
+[node name="PhysicsBox27" parent="Entities" instance=ExtResource("7_xb6ro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1633, 2.32083, 9.29033)
+
+[node name="PhysicsBox28" parent="Entities" instance=ExtResource("7_xb6ro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1633, 2.32083, 10.605)
+
+[node name="PhysicsBox29" parent="Entities" instance=ExtResource("7_xb6ro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1633, 2.32083, 11.841)
+
+[node name="PhysicsBox30" parent="Entities" instance=ExtResource("7_xb6ro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1633, 3.57068, 9.69381)
+
+[node name="PhysicsBox31" parent="Entities" instance=ExtResource("7_xb6ro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1633, 3.57068, 11.0085)
+
+[node name="PhysicsBox32" parent="Entities" instance=ExtResource("7_xb6ro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1633, 3.57068, 12.2445)
+
+[node name="PhysicsBox34" parent="Entities" instance=ExtResource("7_xb6ro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1633, 4.74935, 10.355)
+
+[node name="PhysicsBox35" parent="Entities" instance=ExtResource("7_xb6ro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1633, 4.74935, 11.5909)
+
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -390,3 +434,142 @@ PathFollow = NodePath("..")
 
 [node name="SceneResetter" type="Node3D" parent="."]
 script = ExtResource("11_0pohk")
+
+[node name="Spikes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0805, -0.336695, 9.29236)
+
+[node name="Spike" parent="Spikes" instance=ExtResource("15_ispr2")]
+
+[node name="Spike2" parent="Spikes" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Spike3" parent="Spikes" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="Spike4" parent="Spikes" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="Spike5" parent="Spikes" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Spike6" parent="Spikes" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="Spike7" parent="Spikes" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+
+[node name="Spike8" parent="Spikes" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+
+[node name="Area3D" type="Area3D" parent="Spikes"]
+script = ExtResource("16_ug8nn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spikes/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.488007, 0.410555, 1.46494)
+shape = SubResource("BoxShape3D_oulp5")
+
+[node name="Spikes2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3264, -0.336695, 0.192878)
+
+[node name="Spike" parent="Spikes2" instance=ExtResource("15_ispr2")]
+
+[node name="Spike2" parent="Spikes2" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Spike3" parent="Spikes2" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="Spike4" parent="Spikes2" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="Spike5" parent="Spikes2" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Spike6" parent="Spikes2" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="Spike7" parent="Spikes2" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+
+[node name="Spike8" parent="Spikes2" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+
+[node name="Area3D" type="Area3D" parent="Spikes2"]
+script = ExtResource("16_ug8nn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spikes2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.488007, 0.364258, 1.46494)
+shape = SubResource("BoxShape3D_oulp5")
+
+[node name="Spikes3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.26728, -0.336695, -15.5924)
+
+[node name="Spike" parent="Spikes3" instance=ExtResource("15_ispr2")]
+
+[node name="Spike2" parent="Spikes3" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Spike3" parent="Spikes3" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="Spike4" parent="Spikes3" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="Spike5" parent="Spikes3" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Spike6" parent="Spikes3" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="Spike7" parent="Spikes3" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+
+[node name="Spike8" parent="Spikes3" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+
+[node name="Area3D" type="Area3D" parent="Spikes3"]
+script = ExtResource("16_ug8nn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spikes3/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.488007, 0.364258, 1.46494)
+shape = SubResource("BoxShape3D_oulp5")
+
+[node name="Spikes4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6072, -0.336695, -15.5924)
+
+[node name="Spike" parent="Spikes4" instance=ExtResource("15_ispr2")]
+
+[node name="Spike2" parent="Spikes4" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Spike3" parent="Spikes4" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="Spike4" parent="Spikes4" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="Spike5" parent="Spikes4" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Spike6" parent="Spikes4" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="Spike7" parent="Spikes4" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+
+[node name="Spike8" parent="Spikes4" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+
+[node name="Area3D" type="Area3D" parent="Spikes4"]
+script = ExtResource("16_ug8nn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spikes4/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.488007, 0.364258, 1.46494)
+shape = SubResource("BoxShape3D_oulp5")
+
+[connection signal="PlayerDied" from="Player" to="PlayerRespawner" method="_on_player_player_died"]
+[connection signal="RespawnNow" from="PlayerRespawner" to="Player" method="_on_player_respawner_respawn_now"]
+[connection signal="area_entered" from="Spikes/Area3D" to="Spikes/Area3D" method="_on_area_entered"]
+[connection signal="area_entered" from="Spikes2/Area3D" to="Spikes2/Area3D" method="_on_area_entered"]
+[connection signal="area_entered" from="Spikes3/Area3D" to="Spikes3/Area3D" method="_on_area_entered"]
+[connection signal="area_entered" from="Spikes4/Area3D" to="Spikes4/Area3D" method="_on_area_entered"]

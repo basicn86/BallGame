@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using BallGame.Common;
 
 public partial class HitBoxComponent : Area3D
 {
@@ -14,5 +15,5 @@ public partial class HitBoxComponent : Area3D
 	}
 
 	[Signal]
-	public delegate void TakeDamageEventHandler(int amount, int team);
+	public delegate void TakeDamageEventHandler(int amount, Team team, Vector3 KnockbackForce);
 }

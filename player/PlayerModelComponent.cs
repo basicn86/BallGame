@@ -5,6 +5,8 @@ public partial class PlayerModelComponent : MeshInstance3D
 {
 	[Export]
 	public Player player;
+	[Export]
+	public Timer InvisibilityTimer;
 
 	private Vector3 previousPos;
 	private Vector3 currentPos;
@@ -40,5 +42,16 @@ public partial class PlayerModelComponent : MeshInstance3D
 
 		previousRotation = currentRotation;
 		currentRotation = player.Quaternion;
+	}
+
+	private void _on_player_player_died()
+	{
+		InvisibilityTimer.Start();
+		Visible = false;
+	}
+
+	private void _on_invisibility_timer_timeout()
+	{
+		Visible = true;
 	}
 }

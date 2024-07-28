@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://b25px6lkbxcw0"]
+
+[ext_resource type="ArrayMesh" uid="uid://bk60o4evjj67t" path="res://player/PlayerBall.obj" id="1_ecvik"]
+[ext_resource type="Script" path="res://common/OneShotParticleSystem.cs" id="2_xxchu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vkbji"]
+albedo_color = Color(1, 0.509804, 0, 1)
+grow_amount = 2.0
+
+[sub_resource type="Curve" id="Curve_4y1u2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.74477, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nvdvs"]
+curve = SubResource("Curve_4y1u2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tmgkq"]
+direction = Vector3(0, 1, 0)
+spread = 60.0
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+scale_min = 0.25
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_nvdvs")
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.0
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("particles")]
+script = ExtResource("2_xxchu")
+particles = [NodePath("PlayerDeathParticles")]
+
+[node name="PlayerDeathParticles" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_vkbji")
+emitting = false
+amount = 32
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_tmgkq")
+draw_pass_1 = ExtResource("1_ecvik")
