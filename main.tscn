@@ -1,7 +1,8 @@
-[gd_scene load_steps=37 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene load_steps=38 format=3 uid="uid://jc4p2lep7gmi"]
 
 [ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_sj0rc"]
 [ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://player/player.tscn" id="1_ygeui"]
+[ext_resource type="PackedScene" uid="uid://b4e4fq5r5oyg5" path="res://player/PlayerRespawner.tscn" id="3_6dfjw"]
 [ext_resource type="PackedScene" uid="uid://bfs203kgfe78t" path="res://prefabs/tree.tscn" id="3_ee0te"]
 [ext_resource type="PackedScene" uid="uid://cmclnyunnsjjs" path="res://weapons/Grenade/Grenade.tscn" id="4_ceibg"]
 [ext_resource type="PackedScene" uid="uid://bycuwkrqgkrc3" path="res://player/playerCamera.tscn" id="5_6lr1a"]
@@ -103,6 +104,8 @@ collision_mask = 5
 cameraNode = NodePath("../TwistPivot")
 laserPistol = NodePath("../LaserPistol")
 grenadeThrower = NodePath("../GrenadeThrower")
+
+[node name="PlayerRespawner" parent="." instance=ExtResource("3_6dfjw")]
 
 [node name="TwistPivot" parent="." instance=ExtResource("5_6lr1a")]
 
@@ -429,4 +432,6 @@ script = ExtResource("16_ug8nn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.488007, 0.364258, 1.46494)
 shape = SubResource("BoxShape3D_oulp5")
 
+[connection signal="PlayerDied" from="Player" to="PlayerRespawner" method="_on_player_player_died"]
+[connection signal="RespawnNow" from="PlayerRespawner" to="Player" method="_on_player_respawner_respawn_now"]
 [connection signal="area_entered" from="Spikes/Area3D" to="Spikes/Area3D" method="_on_area_entered"]

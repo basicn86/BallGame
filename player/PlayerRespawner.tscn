@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4e4fq5r5oyg5"]
+
+[ext_resource type="Script" path="res://player/PlayerRespawner.cs" id="1_d08i4"]
+
+[node name="PlayerRespawner" type="Node3D" node_paths=PackedStringArray("RespawnTimer")]
+process_mode = 4
+script = ExtResource("1_d08i4")
+RespawnTimer = NodePath("RespawnDelay")
+
+[node name="RespawnDelay" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="RespawnDelay" to="." method="_on_respawn_delay_timeout"]
