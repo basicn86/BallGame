@@ -2,7 +2,7 @@ using Godot;
 using System;
 using BallGame.Common;
 
-public partial class HitBoxComponent : Area3D
+public partial class SpikeArea : Area3D
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -14,6 +14,12 @@ public partial class HitBoxComponent : Area3D
 	{
 	}
 
-	[Signal]
-	public delegate void TakeDamageEventHandler(int amount, Team team);
+	private void _on_area_entered(Area3D area)
+	{
+		if (area is HitBoxComponent hitBoxComponent)
+		{
+			hitBoxComponent.EmitSignal("TakeDamage", 10, (int)Team.Neutral);
+		}
+	}
 }
+

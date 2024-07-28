@@ -205,23 +205,10 @@ public partial class Player : RigidBody3D
 		}
 	}
 
-	//version 1, save it for later
-	/*private void SmoothPlayerMotion(double delta)
+	private void _on_area_3d_take_damage(long amount, long team)
 	{
-		float fps = 1f / (float)delta;
+		if (team == (long)BallGame.Common.Team.Player) return;
 
-		if (fps > Engine.PhysicsTicksPerSecond)
-		{
-			playerModel.TopLevel = true;
-			playerModel.Rotation = playerModel.Rotation.Lerp(Rotation, 40f * (float)delta);
-			playerModel.GlobalPosition = playerModel.GlobalPosition.Lerp(GlobalTransform.Origin, 40f * (float)delta);
-			GD.Print("Smoothing");
-		}
-		else
-		{
-			playerModel.GlobalPosition = GlobalTransform.Origin;
-			playerModel.TopLevel = false;
-			GD.Print("Not Smoothing");
-		}
-	}*/
+		GD.Print("Player took damage: " + amount);
+	}
 }

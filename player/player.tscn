@@ -1,13 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfncrprg4epon"]
+[gd_scene load_steps=9 format=3 uid="uid://dfncrprg4epon"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_8wcbe"]
 [ext_resource type="ArrayMesh" uid="uid://bk60o4evjj67t" path="res://player/PlayerBall.obj" id="2_76w44"]
 [ext_resource type="PackedScene" uid="uid://dbv12oqcf8r40" path="res://player/landing_particles.tscn" id="2_vu4ki"]
 [ext_resource type="Script" path="res://player/PlayerModelComponent.cs" id="4_ie68q"]
+[ext_resource type="Script" path="res://HitBoxComponent.cs" id="5_rnpcn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0d2g"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_08omv"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1pijw"]
+radius = 0.6
 
 [node name="Player" type="RigidBody3D" node_paths=PackedStringArray("playerModel", "groundCast")]
 collision_layer = 2
@@ -34,3 +38,11 @@ shape = SubResource("SphereShape3D_08omv")
 top_level = true
 target_position = Vector3(0, -0.75, 0)
 collision_mask = 5
+
+[node name="Area3D" type="Area3D" parent="."]
+script = ExtResource("5_rnpcn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_1pijw")
+
+[connection signal="TakeDamage" from="Area3D" to="." method="_on_area_3d_take_damage"]

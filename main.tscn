@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene load_steps=37 format=3 uid="uid://jc4p2lep7gmi"]
 
 [ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_sj0rc"]
 [ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://player/player.tscn" id="1_ygeui"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://scripts/ResetScene.cs" id="11_0pohk"]
 [ext_resource type="Script" path="res://FPSCounter.cs" id="11_4h4rb"]
 [ext_resource type="PackedScene" uid="uid://cnpb27we1lbh3" path="res://ui/PauseMenu.tscn" id="12_elqkh"]
+[ext_resource type="PackedScene" uid="uid://c5nkr1epkcv1t" path="res://environment/Spikes/Spike.tscn" id="15_ispr2"]
+[ext_resource type="Script" path="res://environment/Spikes/SpikeArea.cs" id="16_ug8nn"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1ws2m"]
 panorama = ExtResource("1_sj0rc")
@@ -82,6 +84,9 @@ _data = {
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oulp5"]
+size = Vector3(1.97601, 1.72852, 3.92987)
 
 [node name="Node3D" type="Node3D"]
 
@@ -390,3 +395,38 @@ PathFollow = NodePath("..")
 
 [node name="SceneResetter" type="Node3D" parent="."]
 script = ExtResource("11_0pohk")
+
+[node name="Spikes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6187, -0.336695, 2.5252)
+
+[node name="Spike" parent="Spikes" instance=ExtResource("15_ispr2")]
+
+[node name="Spike2" parent="Spikes" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Spike3" parent="Spikes" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="Spike4" parent="Spikes" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="Spike5" parent="Spikes" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Spike6" parent="Spikes" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="Spike7" parent="Spikes" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+
+[node name="Spike8" parent="Spikes" instance=ExtResource("15_ispr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+
+[node name="Area3D" type="Area3D" parent="Spikes"]
+script = ExtResource("16_ug8nn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spikes/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.488007, 0.364258, 1.46494)
+shape = SubResource("BoxShape3D_oulp5")
+
+[connection signal="area_entered" from="Spikes/Area3D" to="Spikes/Area3D" method="_on_area_entered"]
