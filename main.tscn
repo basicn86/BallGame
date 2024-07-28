@@ -87,7 +87,7 @@ _data = {
 point_count = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oulp5"]
-size = Vector3(1.97601, 1.72852, 3.92987)
+size = Vector3(1.97601, 1.15973, 3.92987)
 
 [node name="Node3D" type="Node3D"]
 
@@ -465,7 +465,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
 script = ExtResource("16_ug8nn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Spikes/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.488007, 0.364258, 1.46494)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.488007, 0.410555, 1.46494)
 shape = SubResource("BoxShape3D_oulp5")
 
 [node name="Spikes2" type="Node3D" parent="."]
