@@ -15,5 +15,5 @@ public partial class HitBoxComponent : Area3D
 	}
 
 	[Signal]
-	public delegate void TakeDamageEventHandler(int amount, Team team);
+	public delegate void TakeDamageEventHandler(int amount, Team team, Vector3 KnockbackForce);
 }
