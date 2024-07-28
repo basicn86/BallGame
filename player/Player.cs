@@ -209,7 +209,6 @@ public partial class Player : RigidBody3D
 	{
 		if (team == (long)BallGame.Common.Team.Player) return;
 
-		Visible = false;
 		ProcessMode = ProcessModeEnum.Disabled;
 		EmitSignal("PlayerDied");
 	}
@@ -219,10 +218,10 @@ public partial class Player : RigidBody3D
 
 	private void _on_player_respawner_respawn_now()
 	{
-		Visible = true;
 		ProcessMode = ProcessModeEnum.Inherit;
 		GlobalPosition = new Vector3(0, 10, 0);
 		LinearVelocity = Vector3.Zero;
+		AngularVelocity = Vector3.Zero;
 	}
 }
 

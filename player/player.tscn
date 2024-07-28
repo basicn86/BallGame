@@ -24,12 +24,18 @@ jumpParticles = ExtResource("2_vu4ki")
 MaxVelocity = 8.0
 MaxVelocityPushback = 2000.0
 
-[node name="PlayerModel" type="MeshInstance3D" parent="." node_paths=PackedStringArray("player")]
+[node name="PlayerModel" type="MeshInstance3D" parent="." node_paths=PackedStringArray("player", "InvisibilityTimer")]
 gi_mode = 2
 mesh = ExtResource("2_76w44")
 surface_material_override/0 = SubResource("StandardMaterial3D_h0d2g")
 script = ExtResource("4_ie68q")
 player = NodePath("..")
+InvisibilityTimer = NodePath("InvisibilityTimer")
+
+[node name="InvisibilityTimer" type="Timer" parent="PlayerModel"]
+process_mode = 1
+process_callback = 0
+wait_time = 2.2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_08omv")
@@ -45,4 +51,6 @@ script = ExtResource("5_rnpcn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_1pijw")
 
+[connection signal="PlayerDied" from="." to="PlayerModel" method="_on_player_player_died"]
+[connection signal="timeout" from="PlayerModel/InvisibilityTimer" to="PlayerModel" method="_on_invisibility_timer_timeout"]
 [connection signal="TakeDamage" from="Area3D" to="." method="_on_area_3d_take_damage"]
