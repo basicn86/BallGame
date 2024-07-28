@@ -209,6 +209,6 @@ public partial class Player : RigidBody3D
 	{
 		if (team == (long)BallGame.Common.Team.Player) return;
 
-		GD.Print("Player took damage: " + amount);
+		Freeze = true;
 	}
 }

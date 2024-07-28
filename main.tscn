@@ -104,6 +104,8 @@ cameraNode = NodePath("../TwistPivot")
 laserPistol = NodePath("../LaserPistol")
 grenadeThrower = NodePath("../GrenadeThrower")
 
+[node name="TwistPivot" parent="." instance=ExtResource("5_6lr1a")]
+
 [node name="LaserPistol" parent="." instance=ExtResource("6_u33ec")]
 
 [node name="GrenadeThrower" parent="." instance=ExtResource("5_wbk44")]
@@ -126,8 +128,6 @@ collision_mask = 3
 [node name="Grenade" parent="." instance=ExtResource("4_ceibg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9107, 0.958258, -8.30605)
 mass = 0.2
-
-[node name="TwistPivot" parent="." instance=ExtResource("5_6lr1a")]
 
 [node name="Elevator" parent="." instance=ExtResource("7_isqio")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.758442, 3.13111, -13.3401)
