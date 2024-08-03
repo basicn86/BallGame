@@ -37,6 +37,12 @@ public partial class Player : RigidBody3D
 	[Export]
 	GrenadeThrower grenadeThrower;
 
+	[ExportCategory("Sounds")]
+	[Export]
+	public AudioStreamPlayer3D jumpSound;
+	[Export]
+	public AudioStreamPlayer3D landSound;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -150,6 +156,7 @@ public partial class Player : RigidBody3D
 		if (Input.IsActionJustPressed("jump") && groundCast.IsColliding())
 		{
 			ApplyCentralImpulse(new Vector3(0, 9f, 0));
+			jumpSound.Play();
 		}
 
 		//Let the player jump higher if the jump button is held down
@@ -200,6 +207,8 @@ public partial class Player : RigidBody3D
 		{
 			hasLanded = true;
 			SpawnLandingParticles();
+			GD.Print("Y Velocity: " + LinearVelocity.Y);
+			landSound.Play();
 		}
 		else if (!groundCast.IsColliding() && hasLanded)
 		{
