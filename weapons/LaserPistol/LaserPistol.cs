@@ -10,6 +10,8 @@ public partial class LaserPistol : Node3D
 	float velocity;
 	[Export]
 	PackedScene projectileScene;
+	[Export]
+	AudioStreamPlayer3D fireSound;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -43,5 +45,7 @@ public partial class LaserPistol : Node3D
 		finalDirection = finalDirection.Normalized() * velocity;
 		projectile.LinearVelocity = finalDirection;
 		projectile.LookAt(targetPos);
+
+		fireSound.Play();
 	}
 }

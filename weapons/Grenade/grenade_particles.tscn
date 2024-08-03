@@ -26,8 +26,10 @@ point_count = 4
 curve = SubResource("Curve_63owd")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vj5j1"]
+particle_flag_rotate_y = true
 emission_shape = 1
 emission_sphere_radius = 3.0
+angle_max = 180.0
 directional_velocity_min = 5.0
 directional_velocity_max = 5.0
 directional_velocity_curve = SubResource("CurveXYZTexture_hystb")
