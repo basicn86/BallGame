@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bxxbqi7owgxsr"
-path="res://.godot/imported/Laser.wav-48eddf4861cf446dbe04071a38343c94.sample"
+uid="uid://0v72hfgte4oa"
+path="res://.godot/imported/Explosion.wav-0e31cbfcfa070ce0f7884562cf6dc90e.sample"
 
 [deps]
 
-source_file="res://weapons/LaserPistol/Laser.wav"
-dest_files=["res://.godot/imported/Laser.wav-48eddf4861cf446dbe04071a38343c94.sample"]
+source_file="res://player/Explosion.wav"
+dest_files=["res://.godot/imported/Explosion.wav-0e31cbfcfa070ce0f7884562cf6dc90e.sample"]
 
 [params]
 
