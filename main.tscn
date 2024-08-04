@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene load_steps=39 format=3 uid="uid://jc4p2lep7gmi"]
 
 [ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_sj0rc"]
 [ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://player/player.tscn" id="1_ygeui"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cnpb27we1lbh3" path="res://ui/PauseMenu.tscn" id="12_elqkh"]
 [ext_resource type="PackedScene" uid="uid://c5nkr1epkcv1t" path="res://environment/Spikes/Spike.tscn" id="15_ispr2"]
 [ext_resource type="Script" path="res://environment/Spikes/SpikeArea.cs" id="16_ug8nn"]
+[ext_resource type="AudioStream" uid="uid://b1blbjo32ntll" path="res://music/Mega Man 7 - Slash Man.wav" id="18_0t7j3"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1ws2m"]
 panorama = ExtResource("1_sj0rc")
@@ -566,6 +567,10 @@ script = ExtResource("16_ug8nn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Spikes4/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.488007, 0.364258, 1.46494)
 shape = SubResource("BoxShape3D_oulp5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_0t7j3")
+autoplay = true
 
 [connection signal="PlayerDied" from="Player" to="PlayerRespawner" method="_on_player_player_died"]
 [connection signal="RespawnNow" from="PlayerRespawner" to="Player" method="_on_player_respawner_respawn_now"]

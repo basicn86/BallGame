@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b25px6lkbxcw0"]
+[gd_scene load_steps=8 format=3 uid="uid://b25px6lkbxcw0"]
 
 [ext_resource type="ArrayMesh" uid="uid://bk60o4evjj67t" path="res://player/PlayerBall.obj" id="1_ecvik"]
 [ext_resource type="Script" path="res://common/OneShotParticleSystem.cs" id="2_xxchu"]
+[ext_resource type="AudioStream" uid="uid://4t3movgxu1eu" path="res://Explosion.wav" id="3_r8yn7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vkbji"]
 albedo_color = Color(1, 0.509804, 0, 1)
@@ -40,3 +41,9 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_tmgkq")
 draw_pass_1 = ExtResource("1_ecvik")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_r8yn7")
+attenuation_model = 3
+volume_db = -3.0
+autoplay = true

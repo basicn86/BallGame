@@ -24,6 +24,9 @@ debug_shape_thickness = 4
 [node name="CrosshairNoncollidingPoint" type="Node3D" parent="PitchPivot/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -55)
 
+[node name="AudioListener3D" type="AudioListener3D" parent="PitchPivot/Camera3D"]
+current = true
+
 [node name="ObstacleRaycast" type="RayCast3D" parent="PitchPivot"]
 target_position = Vector3(0, 0, -1)
 hit_from_inside = true
