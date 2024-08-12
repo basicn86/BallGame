@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://chm55taavgilw"]
+
+[ext_resource type="PackedScene" uid="uid://deyxm2tc11a7w" path="res://environment/Tree2.glb" id="1_xax2h"]
+[ext_resource type="Shader" path="res://environment/TreeLeaves.gdshader" id="2_7npqv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o0d5r"]
+albedo_color = Color(0.482353, 0.317647, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1hbu4"]
+render_priority = 0
+shader = ExtResource("2_7npqv")
+shader_parameter/albedo = Color(0, 0.627451, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gt5oo"]
+render_priority = 0
+shader = ExtResource("2_7npqv")
+shader_parameter/albedo = Color(0, 0.627451, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gh3ym"]
+render_priority = 0
+shader = ExtResource("2_7npqv")
+shader_parameter/albedo = Color(0, 0.627451, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4hr7g"]
+render_priority = 0
+shader = ExtResource("2_7npqv")
+shader_parameter/albedo = Color(0, 0.627451, 0, 1)
+
+[node name="Tree2" instance=ExtResource("1_xax2h")]
+
+[node name="Cube" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_o0d5r")
+
+[node name="Icosphere_001" parent="." index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_1hbu4")
+
+[node name="Icosphere" parent="." index="2"]
+surface_material_override/0 = SubResource("ShaderMaterial_gt5oo")
+
+[node name="Icosphere_002" parent="." index="3"]
+surface_material_override/0 = SubResource("ShaderMaterial_gh3ym")
+
+[node name="Icosphere_003" parent="." index="4"]
+surface_material_override/0 = SubResource("ShaderMaterial_4hr7g")
