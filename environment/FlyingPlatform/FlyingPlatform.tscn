@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://m3ac8gckgd4j"]
+
+[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="1_w35kg"]
+[ext_resource type="Script" path="res://environment/FlyingPlatform/FlyingPlatform.cs" id="1_xf5vd"]
+[ext_resource type="Script" path="res://environment/FlyingPlatform/FanBlades.cs" id="3_hwyxr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_k46tu"]
+size = Vector3(4, 0.5, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6sqyx"]
+size = Vector3(2, 0.1, 0.1)
+
+[sub_resource type="Curve" id="Curve_q0u6t"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.506276, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_aclyc"]
+curve = SubResource("Curve_q0u6t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m5e37"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.1
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, -1, 0)
+spread = 25.0
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_aclyc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mwlr0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xs8vx"]
+material = SubResource("StandardMaterial3D_mwlr0")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p1sfe"]
+size = Vector3(4, 0.5, 4)
+
+[node name="FlyingPlatform" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 7
+mass = 10.0
+gravity_scale = 0.0
+linear_damp = 3.0
+angular_damp = 3.0
+script = ExtResource("1_xf5vd")
+ReturnForce = 1000.0
+ReturnTorque = 40000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
+mesh = SubResource("BoxMesh_k46tu")
+script = ExtResource("1_w35kg")
+targetRigidBody = NodePath("..")
+
+[node name="FanBlades" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.966419, 0, 0.256347, 0, 1, 0, -0.256347, 0, 0.966419, 0, -0.35, 0)
+mesh = SubResource("BoxMesh_6sqyx")
+script = ExtResource("3_hwyxr")
+speed = 30.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
+amount = 32
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_m5e37")
+draw_pass_1 = SubResource("BoxMesh_xs8vx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_p1sfe")
