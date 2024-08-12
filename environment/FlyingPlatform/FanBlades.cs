@@ -1,7 +1,6 @@
 using Godot;
 using System;
 
-[Tool]
 public partial class FanBlades : MeshInstance3D
 {
 	[Export]

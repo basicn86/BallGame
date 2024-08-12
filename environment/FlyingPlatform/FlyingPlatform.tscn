@@ -47,7 +47,7 @@ gravity_scale = 0.0
 linear_damp = 3.0
 angular_damp = 3.0
 script = ExtResource("1_xf5vd")
-ReturnForce = 1000.0
+ReturnForce = 2000.0
 ReturnTorque = 40000.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
@@ -56,10 +56,9 @@ script = ExtResource("1_w35kg")
 targetRigidBody = NodePath("..")
 
 [node name="FanBlades" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.966419, 0, 0.256347, 0, 1, 0, -0.256347, 0, 0.966419, 0, -0.35, 0)
+transform = Transform3D(0.999838, 0, 0, 0, 1, 0, 0, 0, 0.999838, 0, -0.35, 0)
 mesh = SubResource("BoxMesh_6sqyx")
 script = ExtResource("3_hwyxr")
-speed = 30.0
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)

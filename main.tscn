@@ -665,6 +665,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0579, 0.0181198, -22.2726)
 [node name="WoodBarrel" parent="." instance=ExtResource("22_ipffj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 2, -15)
 
+[node name="WoodBarrel2" parent="." instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.16644, 3.84805, 14.3224)
+
 [node name="RigidBody3D" parent="." instance=ExtResource("22_dypbc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 15)
 
