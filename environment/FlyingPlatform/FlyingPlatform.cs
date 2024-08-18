@@ -27,6 +27,7 @@ public partial class FlyingPlatform : RigidBody3D
 		if (GlobalPosition.DistanceTo(_initialPosition) > ReturnPositionTolerance)
 		{
 			Vector3 direction = _initialPosition - GlobalPosition;
+			//TODO: it is probably better to apply more force the further away the platform is from its initial position. Maybe don't normalize the direction vector?
 			ApplyCentralForce(direction.Normalized() * ReturnForce * (float)delta);
 		}
 

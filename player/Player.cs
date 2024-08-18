@@ -238,6 +238,3 @@ public partial class Player : RigidBody3D
 		AngularVelocity = Vector3.Zero;
 	}
 }
-
-
-

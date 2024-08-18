@@ -31,5 +31,3 @@ public partial class PlayerRespawner : Node3D
 	[Signal]
 	public delegate void RespawnNowEventHandler();
 }
-
-
