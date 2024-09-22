@@ -17,10 +17,10 @@ void vertex() {
 	if(VERTEX.y > 0.25 + instancePos.y){
 		//VERTEX.x += sin(TIME * 5.0) / 3.0 * (instancePos.y - VERTEX.y);
 		vec2 noise_uv = vec2(instancePos.x, instancePos.z) + vec2(TIME * 0.1);
-		vec3 wave_offset = texture(waves, noise_uv).xyz;
+		vec3 wave_offset = texture(waves, noise_uv).xyz - vec3(0.5);
 		
-		VERTEX.x += (wave_offset.x - 0.5) * 0.25;
-		VERTEX.z += (wave_offset.y - 0.5) * 0.25;
+		VERTEX.x += wave_offset.x * 0.25;
+		VERTEX.z += wave_offset.y * 0.25;
 	}
 }
 

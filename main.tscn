@@ -722,7 +722,7 @@ visible = false
 mesh = ExtResource("23_kw6hu")
 
 [node name="GrassContainer" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25122, 0.740174, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.54904, -0.744614, -21.5886)
 
 [node name="PlaneMesh" type="MeshInstance3D" parent="GrassContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.759966, 0)
