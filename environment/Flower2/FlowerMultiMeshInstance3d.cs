@@ -1,7 +1,6 @@
 using Godot;
 using System;
 
-[Tool]
 public partial class FlowerMultiMeshInstance3d : MultiMeshInstance3D
 {
 	[Export]
