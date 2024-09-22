@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene load_steps=59 format=3 uid="uid://jc4p2lep7gmi"]
 
 [ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_sj0rc"]
 [ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://player/player.tscn" id="1_ygeui"]
@@ -22,6 +22,11 @@
 [ext_resource type="PackedScene" uid="uid://chm55taavgilw" path="res://environment/tree_2.tscn" id="21_od8pj"]
 [ext_resource type="PackedScene" uid="uid://m3ac8gckgd4j" path="res://environment/FlyingPlatform/FlyingPlatform.tscn" id="22_dypbc"]
 [ext_resource type="PackedScene" uid="uid://s7lyixiwg325" path="res://environment/WoodBarrel.tscn" id="22_ipffj"]
+[ext_resource type="ArrayMesh" uid="uid://csxqt716caoeu" path="res://environment/Flower2/Flower2.obj" id="23_kw6hu"]
+[ext_resource type="Script" path="res://environment/Flower2/FlowerMultiMeshInstance3d.cs" id="24_pfpe5"]
+[ext_resource type="Material" uid="uid://trcmk7xlc61k" path="res://environment/Flower2/BluePetal.tres" id="25_5v6p0"]
+[ext_resource type="Material" uid="uid://30yd8r7leet3" path="res://environment/Flower2/Stem.tres" id="26_voeat"]
+[ext_resource type="Material" uid="uid://gyhw1hsmjgwk" path="res://environment/Flower2/Center.tres" id="27_qvfad"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1ws2m"]
 panorama = ExtResource("1_sj0rc")
@@ -133,6 +138,15 @@ albedo_color = Color(0, 0.498039, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_q3bl4"]
 material = SubResource("StandardMaterial3D_qt0pf")
 size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ui3wh"]
+size = Vector2(4, 4)
+
+[sub_resource type="MultiMesh" id="MultiMesh_t4xe1"]
+transform_format = 1
+instance_count = 32
+mesh = ExtResource("23_kw6hu")
+buffer = PackedFloat32Array(-1.001, 0, 0, -6.61198, 0, 1.001, 0, 0.378793, 0, 0, -1.001, 0.533758, -1.001, 0, 0, -5.08008, 0, 1.001, 0, 0.378793, 0, 0, -1.001, -1.48499, -1.001, 0, 0, -5.25826, 0, 1.001, 0, 0.378793, 0, 0, -1.001, -0.0770595, -1.001, 0, 0, -7.05915, 0, 1.001, 0, 0.378793, 0, 0, -1.001, 0.767189, -1.001, 0, 0, -7.0575, 0, 1.001, 0, 0.378793, 0, 0, -1.001, 1.59759, 0, 0, -1.001, -3.48114, 0, 1.001, 0, 0.378793, 1.001, 0, 0, -0.556133, -1.001, 0, 0, -6.61025, 0, 1.001, 0, 0.378793, 0, 0, -1.001, -1.46845, 0, 0, -1.001, -3.3851, 0, 1.001, 0, 0.378793, 1.001, 0, 0, 1.42725, -1.001, 0, 0, -4.38015, 0, 1.001, 0, 0.378793, 0, 0, -1.001, -1.03444, 0, 0, -1.001, -5.69755, 0, 1.001, 0, 0.378793, 1.001, 0, 0, 0.86089, 0, 0, -1.001, -3.41547, 0, 1.001, 0, 0.378793, 1.001, 0, 0, -0.383117, -1.001, 0, 0, -5.35213, 0, 1.001, 0, 0.378793, 0, 0, -1.001, -1.57431, -1.001, 0, 0, -6.16831, 0, 1.001, 0, 0.378793, 0, 0, -1.001, -1.63399, -1.001, 0, 0, -6.31006, 0, 1.001, 0, 0.378793, 0, 0, -1.001, 0.903942, 0, 0, -1.001, -3.28328, 0, 1.001, 0, 0.378793, 1.001, 0, 0, -1.62476, 0, 0, -1.001, -3.38238, 0, 1.001, 0, 0.378793, 1.001, 0, 0, 0.668044, -1.001, 0, 0, -6.79914, 0, 1.001, 0, 0.378793, 0, 0, -1.001, 1.09454, -1.001, 0, 0, -6.07151, 0, 1.001, 0, 0.378793, 0, 0, -1.001, -0.756196, -1.001, 0, 0, -5.25659, 0, 1.001, 0, 0.378793, 0, 0, -1.001, -0.869497, 0, 0, -1.001, -3.34013, 0, 1.001, 0, 0.378793, 1.001, 0, 0, -0.521465, -1.001, 0, 0, -6.53252, 0, 1.001, 0, 0.378793, 0, 0, -1.001, -1.68257, -1.001, 0, 0, -6.63794, 0, 1.001, 0, 0.378793, 0, 0, -1.001, 1.31802, -1.001, 0, 0, -5.5279, 0, 1.001, 0, 0.378793, 0, 0, -1.001, -1.11225, -1.001, 0, 0, -6.3002, 0, 1.001, 0, 0.378793, 0, 0, -1.001, 0.361238, 0, 0, -1.001, -4.18705, 0, 1.001, 0, 0.378793, 1.001, 0, 0, -0.65773, 0, 0, -1.001, -6.30227, 0, 1.001, 0, 0.378793, 1.001, 0, 0, 1.27986, -1.001, 0, 0, -5.60185, 0, 1.001, 0, 0.378793, 0, 0, -1.001, -0.131011, 0, 0, -1.001, -4.46344, 0, 1.001, 0, 0.378793, 1.001, 0, 0, 0.0436698, -1.001, 0, 0, -6.38901, 0, 1.001, 0, 0.378793, 0, 0, -1.001, 1.11517, -1.001, 0, 0, -6.60354, 0, 1.001, 0, 0.378793, 0, 0, -1.001, 0.840945, 0, 0, -1.001, -5.82486, 0, 1.001, 0, 0.378793, 1.001, 0, 0, 0.714582, -1.001, 0, 0, -6.0631, 0, 1.001, 0, 0.378793, 0, 0, -1.001, 0.252451)
 
 [node name="Node3D" type="Node3D"]
 
@@ -672,6 +686,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0579, 0.0181198, -22.2726)
 
 [node name="RigidBody3D" parent="." instance=ExtResource("22_dypbc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 15)
+
+[node name="FlowerContainer" type="Node3D" parent="."]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="FlowerContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.15767, 0.956897, -0.0499201)
+mesh = SubResource("PlaneMesh_ui3wh")
+skeleton = NodePath("")
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="FlowerContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.578104, 0)
+multimesh = SubResource("MultiMesh_t4xe1")
+script = ExtResource("24_pfpe5")
+PetalMaterial = ExtResource("25_5v6p0")
+StemMaterial = ExtResource("26_voeat")
+PistilMaterial = ExtResource("27_qvfad")
+
+[node name="SourceMesh" type="MeshInstance3D" parent="FlowerContainer"]
+visible = false
+mesh = ExtResource("23_kw6hu")
 
 [connection signal="PlayerDied" from="Player" to="PlayerRespawner" method="_on_player_player_died"]
 [connection signal="RespawnNow" from="PlayerRespawner" to="Player" method="_on_player_respawner_respawn_now"]
