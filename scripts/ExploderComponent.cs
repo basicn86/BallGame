@@ -47,6 +47,3 @@ public partial class ExploderComponent : Area3D
 		}
 	}
 }
-
-
-

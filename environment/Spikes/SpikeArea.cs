@@ -22,4 +22,3 @@ public partial class SpikeArea : Area3D
 		}
 	}
 }
-

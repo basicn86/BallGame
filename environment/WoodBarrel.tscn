@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://s7lyixiwg325"]
+
+[ext_resource type="ArrayMesh" uid="uid://c7nbectkvqs0d" path="res://environment/WoodenBarrel.obj" id="1_bp842"]
+[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="1_wb05n"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cqre6"]
+height = 2.23354
+radius = 0.761055
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4dhj3"]
+albedo_color = Color(0.52549, 0.282353, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4mwto"]
+metallic = 1.0
+
+[node name="WoodBarrel" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_cqre6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
+mesh = ExtResource("1_bp842")
+surface_material_override/0 = SubResource("StandardMaterial3D_4dhj3")
+surface_material_override/1 = SubResource("StandardMaterial3D_4mwto")
+script = ExtResource("1_wb05n")
+targetRigidBody = NodePath("..")

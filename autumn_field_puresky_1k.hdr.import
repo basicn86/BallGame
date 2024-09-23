@@ -17,7 +17,7 @@ dest_files=["res://.godot/imported/autumn_field_puresky_1k.hdr-d050ad2ccd471df7b
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

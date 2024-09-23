@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://d240m3dhjskrq"]
+
+[ext_resource type="PackedScene" uid="uid://bshav6amfxn2y" path="res://environment/Flower2/Flower2.fbx" id="1_r688w"]
+[ext_resource type="Material" uid="uid://c386xaf0kik3j" path="res://environment/Flower2/RedPetal.tres" id="2_pmeyg"]
+[ext_resource type="Material" uid="uid://gyhw1hsmjgwk" path="res://environment/Flower2/Center.tres" id="3_rhloa"]
+[ext_resource type="Material" uid="uid://30yd8r7leet3" path="res://environment/Flower2/Stem.tres" id="4_eaxo1"]
+
+[node name="Flower2" instance=ExtResource("1_r688w")]
+
+[node name="Petal" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_pmeyg")
+
+[node name="Circle" parent="." index="1"]
+surface_material_override/0 = ExtResource("3_rhloa")
+
+[node name="Petal_001" parent="." index="2"]
+surface_material_override/0 = ExtResource("2_pmeyg")
+
+[node name="Petal_003" parent="." index="3"]
+surface_material_override/0 = ExtResource("2_pmeyg")
+
+[node name="Petal_002" parent="." index="4"]
+surface_material_override/0 = ExtResource("2_pmeyg")
+
+[node name="Petal_004" parent="." index="5"]
+surface_material_override/0 = ExtResource("2_pmeyg")
+
+[node name="Petal_005" parent="." index="6"]
+surface_material_override/0 = ExtResource("2_pmeyg")
+
+[node name="Cylinder" parent="." index="7"]
+surface_material_override/0 = ExtResource("4_eaxo1")
