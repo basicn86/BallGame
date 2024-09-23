@@ -27,10 +27,8 @@ void vertex() {
 void fragment() {
 	vec3 world_pos = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	
-	// Normalize the Y value of the world position between min_height and max_height
     float factor = clamp((world_pos.y - instancePos.y) * 4.0, 0.0, 1.0);
 
-    // Interpolate between the top and bottom colors based on the normalized Y value
     vec3 currentColor = mix(color, tipColor, factor);
 	
 	ALBEDO = currentColor;
