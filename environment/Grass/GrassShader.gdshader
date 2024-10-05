@@ -1,7 +1,8 @@
 shader_type spatial;
-render_mode unshaded;
-render_mode cull_disabled;
-render_mode world_vertex_coords;
+render_mode cull_disabled; //allows both sides of the blade to be rendered
+render_mode diffuse_toon;
+render_mode specular_schlick_ggx;
+render_mode world_vertex_coords; //simplifies the vertex shader so we don't need to account for rotation
 
 
 uniform vec3 color : source_color;
@@ -11,6 +12,7 @@ uniform sampler2D waves : hint_normal;
 varying vec3 instancePos;
 
 void vertex() {
+	//this is used in the Fragment shader to determine where the base of the blade is
 	instancePos = MODEL_MATRIX[3].xyz;
 	
 	
@@ -27,14 +29,13 @@ void vertex() {
 void fragment() {
 	vec3 world_pos = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	
-    float factor = clamp((world_pos.y - instancePos.y) * 4.0, 0.0, 1.0);
+    float factor = clamp((world_pos.y - instancePos.y) * 4.0, 0.0, 1.0); //magic numbers, probably need to fix later
 
     vec3 currentColor = mix(color, tipColor, factor);
 	
 	ALBEDO = currentColor;
+	
+	if(!FRONT_FACING){
+		NORMAL = -NORMAL;
+	}
 }
-
-//void light() {
-	// Called for every pixel for every light affecting the material.
-	// Uncomment to replace the default light processing function with this one.
-//}
