@@ -58,8 +58,6 @@ public partial class Player : RigidBody3D
 
 		TryJumping();
 
-		RunFpsDebug();
-
 		cameraNode.TargetPosition = playerModel.Transform.Origin;
 
 		laserPistol.UpdatePosition(GlobalPosition, cameraNode.Basis);
@@ -113,42 +111,6 @@ public partial class Player : RigidBody3D
 		Vector3 velocity = LinearVelocity;
 		velocity.Y = 0; //don't restrict vertical velocity
 		if (velocity.Length() > MaxVelocity) ApplyCentralForce(-velocity.Normalized() * MaxVelocityPushback * (float)delta);
-	}
-
-	private void RunFpsDebug()
-	{
-		
-		if (Input.IsKeyPressed(Key.Key1))
-		{
-			GD.Print("Set FPS to 120");
-			Engine.MaxFps = 122;
-		}
-		if (Input.IsKeyPressed(Key.Key2))
-		{
-			GD.Print("Set FPS to 60");
-			Engine.MaxFps = 60;
-		}
-		if (Input.IsKeyPressed(Key.Key3))
-		{
-			GD.Print("Set FPS to 30");
-			Engine.MaxFps = 30;
-		}
-		if (Input.IsKeyPressed(Key.Key4))
-		{
-			GD.Print("Set FPS to 165");
-			Engine.MaxFps = 165;
-		}
-		//potato mode
-		if(Input.IsKeyPressed(Key.Key5))
-		{
-			//set the shadow res size to 256
-			RenderingServer.DirectionalShadowAtlasSetSize(256, true);
-			RenderingServer.DirectionalSoftShadowFilterSetQuality(RenderingServer.ShadowQuality.Hard);
-			//turns off MSAA
-			GetViewport().Msaa3D = Viewport.Msaa.Disabled;
-			//unlock FPS
-			Engine.MaxFps = 0;
-		}
 	}
 
 	private void TryJumping()

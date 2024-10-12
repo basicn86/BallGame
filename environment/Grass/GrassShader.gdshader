@@ -12,13 +12,13 @@ varying vec3 instancePos;
 
 void vertex() {
 	instancePos = MODEL_MATRIX[3].xyz;
-	
-	
+
+
 	if(VERTEX.y > 0.25 + instancePos.y){
 		//VERTEX.x += sin(TIME * 5.0) / 3.0 * (instancePos.y - VERTEX.y);
 		vec2 noise_uv = vec2(instancePos.x, instancePos.z) + vec2(TIME * 0.1);
 		vec3 wave_offset = texture(waves, noise_uv).xyz - vec3(0.5);
-		
+
 		VERTEX.x += wave_offset.x * 0.25;
 		VERTEX.z += wave_offset.y * 0.25;
 	}
@@ -26,11 +26,11 @@ void vertex() {
 
 void fragment() {
 	vec3 world_pos = (INV_VIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	
+
     float factor = clamp((world_pos.y - instancePos.y) * 4.0, 0.0, 1.0);
 
     vec3 currentColor = mix(color, tipColor, factor);
-	
+
 	ALBEDO = currentColor;
 }
 
