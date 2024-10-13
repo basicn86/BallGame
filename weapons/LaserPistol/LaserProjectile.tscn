@@ -43,6 +43,7 @@ model = NodePath("LaserProjectile")
 
 [node name="LaserProjectile" type="MeshInstance3D" parent="." node_paths=PackedStringArray("projectile")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("CapsuleMesh_nt5qy")
 script = ExtResource("4_ca20s")
 projectile = NodePath("..")
