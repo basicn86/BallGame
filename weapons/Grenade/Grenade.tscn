@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Grenade.cs" id="1_ys7bf"]
 [ext_resource type="PackedScene" uid="uid://ur6yyp0n0nlb" path="res://weapons/Grenade/grenade_particles.tscn" id="2_xa176"]
-[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="3_2so0q"]
+[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="3_vt41n"]
 
 [sub_resource type="Curve" id="Curve_vhnsf"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.516605, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.56122, 0.0, 0, 0]
@@ -29,18 +29,20 @@ height = 0.5
 [sub_resource type="SphereShape3D" id="SphereShape3D_bira6"]
 radius = 3.0
 
-[node name="Grenade" type="RigidBody3D" node_paths=PackedStringArray("explosionArea")]
+[node name="Grenade" type="RigidBody3D" node_paths=PackedStringArray("explosionArea", "interpolator")]
 collision_layer = 8
 collision_mask = 15
 script = ExtResource("1_ys7bf")
 explosionArea = NodePath("AOE")
 explosionScene = ExtResource("2_xa176")
+interpolator = NodePath("MeshInstance3D")
 forceCurve = SubResource("CurveTexture_mmixd")
 explosionForce = 1.5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
+physics_interpolation_mode = 1
 mesh = SubResource("CapsuleMesh_x6pu0")
-script = ExtResource("3_2so0q")
+script = ExtResource("3_vt41n")
 targetRigidBody = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

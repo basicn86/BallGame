@@ -1,12 +1,8 @@
-[gd_scene load_steps=65 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene load_steps=61 format=3 uid="uid://jc4p2lep7gmi"]
 
 [ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_sj0rc"]
-[ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://player/player.tscn" id="1_ygeui"]
-[ext_resource type="PackedScene" uid="uid://b4e4fq5r5oyg5" path="res://player/PlayerRespawner.tscn" id="3_6dfjw"]
+[ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_x0eru"]
 [ext_resource type="PackedScene" uid="uid://cmclnyunnsjjs" path="res://weapons/Grenade/Grenade.tscn" id="4_ceibg"]
-[ext_resource type="PackedScene" uid="uid://bycuwkrqgkrc3" path="res://player/playerCamera.tscn" id="5_6lr1a"]
-[ext_resource type="PackedScene" uid="uid://csiqtfnx8jbmn" path="res://weapons/Grenade/GrenadeThrower.tscn" id="5_wbk44"]
-[ext_resource type="PackedScene" uid="uid://11b4biydrmn2" path="res://weapons/LaserPistol/LaserPistol.tscn" id="6_u33ec"]
 [ext_resource type="Script" path="res://Crosshair.cs" id="7_gtrsf"]
 [ext_resource type="PackedScene" uid="uid://dcojo2t0kpp15" path="res://environment/Elevator.tscn" id="7_isqio"]
 [ext_resource type="PackedScene" uid="uid://mqbycbrcjyk4" path="res://PhysicsBox.tscn" id="7_xb6ro"]
@@ -168,26 +164,11 @@ buffer = PackedFloat32Array(0.997928, 0, 0.0783686, -0.246922, 0, 1.001, 0, 0.75
 transform = Transform3D(0.79653, 0.46315, -0.388629, 0, 0.642788, 0.766044, 0.604599, -0.610177, 0.512, 0, 0, 0)
 shadow_enabled = true
 
+[node name="PlayerContainer" parent="." instance=ExtResource("1_x0eru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.42721, 14.3297)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jt2xw")
-
-[node name="Player" parent="." node_paths=PackedStringArray("cameraNode", "laserPistol", "grenadeThrower") instance=ExtResource("1_ygeui")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-collision_mask = 5
-cameraNode = NodePath("../TwistPivot")
-laserPistol = NodePath("../LaserPistol")
-grenadeThrower = NodePath("../GrenadeThrower")
-
-[node name="PlayerRespawner" parent="." instance=ExtResource("3_6dfjw")]
-
-[node name="TwistPivot" parent="." instance=ExtResource("5_6lr1a")]
-
-[node name="LaserPistol" parent="." instance=ExtResource("6_u33ec")]
-
-[node name="GrenadeThrower" parent="." instance=ExtResource("5_wbk44")]
-Offset = Vector3(0.5, 0, 0)
-Direction = Vector3(-50, 200, -400)
-grenadeScene = ExtResource("4_ceibg")
 
 [node name="Grenade" parent="." instance=ExtResource("4_ceibg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9107, 0.958258, -8.30605)
@@ -737,8 +718,6 @@ Material = ExtResource("27_uxty2")
 mesh = ExtResource("28_0drbp")
 surface_material_override/0 = SubResource("StandardMaterial3D_2x8un")
 
-[connection signal="PlayerDied" from="Player" to="PlayerRespawner" method="_on_player_player_died"]
-[connection signal="RespawnNow" from="PlayerRespawner" to="Player" method="_on_player_respawner_respawn_now"]
 [connection signal="area_entered" from="SpikesContainer/Spikes/Area3D" to="SpikesContainer/Spikes/Area3D" method="_on_area_entered"]
 [connection signal="area_entered" from="SpikesContainer/Spikes2/Area3D" to="SpikesContainer/Spikes2/Area3D" method="_on_area_entered"]
 [connection signal="area_entered" from="SpikesContainer/Spikes3/Area3D" to="SpikesContainer/Spikes3/Area3D" method="_on_area_entered"]

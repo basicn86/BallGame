@@ -34,11 +34,15 @@ public partial class GrenadeThrower : Node3D
 
 	public void Fire(Vector3 targetPos)
 	{
-		RigidBody3D grenade = (RigidBody3D)grenadeScene.Instantiate();
-		grenade.Position = GlobalTransform.Origin + (Offset * Basis.Inverse());
+		Grenade grenade = (Grenade)grenadeScene.Instantiate();
 
 		GetParent().AddChild(grenade);
 
-		grenade.ApplyImpulse(throwForce * (targetPos - GlobalTransform.Origin).Normalized() + new Vector3(0f,throwHeight,0f));
+		grenade.GlobalPosition = GlobalPosition + (Offset * Basis.Inverse());
+
+		//Dumb hack: We need to reset the model interpolator so it doesn't spawn at the world origin
+		grenade.ResetInterpolator();
+
+		grenade.ApplyImpulse(throwForce * (targetPos - GlobalPosition).Normalized() + new Vector3(0f,throwHeight,0f));
 	}
 }

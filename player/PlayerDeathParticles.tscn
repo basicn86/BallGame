@@ -39,6 +39,7 @@ lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
+collision_base_size = 0.05
 process_material = SubResource("ParticleProcessMaterial_tmgkq")
 draw_pass_1 = ExtResource("1_ecvik")
 

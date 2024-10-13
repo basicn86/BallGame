@@ -36,10 +36,15 @@ public partial class LaserPistol : Node3D
 
 	public void Fire(Vector3 targetPos)
 	{
-		RigidBody3D projectile = (RigidBody3D)projectileScene.Instantiate();
-		projectile.Position = GlobalTransform.Origin;
+		LaserProjectile projectile = (LaserProjectile)projectileScene.Instantiate();
+		projectile.GlobalTransform = GlobalTransform;
 
 		GetParent().AddChild(projectile);
+
+		projectile.GlobalPosition = GlobalPosition;
+
+		//Dumb hack: We need to reset the model interpolator so it doesn't spawn at the world origin
+		projectile.ResetInterpolator();
 
 		Vector3 finalDirection = targetPos - projectile.GlobalPosition;
 		finalDirection = finalDirection.Normalized() * velocity;

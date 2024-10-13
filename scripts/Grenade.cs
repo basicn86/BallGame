@@ -9,6 +9,8 @@ public partial class Grenade : RigidBody3D
 	Area3D explosionArea;
 	[Export]
 	PackedScene explosionScene;
+	[Export]
+	ModelInterpolator interpolator;
 
 	[ExportGroup("Forces")]
 	[Export]
@@ -27,6 +29,11 @@ public partial class Grenade : RigidBody3D
 	public override void _Process(double delta)
 	{
 
+	}
+
+	public void ResetInterpolator()
+	{
+		interpolator.GlobalPosition = GlobalPosition;
 	}
 
 	private void _on_timer_timeout()
@@ -56,8 +63,8 @@ public partial class Grenade : RigidBody3D
 		}
 
 		Node3D _explosionScene = (Node3D)explosionScene.Instantiate();
-		_explosionScene.Position = GlobalTransform.Origin;
 		GetParent().AddChild(_explosionScene);
+		_explosionScene.GlobalPosition = GlobalPosition;
 		QueueFree();
 		
 		//stopwatch stop

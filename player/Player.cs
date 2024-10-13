@@ -58,7 +58,7 @@ public partial class Player : RigidBody3D
 
 		TryJumping();
 
-		cameraNode.TargetPosition = playerModel.Transform.Origin;
+		cameraNode.TargetPosition = playerModel.GlobalPosition;
 
 		laserPistol.UpdatePosition(GlobalPosition, cameraNode.Basis);
 		if (Input.IsActionJustPressed("attack"))
