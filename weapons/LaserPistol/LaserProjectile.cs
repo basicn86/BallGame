@@ -22,9 +22,7 @@ public partial class LaserProjectile : RigidBody3D
 
 	public void ResetInterpolator()
 	{
-		model.GlobalPosition = GlobalPosition;
-		model.currentPos = GlobalPosition;
-		model.previousPos = GlobalPosition;
+		model.ResetInterpolator();
 	}
 
 	public override void _PhysicsProcess(double delta)

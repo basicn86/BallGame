@@ -6,15 +6,19 @@ public partial class LaserProjectileInterpolator : MeshInstance3D
 	[Export]
 	private RigidBody3D projectile;
 
-    public Vector3 previousPos;
-    public Vector3 currentPos;
+    public Vector3 previousPos = Vector3.Zero;
+    public Vector3 currentPos = Vector3.Zero;
 
     public override void _Ready()
     {
         if (projectile == null) QueueFree();
-        //we need to initialize these values to avoid the projectile spawning at the world origin (0,0,0)
-        previousPos = projectile.GlobalPosition;
+    }
+
+    public void ResetInterpolator()
+    {
+        GlobalPosition = projectile.GlobalPosition;
         currentPos = projectile.GlobalPosition;
+        previousPos = projectile.GlobalPosition;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
