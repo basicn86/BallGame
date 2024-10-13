@@ -77,7 +77,7 @@ public partial class PlayerCamera : Node3D
 	{
 		GlobalPosition = GlobalPosition.Lerp(TargetPosition, 20.0f * (float)delta);
 
-		//MoveCameraAwayFromEnvironment();
+		MoveCameraAwayFromEnvironment();
 
 		ToggleFullscreen();
 
