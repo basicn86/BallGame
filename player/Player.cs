@@ -69,7 +69,11 @@ public partial class Player : RigidBody3D
 		grenadeThrower.UpdatePosition(GlobalPosition, cameraNode.Basis);
 		if (Input.IsActionJustPressed("throw_grenade"))
 		{
-			grenadeThrower.Fire(cameraNode.GetCrosshairCollisionPoint());
+			grenadeThrower.Fire();
+		}
+		if(Input.IsActionJustReleased("throw_grenade"))
+		{
+			grenadeThrower.Release(cameraNode.GetCrosshairCollisionPoint());
 		}
 	}
 
