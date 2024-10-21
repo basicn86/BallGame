@@ -96,7 +96,7 @@ public partial class Player : RigidBody3D
 		{
 			Vector3 vel = LinearVelocity;
 			vel.Y = 0;
-			ApplyCentralForce(-vel * NoInputDeceleration * (float)delta);
+			ApplyCentralForce(-vel * NoInputDeceleration);
 			return;
 		}
 
@@ -105,16 +105,16 @@ public partial class Player : RigidBody3D
 		if (moveVector.Length() > 1f) moveVector = moveVector.Normalized();
 
 		if (groundCast.IsColliding())
-			ApplyCentralForce(moveVector * GroundAcceleration * (float)delta);
+			ApplyCentralForce(moveVector * GroundAcceleration);
 		else
-			ApplyCentralForce(moveVector * AirAcceleration * (float)delta);
+			ApplyCentralForce(moveVector * AirAcceleration);
 	}
 
 	private void RestrictPlayerVelocity(double delta)
 	{
 		Vector3 velocity = LinearVelocity;
 		velocity.Y = 0; //don't restrict vertical velocity
-		if (velocity.Length() > MaxVelocity) ApplyCentralForce(-velocity.Normalized() * MaxVelocityPushback * (float)delta);
+		if (velocity.Length() > MaxVelocity) ApplyCentralForce(-velocity.Normalized() * MaxVelocityPushback);
 	}
 
 	private void TryJumping()
