@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmclnyunnsjjs"]
+[gd_scene load_steps=13 format=3 uid="uid://cmclnyunnsjjs"]
 
 [ext_resource type="Script" path="res://scripts/Grenade.cs" id="1_ys7bf"]
 [ext_resource type="PackedScene" uid="uid://ur6yyp0n0nlb" path="res://weapons/Grenade/grenade_particles.tscn" id="2_xa176"]
 [ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="3_vt41n"]
 [ext_resource type="Script" path="res://weapons/Grenade/GrenadeTimer.cs" id="4_qtu1w"]
 [ext_resource type="Script" path="res://weapons/Grenade/GrenadeLabel.cs" id="5_7uvln"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1lyx3"]
+bounce = 1.0
 
 [sub_resource type="Curve" id="Curve_vhnsf"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.365314, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.99567, 0.0, 0, 0]
@@ -24,9 +27,8 @@ height = 0.5
 radial_segments = 8
 rings = 2
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yy42j"]
-radius = 0.1
-height = 0.5
+[sub_resource type="SphereShape3D" id="SphereShape3D_7ihre"]
+radius = 0.2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bira6"]
 radius = 4.0
@@ -34,6 +36,7 @@ radius = 4.0
 [node name="Grenade" type="RigidBody3D" node_paths=PackedStringArray("explosionArea", "interpolator")]
 collision_layer = 8
 collision_mask = 13
+physics_material_override = SubResource("PhysicsMaterial_1lyx3")
 script = ExtResource("1_ys7bf")
 explosionArea = NodePath("AOE")
 explosionScene = ExtResource("2_xa176")
@@ -49,7 +52,7 @@ script = ExtResource("3_vt41n")
 targetRigidBody = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_yy42j")
+shape = SubResource("SphereShape3D_7ihre")
 
 [node name="AOE" type="Area3D" parent="."]
 collision_layer = 0

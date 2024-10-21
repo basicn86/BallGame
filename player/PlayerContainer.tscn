@@ -25,6 +25,7 @@ grenadeThrower = NodePath("../GrenadeThrower")
 Offset = Vector3(0.35, 0, 0)
 Direction = Vector3(-50, 200, -400)
 grenadeScene = ExtResource("6_xq3iv")
+throwForce = 20.0
 
 [connection signal="PlayerDied" from="Player" to="PlayerRespawner" method="_on_player_player_died"]
 [connection signal="RespawnNow" from="PlayerRespawner" to="Player" method="_on_player_respawner_respawn_now"]

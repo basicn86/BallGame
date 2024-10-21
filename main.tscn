@@ -165,7 +165,7 @@ transform = Transform3D(0.79653, 0.46315, -0.388629, 0, 0.642788, 0.766044, 0.60
 shadow_enabled = true
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_x0eru")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.42721, 14.3297)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.42721, 0.872132)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jt2xw")

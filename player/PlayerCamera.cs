@@ -130,7 +130,7 @@ public partial class PlayerCamera : Node3D
 	/// </summary>
 	private void MoveCameraAwayFromEnvironment()
 	{
-
+		obstacleRaycast.ForceRaycastUpdate();
 		if (obstacleRaycast.IsColliding())
 		{
 			Vector3 localCollisionPoint = obstacleRaycast.GetCollisionPoint() - obstacleRaycast.GlobalPosition;
