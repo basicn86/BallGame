@@ -27,6 +27,8 @@ public partial class Player : RigidBody3D
 	public float AirAcceleration = 750f;
 	[Export]
 	public float NoInputDeceleration = 100f;
+	[Export]
+	public float JumpVelocityIgnoreFactor = 0.5f;
 
 
 	private bool hasLanded = false;
@@ -121,6 +123,7 @@ public partial class Player : RigidBody3D
 	{
 		if (Input.IsActionJustPressed("jump") && groundCast.IsColliding())
 		{
+			LinearVelocity = new Vector3(LinearVelocity.X, Mathf.Max(0f, LinearVelocity.Y * JumpVelocityIgnoreFactor), LinearVelocity.Z);
 			ApplyCentralImpulse(new Vector3(0, 9f, 0));
 			jumpSound.Play();
 		}
