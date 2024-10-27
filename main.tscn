@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene load_steps=71 format=3 uid="uid://jc4p2lep7gmi"]
 
 [ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_sj0rc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_x0eru"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://Crosshair.cs" id="7_gtrsf"]
 [ext_resource type="PackedScene" uid="uid://dcojo2t0kpp15" path="res://environment/Elevator.tscn" id="7_isqio"]
 [ext_resource type="PackedScene" uid="uid://mqbycbrcjyk4" path="res://PhysicsBox.tscn" id="7_xb6ro"]
-[ext_resource type="PackedScene" uid="uid://ohms2j2sa4oi" path="res://environment/MovingPlatform.tscn" id="10_cub7q"]
 [ext_resource type="Script" path="res://scripts/ResetScene.cs" id="11_0pohk"]
 [ext_resource type="Script" path="res://FPSCounter.cs" id="11_4h4rb"]
 [ext_resource type="PackedScene" uid="uid://cnpb27we1lbh3" path="res://ui/PauseMenu.tscn" id="12_elqkh"]
@@ -26,6 +25,7 @@
 [ext_resource type="Material" uid="uid://gyhw1hsmjgwk" path="res://environment/Flower2/Center.tres" id="27_qvfad"]
 [ext_resource type="Material" uid="uid://b7mcadtf10vtg" path="res://environment/Grass/GrassShader.tres" id="27_uxty2"]
 [ext_resource type="ArrayMesh" uid="uid://dwju2ewaplx15" path="res://environment/Grass/GrassBlade.obj" id="28_0drbp"]
+[ext_resource type="Script" path="res://MovingPlatformAnimator.cs" id="28_ob6fv"]
 [ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="28_rhn0r"]
 [ext_resource type="Script" path="res://GrassMultiMeshInstance3D.cs" id="29_1q6w2"]
 
@@ -92,13 +92,6 @@ height = 8.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b12yk"]
 radius = 4.0
-
-[sub_resource type="Curve3D" id="Curve3D_qu2s0"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1, 0, 6, 0, 0, 0, 0, 0, 0, 1, 0, -5),
-"tilts": PackedFloat32Array(0, 0)
-}
-point_count = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oulp5"]
 size = Vector3(1.97601, 1.15973, 3.92987)
@@ -171,6 +164,50 @@ size = Vector3(1, 1, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cm3ti"]
 size = Vector3(1, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v10yo"]
+size = Vector3(4, 1, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s0w0m"]
+size = Vector3(4, 1, 4)
+
+[sub_resource type="Animation" id="Animation_tglca"]
+resource_name = "moveplatform"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(8.96663, 1.71629, 6.60234), Vector3(8.96663, 1.71629, 2.57046), Vector3(8.96663, 1.71629, 6.60234)]
+}
+
+[sub_resource type="Animation" id="Animation_iwrx4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(8.96663, 1.71629, 6.60234)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1smtt"]
+_data = {
+"RESET": SubResource("Animation_iwrx4"),
+"moveplatform": SubResource("Animation_tglca")
+}
 
 [node name="Node3D" type="Node3D"]
 
@@ -504,17 +541,6 @@ script = ExtResource("11_4h4rb")
 [node name="MarginContainer" parent="GUI" instance=ExtResource("12_elqkh")]
 layout_mode = 1
 
-[node name="Path3D" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 1)
-curve = SubResource("Curve3D_qu2s0")
-
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 6)
-loop = false
-
-[node name="MovingPlatform" parent="Path3D/PathFollow3D" node_paths=PackedStringArray("PathFollow") instance=ExtResource("10_cub7q")]
-PathFollow = NodePath("..")
-
 [node name="SceneResetter" type="Node3D" parent="."]
 script = ExtResource("11_0pohk")
 
@@ -758,6 +784,25 @@ targetRigidBody = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
 shape = SubResource("BoxShape3D_cm3ti")
+
+[node name="MovingPlatform" type="AnimatableBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.96663, 1.71629, 6.60234)
+collision_layer = 4
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovingPlatform"]
+shape = SubResource("BoxShape3D_v10yo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MovingPlatform" node_paths=PackedStringArray("targetRigidBody")]
+mesh = SubResource("BoxMesh_s0w0m")
+script = ExtResource("28_rhn0r")
+targetRigidBody = NodePath("..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MovingPlatform"]
+libraries = {
+"": SubResource("AnimationLibrary_1smtt")
+}
+script = ExtResource("28_ob6fv")
 
 [connection signal="area_entered" from="SpikesContainer/Spikes/Area3D" to="SpikesContainer/Spikes/Area3D" method="_on_area_entered"]
 [connection signal="area_entered" from="SpikesContainer/Spikes2/Area3D" to="SpikesContainer/Spikes2/Area3D" method="_on_area_entered"]

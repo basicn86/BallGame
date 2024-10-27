@@ -17,7 +17,7 @@ public partial class MovingPlatform : AnimatableBody3D
 	public override void _PhysicsProcess(double delta)
 	{
 		if (PathFollow.ProgressRatio >= 1f || PathFollow.ProgressRatio <= 0f) direction *= -1f;
-		PathFollow.Progress += (float)delta * direction;
+		PathFollow.Progress += (float)delta * direction * 3f;
 		//While this doesn't make any sense, this line is required to update all the children's positions. PathFollow3D doesn't update the children's positions automatically. See issue #58269 and #63140. Omitting this line will cause the collision shapes to not move with the platform.
 		GlobalPosition = GlobalPosition;
 	}

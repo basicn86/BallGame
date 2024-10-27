@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://weapons/Grenade/GrenadeLabel.cs" id="5_7uvln"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1lyx3"]
-bounce = 1.0
+bounce = 0.2
 
 [sub_resource type="Curve" id="Curve_vhnsf"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.365314, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.99567, 0.0, 0, 0]

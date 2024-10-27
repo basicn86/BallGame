@@ -29,6 +29,10 @@ public partial class Player : RigidBody3D
 	public float NoInputDeceleration = 100f;
 	[Export]
 	public float JumpVelocityIgnoreFactor = 0.5f;
+	[Export]
+	public float JumpHeldGravityScale = 1.5f;
+	[Export]
+	public float JumpUnheldGravityScale = 2.5f;
 
 
 	private bool hasLanded = false;
@@ -131,11 +135,11 @@ public partial class Player : RigidBody3D
 		//Let the player jump higher if the jump button is held down
 		if (!Input.IsActionPressed("jump") && !groundCast.IsColliding())
 		{
-			GravityScale = 2.5f;
+			GravityScale = JumpUnheldGravityScale;
 		}
 		else
 		{
-			GravityScale = 1.5f;
+			GravityScale = JumpHeldGravityScale;
 		}
 	}
 

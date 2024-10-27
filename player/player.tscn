@@ -32,6 +32,7 @@ MaxVelocityPushback = 50.0
 GroundAcceleration = 50.0
 AirAcceleration = 15.0
 NoInputDeceleration = 3.0
+JumpUnheldGravityScale = 3.5
 jumpSound = NodePath("JumpingAudio")
 landSound = NodePath("LandingAudio")
 
