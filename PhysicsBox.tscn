@@ -32,10 +32,10 @@ targetRigidBody = NodePath("..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_6mou2")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="HitBox" type="Area3D" parent="."]
 script = ExtResource("4_n6r5e")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
 shape = SubResource("BoxShape3D_5nm4g")
 
-[connection signal="TakeDamage" from="Area3D" to="." method="_on_area_3d_take_damage"]
+[connection signal="TakeDamage" from="HitBox" to="." method="_on_area_3d_take_damage"]
