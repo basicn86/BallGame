@@ -175,33 +175,30 @@ size = Vector3(4, 1, 4)
 resource_name = "moveplatform"
 length = 10.0
 loop_mode = 1
-tracks/0/type = "value"
+tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 5, 10),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(8.96663, 1.71629, 6.60234), Vector3(8.96663, 1.71629, 2.57046), Vector3(8.96663, 1.71629, 6.60234)]
-}
+tracks/0/keys = PackedFloat32Array(0, 1, 8.96663, 1.71629, 6.60234, 5, 1, 8.96663, 1.71629, 1.64633, 10, 1, 8.96663, 1.71629, 6.60234)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 4, 1, 0, 0, 0, 1, 5, 1, 0.707107, 0, 0, 0.707107, 6, 1, 0, 0, 0, 1, 10, 1, 0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_iwrx4"]
 length = 0.001
-tracks/0/type = "value"
+tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(8.96663, 1.71629, 6.60234)]
-}
+tracks/0/keys = PackedFloat32Array(0, 1, 8.96663, 1.71629, 6.60234)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1smtt"]
 _data = {
@@ -789,6 +786,7 @@ shape = SubResource("BoxShape3D_cm3ti")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.96663, 1.71629, 6.60234)
 collision_layer = 4
 collision_mask = 7
+sync_to_physics = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MovingPlatform"]
 shape = SubResource("BoxShape3D_v10yo")
@@ -799,6 +797,7 @@ script = ExtResource("28_rhn0r")
 targetRigidBody = NodePath("..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MovingPlatform"]
+callback_mode_process = 0
 libraries = {
 "": SubResource("AnimationLibrary_1smtt")
 }
