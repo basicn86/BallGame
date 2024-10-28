@@ -27,9 +27,16 @@ public partial class Player : RigidBody3D
 	public float AirAcceleration = 750f;
 	[Export]
 	public float NoInputDeceleration = 100f;
+	[Export]
+	public float JumpVelocityIgnoreFactor = 0.5f;
+	[Export]
+	public float JumpHeldGravityScale = 1.5f;
+	[Export]
+	public float JumpUnheldGravityScale = 2.5f;
 
 
 	private bool hasLanded = false;
+	private Vector3 respawnPos = new Vector3(0, 10, 0);
 
 	[ExportCategory("Weapons")]
 	[Export]
@@ -58,9 +65,7 @@ public partial class Player : RigidBody3D
 
 		TryJumping();
 
-		RunFpsDebug();
-
-		cameraNode.TargetPosition = playerModel.Transform.Origin;
+		cameraNode.TargetPosition = playerModel.GlobalPosition;
 
 		laserPistol.UpdatePosition(GlobalPosition, cameraNode.Basis);
 		if (Input.IsActionJustPressed("attack"))
@@ -71,7 +76,11 @@ public partial class Player : RigidBody3D
 		grenadeThrower.UpdatePosition(GlobalPosition, cameraNode.Basis);
 		if (Input.IsActionJustPressed("throw_grenade"))
 		{
-			grenadeThrower.Fire(cameraNode.GetCrosshairCollisionPoint());
+			grenadeThrower.Fire();
+		}
+		if(Input.IsActionJustReleased("throw_grenade"))
+		{
+			grenadeThrower.Release(cameraNode.GetCrosshairCollisionPoint());
 		}
 	}
 
@@ -94,7 +103,7 @@ public partial class Player : RigidBody3D
 		{
 			Vector3 vel = LinearVelocity;
 			vel.Y = 0;
-			ApplyCentralForce(-vel * NoInputDeceleration * (float)delta);
+			ApplyCentralForce(-vel * NoInputDeceleration);
 			return;
 		}
 
@@ -103,58 +112,23 @@ public partial class Player : RigidBody3D
 		if (moveVector.Length() > 1f) moveVector = moveVector.Normalized();
 
 		if (groundCast.IsColliding())
-			ApplyCentralForce(moveVector * GroundAcceleration * (float)delta);
+			ApplyCentralForce(moveVector * GroundAcceleration);
 		else
-			ApplyCentralForce(moveVector * AirAcceleration * (float)delta);
+			ApplyCentralForce(moveVector * AirAcceleration);
 	}
 
 	private void RestrictPlayerVelocity(double delta)
 	{
 		Vector3 velocity = LinearVelocity;
 		velocity.Y = 0; //don't restrict vertical velocity
-		if (velocity.Length() > MaxVelocity) ApplyCentralForce(-velocity.Normalized() * MaxVelocityPushback * (float)delta);
-	}
-
-	private void RunFpsDebug()
-	{
-		
-		if (Input.IsKeyPressed(Key.Key1))
-		{
-			GD.Print("Set FPS to 120");
-			Engine.MaxFps = 122;
-		}
-		if (Input.IsKeyPressed(Key.Key2))
-		{
-			GD.Print("Set FPS to 60");
-			Engine.MaxFps = 60;
-		}
-		if (Input.IsKeyPressed(Key.Key3))
-		{
-			GD.Print("Set FPS to 30");
-			Engine.MaxFps = 30;
-		}
-		if (Input.IsKeyPressed(Key.Key4))
-		{
-			GD.Print("Set FPS to 165");
-			Engine.MaxFps = 165;
-		}
-		//potato mode
-		if(Input.IsKeyPressed(Key.Key5))
-		{
-			//set the shadow res size to 256
-			RenderingServer.DirectionalShadowAtlasSetSize(256, true);
-			RenderingServer.DirectionalSoftShadowFilterSetQuality(RenderingServer.ShadowQuality.Hard);
-			//turns off MSAA
-			GetViewport().Msaa3D = Viewport.Msaa.Disabled;
-			//unlock FPS
-			Engine.MaxFps = 0;
-		}
+		if (velocity.Length() > MaxVelocity) ApplyCentralForce(-velocity.Normalized() * MaxVelocityPushback);
 	}
 
 	private void TryJumping()
 	{
 		if (Input.IsActionJustPressed("jump") && groundCast.IsColliding())
 		{
+			LinearVelocity = new Vector3(LinearVelocity.X, Mathf.Max(0f, LinearVelocity.Y * JumpVelocityIgnoreFactor), LinearVelocity.Z);
 			ApplyCentralImpulse(new Vector3(0, 9f, 0));
 			jumpSound.Play();
 		}
@@ -162,11 +136,11 @@ public partial class Player : RigidBody3D
 		//Let the player jump higher if the jump button is held down
 		if (!Input.IsActionPressed("jump") && !groundCast.IsColliding())
 		{
-			GravityScale = 2.5f;
+			GravityScale = JumpUnheldGravityScale;
 		}
 		else
 		{
-			GravityScale = 1.5f;
+			GravityScale = JumpHeldGravityScale;
 		}
 	}
 
@@ -233,8 +207,14 @@ public partial class Player : RigidBody3D
 	private void _on_player_respawner_respawn_now()
 	{
 		ProcessMode = ProcessModeEnum.Inherit;
-		GlobalPosition = new Vector3(0, 10, 0);
+		GlobalPosition = respawnPos;
+
 		LinearVelocity = Vector3.Zero;
 		AngularVelocity = Vector3.Zero;
+	}
+
+	public void UpdateRespawnPos(Vector3 pos)
+	{
+		respawnPos = pos;
 	}
 }

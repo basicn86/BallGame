@@ -31,9 +31,9 @@ public partial class ModelInterpolator : MeshInstance3D
 		//TODO: Possibly remove this, this does not seem to do anything anymore.
 		if (firstFrame)
 		{
-			GlobalPosition = targetRigidBody.GlobalTransform.Origin;
-			previousPos = targetRigidBody.GlobalTransform.Origin;
-			currentPos = targetRigidBody.GlobalTransform.Origin;
+			GlobalPosition = targetRigidBody.GlobalPosition;
+			previousPos = targetRigidBody.GlobalPosition;
+			currentPos = targetRigidBody.GlobalPosition;
 			firstFrame = false;
 			return;
 		}

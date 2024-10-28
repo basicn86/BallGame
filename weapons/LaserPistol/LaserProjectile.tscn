@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://weapons/LaserPistol/LaserProjectile.cs" id="1_ahsb0"]
 [ext_resource type="PackedScene" uid="uid://bxe6dxk3uc1eq" path="res://weapons/LaserPistol/LaserParticles.tscn" id="2_6cs73"]
-[ext_resource type="Script" path="res://weapons/LaserPistol/LaserProjectileInterpolator.cs" id="3_7ttqd"]
 [ext_resource type="Shader" path="res://weapons/LaserPistol/LaserProjectile.gdshader" id="3_fg8j6"]
+[ext_resource type="Script" path="res://weapons/LaserPistol/LaserProjectileInterpolator.cs" id="4_ca20s"]
 [ext_resource type="Script" path="res://weapons/LaserPistol/LaserPistolProjectile.cs" id="4_ri4uu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2pwt"]
@@ -31,7 +31,7 @@ size = Vector3(0.2, 0.6, 0.2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_qe8tm"]
 size = Vector3(0.4, 1, 0.4)
 
-[node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("particleSpawnPoint")]
+[node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("particleSpawnPoint", "model")]
 collision_layer = 8
 gravity_scale = 0.0
 can_sleep = false
@@ -39,22 +39,24 @@ max_contacts_reported = 1
 script = ExtResource("1_ahsb0")
 particleSpawnPoint = NodePath("ParticleSpawnPoint")
 particleScene = ExtResource("2_6cs73")
+model = NodePath("LaserProjectile")
 
 [node name="LaserProjectile" type="MeshInstance3D" parent="." node_paths=PackedStringArray("projectile")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("CapsuleMesh_nt5qy")
-script = ExtResource("3_7ttqd")
+script = ExtResource("4_ca20s")
 projectile = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("BoxShape3D_7xhij")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="HurtBox" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 script = ExtResource("4_ri4uu")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
 shape = SubResource("BoxShape3D_qe8tm")
 
 [node name="Lifetime" type="Timer" parent="."]
@@ -66,5 +68,5 @@ autostart = true
 [node name="ParticleSpawnPoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.270493)
 
-[connection signal="area_entered" from="Area3D" to="Area3D" method="_on_area_entered"]
+[connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]
 [connection signal="timeout" from="Lifetime" to="." method="_on_lifetime_timeout"]

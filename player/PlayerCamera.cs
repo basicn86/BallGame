@@ -75,7 +75,7 @@ public partial class PlayerCamera : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Position = Position.Lerp(TargetPosition, 20.0f * (float)delta);
+		GlobalPosition = GlobalPosition.Lerp(TargetPosition, 20.0f * (float)delta);
 
 		MoveCameraAwayFromEnvironment();
 
@@ -130,7 +130,7 @@ public partial class PlayerCamera : Node3D
 	/// </summary>
 	private void MoveCameraAwayFromEnvironment()
 	{
-
+		obstacleRaycast.ForceRaycastUpdate();
 		if (obstacleRaycast.IsColliding())
 		{
 			Vector3 localCollisionPoint = obstacleRaycast.GetCollisionPoint() - obstacleRaycast.GlobalPosition;

@@ -11,6 +11,9 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0d2g"]
 albedo_color = Color(0, 0.639216, 1, 1)
+clearcoat_roughness = 1.0
+subsurf_scatter_strength = 1.0
+backlight = Color(1, 0, 0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_08omv"]
 
@@ -20,6 +23,7 @@ radius = 0.6
 [node name="Player" type="RigidBody3D" node_paths=PackedStringArray("playerModel", "groundCast", "jumpSound", "landSound")]
 collision_layer = 2
 gravity_scale = 1.5
+can_sleep = false
 continuous_cd = true
 script = ExtResource("1_8wcbe")
 playerModel = NodePath("PlayerModel")
@@ -27,7 +31,11 @@ groundCast = NodePath("GroundRaycast")
 jumpParticles = ExtResource("2_vu4ki")
 deathParticles = ExtResource("3_jbxwk")
 MaxVelocity = 8.0
-MaxVelocityPushback = 2000.0
+MaxVelocityPushback = 50.0
+GroundAcceleration = 50.0
+AirAcceleration = 15.0
+NoInputDeceleration = 3.0
+JumpUnheldGravityScale = 3.5
 jumpSound = NodePath("JumpingAudio")
 landSound = NodePath("LandingAudio")
 

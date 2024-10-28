@@ -89,6 +89,7 @@ lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
+visibility_aabb = AABB(-16, -16, -16, 32, 32, 32)
 process_material = SubResource("ParticleProcessMaterial_vj5j1")
 draw_pass_1 = SubResource("BoxMesh_wb1xk")
 
@@ -98,6 +99,7 @@ amount = 64
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
+visibility_aabb = AABB(-16, -16, -16, 32, 32, 32)
 process_material = SubResource("ParticleProcessMaterial_t6dlp")
 draw_pass_1 = SubResource("SphereMesh_cbddg")
 
