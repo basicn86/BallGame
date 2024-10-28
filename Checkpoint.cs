@@ -39,9 +39,11 @@ public partial class Checkpoint : Node3D
 	private void _on_area_3d_body_entered(Node body)
 	{
 		if (body is not Player) return;
+		Player player = (Player)body;
+		player.UpdateRespawnPos(GlobalPosition);
 		playerNearby = true;
 		particles.Emitting = false;
-		lightNode.QueueFree();
+		if(IsInstanceValid(lightNode)) lightNode.QueueFree();
 	}
 
 	private void _on_area_3d_body_exited(Node body)

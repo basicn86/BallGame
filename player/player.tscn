@@ -11,6 +11,9 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0d2g"]
 albedo_color = Color(0, 0.639216, 1, 1)
+clearcoat_roughness = 1.0
+subsurf_scatter_strength = 1.0
+backlight = Color(1, 0, 0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_08omv"]
 

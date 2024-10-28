@@ -36,6 +36,7 @@ public partial class Player : RigidBody3D
 
 
 	private bool hasLanded = false;
+	private Vector3 respawnPos = new Vector3(0, 10, 0);
 
 	[ExportCategory("Weapons")]
 	[Export]
@@ -206,8 +207,14 @@ public partial class Player : RigidBody3D
 	private void _on_player_respawner_respawn_now()
 	{
 		ProcessMode = ProcessModeEnum.Inherit;
-		GlobalPosition = new Vector3(0, 10, 0);
+		GlobalPosition = respawnPos;
+
 		LinearVelocity = Vector3.Zero;
 		AngularVelocity = Vector3.Zero;
+	}
+
+	public void UpdateRespawnPos(Vector3 pos)
+	{
+		respawnPos = pos;
 	}
 }
