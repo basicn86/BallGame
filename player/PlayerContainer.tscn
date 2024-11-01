@@ -12,6 +12,10 @@
 [node name="Player" parent="." node_paths=PackedStringArray("cameraNode", "laserPistol", "grenadeThrower") instance=ExtResource("1_wklvn")]
 collision_mask = 5
 cameraNode = NodePath("../CameraPivot")
+AirAcceleration = 10.0
+JumpForce = 12.0
+JumpHeldGravityScale = 2.5
+JumpUnheldGravityScale = 5.0
 laserPistol = NodePath("../LaserPistol")
 grenadeThrower = NodePath("../GrenadeThrower")
 

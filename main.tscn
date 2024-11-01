@@ -1,10 +1,10 @@
-[gd_scene load_steps=83 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene load_steps=85 format=3 uid="uid://jc4p2lep7gmi"]
 
 [ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_sj0rc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_x0eru"]
 [ext_resource type="PackedScene" uid="uid://cmclnyunnsjjs" path="res://weapons/Grenade/Grenade.tscn" id="4_ceibg"]
-[ext_resource type="Script" path="res://Crosshair.cs" id="7_gtrsf"]
 [ext_resource type="PackedScene" uid="uid://dcojo2t0kpp15" path="res://environment/Elevator.tscn" id="7_isqio"]
+[ext_resource type="PackedScene" uid="uid://ctiw3gw6hbfhh" path="res://ui/crosshair.tscn" id="7_p7ewv"]
 [ext_resource type="PackedScene" uid="uid://mqbycbrcjyk4" path="res://PhysicsBox.tscn" id="7_xb6ro"]
 [ext_resource type="Script" path="res://scripts/ResetScene.cs" id="11_0pohk"]
 [ext_resource type="Script" path="res://FPSCounter.cs" id="11_4h4rb"]
@@ -34,13 +34,13 @@
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1ws2m"]
 panorama = ExtResource("1_sj0rc")
 
-[sub_resource type="Sky" id="Sky_p2gfp"]
+[sub_resource type="Sky" id="Sky_aqkmj"]
 sky_material = SubResource("PanoramaSkyMaterial_1ws2m")
 
 [sub_resource type="Environment" id="Environment_jt2xw"]
 background_mode = 2
 background_energy_multiplier = 0.75
-sky = SubResource("Sky_p2gfp")
+sky = SubResource("Sky_aqkmj")
 ambient_light_sky_contribution = 0.75
 reflected_light_source = 1
 tonemap_white = 8.0
@@ -256,6 +256,12 @@ material = SubResource("StandardMaterial3D_0qjsr")
 size = Vector2(0.04, 0.2)
 orientation = 2
 
+[sub_resource type="BoxMesh" id="BoxMesh_mdr2a"]
+size = Vector3(1, 0.2, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h2pmw"]
+size = Vector3(1, 0.2, 10)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -421,6 +427,16 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Slope6/StaticBody3D"]
 shape = SubResource("BoxShape3D_nil25")
 
+[node name="Slope8" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.748723, 2.0163, 22.1798)
+mesh = SubResource("BoxMesh_224x6")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Slope8"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Slope8/StaticBody3D"]
+shape = SubResource("BoxShape3D_nil25")
+
 [node name="BigBall" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.6846, 0.0310678, 0)
 mesh = SubResource("SphereMesh_mnywj")
@@ -540,6 +556,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 2, -15)
 [node name="WoodBarrel2" parent="Entities" instance=ExtResource("22_ipffj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.16644, 3.84805, 14.3224)
 
+[node name="WoodBarrel9" parent="Entities" instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.07598, 3.84805, 14.3224)
+
+[node name="WoodBarrel10" parent="Entities" instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.16644, 3.84805, 16.1394)
+
+[node name="WoodBarrel11" parent="Entities" instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.07598, 3.84805, 16.1394)
+
+[node name="WoodBarrel3" parent="Entities" instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46639, 4.35338, 24.0181)
+
+[node name="WoodBarrel4" parent="Entities" instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46639, 4.35338, 22.2867)
+
+[node name="WoodBarrel5" parent="Entities" instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46639, 4.35338, 20.2879)
+
+[node name="WoodBarrel6" parent="Entities" instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46639, 6.88706, 24.0181)
+
+[node name="WoodBarrel7" parent="Entities" instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46639, 6.88706, 22.2867)
+
+[node name="WoodBarrel8" parent="Entities" instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46639, 6.88706, 20.2879)
+
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -549,20 +592,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="Crosshair" type="CenterContainer" parent="GUI"]
+[node name="Crosshair" parent="GUI" instance=ExtResource("7_p7ewv")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("7_gtrsf")
 
 [node name="FPSPanel" type="Panel" parent="GUI"]
 layout_mode = 1
@@ -780,6 +811,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0579, 0.0181198, -22.2726)
 
 [node name="RigidBody3D" parent="." instance=ExtResource("22_dypbc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 15)
+ReturnForce = 4000.0
 
 [node name="FlowerContainer" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1811, 0, -22.2899)
@@ -887,9 +919,23 @@ draw_pass_1 = SubResource("PlaneMesh_lw46p")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.87664, 0)
 light_energy = 20.0
 shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 20.0
+distance_fade_shadow = 30.0
 spot_range = 8.0
 spot_attenuation = 0.2
 spot_angle = 35.0
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47607, 2.81612, 19.8215)
+collision_layer = 4
+collision_mask = 7
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2"]
+mesh = SubResource("BoxMesh_mdr2a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
+shape = SubResource("BoxShape3D_h2pmw")
 
 [connection signal="area_entered" from="SpikesContainer/Spikes/Area3D" to="SpikesContainer/Spikes/Area3D" method="_on_area_entered"]
 [connection signal="area_entered" from="SpikesContainer/Spikes2/Area3D" to="SpikesContainer/Spikes2/Area3D" method="_on_area_entered"]

@@ -28,6 +28,8 @@ public partial class Player : RigidBody3D
 	[Export]
 	public float NoInputDeceleration = 100f;
 	[Export]
+	public float JumpForce = 9f;
+	[Export]
 	public float JumpVelocityIgnoreFactor = 0.5f;
 	[Export]
 	public float JumpHeldGravityScale = 1.5f;
@@ -129,7 +131,7 @@ public partial class Player : RigidBody3D
 		if (Input.IsActionJustPressed("jump") && groundCast.IsColliding())
 		{
 			LinearVelocity = new Vector3(LinearVelocity.X, Mathf.Max(0f, LinearVelocity.Y * JumpVelocityIgnoreFactor), LinearVelocity.Z);
-			ApplyCentralImpulse(new Vector3(0, 9f, 0));
+			ApplyCentralImpulse(new Vector3(0, JumpForce, 0));
 			jumpSound.Play();
 		}
 
