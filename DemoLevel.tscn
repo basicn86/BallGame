@@ -98,7 +98,7 @@ size = Vector3(20, 4, 4)
 [node name="Node3D" type="Node3D"]
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3991, 5.19093, -42.2831)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3991, 5.19093, -16.254)
 
 [node name="DeathPlane" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.8539, 0)
@@ -217,29 +217,6 @@ mesh = SubResource("CylinderMesh_lkwq1")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SlipperyCylinder"]
 shape = SubResource("CylinderShape3D_1wtlf")
 
-[node name="GUI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
-[node name="Crosshair" parent="GUI" instance=ExtResource("7_2qhh3")]
-layout_mode = 1
-
-[node name="PauseMenu" parent="GUI" instance=ExtResource("3_lnbl7")]
-layout_mode = 1
-offset_left = -59.0
-offset_top = -74.5
-offset_right = 59.0
-offset_bottom = 74.5
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_hlu0w")
-autoplay = true
-
 [node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.3702, 0.231853, -16.818)
 script = ExtResource("13_q4ssb")
@@ -265,5 +242,41 @@ targetRigidBody = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D2"]
 shape = SubResource("BoxShape3D_lp6qt")
+
+[node name="AnimatableBody3D3" type="AnimatableBody3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 63.9837, 0.231853, -35.8095)
+script = ExtResource("13_q4ssb")
+RotationSpeed = 0.02
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D3" node_paths=PackedStringArray("targetRigidBody")]
+mesh = SubResource("BoxMesh_1q5g4")
+script = ExtResource("14_ax6jt")
+targetRigidBody = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D3"]
+shape = SubResource("BoxShape3D_lp6qt")
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Crosshair" parent="GUI" instance=ExtResource("7_2qhh3")]
+layout_mode = 1
+
+[node name="PauseMenu" parent="GUI" instance=ExtResource("3_lnbl7")]
+layout_mode = 1
+offset_left = -59.0
+offset_top = -74.5
+offset_right = 59.0
+offset_bottom = 74.5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_hlu0w")
+autoplay = true
 
 [connection signal="area_entered" from="DeathPlane" to="DeathPlane" method="_on_area_entered"]
