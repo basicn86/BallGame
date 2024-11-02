@@ -58,6 +58,8 @@ public partial class Player : RigidBody3D
 		cameraNode.PlayerRid = GetRid();
 
 		groundCast.TopLevel = true;
+
+		respawnPos = GlobalPosition;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

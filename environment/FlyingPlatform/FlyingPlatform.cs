@@ -4,7 +4,7 @@ using System;
 public partial class FlyingPlatform : RigidBody3D
 {
 	private Vector3 _initialPosition;
-	private Vector3 _initialRotation;
+	private Quaternion _initialRotation;
 
 	//Pushback force to return the platform to its initial position
 	[Export]
@@ -19,7 +19,7 @@ public partial class FlyingPlatform : RigidBody3D
 	public override void _Ready()
 	{
 		_initialPosition = GlobalPosition;
-		_initialRotation = Rotation;
+		_initialRotation = Quaternion;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -28,9 +28,13 @@ public partial class FlyingPlatform : RigidBody3D
 		{
 			Vector3 direction = _initialPosition - GlobalPosition;
 			//TODO: it is probably better to apply more force the further away the platform is from its initial position. Maybe don't normalize the direction vector?
-			ApplyCentralForce(direction.Normalized() * ReturnForce * (float)delta);
+			ApplyCentralForce(direction.Normalized() * ReturnForce);
 		}
 
-		ApplyTorque(-(Rotation - _initialRotation) * ReturnTorque * (float)delta);
+		Quaternion forceDir = _initialRotation - Quaternion;
+
+		ApplyTorque(forceDir.GetAxis() * ReturnTorque);
+		GD.Print(forceDir.GetAxis());
+		//ApplyTorque((_initialRotation - Rotation) * ReturnTorque);
 	}
 }

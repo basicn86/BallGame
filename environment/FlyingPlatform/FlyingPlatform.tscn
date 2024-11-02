@@ -44,11 +44,13 @@ collision_layer = 4
 collision_mask = 7
 mass = 10.0
 gravity_scale = 0.0
+inertia = Vector3(1, 1, 1)
 linear_damp = 3.0
-angular_damp = 3.0
+angular_damp = 50.0
 script = ExtResource("1_xf5vd")
-ReturnForce = 2000.0
-ReturnTorque = 40000.0
+ReturnForce = 50.0
+ReturnTorque = 500.0
+ReturnPositionTolerance = 0.03
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
 mesh = SubResource("BoxMesh_k46tu")
