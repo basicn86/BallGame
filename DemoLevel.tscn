@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=37 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_yi0ja"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://mqbycbrcjyk4" path="res://PhysicsBox.tscn" id="8_urked"]
 [ext_resource type="PackedScene" uid="uid://5t66n6i6dv8o" path="res://Checkpoint.tscn" id="9_sdew7"]
 [ext_resource type="AudioStream" uid="uid://b1blbjo32ntll" path="res://music/Mega Man 7 - Slash Man.wav" id="11_hlu0w"]
+[ext_resource type="Script" path="res://RotatingBar.cs" id="13_q4ssb"]
+[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="14_ax6jt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wqqyb"]
 size = Vector3(1000, 20, 1000)
@@ -56,25 +58,22 @@ buffer = PackedFloat32Array(-0.182829, 0, -0.984162, 3.94029, 0, 1.001, 0, 0.221
 size = Vector2(3, 48)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_in6vi"]
-size = Vector3(8, 2, 2)
+size = Vector3(9.5, 2, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_btaeo"]
-size = Vector3(8, 2, 2)
+size = Vector3(9.5, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhn0x"]
 albedo_color = Color(0.470502, 0.326184, 0.146702, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d6ibb"]
-size = Vector3(8, 3, 2)
+size = Vector3(10, 3, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_sms4o"]
-size = Vector3(8, 3, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_06v71"]
-albedo_color = Color(0, 0.501961, 0, 1)
+size = Vector3(10, 3, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ygdqb"]
-material = SubResource("StandardMaterial3D_06v71")
+material = SubResource("StandardMaterial3D_yn145")
 size = Vector3(8, 1, 12)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ela1v"]
@@ -85,6 +84,16 @@ height = 16.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1wtlf"]
 height = 16.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ga0ny"]
+albedo_color = Color(0, 0.559667, 0.73, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1q5g4"]
+material = SubResource("StandardMaterial3D_ga0ny")
+size = Vector3(20, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lp6qt"]
+size = Vector3(20, 4, 4)
 
 [node name="Node3D" type="Node3D"]
 
@@ -154,7 +163,7 @@ mesh = SubResource("BoxMesh_btaeo")
 surface_material_override/0 = SubResource("StandardMaterial3D_vhn0x")
 
 [node name="SecondObstacle" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66786, -30.7417)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52755, -30.7417)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SecondObstacle"]
 shape = SubResource("BoxShape3D_d6ibb")
@@ -174,6 +183,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7641, 0, -55.5637)
 
 [node name="FlyingPlatform4" parent="." instance=ExtResource("7_v7g34")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5213, 2.39029, -50.8884)
+
+[node name="FlyingPlatform5" parent="." instance=ExtResource("7_v7g34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.1783, 1.08142, -16.7537)
 
 [node name="PhysicsBox" parent="." instance=ExtResource("8_urked")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.33285, 1.14786, -50.6)
@@ -197,7 +209,7 @@ shape = SubResource("BoxShape3D_ela1v")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.0425, 4.0438, -39.7319)
 
 [node name="SlipperyCylinder" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 20.3728, 2.41576, -27.0311)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 20.3728, 2.12829, -27.0311)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SlipperyCylinder"]
 mesh = SubResource("CylinderMesh_lkwq1")
@@ -227,5 +239,31 @@ offset_bottom = 74.5
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_hlu0w")
 autoplay = true
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.3702, 0.231853, -16.818)
+script = ExtResource("13_q4ssb")
+RotationSpeed = 0.02
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D" node_paths=PackedStringArray("targetRigidBody")]
+mesh = SubResource("BoxMesh_1q5g4")
+script = ExtResource("14_ax6jt")
+targetRigidBody = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+shape = SubResource("BoxShape3D_lp6qt")
+
+[node name="AnimatableBody3D2" type="AnimatableBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.8325, 0.231853, -22.6529)
+script = ExtResource("13_q4ssb")
+RotationSpeed = 0.02
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D2" node_paths=PackedStringArray("targetRigidBody")]
+mesh = SubResource("BoxMesh_1q5g4")
+script = ExtResource("14_ax6jt")
+targetRigidBody = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D2"]
+shape = SubResource("BoxShape3D_lp6qt")
 
 [connection signal="area_entered" from="DeathPlane" to="DeathPlane" method="_on_area_entered"]
