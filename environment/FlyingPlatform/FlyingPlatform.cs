@@ -34,7 +34,6 @@ public partial class FlyingPlatform : RigidBody3D
 		Quaternion forceDir = _initialRotation - Quaternion;
 
 		ApplyTorque(forceDir.GetAxis() * ReturnTorque);
-		GD.Print(forceDir.GetAxis());
 		//ApplyTorque((_initialRotation - Rotation) * ReturnTorque);
 	}
 }

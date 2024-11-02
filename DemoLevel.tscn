@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=33 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_yi0ja"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://ctiw3gw6hbfhh" path="res://ui/crosshair.tscn" id="7_2qhh3"]
 [ext_resource type="PackedScene" uid="uid://m3ac8gckgd4j" path="res://environment/FlyingPlatform/FlyingPlatform.tscn" id="7_v7g34"]
 [ext_resource type="PackedScene" uid="uid://mqbycbrcjyk4" path="res://PhysicsBox.tscn" id="8_urked"]
+[ext_resource type="PackedScene" uid="uid://5t66n6i6dv8o" path="res://Checkpoint.tscn" id="9_sdew7"]
+[ext_resource type="AudioStream" uid="uid://b1blbjo32ntll" path="res://music/Mega Man 7 - Slash Man.wav" id="11_hlu0w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wqqyb"]
 size = Vector3(1000, 20, 1000)
@@ -29,14 +31,14 @@ reflected_light_source = 1
 tonemap_white = 8.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pb0l4"]
-size = Vector3(10, 0.5, 48)
+size = Vector3(10, 2, 48)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yn145"]
 albedo_color = Color(0, 0.584314, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_pvsit"]
 material = SubResource("StandardMaterial3D_yn145")
-size = Vector3(10, 0.5, 48)
+size = Vector3(10, 2, 48)
 
 [sub_resource type="MultiMesh" id="MultiMesh_lpjqe"]
 transform_format = 1
@@ -68,10 +70,26 @@ size = Vector3(8, 3, 2)
 [sub_resource type="BoxMesh" id="BoxMesh_sms4o"]
 size = Vector3(8, 3, 2)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_06v71"]
+albedo_color = Color(0, 0.501961, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ygdqb"]
+material = SubResource("StandardMaterial3D_06v71")
+size = Vector3(8, 1, 12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ela1v"]
+size = Vector3(8, 1, 12)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lkwq1"]
+height = 16.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1wtlf"]
+height = 16.0
+
 [node name="Node3D" type="Node3D"]
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.942, -41.284)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3991, 5.19093, -42.2831)
 
 [node name="DeathPlane" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.8539, 0)
@@ -89,7 +107,7 @@ shadow_bias = 0.05
 environment = SubResource("Environment_wmfxm")
 
 [node name="SpawnPlatform" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.9893)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -20)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnPlatform"]
 shape = SubResource("BoxShape3D_pb0l4")
@@ -98,22 +116,26 @@ shape = SubResource("BoxShape3D_pb0l4")
 mesh = SubResource("BoxMesh_pvsit")
 
 [node name="GrassMultiMeshLeft" type="MultiMeshInstance3D" parent="SpawnPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+visibility_range_end = 50.0
 multimesh = SubResource("MultiMesh_lpjqe")
 script = ExtResource("4_scv88")
 Material = ExtResource("5_jexvf")
 
 [node name="GrassMultiMeshRight" type="MultiMeshInstance3D" parent="SpawnPlatform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+visibility_range_end = 50.0
 multimesh = SubResource("MultiMesh_spxmh")
 script = ExtResource("4_scv88")
 Material = ExtResource("5_jexvf")
 
 [node name="GrassPlaneLeft" type="MeshInstance3D" parent="SpawnPlatform"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.221, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.75, 0)
 visible = false
 mesh = SubResource("PlaneMesh_poc7p")
 
 [node name="GrassPlaneRight" type="MeshInstance3D" parent="SpawnPlatform"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.221, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.75, 0)
 visible = false
 mesh = SubResource("PlaneMesh_poc7p")
 
@@ -147,8 +169,41 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -49.3247)
 [node name="FlyingPlatform2" parent="." instance=ExtResource("7_v7g34")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.28424, 0, -55.5637)
 
+[node name="FlyingPlatform3" parent="." instance=ExtResource("7_v7g34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7641, 0, -55.5637)
+
+[node name="FlyingPlatform4" parent="." instance=ExtResource("7_v7g34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5213, 2.39029, -50.8884)
+
 [node name="PhysicsBox" parent="." instance=ExtResource("8_urked")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.33285, 1.14786, -50.6)
+
+[node name="PhysicsBox2" parent="." instance=ExtResource("8_urked")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.64804, 1.14786, -55.6599)
+
+[node name="PhysicsBox3" parent="." instance=ExtResource("8_urked")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2383, 1.14786, -57.4295)
+
+[node name="CheckpointPlatform" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1701, 2.40947, -41.3782)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CheckpointPlatform"]
+mesh = SubResource("BoxMesh_ygdqb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CheckpointPlatform"]
+shape = SubResource("BoxShape3D_ela1v")
+
+[node name="Checkpoint" parent="." instance=ExtResource("9_sdew7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.0425, 4.0438, -39.7319)
+
+[node name="SlipperyCylinder" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 20.3728, 2.41576, -27.0311)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SlipperyCylinder"]
+mesh = SubResource("CylinderMesh_lkwq1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SlipperyCylinder"]
+shape = SubResource("CylinderShape3D_1wtlf")
 
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3
@@ -168,5 +223,9 @@ offset_left = -59.0
 offset_top = -74.5
 offset_right = 59.0
 offset_bottom = 74.5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_hlu0w")
+autoplay = true
 
 [connection signal="area_entered" from="DeathPlane" to="DeathPlane" method="_on_area_entered"]

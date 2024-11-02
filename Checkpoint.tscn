@@ -1,0 +1,110 @@
+[gd_scene load_steps=13 format=3 uid="uid://5t66n6i6dv8o"]
+
+[ext_resource type="Script" path="res://Checkpoint.cs" id="1_b0pxt"]
+[ext_resource type="ArrayMesh" uid="uid://7ge6wlk33c1b" path="res://FloppyDisk.obj" id="2_fqc2j"]
+[ext_resource type="Shader" path="res://FloppyDisk.gdshader" id="3_khyiu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5eosa"]
+size = Vector3(1, 4, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4poae"]
+render_priority = 0
+shader = ExtResource("3_khyiu")
+shader_parameter/Amplitude = 0.5
+shader_parameter/Speed = 4.0
+shader_parameter/Metallic = 0.0
+shader_parameter/Albedo = Color(0.391802, 0.248189, 0.999987, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ijl5e"]
+render_priority = 0
+shader = ExtResource("3_khyiu")
+shader_parameter/Amplitude = 0.5
+shader_parameter/Speed = 4.0
+shader_parameter/Metallic = 0.5
+shader_parameter/Albedo = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jn4cu"]
+render_priority = 0
+shader = ExtResource("3_khyiu")
+shader_parameter/Amplitude = 0.5
+shader_parameter/Speed = 4.0
+shader_parameter/Metallic = 0.5
+shader_parameter/Albedo = Color(1, 1, 1, 1)
+
+[sub_resource type="Curve" id="Curve_wnuju"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25523, 1), 0.0, 0.0, 0, 0, Vector2(0.753138, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ja0w7"]
+curve = SubResource("Curve_wnuju")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2vmkk"]
+particle_flag_rotate_y = true
+emission_shape_offset = Vector3(0, -2, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.5
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_ja0w7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qjsr"]
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 1)
+billboard_mode = 2
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lw46p"]
+material = SubResource("StandardMaterial3D_0qjsr")
+size = Vector2(0.04, 0.2)
+orientation = 2
+
+[node name="Checkpoint" type="Node3D" node_paths=PackedStringArray("particles", "mesh", "lightNode")]
+script = ExtResource("1_b0pxt")
+particles = NodePath("GPUParticles3D")
+mesh = NodePath("MeshInstance3D")
+lightNode = NodePath("SpotLight3D")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_5eosa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = ExtResource("2_fqc2j")
+surface_material_override/0 = SubResource("ShaderMaterial_4poae")
+surface_material_override/1 = SubResource("ShaderMaterial_ijl5e")
+surface_material_override/2 = SubResource("ShaderMaterial_jn4cu")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+cast_shadow = 0
+amount = 128
+lifetime = 3.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_2vmkk")
+draw_pass_1 = SubResource("PlaneMesh_lw46p")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.87664, 0)
+light_energy = 5.0
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 20.0
+distance_fade_shadow = 25.0
+spot_range = 8.0
+spot_attenuation = 0.0
+spot_angle = 35.0
+spot_angle_attenuation = 0.1
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
