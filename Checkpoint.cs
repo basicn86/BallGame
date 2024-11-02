@@ -12,11 +12,11 @@ public partial class Checkpoint : Node3D
 
 	[Export]
 	public float RotationSpeed = 2.0f;
-
 	[Export]
 	public float PlayerNearbyRotationSpeed = 10.0f;
 
 	private bool playerNearby = false;
+
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

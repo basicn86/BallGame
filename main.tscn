@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene load_steps=86 format=3 uid="uid://jc4p2lep7gmi"]
 
 [ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_sj0rc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_x0eru"]
@@ -30,6 +30,7 @@
 [ext_resource type="Script" path="res://GrassMultiMeshInstance3D.cs" id="29_1q6w2"]
 [ext_resource type="Script" path="res://Checkpoint.cs" id="29_ytvf0"]
 [ext_resource type="ArrayMesh" uid="uid://7ge6wlk33c1b" path="res://FloppyDisk.obj" id="30_qorwo"]
+[ext_resource type="Shader" path="res://FloppyDisk.gdshader" id="31_b7115"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1ws2m"]
 panorama = ExtResource("1_sj0rc")
@@ -212,14 +213,29 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_5eosa"]
 size = Vector3(1, 4, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oo3ve"]
-albedo_color = Color(0.391802, 0.248189, 0.999987, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4poae"]
+render_priority = 0
+shader = ExtResource("31_b7115")
+shader_parameter/Amplitude = 0.5
+shader_parameter/Speed = 4.0
+shader_parameter/Metallic = 0.0
+shader_parameter/Albedo = Color(0.391802, 0.248189, 0.999987, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nx6yh"]
-metallic = 0.5
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ijl5e"]
+render_priority = 0
+shader = ExtResource("31_b7115")
+shader_parameter/Amplitude = 0.5
+shader_parameter/Speed = 4.0
+shader_parameter/Metallic = 0.5
+shader_parameter/Albedo = Color(1, 1, 1, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2nck"]
-metallic = 0.5
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jn4cu"]
+render_priority = 0
+shader = ExtResource("31_b7115")
+shader_parameter/Amplitude = 0.5
+shader_parameter/Speed = 4.0
+shader_parameter/Metallic = 0.5
+shader_parameter/Albedo = Color(1, 1, 1, 1)
 
 [sub_resource type="Curve" id="Curve_wnuju"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25523, 1), 0.0, 0.0, 0, 0, Vector2(0.753138, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -903,9 +919,9 @@ shape = SubResource("BoxShape3D_5eosa")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Checkpoint"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = ExtResource("30_qorwo")
-surface_material_override/0 = SubResource("StandardMaterial3D_oo3ve")
-surface_material_override/1 = SubResource("StandardMaterial3D_nx6yh")
-surface_material_override/2 = SubResource("StandardMaterial3D_g2nck")
+surface_material_override/0 = SubResource("ShaderMaterial_4poae")
+surface_material_override/1 = SubResource("ShaderMaterial_ijl5e")
+surface_material_override/2 = SubResource("ShaderMaterial_jn4cu")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Checkpoint"]
 cast_shadow = 0
@@ -917,14 +933,15 @@ draw_pass_1 = SubResource("PlaneMesh_lw46p")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Checkpoint"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.87664, 0)
-light_energy = 20.0
+light_energy = 10.0
 shadow_enabled = true
 distance_fade_enabled = true
 distance_fade_begin = 20.0
-distance_fade_shadow = 30.0
+distance_fade_shadow = 25.0
 spot_range = 8.0
-spot_attenuation = 0.2
+spot_attenuation = 0.0
 spot_angle = 35.0
+spot_angle_attenuation = 0.1
 
 [node name="RigidBody3D2" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47607, 2.81612, 19.8215)
