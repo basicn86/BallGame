@@ -1,10 +1,11 @@
-[gd_scene load_steps=37 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=39 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_yi0ja"]
 [ext_resource type="Script" path="res://environment/Spikes/SpikeArea.cs" id="2_xq41t"]
 [ext_resource type="PackedScene" uid="uid://cnpb27we1lbh3" path="res://ui/PauseMenu.tscn" id="3_lnbl7"]
 [ext_resource type="ArrayMesh" uid="uid://dwju2ewaplx15" path="res://environment/Grass/GrassBlade.obj" id="3_nbtbs"]
+[ext_resource type="Material" uid="uid://ov73e2vq13t6" path="res://DemoLevel/GrassGroundMaterial.tres" id="4_le0gn"]
 [ext_resource type="Script" path="res://GrassMultiMeshInstance3D.cs" id="4_scv88"]
 [ext_resource type="Material" uid="uid://b7mcadtf10vtg" path="res://environment/Grass/GrassShader.tres" id="5_jexvf"]
 [ext_resource type="PackedScene" uid="uid://ctiw3gw6hbfhh" path="res://ui/crosshair.tscn" id="7_2qhh3"]
@@ -16,7 +17,7 @@
 [ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="14_ax6jt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wqqyb"]
-size = Vector3(1000, 20, 1000)
+size = Vector3(5000, 20, 5000)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_u6uwp"]
 panorama = ExtResource("1_yi0ja")
@@ -35,11 +36,8 @@ tonemap_white = 8.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_pb0l4"]
 size = Vector3(10, 2, 48)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yn145"]
-albedo_color = Color(0, 0.584314, 0, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_pvsit"]
-material = SubResource("StandardMaterial3D_yn145")
+material = ExtResource("4_le0gn")
 size = Vector3(10, 2, 48)
 
 [sub_resource type="MultiMesh" id="MultiMesh_lpjqe"]
@@ -73,7 +71,7 @@ size = Vector3(10, 3, 2)
 size = Vector3(10, 3, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ygdqb"]
-material = SubResource("StandardMaterial3D_yn145")
+material = ExtResource("4_le0gn")
 size = Vector3(8, 1, 12)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ela1v"]
@@ -86,7 +84,7 @@ height = 16.0
 height = 16.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ga0ny"]
-albedo_color = Color(0, 0.559667, 0.73, 1)
+albedo_color = Color(0.672, 0.72, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1q5g4"]
 material = SubResource("StandardMaterial3D_ga0ny")
@@ -95,10 +93,16 @@ size = Vector3(20, 4, 4)
 [sub_resource type="BoxShape3D" id="BoxShape3D_lp6qt"]
 size = Vector3(20, 4, 4)
 
+[sub_resource type="BoxMesh" id="BoxMesh_wby87"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q2kwp"]
+size = Vector3(20, 1, 20)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3991, 5.19093, -16.254)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7688, 2.7166, -16.732)
 
 [node name="DeathPlane" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.8539, 0)
@@ -217,44 +221,57 @@ mesh = SubResource("CylinderMesh_lkwq1")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SlipperyCylinder"]
 shape = SubResource("CylinderShape3D_1wtlf")
 
-[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
+[node name="RotatingBar1" type="AnimatableBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.3702, 0.231853, -16.818)
 script = ExtResource("13_q4ssb")
 RotationSpeed = 0.02
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D" node_paths=PackedStringArray("targetRigidBody")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RotatingBar1" node_paths=PackedStringArray("targetRigidBody")]
 mesh = SubResource("BoxMesh_1q5g4")
 script = ExtResource("14_ax6jt")
 targetRigidBody = NodePath("..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RotatingBar1"]
 shape = SubResource("BoxShape3D_lp6qt")
 
-[node name="AnimatableBody3D2" type="AnimatableBody3D" parent="."]
+[node name="RotatingBar2" type="AnimatableBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.8325, 0.231853, -22.6529)
 script = ExtResource("13_q4ssb")
 RotationSpeed = 0.02
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D2" node_paths=PackedStringArray("targetRigidBody")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RotatingBar2" node_paths=PackedStringArray("targetRigidBody")]
 mesh = SubResource("BoxMesh_1q5g4")
 script = ExtResource("14_ax6jt")
 targetRigidBody = NodePath("..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RotatingBar2"]
 shape = SubResource("BoxShape3D_lp6qt")
 
-[node name="AnimatableBody3D3" type="AnimatableBody3D" parent="."]
+[node name="RotatingBar3" type="AnimatableBody3D" parent="."]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 63.9837, 0.231853, -35.8095)
 script = ExtResource("13_q4ssb")
 RotationSpeed = 0.02
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D3" node_paths=PackedStringArray("targetRigidBody")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RotatingBar3" node_paths=PackedStringArray("targetRigidBody")]
 mesh = SubResource("BoxMesh_1q5g4")
 script = ExtResource("14_ax6jt")
 targetRigidBody = NodePath("..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RotatingBar3"]
 shape = SubResource("BoxShape3D_lp6qt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.3392, 0, -56.4025)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+material_override = ExtResource("4_le0gn")
+mesh = SubResource("BoxMesh_wby87")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_q2kwp")
+
+[node name="Checkpoint2" parent="." instance=ExtResource("9_sdew7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.8741, 1.78705, -57.9671)
 
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3
