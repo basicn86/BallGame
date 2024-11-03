@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://chm55taavgilw"]
+[gd_scene load_steps=9 format=3 uid="uid://chm55taavgilw"]
 
 [ext_resource type="PackedScene" uid="uid://deyxm2tc11a7w" path="res://environment/Tree2.glb" id="1_xax2h"]
 [ext_resource type="Shader" path="res://environment/TreeLeaves.gdshader" id="2_7npqv"]
@@ -26,6 +26,9 @@ render_priority = 0
 shader = ExtResource("2_7npqv")
 shader_parameter/albedo = Color(0, 0.627451, 0, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ctqc"]
+size = Vector3(1, 5.55017, 1)
+
 [node name="Tree2" instance=ExtResource("1_xax2h")]
 
 [node name="Cube" parent="." index="0"]
@@ -42,3 +45,9 @@ surface_material_override/0 = SubResource("ShaderMaterial_gh3ym")
 
 [node name="Icosphere_003" parent="." index="4"]
 surface_material_override/0 = SubResource("ShaderMaterial_4hr7g")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.78558, 0)
+shape = SubResource("BoxShape3D_2ctqc")

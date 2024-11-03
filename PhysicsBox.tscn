@@ -3,13 +3,11 @@
 [ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="1_ipnu3"]
 [ext_resource type="Script" path="res://PhysicsBox.cs" id="1_veju4"]
 [ext_resource type="PackedScene" uid="uid://ckjg8vgokuseq" path="res://PhysicsBoxExplosion.tscn" id="2_ga5aj"]
+[ext_resource type="Material" uid="uid://cf45eg04u0u62" path="res://PhysicsBoxMaterial.tres" id="3_5mx1k"]
 [ext_resource type="Script" path="res://common/HitBoxComponent.cs" id="4_n6r5e"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ecnr7"]
-albedo_color = Color(0, 0.454902, 1, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_f7o52"]
-material = SubResource("StandardMaterial3D_ecnr7")
+material = ExtResource("3_5mx1k")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6mou2"]
 

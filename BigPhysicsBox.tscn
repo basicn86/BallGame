@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://bwrfl2br4aml3"]
+
+[ext_resource type="Script" path="res://PhysicsBox.cs" id="1_lan2y"]
+[ext_resource type="PackedScene" uid="uid://ckjg8vgokuseq" path="res://PhysicsBoxExplosion.tscn" id="2_cggm1"]
+[ext_resource type="Material" uid="uid://cf45eg04u0u62" path="res://PhysicsBoxMaterial.tres" id="3_c6d5e"]
+[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="4_bt3kf"]
+[ext_resource type="Script" path="res://common/HitBoxComponent.cs" id="4_siceg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uruqg"]
+material = ExtResource("3_c6d5e")
+size = Vector3(3, 3, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t36ev"]
+size = Vector3(3, 3, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_56p4e"]
+size = Vector3(3, 3, 3)
+
+[node name="BigPhysicsBox" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 7
+mass = 0.25
+script = ExtResource("1_lan2y")
+explosionScene = ExtResource("2_cggm1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
+mesh = SubResource("BoxMesh_uruqg")
+script = ExtResource("4_bt3kf")
+targetRigidBody = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_t36ev")
+
+[node name="HitBox" type="Area3D" parent="."]
+script = ExtResource("4_siceg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+shape = SubResource("BoxShape3D_56p4e")
+
+[connection signal="TakeDamage" from="HitBox" to="." method="_on_area_3d_take_damage"]
