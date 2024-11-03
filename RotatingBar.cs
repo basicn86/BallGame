@@ -13,6 +13,7 @@ namespace DemoLevel
 
 		public override void _Ready()
 		{
+			_currentX = Rotation.X;
 			_currentY = Rotation.Y;
 			_currentZ = Rotation.Z;
 		}

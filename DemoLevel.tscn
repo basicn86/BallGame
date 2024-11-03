@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=49 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_yi0ja"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://mqbycbrcjyk4" path="res://PhysicsBox.tscn" id="8_urked"]
 [ext_resource type="PackedScene" uid="uid://5t66n6i6dv8o" path="res://Checkpoint.tscn" id="9_sdew7"]
 [ext_resource type="AudioStream" uid="uid://b1blbjo32ntll" path="res://music/Mega Man 7 - Slash Man.wav" id="11_hlu0w"]
+[ext_resource type="Material" uid="uid://3pfcca4k5cfb" path="res://DemoLevel/RotatingBar.tres" id="12_q2wlt"]
 [ext_resource type="Script" path="res://RotatingBar.cs" id="13_q4ssb"]
 [ext_resource type="Script" path="res://BigPhysicsBoxRespawner.cs" id="13_vh2t3"]
 [ext_resource type="PackedScene" uid="uid://bwrfl2br4aml3" path="res://BigPhysicsBox.tscn" id="13_y4msl"]
@@ -87,11 +88,8 @@ height = 16.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1wtlf"]
 height = 16.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ga0ny"]
-albedo_color = Color(0.672, 0.72, 0, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_1q5g4"]
-material = SubResource("StandardMaterial3D_ga0ny")
+material = ExtResource("12_q2wlt")
 size = Vector3(20, 4, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lp6qt"]
@@ -118,10 +116,17 @@ buffer = PackedFloat32Array(-0.972301, 0, 0.237974, 60.1722, 0, 1.001, 0, 0.4811
 [sub_resource type="PlaneMesh" id="PlaneMesh_rcyx1"]
 size = Vector2(6, 8)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_6n8pv"]
+size = Vector3(10, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2lhkw"]
+material = ExtResource("4_le0gn")
+size = Vector3(10, 1, 20)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.8883, 3.28078, -59.2799)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78.9892, 7.24548, -56.412)
 
 [node name="DeathPlane" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.8539, 0)
@@ -210,6 +215,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5213, 2.39029, -50.8884)
 [node name="FlyingPlatform5" parent="." instance=ExtResource("7_v7g34")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.1783, 1.08142, -16.7537)
 
+[node name="FlyingPlatform6" parent="." instance=ExtResource("7_v7g34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.011, 6.16859, -56.2831)
+
 [node name="PhysicsBox" parent="." instance=ExtResource("8_urked")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.33285, 1.14786, -50.6)
 
@@ -295,6 +303,58 @@ size = Vector3(20, 1, 30)
 [node name="Checkpoint2" parent="." instance=ExtResource("9_sdew7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 69.8741, 1.78705, -57.9671)
 
+[node name="RotatingBar4" type="AnimatableBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 84.6131, 5.23044, -56.9271)
+script = ExtResource("13_q4ssb")
+RotationSpeed = 0.02
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RotatingBar4" node_paths=PackedStringArray("targetRigidBody")]
+mesh = SubResource("BoxMesh_1q5g4")
+script = ExtResource("14_ax6jt")
+targetRigidBody = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RotatingBar4"]
+shape = SubResource("BoxShape3D_lp6qt")
+
+[node name="RotatingBar5" type="AnimatableBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.5, 0.866026, 0, 0.866025, -0.5, -1, -2.18557e-08, -3.78552e-08, 89.1701, 8.59396, -56.9271)
+script = ExtResource("13_q4ssb")
+RotationSpeed = 0.02
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RotatingBar5" node_paths=PackedStringArray("targetRigidBody")]
+mesh = SubResource("BoxMesh_1q5g4")
+script = ExtResource("14_ax6jt")
+targetRigidBody = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RotatingBar5"]
+shape = SubResource("BoxShape3D_lp6qt")
+
+[node name="RotatingBar6" type="AnimatableBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 93.7318, 12.386, -56.9271)
+script = ExtResource("13_q4ssb")
+RotationSpeed = 0.02
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RotatingBar6" node_paths=PackedStringArray("targetRigidBody")]
+mesh = SubResource("BoxMesh_1q5g4")
+script = ExtResource("14_ax6jt")
+targetRigidBody = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RotatingBar6"]
+shape = SubResource("BoxShape3D_lp6qt")
+
+[node name="RotatingBar7" type="AnimatableBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.866025, 0.5, 0, 0.5, -0.866026, -1, -3.78552e-08, -2.18557e-08, 98.48, 15.82, -56.9271)
+script = ExtResource("13_q4ssb")
+RotationSpeed = 0.02
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RotatingBar7" node_paths=PackedStringArray("targetRigidBody")]
+mesh = SubResource("BoxMesh_1q5g4")
+script = ExtResource("14_ax6jt")
+targetRigidBody = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RotatingBar7"]
+shape = SubResource("BoxShape3D_lp6qt")
+
 [node name="BigPhysicsBoxRespawner" type="Node3D" parent="." node_paths=PackedStringArray("respawnTimer")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.0562, 4.76229, -67.0949)
 script = ExtResource("13_vh2t3")
@@ -378,6 +438,15 @@ skeleton = NodePath("../GrassMultiMesh")
 [node name="GrassInstance" type="MeshInstance3D" parent="PlatformFoliage"]
 visible = false
 mesh = ExtResource("3_nbtbs")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108.982, 14.2406, -57.4568)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+shape = SubResource("BoxShape3D_6n8pv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3"]
+mesh = SubResource("BoxMesh_2lhkw")
 
 [connection signal="area_entered" from="DeathPlane" to="DeathPlane" method="_on_area_entered"]
 [connection signal="tree_exited" from="BigPhysicsBoxRespawner/BigPhysicsBox" to="BigPhysicsBoxRespawner" method="BoxDied"]
