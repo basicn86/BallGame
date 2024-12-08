@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://m3ac8gckgd4j"]
+[gd_scene load_steps=13 format=3 uid="uid://m3ac8gckgd4j"]
 
 [ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="1_w35kg"]
 [ext_resource type="Script" path="res://environment/FlyingPlatform/FlyingPlatform.cs" id="1_xf5vd"]
+[ext_resource type="ArrayMesh" uid="uid://bv1vrhg13wv2j" path="res://environment/FlyingPlatform/FlyingPlatform.obj" id="2_7ytcy"]
 [ext_resource type="Script" path="res://environment/FlyingPlatform/FanBlades.cs" id="3_hwyxr"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_k46tu"]
-size = Vector3(4, 0.5, 4)
+[ext_resource type="Material" uid="uid://10q8yyjoewf1" path="res://environment/FlyingPlatform/FlyingPlatform.tres" id="3_ko127"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6sqyx"]
 size = Vector3(2, 0.1, 0.1)
@@ -53,7 +52,8 @@ ReturnTorque = 1000.0
 ReturnPositionTolerance = 0.03
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
-mesh = SubResource("BoxMesh_k46tu")
+mesh = ExtResource("2_7ytcy")
+surface_material_override/0 = ExtResource("3_ko127")
 script = ExtResource("1_w35kg")
 targetRigidBody = NodePath("..")
 

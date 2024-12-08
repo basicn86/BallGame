@@ -8,13 +8,13 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_uruqg"]
 material = ExtResource("3_c6d5e")
-size = Vector3(3, 3, 3)
+size = Vector3(2.5, 2.5, 2.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t36ev"]
-size = Vector3(3, 3, 3)
+size = Vector3(2.5, 2.5, 2.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_56p4e"]
-size = Vector3(3, 3, 3)
+size = Vector3(2.5, 2.5, 2.5)
 
 [node name="BigPhysicsBox" type="RigidBody3D"]
 collision_layer = 4

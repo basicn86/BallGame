@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpyj8r7bwgvyu"]
+
+[ext_resource type="Script" path="res://environment/Coins/Coin.cs" id="1_rp1aj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4y3b8"]
+albedo_color = Color(2.59906e-06, 0.70971, 0.642416, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_quqq0"]
+material = SubResource("StandardMaterial3D_4y3b8")
+size = Vector3(0.1, 0.2, 0.2)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f731l"]
+
+[node name="Coin" type="Node3D" node_paths=PackedStringArray("mesh")]
+script = ExtResource("1_rp1aj")
+RotationSpeed = 3.0
+mesh = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_quqq0")
+
+[node name="PlayerDetectionArea" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectionArea"]
+shape = SubResource("SphereShape3D_f731l")
+
+[connection signal="body_entered" from="PlayerDetectionArea" to="." method="body_entered"]

@@ -132,6 +132,7 @@ pause={
 
 [physics]
 
+common/max_physics_steps_per_frame=1
 common/physics_jitter_fix=0.0
 3d/physics_engine="JoltPhysics3D"
 

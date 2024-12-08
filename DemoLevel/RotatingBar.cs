@@ -22,6 +22,11 @@ namespace DemoLevel
 		{
 			_currentX += RotationSpeed;
 
+			//This is to prevent the rotation from going over 180 or -180
+			//if the float isn't clamped to this range, it can cause precision errors
+			if (_currentX > 180f) _currentX -= 360f;
+			if(_currentX < -180f) _currentX += 360f;
+
 			Rotation = new Vector3(_currentX, _currentY, _currentZ);
 		}
 	}

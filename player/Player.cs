@@ -65,6 +65,11 @@ public partial class Player : RigidBody3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		//fake stutter for debug
+		if (Input.IsKeyLabelPressed(Key.Tab)){
+			Task.Delay(500).Wait();
+		}
+
 		UpdateGroundCast();
 
 		TryJumping();
