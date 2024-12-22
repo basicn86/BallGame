@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdo1qcb6giosg"]
+
+[ext_resource type="Script" path="res://SawBladeShooter.cs" id="1_js6vx"]
+[ext_resource type="PackedScene" uid="uid://l0f51fiwyojq" path="res://SawBladeContainer.tscn" id="2_7h1y4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c67du"]
+albedo_color = Color(0.764706, 0.313726, 0.717647, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mreh8"]
+material = SubResource("StandardMaterial3D_c67du")
+
+[node name="SawBladeShooter" type="Node3D" node_paths=PackedStringArray("shootTimer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.1791, 15.6636, 11.9206)
+script = ExtResource("1_js6vx")
+sawBladeScene = ExtResource("2_7h1y4")
+shootTimer = NodePath("Timer")
+shootInterval = 0.5
+direction = Vector3(0, 0, -1)
+bladeSpeed = 20.0
+bladeLifeTime = 1.5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_mreh8")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
