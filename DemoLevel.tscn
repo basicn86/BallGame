@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=67 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Script" path="res://Hint.cs" id="1_oddph"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://bus6cf3kkaeui" path="res://SpinningStar.tscn" id="24_0up3j"]
 [ext_resource type="PackedScene" uid="uid://b4p28nf2uu0wk" path="res://IndentedBox.blend" id="25_v6o4h"]
 [ext_resource type="PackedScene" uid="uid://cq0lt4ix88bc4" path="res://DemoLevel/gear_8_tooth_slim.tscn" id="26_liqvs"]
+[ext_resource type="PackedScene" uid="uid://dq6dbrv6sbaii" path="res://OnOffBlockContainer.tscn" id="27_ljybl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yu183"]
 size = Vector3(2, 2, 2)
@@ -191,7 +192,7 @@ collision_mask = 2
 shape = SubResource("BoxShape3D_yu183")
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.388, 15.8145, 0.295456)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114.197, 15.8274, 0.675872)
 
 [node name="DeathPlane" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.8539, 0)
@@ -531,17 +532,30 @@ mesh = SubResource("BoxMesh_6ufie")
 shape = SubResource("BoxShape3D_de0ge")
 
 [node name="Gear8ToothSlim2" parent="." instance=ExtResource("26_liqvs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103.065, 15.0622, -0.715867)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 79.9257, 15.8279, -0.715867)
+RotationSpeed = -1.0
+
+[node name="Gear8ToothSlim5" parent="." instance=ExtResource("26_liqvs")]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 79.9257, 14.5267, -0.715867)
+RotationSpeed = 0.75
 
 [node name="Gear8ToothSlim3" parent="." instance=ExtResource("26_liqvs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.6924, 15.0622, -0.715867)
-Tilt = 90.0
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 79.9257, 17.0136, -0.715867)
+RotationSpeed = 0.5
 
 [node name="Gear8ToothSlim4" parent="." instance=ExtResource("26_liqvs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5698, 15.0622, -0.715867)
-RotationSpeed = -1.0
-InitialRotation = 15.0
-Tilt = 90.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.9257, 18.3176, -0.715867)
+RotationSpeed = -2.0
+
+[node name="Gear8ToothSlim6" parent="." instance=ExtResource("26_liqvs")]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 96.8053, 14.5267, -0.715867)
+RotationSpeed = -0.75
+InitialRotation = 10.0
+
+[node name="Checkpoint4" parent="." instance=ExtResource("9_sdew7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.042, 15.9732, -1.55023)
+
+[node name="OnOffBlockContainer" parent="." instance=ExtResource("27_ljybl")]
 
 [connection signal="body_entered" from="Hint/Area3D" to="Hint" method="body_entered"]
 [connection signal="body_exited" from="Hint/Area3D" to="Hint" method="body_exited"]

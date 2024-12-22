@@ -1,14 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwrfl2br4aml3"]
+[gd_scene load_steps=10 format=3 uid="uid://bwrfl2br4aml3"]
 
 [ext_resource type="Script" path="res://PhysicsBox.cs" id="1_lan2y"]
 [ext_resource type="PackedScene" uid="uid://ckjg8vgokuseq" path="res://PhysicsBoxExplosion.tscn" id="2_cggm1"]
-[ext_resource type="Material" uid="uid://cf45eg04u0u62" path="res://PhysicsBoxMaterial.tres" id="3_c6d5e"]
 [ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="4_bt3kf"]
 [ext_resource type="Script" path="res://common/HitBoxComponent.cs" id="4_siceg"]
+[ext_resource type="PackedScene" uid="uid://nxb7fmcaldgn" path="res://CardBoardBox.blend" id="5_w8b5h"]
+[ext_resource type="Texture2D" uid="uid://ba41m5bjfduxv" path="res://BoxTexture1.png" id="6_wx5u1"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_uruqg"]
-material = ExtResource("3_c6d5e")
-size = Vector3(2.5, 2.5, 2.5)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gyshf"]
+albedo_texture = ExtResource("6_wx5u1")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t36ev"]
 size = Vector3(2.5, 2.5, 2.5)
@@ -23,10 +23,13 @@ mass = 0.25
 script = ExtResource("1_lan2y")
 explosionScene = ExtResource("2_cggm1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
-mesh = SubResource("BoxMesh_uruqg")
+[node name="CardBoardBox" parent="." instance=ExtResource("5_w8b5h")]
+
+[node name="Cube" parent="CardBoardBox" index="0" node_paths=PackedStringArray("targetRigidBody")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_gyshf")
 script = ExtResource("4_bt3kf")
-targetRigidBody = NodePath("..")
+targetRigidBody = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_t36ev")
@@ -38,3 +41,5 @@ script = ExtResource("4_siceg")
 shape = SubResource("BoxShape3D_56p4e")
 
 [connection signal="TakeDamage" from="HitBox" to="." method="_on_area_3d_take_damage"]
+
+[editable path="CardBoardBox"]

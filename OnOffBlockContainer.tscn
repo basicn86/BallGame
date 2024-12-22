@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://dq6dbrv6sbaii"]
+
+[ext_resource type="Script" path="res://OnOffBlockContainer.cs" id="1_pxj00"]
+[ext_resource type="PackedScene" uid="uid://dy3ww30arcr2h" path="res://OffBlock.blend" id="2_5rmec"]
+[ext_resource type="PackedScene" uid="uid://mad84gg8fgvy" path="res://OnBlock.blend" id="3_pi3xw"]
+[ext_resource type="Script" path="res://OnOffBlockSensor.cs" id="4_67s4y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tqaqc"]
+albedo_color = Color(0, 0.443137, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c1obl"]
+albedo_color = Color(0.72549, 0, 0.294118, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gucsr"]
+size = Vector3(1.5, 1, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_etgcs"]
+size = Vector3(2, 2, 2)
+
+[node name="OnOffBlockContainer" type="Node3D" node_paths=PackedStringArray("OnBlock", "OffBlock") groups=["OnOffBlock"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.0512, 22.2992, -0.531735)
+script = ExtResource("1_pxj00")
+OnBlock = NodePath("OnBlock")
+OffBlock = NodePath("OffBlock")
+
+[node name="OffBlock" parent="." instance=ExtResource("2_5rmec")]
+
+[node name="Cube" parent="OffBlock" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_tqaqc")
+
+[node name="OnBlock" parent="." instance=ExtResource("3_pi3xw")]
+visible = false
+
+[node name="Cube" parent="OnBlock" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_c1obl")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.879726, 0)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_67s4y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_gucsr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_etgcs")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+
+[editable path="OffBlock"]
+[editable path="OnBlock"]

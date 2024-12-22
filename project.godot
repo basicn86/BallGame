@@ -29,6 +29,10 @@ project/assembly_name="BallGame"
 
 enabled=PackedStringArray()
 
+[global_group]
+
+OnOffBlock="OnOffBlock Listening Group"
+
 [input]
 
 ui_accept={
