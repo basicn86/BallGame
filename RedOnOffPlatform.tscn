@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cc82pp7t1dbk3"]
+
+[ext_resource type="Script" path="res://OnOffPlatform.cs" id="1_d8bh7"]
+[ext_resource type="PackedScene" uid="uid://ta8ils8x8wl7" path="res://WireFramePlatform8x4x1.blend" id="2_hsecn"]
+[ext_resource type="Material" uid="uid://bu8bxwt8ohky3" path="res://OnBlockMaterial.tres" id="3_lc71g"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_biu1f"]
+material = ExtResource("3_lc71g")
+size = Vector3(8, 2, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_awoa0"]
+size = Vector3(8, 2, 16)
+
+[node name="OnOffPlatform" type="Node3D" node_paths=PackedStringArray("OnNode", "OffNode") groups=["OnOffBlock"]]
+script = ExtResource("1_d8bh7")
+OnNode = NodePath("StaticBody3D")
+OffNode = NodePath("WireFramePlatform8x4x1")
+
+[node name="WireFramePlatform8x4x1" parent="." instance=ExtResource("2_hsecn")]
+
+[node name="Cube" parent="WireFramePlatform8x4x1" index="0"]
+surface_material_override/0 = ExtResource("3_lc71g")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_biu1f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_awoa0")
+
+[editable path="WireFramePlatform8x4x1"]

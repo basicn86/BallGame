@@ -14,7 +14,7 @@ config/name="Acroballistics"
 run/main_scene="res://DemoLevel.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 run/max_fps=60
-config/icon="res://icon.svg"
+config/icon="res://ui/Player.png"
 
 [display]
 

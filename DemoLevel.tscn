@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=67 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Script" path="res://Hint.cs" id="1_oddph"]
@@ -24,10 +24,11 @@
 [ext_resource type="Script" path="res://DemoLevel/WindArea.cs" id="21_thcbr"]
 [ext_resource type="Script" path="res://HintPanel.cs" id="21_u3x08"]
 [ext_resource type="PackedScene" uid="uid://bus6cf3kkaeui" path="res://SpinningStar.tscn" id="24_0up3j"]
-[ext_resource type="PackedScene" uid="uid://b4p28nf2uu0wk" path="res://IndentedBox.blend" id="25_v6o4h"]
 [ext_resource type="PackedScene" uid="uid://cq0lt4ix88bc4" path="res://DemoLevel/gear_8_tooth_slim.tscn" id="26_liqvs"]
 [ext_resource type="PackedScene" uid="uid://dq6dbrv6sbaii" path="res://OnOffBlockContainer.tscn" id="27_ljybl"]
+[ext_resource type="PackedScene" uid="uid://dp2t3hiyxyipb" path="res://BlueOnOffPlatform.tscn" id="28_bqrkm"]
 [ext_resource type="PackedScene" uid="uid://cdo1qcb6giosg" path="res://SawBladeShooter.tscn" id="28_shcdo"]
+[ext_resource type="PackedScene" uid="uid://cc82pp7t1dbk3" path="res://RedOnOffPlatform.tscn" id="29_rnx5l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yu183"]
 size = Vector3(2, 2, 2)
@@ -161,18 +162,11 @@ scale_curve = SubResource("CurveTexture_l1uyb")
 material = SubResource("StandardMaterial3D_ic4e1")
 size = Vector3(0.1, 0.1, 0.1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8hyu8"]
-albedo_color = Color(0, 0.415686, 1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e7f6y"]
-transparency = 1
-albedo_color = Color(1, 1, 1, 0.223529)
-
 [sub_resource type="BoxMesh" id="BoxMesh_6ufie"]
-size = Vector3(8, 1, 8)
+size = Vector3(8, 1, 16)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_de0ge"]
-size = Vector3(8, 1, 8)
+size = Vector3(8, 1, 16)
 
 [node name="Node3D" type="Node3D"]
 
@@ -193,7 +187,7 @@ collision_mask = 2
 shape = SubResource("BoxShape3D_yu183")
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114.197, 15.8274, 0.675872)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.309, 18.3592, 7.83963)
 
 [node name="DeathPlane" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.8539, 0)
@@ -513,17 +507,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.9144, 8.2568, -54.1243)
 [node name="Star3" parent="." instance=ExtResource("24_0up3j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.038, 10.9811, -59.1911)
 
-[node name="IndentedBox" parent="." instance=ExtResource("25_v6o4h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.1002, 1.88402, -56.5798)
-
-[node name="Cube" parent="IndentedBox" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_8hyu8")
-
-[node name="Cube_001" parent="IndentedBox" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_e7f6y")
-
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.406, 13.9501, -1.45863)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.406, 13.9501, 3.3866)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
 material_override = ExtResource("4_le0gn")
@@ -533,41 +518,50 @@ mesh = SubResource("BoxMesh_6ufie")
 shape = SubResource("BoxShape3D_de0ge")
 
 [node name="Gear8ToothSlim2" parent="." instance=ExtResource("26_liqvs")]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 79.9257, 15.8279, -0.715867)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 79.9257, 15.8279, 7.75289)
 RotationSpeed = -1.0
 
 [node name="Gear8ToothSlim5" parent="." instance=ExtResource("26_liqvs")]
-transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 79.9257, 14.5267, -0.715867)
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 79.9257, 14.5267, 7.75289)
 RotationSpeed = 0.75
 
 [node name="Gear8ToothSlim3" parent="." instance=ExtResource("26_liqvs")]
-transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 79.9257, 17.0136, -0.715867)
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 79.9257, 17.0136, 7.75289)
 RotationSpeed = 0.5
 
 [node name="Gear8ToothSlim4" parent="." instance=ExtResource("26_liqvs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.9257, 18.3176, -0.715867)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.9257, 18.3176, 7.75289)
 RotationSpeed = -2.0
 
 [node name="Gear8ToothSlim6" parent="." instance=ExtResource("26_liqvs")]
-transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 96.8053, 14.5267, -0.715867)
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 96.8053, 14.5267, 7.75289)
 RotationSpeed = -0.75
 InitialRotation = 10.0
 
 [node name="Checkpoint4" parent="." instance=ExtResource("9_sdew7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.042, 15.9732, -1.55023)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.042, 15.9732, 6.04778)
 
 [node name="OnOffBlockContainer" parent="." instance=ExtResource("27_ljybl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.0512, 22.2992, 7.93702)
+
+[node name="OnOffBlockContainer2" parent="." instance=ExtResource("27_ljybl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133.864, 19, 5.86471)
 
 [node name="SawBladeShooter" parent="." instance=ExtResource("28_shcdo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.1791, 15.6636, 20.3894)
 
 [node name="SawBladeShooter2" parent="." instance=ExtResource("28_shcdo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.8146, 15.6636, -11.9257)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.8146, 15.6636, -3.45694)
 direction = Vector3(0, 0, 1)
+
+[node name="BlueOnOffPlatform" parent="." instance=ExtResource("28_bqrkm")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 125.922, 14, 5.028)
+
+[node name="RedOnOffPlatform" parent="." instance=ExtResource("29_rnx5l")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 142.235, 14, 5.33)
 
 [connection signal="body_entered" from="Hint/Area3D" to="Hint" method="body_entered"]
 [connection signal="body_exited" from="Hint/Area3D" to="Hint" method="body_exited"]
 [connection signal="area_entered" from="DeathPlane" to="DeathPlane" method="_on_area_entered"]
 [connection signal="tree_exited" from="BigPhysicsBoxRespawner/BigPhysicsBox" to="BigPhysicsBoxRespawner" method="BoxDied"]
 [connection signal="timeout" from="BigPhysicsBoxRespawner/Timer" to="BigPhysicsBoxRespawner" method="SpawnBox"]
-
-[editable path="IndentedBox"]

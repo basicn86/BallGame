@@ -10,7 +10,6 @@ albedo_color = Color(0.764706, 0.313726, 0.717647, 1)
 material = SubResource("StandardMaterial3D_c67du")
 
 [node name="SawBladeShooter" type="Node3D" node_paths=PackedStringArray("shootTimer")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.1791, 15.6636, 11.9206)
 script = ExtResource("1_js6vx")
 sawBladeScene = ExtResource("2_7h1y4")
 shootTimer = NodePath("Timer")
