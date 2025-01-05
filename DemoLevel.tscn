@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=69 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Script" path="res://Hint.cs" id="1_oddph"]
@@ -163,10 +163,16 @@ material = SubResource("StandardMaterial3D_ic4e1")
 size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_6ufie"]
-size = Vector3(8, 1, 16)
+size = Vector3(8, 1, 32)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_de0ge"]
-size = Vector3(8, 1, 16)
+size = Vector3(8, 1, 32)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xfrre"]
+size = Vector3(10, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bympn"]
+size = Vector3(10, 1, 50)
 
 [node name="Node3D" type="Node3D"]
 
@@ -187,7 +193,7 @@ collision_mask = 2
 shape = SubResource("BoxShape3D_yu183")
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.8405, 19.9424, 8.49139)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 152.713, 16.9037, 74.6627)
 
 [node name="DeathPlane" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.8539, 0)
@@ -260,24 +266,6 @@ shape = SubResource("BoxShape3D_d6ibb")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SecondObstacle"]
 mesh = SubResource("BoxMesh_sms4o")
 surface_material_override/0 = SubResource("StandardMaterial3D_vhn0x")
-
-[node name="FlyingPlatform" parent="." instance=ExtResource("7_v7g34")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -49.3247)
-
-[node name="FlyingPlatform2" parent="." instance=ExtResource("7_v7g34")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.28424, 0, -55.5637)
-
-[node name="FlyingPlatform3" parent="." instance=ExtResource("7_v7g34")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7641, 0, -55.5637)
-
-[node name="FlyingPlatform4" parent="." instance=ExtResource("7_v7g34")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5213, 2.39029, -50.8884)
-
-[node name="FlyingPlatform5" parent="." instance=ExtResource("7_v7g34")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.1783, 1.08142, -16.7537)
-
-[node name="FlyingPlatform6" parent="." instance=ExtResource("7_v7g34")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.4354, 3.86589, -56.2831)
 
 [node name="CheckpointPlatform" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1701, 2.40947, -41.3782)
@@ -508,7 +496,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.9144, 8.2568, -54.1243)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.038, 10.9811, -59.1911)
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.406, 13.9501, 3.3866)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.406, 13.9501, 10.0979)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
 material_override = ExtResource("4_le0gn")
@@ -517,60 +505,100 @@ mesh = SubResource("BoxMesh_6ufie")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
 shape = SubResource("BoxShape3D_de0ge")
 
-[node name="Gear8ToothSlim2" parent="." instance=ExtResource("26_liqvs")]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 79.9257, 15.8279, 7.75289)
+[node name="Checkpoint4" parent="." instance=ExtResource("9_sdew7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.042, 15.9732, 21.1156)
+
+[node name="OnOffBlockContainer" parent="." instance=ExtResource("27_ljybl")]
+transform = Transform3D(0.999749, -0.0223907, 0, 0.0223907, 0.999749, 0, 0, 0, 1, 80.0512, 22.2992, 23.0049)
+
+[node name="OnOffBlockContainer3" parent="." instance=ExtResource("27_ljybl")]
+transform = Transform3D(0.999749, -0.0223907, 0, 0.0223907, 0.999749, 0, 0, 0, 1, 112.049, 17.6144, 4.13921)
+
+[node name="OnOffBlockContainer2" parent="." instance=ExtResource("27_ljybl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.237, 19.3116, 20.1008)
+
+[node name="SawBladeShooter" parent="." instance=ExtResource("28_shcdo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.1791, 15.6636, 35.4573)
+
+[node name="SawBladeShooter2" parent="." instance=ExtResource("28_shcdo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.8146, 15.6636, 11.6109)
+direction = Vector3(0, 0, 1)
+
+[node name="OnOffPlatforms" type="Node3D" parent="."]
+
+[node name="BlueOnOffPlatform" parent="OnOffPlatforms" instance=ExtResource("28_bqrkm")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 125.922, 14, 20.0679)
+
+[node name="BlueOnOffPlatform5" parent="OnOffPlatforms" instance=ExtResource("28_bqrkm")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 112.008, 18.066, 8.7785)
+
+[node name="BlueOnOffPlatform2" parent="OnOffPlatforms" instance=ExtResource("28_bqrkm")]
+transform = Transform3D(0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, 0.173648, 81.1205, 18.687, 34.3)
+
+[node name="BlueOnOffPlatform3" parent="OnOffPlatforms" instance=ExtResource("28_bqrkm")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 99.1153, 18.687, 36.7421)
+
+[node name="BlueOnOffPlatform4" parent="OnOffPlatforms" instance=ExtResource("28_bqrkm")]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 112.357, 17.3977, 34.1071)
+
+[node name="RedOnOffPlatform" parent="OnOffPlatforms" instance=ExtResource("29_rnx5l")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 149.834, 14, 20.0679)
+
+[node name="FlyingPlatforms" type="Node3D" parent="."]
+
+[node name="FlyingPlatform7" parent="FlyingPlatforms" instance=ExtResource("7_v7g34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.271, 14.9235, 19.9866)
+
+[node name="FlyingPlatform" parent="FlyingPlatforms" instance=ExtResource("7_v7g34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -49.3247)
+
+[node name="FlyingPlatform2" parent="FlyingPlatforms" instance=ExtResource("7_v7g34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.28424, 0, -55.5637)
+
+[node name="FlyingPlatform3" parent="FlyingPlatforms" instance=ExtResource("7_v7g34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7641, 0, -55.5637)
+
+[node name="FlyingPlatform4" parent="FlyingPlatforms" instance=ExtResource("7_v7g34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5213, 2.39029, -50.8884)
+
+[node name="FlyingPlatform5" parent="FlyingPlatforms" instance=ExtResource("7_v7g34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.1783, 1.08142, -16.7537)
+
+[node name="FlyingPlatform6" parent="FlyingPlatforms" instance=ExtResource("7_v7g34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.4354, 3.86589, -56.2831)
+
+[node name="Gears" type="Node3D" parent="."]
+
+[node name="Gear8ToothSlim2" parent="Gears" instance=ExtResource("26_liqvs")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 79.9257, 15.8279, 22.8207)
 RotationSpeed = -1.0
 
-[node name="Gear8ToothSlim5" parent="." instance=ExtResource("26_liqvs")]
-transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 79.9257, 14.5267, 7.75289)
+[node name="Gear8ToothSlim5" parent="Gears" instance=ExtResource("26_liqvs")]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 79.926, 14.527, 22.821)
 RotationSpeed = 0.75
 
-[node name="Gear8ToothSlim3" parent="." instance=ExtResource("26_liqvs")]
-transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 79.9257, 17.0136, 7.75289)
+[node name="Gear8ToothSlim3" parent="Gears" instance=ExtResource("26_liqvs")]
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1.5, 79.9257, 17.0136, 22.8207)
 RotationSpeed = 0.5
 
-[node name="Gear8ToothSlim4" parent="." instance=ExtResource("26_liqvs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.9257, 18.3176, 7.75289)
+[node name="Gear8ToothSlim4" parent="Gears" instance=ExtResource("26_liqvs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.9257, 18.3176, 22.8207)
 RotationSpeed = -2.0
 
-[node name="Gear8ToothSlim6" parent="." instance=ExtResource("26_liqvs")]
-transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 96.8053, 14.5267, 7.75289)
+[node name="Gear8ToothSlim6" parent="Gears" instance=ExtResource("26_liqvs")]
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 96.8053, 14.5267, 22.8207)
 RotationSpeed = -0.75
 InitialRotation = 10.0
 
-[node name="Checkpoint4" parent="." instance=ExtResource("9_sdew7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.042, 15.9732, 6.04778)
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.107, 14.2607, 53.6631)
 
-[node name="OnOffBlockContainer" parent="." instance=ExtResource("27_ljybl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.0512, 22.2992, 7.93702)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3"]
+material_override = ExtResource("4_le0gn")
+mesh = SubResource("BoxMesh_xfrre")
 
-[node name="OnOffBlockContainer2" parent="." instance=ExtResource("27_ljybl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.237, 19.3116, 5.03291)
-
-[node name="SawBladeShooter" parent="." instance=ExtResource("28_shcdo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.1791, 15.6636, 20.3894)
-
-[node name="SawBladeShooter2" parent="." instance=ExtResource("28_shcdo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.8146, 15.6636, -3.45694)
-direction = Vector3(0, 0, 1)
-
-[node name="BlueOnOffPlatform" parent="." instance=ExtResource("28_bqrkm")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 125.922, 14, 5)
-
-[node name="BlueOnOffPlatform2" parent="." instance=ExtResource("28_bqrkm")]
-transform = Transform3D(0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, 0.173648, 81.1205, 18.687, 19.2321)
-
-[node name="BlueOnOffPlatform3" parent="." instance=ExtResource("28_bqrkm")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 99.1153, 18.687, 21.6742)
-
-[node name="BlueOnOffPlatform4" parent="." instance=ExtResource("28_bqrkm")]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 112.357, 17.3977, 19.0392)
-
-[node name="RedOnOffPlatform" parent="." instance=ExtResource("29_rnx5l")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 149.834, 14, 5)
-
-[node name="FlyingPlatform7" parent="." instance=ExtResource("7_v7g34")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.271, 14.9235, 4.91877)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+shape = SubResource("BoxShape3D_bympn")
 
 [connection signal="body_entered" from="Hint/Area3D" to="Hint" method="body_entered"]
 [connection signal="body_exited" from="Hint/Area3D" to="Hint" method="body_exited"]

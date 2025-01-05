@@ -77,13 +77,13 @@ public partial class Player : RigidBody3D
 		cameraNode.TargetPosition = playerModel.GlobalPosition;
 
 		laserPistol.UpdatePosition(GlobalPosition, cameraNode.Basis);
-		if (Input.IsActionJustPressed("attack"))
+		if (Input.IsActionJustPressed("attack")) //possibly move this to physics process
 		{
 			laserPistol.Fire(cameraNode.GetCrosshairCollisionPoint());
 		}
 
 		grenadeThrower.UpdatePosition(GlobalPosition, cameraNode.Basis);
-		if (Input.IsActionJustPressed("throw_grenade"))
+		if (Input.IsActionJustPressed("throw_grenade")) //possibly move this to physics process
 		{
 			grenadeThrower.Fire();
 		}

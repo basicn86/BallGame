@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 public partial class OnOffBlockSensor : Area3D
 {
-	public static bool IsOn = true;
+	public static bool IsOn = false;
 
 	public override void _Ready()
 	{
