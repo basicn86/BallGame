@@ -187,7 +187,7 @@ collision_mask = 2
 shape = SubResource("BoxShape3D_yu183")
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.309, 18.3592, 7.83963)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.8405, 19.9424, 8.49139)
 
 [node name="DeathPlane" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.8539, 0)
@@ -494,7 +494,7 @@ visibility_range_end = 50.0
 amount = 2048
 lifetime = 6.0
 fixed_fps = 60
-visibility_aabb = AABB(-30, -4, -20, 40, 8, 40)
+visibility_aabb = AABB(-40, -4, -30, 60, 16, 60)
 process_material = SubResource("ParticleProcessMaterial_c2tg0")
 draw_pass_1 = SubResource("BoxMesh_3odq5")
 
@@ -545,7 +545,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.042, 15.9732, 6.04778)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.0512, 22.2992, 7.93702)
 
 [node name="OnOffBlockContainer2" parent="." instance=ExtResource("27_ljybl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133.864, 19, 5.86471)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.237, 19.3116, 5.03291)
 
 [node name="SawBladeShooter" parent="." instance=ExtResource("28_shcdo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.1791, 15.6636, 20.3894)
@@ -555,10 +555,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.8146, 15.6636, -3.45694)
 direction = Vector3(0, 0, 1)
 
 [node name="BlueOnOffPlatform" parent="." instance=ExtResource("28_bqrkm")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 125.922, 14, 5.028)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 125.922, 14, 5)
+
+[node name="BlueOnOffPlatform2" parent="." instance=ExtResource("28_bqrkm")]
+transform = Transform3D(0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, 0.173648, 81.1205, 18.687, 19.2321)
+
+[node name="BlueOnOffPlatform3" parent="." instance=ExtResource("28_bqrkm")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 99.1153, 18.687, 21.6742)
+
+[node name="BlueOnOffPlatform4" parent="." instance=ExtResource("28_bqrkm")]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 112.357, 17.3977, 19.0392)
 
 [node name="RedOnOffPlatform" parent="." instance=ExtResource("29_rnx5l")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 142.235, 14, 5.33)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 149.834, 14, 5)
+
+[node name="FlyingPlatform7" parent="." instance=ExtResource("7_v7g34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.271, 14.9235, 4.91877)
 
 [connection signal="body_entered" from="Hint/Area3D" to="Hint" method="body_entered"]
 [connection signal="body_exited" from="Hint/Area3D" to="Hint" method="body_exited"]
