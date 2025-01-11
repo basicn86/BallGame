@@ -5,6 +5,7 @@ public partial class PhysicsBox : RigidBody3D
 {
 	[Export]
 	PackedScene explosionScene;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -21,7 +22,7 @@ public partial class PhysicsBox : RigidBody3D
 		GetParent().AddChild(explosion);
 		explosion.GlobalPosition = GlobalPosition;
 
-		GD.Print("Ouch, I took: " + amount + " damage!");
+		//GD.Print("Ouch, I took: " + amount + " damage!");
 		QueueFree();
 	}
 }

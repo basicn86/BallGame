@@ -16,9 +16,16 @@ public partial class LaserPistol : Node3D
 	[Export]
 	AudioStreamPlayer3D fireSound;
 
+	[ExportCategory("Timers")]
 	[Export]
 	Timer fireRateTimer;
 	private double fireRate = 0.0f;
+	[Export]
+	Timer hideTimer;
+	private double hideTime = 1.0f;
+
+	[Export]
+	Node3D model;
 
 	// Used to fire the laser on the next frame, aka input buffering
 	private bool fireNextFrame = false;
@@ -33,6 +40,7 @@ public partial class LaserPistol : Node3D
 		}
 
 		fireRate = fireRateTimer.WaitTime;
+		hideTime = hideTimer.WaitTime;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,6 +67,7 @@ public partial class LaserPistol : Node3D
 			return;
 		}
 		fireRateTimer.Start(fireRate);
+		ShowPistol();
 
 		LaserProjectile projectile = (LaserProjectile)projectileScene.Instantiate();
 		projectile.GlobalTransform = GlobalTransform;
@@ -80,5 +89,17 @@ public partial class LaserPistol : Node3D
 
 		Node3D _particles = (Node3D)particleShootScene.Instantiate();
 		AddChild(_particles);
+	}
+
+	private void ShowPistol()
+	{
+		hideTimer.Stop();
+		hideTimer.Start(hideTime);
+		model.Visible = true;
+	}
+
+	private void _on_hide_timer_timeout()
+	{
+		model.Visible = false;
 	}
 }

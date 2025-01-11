@@ -34,7 +34,6 @@ public partial class SawBladeShooter : Node3D
 
 	public void _on_timer_timeout()
 	{
-		GD.Print("Shoot");
 		SawBladeProjectile sawBlade = (SawBladeProjectile)sawBladeScene.Instantiate();
 		GetParent().AddChild(sawBlade);
 

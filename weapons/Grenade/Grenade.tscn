@@ -46,7 +46,6 @@ explosionForce = 10.0
 explosionRadius = 4.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
-physics_interpolation_mode = 1
 mesh = SubResource("CapsuleMesh_x6pu0")
 script = ExtResource("3_vt41n")
 targetRigidBody = NodePath("..")
