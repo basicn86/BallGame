@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=98 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Script" path="res://Hint.cs" id="1_oddph"]
@@ -268,6 +268,23 @@ scale_curve = SubResource("CurveTexture_l1cd8")
 
 [sub_resource type="BoxMesh" id="BoxMesh_3wugh"]
 material = ExtResource("32_2b8tn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wxsyq"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 60.0
+initial_velocity_min = 15.0
+initial_velocity_max = 35.0
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6b5uy"]
+albedo_color = Color(0.584314, 0.368627, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_velxn"]
+material = SubResource("StandardMaterial3D_6b5uy")
+size = Vector3(0.2, 0.5, 0.2)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m8ehj"]
 spread = 180.0
@@ -728,6 +745,9 @@ mesh = SubResource("BoxMesh_k2ike")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BossRoom/StaticBody3D4"]
 shape = SubResource("BoxShape3D_smlw1")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="BossRoom/StaticBody3D4"]
+size = Vector3(100, 1, 100)
 
 [node name="GrassPlaneMesh" type="MeshInstance3D" parent="BossRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 151.68, 2.30664, 130.205)
@@ -2093,7 +2113,7 @@ collision_layer = 15
 collision_mask = 15
 script = ExtResource("31_mtn5b")
 explosionForce = 20.0
-particles = [NodePath("../GPUParticles3D"), NodePath("../GPUParticles3D2"), NodePath("../GPUParticles3D3"), NodePath("../BlastWave")]
+particles = [NodePath("../GPUParticles3D"), NodePath("../GPUParticles3D2"), NodePath("../GPUParticles3D3"), NodePath("../BlastWave"), NodePath("../BlastDirt")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BossRoom/Area3D"]
 shape = SubResource("BoxShape3D_tmyly")
@@ -2133,6 +2153,19 @@ fixed_fps = 60
 visibility_aabb = AABB(-400, -400, -400, 800, 800, 800)
 process_material = SubResource("ParticleProcessMaterial_wymuc")
 draw_pass_1 = SubResource("BoxMesh_3wugh")
+
+[node name="BlastDirt" type="GPUParticles3D" parent="BossRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.264, 4.3621, 166.905)
+emitting = false
+amount = 2048
+lifetime = 15.0
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+collision_base_size = 0.05
+visibility_aabb = AABB(-400, -400, -400, 800, 800, 800)
+process_material = SubResource("ParticleProcessMaterial_wxsyq")
+draw_pass_1 = SubResource("BoxMesh_velxn")
 
 [node name="BlastWave" type="GPUParticles3D" parent="BossRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.264, 3.13444, 166.905)
