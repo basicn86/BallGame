@@ -201,6 +201,7 @@ public partial class Player : RigidBody3D
 
 	private void _on_area_3d_take_damage(long amount, long team)
 	{
+		return; //for debugging
 		if (team == (long)BallGame.Common.Team.Player) return;
 
 		ProcessMode = ProcessModeEnum.Disabled;

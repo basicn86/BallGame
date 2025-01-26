@@ -28,8 +28,8 @@ targetRigidBody = NodePath("../..")
 process_callback = 0
 
 [node name="Area3D" type="Area3D" parent="."]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("3_extfn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]

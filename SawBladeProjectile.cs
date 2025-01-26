@@ -25,7 +25,7 @@ public partial class SawBladeProjectile : Node3D
 	public override void _PhysicsProcess(double delta)
 	{
 		GlobalTranslate(direction.Normalized() * speed * (float)delta);
-		Rotate(Vector3.Down, rotationSpeed * (float)delta);
+		RotateObjectLocal(Vector3.Down, rotationSpeed * (float)delta);
 	}
 
 	public void SetTimer(float time)
