@@ -50,4 +50,5 @@ volume_db = -20.0
 unit_size = 20.0
 max_db = -3.0
 autoplay = true
+bus = &"Explosions"
 attenuation_filter_db = 0.0

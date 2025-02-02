@@ -126,14 +126,25 @@ public partial class CptDetonator : RigidBody3D
 		}
 	}
 
+	/// <summary>
+	/// Calculates the best direction to shoot the saw blade at the player.
+	/// This method takes into account the player's current velocity and position
+	/// to predict where the player will be when the saw blade reaches them.
+	/// </summary>
+	/// <param name="sawBladeSpeed">The speed of the saw blade projectile.</param>
+	/// <returns>A normalized Vector3 representing the direction to shoot the saw blade.</returns>
 	private Vector3 GetSawBladeAttackDirection(float sawBladeSpeed)
 	{
+		// Get the player's current velocity
 		Vector3 playerVelocity = player.LinearVelocity;
 
+		// Ignore the Y component of the player's velocity to keep the calculation in the horizontal plane
 		playerVelocity.Y = 0;
 
+		// Calculate the direction to the player, adjusted by the player's velocity and the distance to the player
 		Vector3 direction = (player.GlobalTransform.Origin - GlobalTransform.Origin + playerVelocity * (player.GlobalTransform.Origin - GlobalTransform.Origin).Length() / sawBladeSpeed).Normalized();
 
+		// Return the normalized direction vector
 		return direction;
 	}
 

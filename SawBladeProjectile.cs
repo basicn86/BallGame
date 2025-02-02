@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class SawBladeProjectile : Node3D
+public partial class SawBladeProjectile : RigidBody3D
 {
 	[Export]
 	public Vector3 direction = new Vector3(0, 0, 0);
@@ -26,6 +26,11 @@ public partial class SawBladeProjectile : Node3D
 	{
 		GlobalTranslate(direction.Normalized() * speed * (float)delta);
 		RotateObjectLocal(Vector3.Down, rotationSpeed * (float)delta);
+
+		if (GetContactCount() > 0)
+		{
+			QueueFree();
+		}
 	}
 
 	public void SetTimer(float time)

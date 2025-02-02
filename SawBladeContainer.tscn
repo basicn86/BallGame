@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://l0f51fiwyojq"]
+[gd_scene load_steps=9 format=3 uid="uid://l0f51fiwyojq"]
 
 [ext_resource type="Script" path="res://SawBladeProjectile.cs" id="1_jq1sq"]
 [ext_resource type="PackedScene" uid="uid://bgeuy136ci127" path="res://SawBlade.blend" id="2_7042k"]
 [ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="3_125jv"]
 [ext_resource type="Script" path="res://environment/Spikes/SpikeArea.cs" id="3_extfn"]
+[ext_resource type="AudioStream" uid="uid://cnn4n5dscqwwy" path="res://DemoLevel/metal-grinding-very-slow-72680.mp3" id="5_sa5pq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8s57"]
 albedo_color = Color(0.639216, 0, 0, 1)
@@ -12,7 +13,15 @@ albedo_color = Color(0.639216, 0, 0, 1)
 height = 0.3
 radius = 1.0
 
-[node name="SawBladeContainer" type="Node3D" node_paths=PackedStringArray("lifeTimer")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_k32fh"]
+size = Vector3(1, 0.25, 1)
+
+[node name="SawBladeContainer" type="RigidBody3D" node_paths=PackedStringArray("lifeTimer")]
+collision_layer = 0
+custom_integrator = true
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_jq1sq")
 rotationSpeed = 10.0
 lifeTimer = NodePath("Timer")
@@ -34,6 +43,19 @@ script = ExtResource("3_extfn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("CylinderShape3D_6t2ej")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_k32fh")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_sa5pq")
+volume_db = -12.0
+unit_size = 20.0
+max_db = 0.0
+autoplay = true
+bus = &"Saw Blade"
+doppler_tracking = 2
+parameters/looping = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Area3D" to="Area3D" method="_on_area_entered"]
