@@ -72,7 +72,7 @@ public partial class LaserPistol : Node3D
 		LaserProjectile projectile = (LaserProjectile)projectileScene.Instantiate();
 		projectile.GlobalTransform = GlobalTransform;
 
-		GetParent().AddChild(projectile);
+		AddChild(projectile);
 
 		projectile.GlobalPosition = GlobalPosition;
 		projectile.TranslateObjectLocal(projectileSpawnOffset);

@@ -70,10 +70,6 @@ public partial class Player : RigidBody3D
 			Task.Delay(500).Wait();
 		}
 
-		UpdateGroundCast();
-
-		TryJumping();
-
 		cameraNode.TargetPosition = playerModel.GlobalPosition;
 
 		laserPistol.UpdatePosition(GlobalPosition, cameraNode.Basis);
@@ -95,6 +91,8 @@ public partial class Player : RigidBody3D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		UpdateGroundCast();
+		TryJumping();
 		MovePlayer(delta);
 		RestrictPlayerVelocity(delta);
 	}
@@ -201,13 +199,14 @@ public partial class Player : RigidBody3D
 
 	private void _on_area_3d_take_damage(long amount, long team)
 	{
-		return; //for debugging
 		if (team == (long)BallGame.Common.Team.Player) return;
 
-		ProcessMode = ProcessModeEnum.Disabled;
 		Node3D _deathParticles = (Node3D)deathParticles.Instantiate();
 		GetParent().AddChild(_deathParticles);
 		_deathParticles.GlobalPosition = GlobalPosition;
+
+		return; //debugging
+		ProcessMode = ProcessModeEnum.Disabled;
 		EmitSignal("PlayerDied");
 	}
 

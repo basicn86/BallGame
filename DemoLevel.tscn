@@ -694,6 +694,7 @@ text = "Hint Text
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_hlu0w")
+bus = &"Music"
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 109.153, 17.8282, -26.4722)
@@ -832,19 +833,21 @@ shape = SubResource("BoxShape3D_bympn")
 
 [node name="BossRoom" type="Node3D" parent="."]
 
-[node name="CptDetonator" type="RigidBody3D" parent="BossRoom" node_paths=PackedStringArray("nextStateTimer", "affectedBodies", "tornadoParticles")]
+[node name="CptDetonator" type="RigidBody3D" parent="BossRoom" node_paths=PackedStringArray("nextStateTimer", "affectedBodies", "tornadoParticles", "playerDetectionNode")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.183, 3.2287, 139.288)
 collision_layer = 4
 collision_mask = 7
 mass = 4.0
 continuous_cd = true
 script = ExtResource("31_2si1f")
-nextStateTimer = NodePath("Timer")
+nextStateTimer = NodePath("StateTimer")
 sawBladeScene = ExtResource("32_dsjag")
-sawBladeCooldown = 0.01
+sawBladeCooldown = 0.5
+sawBladeAttackApproachDistance = 15.0
 affectedBodies = NodePath("../PhysicsBoxes")
 grassMaterial = ExtResource("31_5f7up")
 tornadoParticles = NodePath("GPUParticles3D")
+playerDetectionNode = NodePath("PlayerDetectionZone")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BossRoom/CptDetonator" node_paths=PackedStringArray("targetRigidBody")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
@@ -874,7 +877,7 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BossRoom/CptDetonator/PlayerDetectionZone"]
 shape = SubResource("BoxShape3D_pbg17")
 
-[node name="Timer" type="Timer" parent="BossRoom/CptDetonator"]
+[node name="StateTimer" type="Timer" parent="BossRoom/CptDetonator"]
 process_callback = 0
 one_shot = true
 
@@ -888,11 +891,6 @@ fixed_fps = 0
 interpolate = false
 process_material = SubResource("ParticleProcessMaterial_atlxl")
 draw_pass_1 = SubResource("BoxMesh_8ksyu")
-
-[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="BossRoom/CptDetonator"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.65221, 0)
-strength = 32.0
-radius = 16.0
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="BossRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 151.68, 1.83157, 130.205)
@@ -1429,8 +1427,8 @@ shape = SubResource("BoxShape3D_r1ouu")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BossRoom"]
 stream = ExtResource("35_fwv8b")
-volume_db = -12.0
 autoplay = true
+bus = &"Music"
 
 [connection signal="body_entered" from="Hint/Area3D" to="Hint" method="body_entered"]
 [connection signal="body_exited" from="Hint/Area3D" to="Hint" method="body_exited"]
@@ -1439,4 +1437,4 @@ autoplay = true
 [connection signal="timeout" from="BigPhysicsBoxRespawner/Timer" to="BigPhysicsBoxRespawner" method="SpawnBox"]
 [connection signal="area_entered" from="BossRoom/CptDetonator/Area3D" to="BossRoom/CptDetonator/Area3D" method="_on_area_entered"]
 [connection signal="body_entered" from="BossRoom/CptDetonator/PlayerDetectionZone" to="BossRoom/CptDetonator" method="_on_area_3d_body_entered"]
-[connection signal="timeout" from="BossRoom/CptDetonator/Timer" to="BossRoom/CptDetonator" method="_on_timer_timeout"]
+[connection signal="timeout" from="BossRoom/CptDetonator/StateTimer" to="BossRoom/CptDetonator" method="_on_timer_timeout"]

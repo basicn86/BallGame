@@ -12,6 +12,8 @@ public partial class CptDetonator : RigidBody3D
 	public PackedScene sawBladeScene;
 	[Export]
 	public double sawBladeCooldown = 1.0; //cooldown in between saw blade shots
+	[Export]
+	public double sawBladeAttackApproachDistance = 10.0; //distance to the player to start moving closer.
 
 	[ExportCategory("Tornado Attack")]
 	[Export]
@@ -22,6 +24,9 @@ public partial class CptDetonator : RigidBody3D
 	[Export]
 	public GpuParticles3D tornadoParticles;
 
+	[ExportCategory("Player")]
+	[Export]
+	public Node3D playerDetectionNode;
 
 	//Important note: need to add entering and exiting states. This is to ensure the nodes are setup properly in between states.
 	enum State
@@ -29,10 +34,14 @@ public partial class CptDetonator : RigidBody3D
 		Idle,
 		Chasing,
 		RocketLaunching,
+
+		EnterShootingSawBlades,
 		ShootingSawBlades,
+
 		EnterTornado,
 		Tornado,
 		ExitTornado,
+
 		DashAttack
 	}
 
@@ -63,6 +72,9 @@ public partial class CptDetonator : RigidBody3D
 			case State.DashAttack:
 				DashAttack();
 				break;
+			case State.EnterShootingSawBlades:
+				EnterShootingSawBlades();
+				break;
 			case State.ShootingSawBlades:
 				ShootSawBlades();
 				break;
@@ -89,7 +101,7 @@ public partial class CptDetonator : RigidBody3D
 		ApplyCentralForce((player.GlobalTransform.Origin - GlobalTransform.Origin).Normalized() * 150f);
 		if (nextStateTimer.IsStopped()) {
 			nextStateTimer.Start(1.0);
-			nextState = State.ShootingSawBlades;
+			nextState = State.EnterShootingSawBlades;
 		}
 	}
 
@@ -102,10 +114,18 @@ public partial class CptDetonator : RigidBody3D
 		nextState = State.EnterTornado;
 	}
 
+	private void EnterShootingSawBlades()
+	{
+		state = State.ShootingSawBlades;
+	}
+
 	private void ShootSawBlades()
 	{
 		ApplyCentralForce(-LinearVelocity.Normalized() * 25f);
-		ApplyCentralForce((player.GlobalTransform.Origin - GlobalTransform.Origin).Normalized() * 50f);
+		if ((player.GlobalTransform.Origin - GlobalTransform.Origin).Length() > sawBladeAttackApproachDistance)
+		{
+			ApplyCentralForce((player.GlobalTransform.Origin - GlobalTransform.Origin + player.LinearVelocity).Normalized() * 50f);
+		}
 
 		if (sawBladeCooldownTimer > 0.0) return; //still in cooldown
 		sawBladeCooldownTimer = sawBladeCooldown; //reset timer
@@ -212,6 +232,7 @@ public partial class CptDetonator : RigidBody3D
 		if (body is not Player) return;
 		player = body as Player;
 		state = State.Chasing;
+		playerDetectionNode.QueueFree();
 	}
 
 	public void _on_timer_timeout()
