@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://b7speov6vg6sc"]
+
+[ext_resource type="Script" path="res://DemoLevel/CptDetonatorRocket.cs" id="1_y2nkh"]
+[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="2_t5e8r"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vovck"]
+size = Vector3(0.1, 0.1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_37cio"]
+size = Vector3(0.2, 1, 0.2)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ux0o0"]
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dyos7"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m2n82"]
+material = SubResource("StandardMaterial3D_dyos7")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="CptDetonatorRocket" type="RigidBody3D"]
+collision_layer = 0
+gravity_scale = 0.0
+custom_integrator = true
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_y2nkh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
+mesh = SubResource("BoxMesh_vovck")
+script = ExtResource("2_t5e8r")
+targetRigidBody = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_37cio")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.445604)
+amount = 2048
+lifetime = 4.0
+fixed_fps = 0
+interpolate = false
+process_material = SubResource("ParticleProcessMaterial_ux0o0")
+draw_pass_1 = SubResource("BoxMesh_m2n82")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

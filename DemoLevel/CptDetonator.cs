@@ -15,6 +15,20 @@ public partial class CptDetonator : RigidBody3D
 	[Export]
 	public double sawBladeAttackApproachDistance = 10.0; //distance to the player to start moving closer.
 
+	[ExportCategory("Rapid Bomb Attack")]
+	[Export]
+	public PackedScene bombScene;
+	[Export]
+	public double bombCooldown = 1.0;
+	[Export]
+	public float maxHorizontalVelocity = 5f;
+	[Export]
+	public float maxVerticalVelocity = 10f;
+
+	[ExportCategory("Rocket Launching Attack")]
+	[Export]
+	public PackedScene rocketScene;
+
 	[ExportCategory("Tornado Attack")]
 	[Export]
 	public Node3D affectedBodies;
@@ -38,6 +52,8 @@ public partial class CptDetonator : RigidBody3D
 		EnterShootingSawBlades,
 		ShootingSawBlades,
 
+		ShootingBombs,
+
 		EnterTornado,
 		Tornado,
 		ExitTornado,
@@ -51,6 +67,7 @@ public partial class CptDetonator : RigidBody3D
 	Player? player = null;
 
 	private double sawBladeCooldownTimer = 0.0;
+	private double shootBombCooldownTimer = 0.0;
 
 	public override void _Ready()
 	{
@@ -71,6 +88,12 @@ public partial class CptDetonator : RigidBody3D
 				break;
 			case State.DashAttack:
 				DashAttack();
+				break;
+			case State.RocketLaunching:
+				LaunchRockets();
+				break;
+			case State.ShootingBombs:
+				ShootBombs();
 				break;
 			case State.EnterShootingSawBlades:
 				EnterShootingSawBlades();
@@ -93,6 +116,7 @@ public partial class CptDetonator : RigidBody3D
 
 
 		if(sawBladeCooldownTimer > 0.0) sawBladeCooldownTimer -= delta;
+		if (shootBombCooldownTimer > 0.0) shootBombCooldownTimer -= delta;
 	}
 
 	private void ChasePlayer()
@@ -101,7 +125,7 @@ public partial class CptDetonator : RigidBody3D
 		ApplyCentralForce((player.GlobalTransform.Origin - GlobalTransform.Origin).Normalized() * 150f);
 		if (nextStateTimer.IsStopped()) {
 			nextStateTimer.Start(1.0);
-			nextState = State.EnterShootingSawBlades;
+			nextState = State.ShootingBombs;
 		}
 	}
 
@@ -112,6 +136,29 @@ public partial class CptDetonator : RigidBody3D
 		state = State.Idle;
 		nextStateTimer.Start(1.0);
 		nextState = State.EnterTornado;
+	}
+
+	public void LaunchRockets()
+	{
+		CptDetonatorRocket rocket = rocketScene.Instantiate() as CptDetonatorRocket;
+		GetParent().AddChild(rocket);
+		rocket.GlobalPosition = GlobalPosition;
+		Vector3 travelDir = -(player.GlobalTransform.Origin - GlobalTransform.Origin).Normalized();
+		travelDir = travelDir.Slerp(Vector3.Down, 0.5f);
+		travelDir = travelDir.Rotated(Vector3.Up, Random.Shared.NextSingle() * 3.0f - 1.5f);
+		rocket.TravelDirection = travelDir;
+	}
+
+	public void ShootBombs()
+	{
+		if (shootBombCooldownTimer > 0.0) return; //still in cooldown
+		shootBombCooldownTimer = bombCooldown; //reset timer
+
+		RigidBody3D bomb = bombScene.Instantiate() as RigidBody3D;
+		GetParent().AddChild(bomb);
+		bomb.GlobalPosition = GlobalPosition; //dont worry about colliding with the boss, it is not in the same layer
+		Vector3 direction = GetRandomBombDirection();
+		bomb.LinearVelocity = direction;
 	}
 
 	private void EnterShootingSawBlades()
@@ -166,6 +213,18 @@ public partial class CptDetonator : RigidBody3D
 
 		// Return the normalized direction vector
 		return direction;
+	}
+
+	private Vector3 GetRandomBombDirection()
+	{
+		Vector3 v3 = new Vector3(0f, maxVerticalVelocity, 0f);
+		v3.X = Random.Shared.NextSingle() * 2f - 1f;
+		v3.Z = Random.Shared.NextSingle() * 2f - 1f;
+
+		v3.X *= maxHorizontalVelocity;
+		v3.Z *= maxHorizontalVelocity;
+
+		return v3;
 	}
 
 	private void EnterTornado()
@@ -231,7 +290,7 @@ public partial class CptDetonator : RigidBody3D
 	{
 		if (body is not Player) return;
 		player = body as Player;
-		state = State.Chasing;
+		state = State.RocketLaunching;
 		playerDetectionNode.QueueFree();
 	}
 

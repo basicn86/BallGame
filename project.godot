@@ -19,7 +19,7 @@ config/icon="res://ui/Player.png"
 [display]
 
 window/stretch/aspect="expand"
-window/vsync/vsync_mode=0
+window/vsync/vsync_mode=3
 
 [dotnet]
 

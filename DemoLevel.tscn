@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=125 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Script" path="res://Hint.cs" id="1_oddph"]
@@ -37,7 +37,9 @@
 [ext_resource type="Material" uid="uid://cp1mras1f5knq" path="res://DemoLevel/NukeParticleMaterial.tres" id="32_2b8tn"]
 [ext_resource type="PackedScene" uid="uid://l0f51fiwyojq" path="res://SawBladeContainer.tscn" id="32_dsjag"]
 [ext_resource type="Texture2D" uid="uid://cbt1muqpu3iwn" path="res://DemoLevel/NukeColorGradient.tres" id="33_13s2t"]
+[ext_resource type="PackedScene" uid="uid://bwlhnxskjdsj7" path="res://DemoLevel/CptDetonatorBomb.tscn" id="33_g42ux"]
 [ext_resource type="AudioStream" uid="uid://cexpm60ke5i36" path="res://DemoLevel/explosion.ogg" id="34_l50xh"]
+[ext_resource type="PackedScene" uid="uid://b7speov6vg6sc" path="res://DemoLevel/CptDetonatorRocket.tscn" id="34_r1jan"]
 [ext_resource type="PackedScene" uid="uid://mqbycbrcjyk4" path="res://PhysicsBox.tscn" id="35_1t037"]
 [ext_resource type="AudioStream" uid="uid://dbvpykvx7fuvl" path="res://music/y0pod.mp3" id="35_fwv8b"]
 [ext_resource type="Texture2D" uid="uid://dy2f3u06kp37c" path="res://DemoLevel/NukeVelocityLimitDemoLevel.tres" id="36_dd6fc"]
@@ -842,8 +844,13 @@ continuous_cd = true
 script = ExtResource("31_2si1f")
 nextStateTimer = NodePath("StateTimer")
 sawBladeScene = ExtResource("32_dsjag")
-sawBladeCooldown = 0.5
+sawBladeCooldown = 0.1
 sawBladeAttackApproachDistance = 15.0
+bombScene = ExtResource("33_g42ux")
+bombCooldown = 0.01
+maxHorizontalVelocity = 25.0
+maxVerticalVelocity = 15.0
+rocketScene = ExtResource("34_r1jan")
 affectedBodies = NodePath("../PhysicsBoxes")
 grassMaterial = ExtResource("31_5f7up")
 tornadoParticles = NodePath("GPUParticles3D")

@@ -29,7 +29,7 @@ void vertex() {
 
 		VERTEX.x += directionToCenter.x * (VERTEX.y - instancePos.y);
 		VERTEX.z += directionToCenter.y * (VERTEX.y - instancePos.y);
-		
+
 		VERTEX.y -= (VERTEX.y - instancePos.y) * abs(windStrength) / 2.0; //height
 	}
 }

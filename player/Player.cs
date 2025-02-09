@@ -52,9 +52,14 @@ public partial class Player : RigidBody3D
 	[Export]
 	public AudioStreamPlayer3D landSound;
 
+	public static Player Instance;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		if (Instance != null) QueueFree();
+		Instance = this;
+
 		cameraNode.PlayerRid = GetRid();
 
 		groundCast.TopLevel = true;
