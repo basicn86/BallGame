@@ -14,6 +14,7 @@ public partial class LaserProjectileInterpolator : MeshInstance3D
         if (projectile == null) QueueFree();
     }
 
+    //todo: remove and fix this stupid garbage
     public void ResetInterpolator()
     {
         GlobalPosition = projectile.GlobalPosition;

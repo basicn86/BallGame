@@ -33,7 +33,8 @@ size = Vector3(0.4, 1, 0.4)
 
 [node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("particleSpawnPoint", "model")]
 top_level = true
-collision_layer = 8
+collision_layer = 0
+collision_mask = 9
 gravity_scale = 0.0
 can_sleep = false
 continuous_cd = true

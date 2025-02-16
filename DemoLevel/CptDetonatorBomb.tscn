@@ -7,14 +7,16 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kwqn6"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_0ho1t"]
+radial_segments = 32
+rings = 16
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jg3y4"]
 size = Vector3(0.8, 0.8, 0.8)
 
 [node name="CptDetonatorBomb" type="RigidBody3D"]
-collision_layer = 8
+collision_layer = 0
 physics_material_override = SubResource("PhysicsMaterial_kwqn6")
-gravity_scale = 3.0
+gravity_scale = 4.0
 script = ExtResource("1_7enr5")
 explosionScene = ExtResource("2_h8pf8")
 

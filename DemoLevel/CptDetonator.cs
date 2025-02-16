@@ -21,6 +21,9 @@ public partial class CptDetonator : RigidBody3D
 	[Export]
 	public double bombCooldown = 1.0;
 	[Export]
+	public int maxBombs = 50;
+	private int bombCounter = 0;
+	[Export]
 	public float maxHorizontalVelocity = 5f;
 	[Export]
 	public float maxVerticalVelocity = 10f;
@@ -151,6 +154,12 @@ public partial class CptDetonator : RigidBody3D
 
 	public void ShootBombs()
 	{
+		if (bombCounter > maxBombs)
+		{
+			state = State.Idle;
+			bombCounter = 0;
+			return;
+		}
 		if (shootBombCooldownTimer > 0.0) return; //still in cooldown
 		shootBombCooldownTimer = bombCooldown; //reset timer
 
@@ -159,6 +168,8 @@ public partial class CptDetonator : RigidBody3D
 		bomb.GlobalPosition = GlobalPosition; //dont worry about colliding with the boss, it is not in the same layer
 		Vector3 direction = GetRandomBombDirection();
 		bomb.LinearVelocity = direction;
+
+		bombCounter++;
 	}
 
 	private void EnterShootingSawBlades()
@@ -290,7 +301,7 @@ public partial class CptDetonator : RigidBody3D
 	{
 		if (body is not Player) return;
 		player = body as Player;
-		state = State.RocketLaunching;
+		state = State.ShootingBombs;
 		playerDetectionNode.QueueFree();
 	}
 
