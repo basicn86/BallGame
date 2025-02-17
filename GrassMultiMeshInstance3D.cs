@@ -41,20 +41,9 @@ public partial class GrassMultiMeshInstance3D : MultiMeshInstance3D
 	{
 		Stopwatch stopwatch = new Stopwatch();
 		stopwatch.Start();
-		int[] instanceIndexes = new int[Multimesh.VisibleInstanceCount];
-		float distanceSquared = distance * distance;
-		int instanceCount = 0;
+		List<int> instanceIndexes = GetInstancesToRemove(position, distance, 0, Multimesh.VisibleInstanceCount);
 
-		for (int i = 0; i < Multimesh.VisibleInstanceCount; i++)
-		{
-			if (transforms[i].Origin.DistanceSquaredTo(position) < distanceSquared)
-			{
-				instanceIndexes[instanceCount] = i;
-				instanceCount++;
-			}
-		}
-
-		for (int i = 0, last = Multimesh.VisibleInstanceCount - 1; i < instanceCount; i++)
+		for (int i = 0, last = Multimesh.VisibleInstanceCount - 1; i < instanceIndexes.Count; i++)
 		{
 			while (instanceIndexes.Contains(last) && last > 0)
 			{
@@ -67,8 +56,22 @@ public partial class GrassMultiMeshInstance3D : MultiMeshInstance3D
 				last--;
 			}
 		}
-		Multimesh.VisibleInstanceCount = Multimesh.VisibleInstanceCount - instanceCount;
+		Multimesh.VisibleInstanceCount = Multimesh.VisibleInstanceCount - instanceIndexes.Count;
 		stopwatch.Stop();
-		GD.Print("RemoveWithinDistance took " + stopwatch.ElapsedMilliseconds + " ms");
+		GD.Print("Time taken: " + stopwatch.ElapsedMilliseconds + " ms");
+	}
+
+	private List<int> GetInstancesToRemove(Vector3 position, float distance, int start, int end)
+	{
+		List<int> instancesToRemove = new List<int>(Multimesh.VisibleInstanceCount);
+		float distanceSquared = distance * distance;
+		for (int i = start; i < end; i++)
+		{
+			if (transforms[i].Origin.DistanceSquaredTo(position) < distanceSquared)
+			{
+				instancesToRemove.Add(i);
+			}
+		}
+		return instancesToRemove;
 	}
 }
