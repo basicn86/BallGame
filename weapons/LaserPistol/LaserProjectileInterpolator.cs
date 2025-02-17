@@ -9,28 +9,26 @@ public partial class LaserProjectileInterpolator : MeshInstance3D
     public Vector3 previousPos = Vector3.Zero;
     public Vector3 currentPos = Vector3.Zero;
 
+    private bool firstFrame = true;
+
     public override void _Ready()
     {
         if (projectile == null) QueueFree();
+        TopLevel = true;
     }
 
-    //todo: remove and fix this stupid garbage
-    public void ResetInterpolator()
-    {
-        GlobalPosition = projectile.GlobalPosition;
-        currentPos = projectile.GlobalPosition;
-        previousPos = projectile.GlobalPosition;
-    }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        SmoothPlayerMotion(delta);
-    }
-
-    private void SmoothPlayerMotion(double delta)
-    {
-        TopLevel = true;
+        if (firstFrame)
+        {
+            previousPos = projectile.GlobalPosition;
+            currentPos = projectile.GlobalPosition;
+            GlobalPosition = projectile.GlobalPosition;
+            GlobalRotation = projectile.GlobalRotation;
+            RotateObjectLocal(Vector3.Right, Mathf.Pi / 2);
+            firstFrame = false;
+            return;
+        }
         GlobalPosition = previousPos.Lerp(currentPos, (float)Engine.GetPhysicsInterpolationFraction());
     }
 

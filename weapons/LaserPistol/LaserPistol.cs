@@ -77,9 +77,6 @@ public partial class LaserPistol : Node3D
 		projectile.GlobalPosition = GlobalPosition;
 		projectile.TranslateObjectLocal(projectileSpawnOffset);
 
-		//Dumb hack: We need to reset the model interpolator so it doesn't spawn at the world origin
-		projectile.ResetInterpolator();
-
 		Vector3 finalDirection = targetPos - projectile.GlobalPosition;
 		finalDirection = finalDirection.Normalized() * velocity;
 		projectile.LinearVelocity = finalDirection;

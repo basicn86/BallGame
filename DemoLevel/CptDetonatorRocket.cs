@@ -20,8 +20,8 @@ public partial class CptDetonatorRocket : RigidBody3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-        //todo: remove this and let CptDetonator setup the target instead of using a singleton
-        player = Player.Instance;
+		//todo: remove this and let CptDetonator setup the target instead of using a singleton
+		player = Player.Instance;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
