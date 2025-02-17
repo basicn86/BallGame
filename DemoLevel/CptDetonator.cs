@@ -45,6 +45,9 @@ public partial class CptDetonator : RigidBody3D
 	[Export]
 	public Node3D playerDetectionNode;
 
+	[Export]
+	public GrassMultiMeshInstance3D grassMultiMeshInstance;
+
 	//Important note: need to add entering and exiting states. This is to ensure the nodes are setup properly in between states.
 	enum State
 	{
@@ -163,11 +166,13 @@ public partial class CptDetonator : RigidBody3D
 		if (shootBombCooldownTimer > 0.0) return; //still in cooldown
 		shootBombCooldownTimer = bombCooldown; //reset timer
 
-		RigidBody3D bomb = bombScene.Instantiate() as RigidBody3D;
+		CptDetonatorBomb bomb = bombScene.Instantiate() as CptDetonatorBomb;
 		GetParent().AddChild(bomb);
 		bomb.GlobalPosition = GlobalPosition; //dont worry about colliding with the boss, it is not in the same layer
 		Vector3 direction = GetRandomBombDirection();
 		bomb.LinearVelocity = direction;
+
+		bomb.grassMultiMeshInstance3D = grassMultiMeshInstance;
 
 		bombCounter++;
 	}

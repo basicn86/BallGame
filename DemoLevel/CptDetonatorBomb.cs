@@ -6,6 +6,8 @@ public partial class CptDetonatorBomb : RigidBody3D
 	[Export]
 	PackedScene explosionScene;
 
+	public GrassMultiMeshInstance3D grassMultiMeshInstance3D;
+
 	public override void _Ready()
 	{
 	}
@@ -20,6 +22,8 @@ public partial class CptDetonatorBomb : RigidBody3D
 		Node3D explosion = explosionScene.Instantiate() as Node3D;
 		GetParent().AddChild(explosion);
 		explosion.GlobalPosition = GlobalPosition;
+
+		grassMultiMeshInstance3D?.RemoveWithinDistance(GlobalPosition, 3.0f);
 
 		QueueFree();
 	}

@@ -835,7 +835,7 @@ shape = SubResource("BoxShape3D_bympn")
 
 [node name="BossRoom" type="Node3D" parent="."]
 
-[node name="CptDetonator" type="RigidBody3D" parent="BossRoom" node_paths=PackedStringArray("nextStateTimer", "affectedBodies", "tornadoParticles", "playerDetectionNode")]
+[node name="CptDetonator" type="RigidBody3D" parent="BossRoom" node_paths=PackedStringArray("nextStateTimer", "affectedBodies", "tornadoParticles", "playerDetectionNode", "grassMultiMeshInstance")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.183, 3.2287, 139.288)
 collision_layer = 4
 collision_mask = 7
@@ -856,6 +856,7 @@ affectedBodies = NodePath("../PhysicsBoxes")
 grassMaterial = ExtResource("31_5f7up")
 tornadoParticles = NodePath("GPUParticles3D")
 playerDetectionNode = NodePath("PlayerDetectionZone")
+grassMultiMeshInstance = NodePath("../GrassMultiMesh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BossRoom/CptDetonator" node_paths=PackedStringArray("targetRigidBody")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
