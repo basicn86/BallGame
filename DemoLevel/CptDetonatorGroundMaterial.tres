@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cdtgbm1a6m7t6"]
+
+[ext_resource type="Shader" path="res://DemoLevel/CptDetonatorGroundShader.gdshader" id="1_yppbh"]
+[ext_resource type="Texture2D" uid="uid://bf2dfwmnhwfjc" path="res://DemoLevel/Elements_05-512x512.png" id="2_keetu"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_yppbh")
+shader_parameter/BurnPointCount = 0
+shader_parameter/BurnPoints = null
+shader_parameter/BurnedTexture = ExtResource("2_keetu")

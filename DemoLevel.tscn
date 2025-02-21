@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=127 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Script" path="res://Hint.cs" id="1_oddph"]
@@ -43,6 +43,8 @@
 [ext_resource type="PackedScene" uid="uid://mqbycbrcjyk4" path="res://PhysicsBox.tscn" id="35_1t037"]
 [ext_resource type="AudioStream" uid="uid://dbvpykvx7fuvl" path="res://music/y0pod.mp3" id="35_fwv8b"]
 [ext_resource type="Texture2D" uid="uid://dy2f3u06kp37c" path="res://DemoLevel/NukeVelocityLimitDemoLevel.tres" id="36_dd6fc"]
+[ext_resource type="Script" path="res://DemoLevel/CptDetonatorGround.cs" id="37_pd2jn"]
+[ext_resource type="Material" uid="uid://cdtgbm1a6m7t6" path="res://DemoLevel/CptDetonatorGroundMaterial.tres" id="38_srsny"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yu183"]
 size = Vector3(2, 2, 2)
@@ -218,7 +220,7 @@ scale_curve = SubResource("CurveTexture_7i8pr")
 size = Vector3(0.2, 0.2, 0.2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_k2ike"]
-material = ExtResource("4_le0gn")
+material = ExtResource("38_srsny")
 size = Vector3(100, 1, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_smlw1"]
@@ -901,16 +903,19 @@ interpolate = false
 process_material = SubResource("ParticleProcessMaterial_atlxl")
 draw_pass_1 = SubResource("BoxMesh_8ksyu")
 
-[node name="StaticBody3D4" type="StaticBody3D" parent="BossRoom"]
+[node name="DynamicGround" type="StaticBody3D" parent="BossRoom" node_paths=PackedStringArray("meshInstance3D")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 151.68, 1.83157, 130.205)
+script = ExtResource("37_pd2jn")
+meshInstance3D = NodePath("MeshInstance3D")
+shader = ExtResource("38_srsny")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="BossRoom/StaticBody3D4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BossRoom/DynamicGround"]
 mesh = SubResource("BoxMesh_k2ike")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BossRoom/StaticBody3D4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BossRoom/DynamicGround"]
 shape = SubResource("BoxShape3D_smlw1")
 
-[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="BossRoom/StaticBody3D4"]
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="BossRoom/DynamicGround"]
 size = Vector3(100, 1, 100)
 
 [node name="GrassPlaneMesh" type="MeshInstance3D" parent="BossRoom"]

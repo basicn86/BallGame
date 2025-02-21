@@ -25,6 +25,8 @@ public partial class CptDetonatorBomb : RigidBody3D
 
 		grassMultiMeshInstance3D?.RemoveWithinDistance(GlobalPosition, 3.0f);
 
+		CptDetonatorGround.Instance?.AddBurnPoint(GlobalPosition);
+
 		QueueFree();
 	}
 }
