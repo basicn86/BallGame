@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading;
 
 public partial class CptDetonatorGround : StaticBody3D
 {
@@ -25,13 +26,16 @@ public partial class CptDetonatorGround : StaticBody3D
 	private Image img;
 	private ImageTexture imageTexture;
 
+	private const float burnRadius = 3.0f;
+	private const float burnRadiusSquared = burnRadius * burnRadius;
+
 	public override void _Ready()
 	{
-		if (Instance != null) QueueFree();
+		if (Instance != null) { QueueFree(); return; }
 		Instance = this;
 
 		Mesh mesh = meshInstance3D.Mesh;
-		if (mesh == null) QueueFree();
+		if (mesh == null) { QueueFree(); return; }
 
 		vertices = (Vector3[])mesh.SurfaceGetArrays(0)[(int)Mesh.ArrayType.Vertex];
 		uvs = (Vector2[])mesh.SurfaceGetArrays(0)[(int)Mesh.ArrayType.TexUV];
@@ -71,27 +75,49 @@ public partial class CptDetonatorGround : StaticBody3D
 			AddBurnPoint(new Vector3(150, 0, 100));
 
 			sw.Stop();
-			GD.Print("Time: " + sw.ElapsedMilliseconds);
+			GD.Print("Time micro seconds: " + sw.ElapsedTicks / (Stopwatch.Frequency / 1000000L));
 		}
 	}
 	
 	public void AddBurnPoint(Vector3 point)
 	{
-		for (int i = 0; i < width; i++)
+		Thread threadA = new Thread(() => AddBurnPointHelper(point, 0, 2));
+		Thread threadB = new Thread(() => AddBurnPointHelper(point, 1, 2));
+
+		threadA.Start();
+		threadB.Start();
+
+		threadA.Join();
+		threadB.Join();
+
+		img.GenerateMipmaps();
+		imageTexture.Update(img);
+		shader.SetShaderParameter("Mask", imageTexture);
+	}
+
+	//For multithreading
+	private void AddBurnPointHelper(Vector3 point, int start, int increment)
+	{
+		for (int i = start; i < width; i+=increment)
 		{
 			for (int j = 0; j < width; j++)
 			{
 				Vector3 worldPos = TextureCoords[i, j];
-				if (worldPos.IsZeroApprox()) continue;
-				if (worldPos.DistanceSquaredTo(point) < 9f)
+				if (NotWithinBoundingBox(point, worldPos)) continue;
+				if (worldPos.DistanceSquaredTo(point) < burnRadiusSquared)
 				{
 					img.SetPixel(i, j, new Color(0.0f, 0.0f, 0.0f, 0.0f));
 				}
 			}
 		}
-		img.GenerateMipmaps();
-		imageTexture.Update(img);
-		shader.SetShaderParameter("Mask", imageTexture);
+	}
+
+	public bool NotWithinBoundingBox(Vector3 point, Vector3 textureCoord)
+	{
+		if (point.X < textureCoord.X - burnRadius || point.X > textureCoord.X + burnRadius) return true;
+		if (point.Y < textureCoord.Y - burnRadius || point.Y > textureCoord.Y + burnRadius) return true;
+		if (point.Z < textureCoord.Z - burnRadius || point.Z > textureCoord.Z + burnRadius) return true;
+		return false;
 	}
 
 	public Vector3 GetBarycentrics(Vector2 p, Vector2 a, Vector2 b, Vector2 c)
