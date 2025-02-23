@@ -11,14 +11,12 @@ public partial class GrassMultiMeshInstance3D : MultiMeshInstance3D
 	public Material Material { get; set; }
 
 	//Caching the transforms increases performance by 2x, even if it adds more operations, since we do not need to wait for the rendering server.
+	//TODO: possibly make this an array for better performance?
 	private List<Transform3D> transforms;
 
 	public override void _Ready()
 	{
-		for (int i = 0; i < Multimesh.InstanceCount; i++)
-		{
-			Multimesh.Mesh.SurfaceSetMaterial(0, Material);
-		}
+		Multimesh.Mesh.SurfaceSetMaterial(0, Material);
 		Multimesh.VisibleInstanceCount = Multimesh.InstanceCount;
 
 		transforms = new List<Transform3D>(Multimesh.InstanceCount);
@@ -39,7 +37,7 @@ public partial class GrassMultiMeshInstance3D : MultiMeshInstance3D
 			}
 			if (last > 0)
 			{
-				Multimesh.SetInstanceTransform(instanceIndexes[i], Multimesh.GetInstanceTransform(last));
+				Multimesh.SetInstanceTransform(instanceIndexes[i], transforms[last]);
 				transforms[instanceIndexes[i]] = transforms[last];
 				last--;
 			}

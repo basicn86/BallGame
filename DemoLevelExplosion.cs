@@ -48,6 +48,8 @@ public partial class DemoLevelExplosion : Area3D
 					RigidBody3D rigidBody = body as RigidBody3D;
 					Vector3 vector = (rigidBody.GlobalTransform.Origin - GlobalTransform.Origin).Normalized();
 					rigidBody.ApplyImpulse(vector * explosionForce * rigidBody.Mass);
+					//add random torque
+					rigidBody.ApplyTorqueImpulse(new Vector3((float)GD.RandRange(-1.0f, 1.0f), (float)GD.RandRange(-1.0f, 1.0f), (float)GD.RandRange(-1.0f, 1.0f)) * 10.0f);
 				}
 			}
 

@@ -1,9 +1,11 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cdtgbm1a6m7t6"]
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://cdtgbm1a6m7t6"]
 
 [ext_resource type="Shader" path="res://DemoLevel/CptDetonatorGroundShader.gdshader" id="1_yppbh"]
-[ext_resource type="Texture2D" uid="uid://bf2dfwmnhwfjc" path="res://DemoLevel/Elements_05-512x512.png" id="2_keetu"]
+[ext_resource type="Texture2D" uid="uid://djkjj2ae5yokq" path="res://DemoLevel/Terrain_21-512x512.png" id="2_6u116"]
+[ext_resource type="Texture2D" uid="uid://d15t6ak65t441" path="res://DemoLevel/Grass_24-512x512.png" id="3_vlrgi"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_yppbh")
-shader_parameter/BurnedTexture = ExtResource("2_keetu")
+shader_parameter/RegularTexture = ExtResource("3_vlrgi")
+shader_parameter/BurnedTexture = ExtResource("2_6u116")

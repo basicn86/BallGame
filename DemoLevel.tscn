@@ -850,7 +850,7 @@ sawBladeCooldown = 0.1
 sawBladeAttackApproachDistance = 15.0
 bombScene = ExtResource("33_g42ux")
 bombCooldown = 0.01
-maxBombs = 1000
+maxBombs = 100
 maxHorizontalVelocity = 40.0
 maxVerticalVelocity = 25.0
 rocketScene = ExtResource("34_r1jan")
@@ -936,364 +936,364 @@ Material = ExtResource("31_5f7up")
 [node name="PhysicsBoxes" type="Node3D" parent="BossRoom"]
 
 [node name="PhysicsBox" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 5.04799, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 5.04799, 163.181)
 
 [node name="PhysicsBox2" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 5.04799, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 5.04799, 163.181)
 
 [node name="PhysicsBox3" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 5.04799, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 5.04799, 163.181)
 
 [node name="PhysicsBox4" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 5.04799, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 5.04799, 163.181)
 
 [node name="PhysicsBox5" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 5.04799, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 5.04799, 163.181)
 
 [node name="PhysicsBox6" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 6.31432, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 6.31432, 163.181)
 
 [node name="PhysicsBox7" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 6.31432, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 6.31432, 163.181)
 
 [node name="PhysicsBox8" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 6.31432, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 6.31432, 163.181)
 
 [node name="PhysicsBox9" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 6.31432, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 6.31432, 163.181)
 
 [node name="PhysicsBox10" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 6.31432, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 6.31432, 163.181)
 
 [node name="PhysicsBox11" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 5.04799, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 5.04799, 164.746)
 
 [node name="PhysicsBox12" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 5.04799, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 5.04799, 164.746)
 
 [node name="PhysicsBox13" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 5.04799, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 5.04799, 164.746)
 
 [node name="PhysicsBox14" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 5.04799, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 5.04799, 164.746)
 
 [node name="PhysicsBox15" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 5.04799, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 5.04799, 164.746)
 
 [node name="PhysicsBox16" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 6.31432, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 6.31432, 164.746)
 
 [node name="PhysicsBox17" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 6.31432, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 6.31432, 164.746)
 
 [node name="PhysicsBox18" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 6.31432, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 6.31432, 164.746)
 
 [node name="PhysicsBox19" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 6.31432, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 6.31432, 164.746)
 
 [node name="PhysicsBox20" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 6.31432, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 6.31432, 164.746)
 
 [node name="PhysicsBox21" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 5.04799, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 5.04799, 166.331)
 
 [node name="PhysicsBox22" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 5.04799, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 5.04799, 166.331)
 
 [node name="PhysicsBox23" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 5.04799, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 5.04799, 166.331)
 
 [node name="PhysicsBox24" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 5.04799, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 5.04799, 166.331)
 
 [node name="PhysicsBox25" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 5.04799, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 5.04799, 166.331)
 
 [node name="PhysicsBox26" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 6.31432, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 6.31432, 166.331)
 
 [node name="PhysicsBox27" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 6.31432, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 6.31432, 166.331)
 
 [node name="PhysicsBox28" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 6.31432, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 6.31432, 166.331)
 
 [node name="PhysicsBox29" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 6.31432, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 6.31432, 166.331)
 
 [node name="PhysicsBox30" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 6.31432, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 6.31432, 166.331)
 
 [node name="PhysicsBox31" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 5.04799, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 5.04799, 167.932)
 
 [node name="PhysicsBox32" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 5.04799, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 5.04799, 167.932)
 
 [node name="PhysicsBox33" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 5.04799, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 5.04799, 167.932)
 
 [node name="PhysicsBox34" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 5.04799, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 5.04799, 167.932)
 
 [node name="PhysicsBox35" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 5.04799, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 5.04799, 167.932)
 
 [node name="PhysicsBox36" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 6.31432, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 6.31432, 167.932)
 
 [node name="PhysicsBox37" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 6.31432, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 6.31432, 167.932)
 
 [node name="PhysicsBox38" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 6.31432, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 6.31432, 167.932)
 
 [node name="PhysicsBox39" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 6.31432, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 6.31432, 167.932)
 
 [node name="PhysicsBox40" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 6.31432, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 6.31432, 167.932)
 
 [node name="PhysicsBox41" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 7.73863, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 7.73863, 163.181)
 
 [node name="PhysicsBox42" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 7.73863, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 7.73863, 163.181)
 
 [node name="PhysicsBox43" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 7.73863, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 7.73863, 163.181)
 
 [node name="PhysicsBox44" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 7.73863, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 7.73863, 163.181)
 
 [node name="PhysicsBox45" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 7.73863, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 7.73863, 163.181)
 
 [node name="PhysicsBox46" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 9.00497, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 9.00497, 163.181)
 
 [node name="PhysicsBox47" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 9.00497, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 9.00497, 163.181)
 
 [node name="PhysicsBox48" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 9.00497, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 9.00497, 163.181)
 
 [node name="PhysicsBox49" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 9.00497, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 9.00497, 163.181)
 
 [node name="PhysicsBox50" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 9.00497, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 9.00497, 163.181)
 
 [node name="PhysicsBox51" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 7.73863, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 7.73863, 164.746)
 
 [node name="PhysicsBox52" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 7.73863, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 7.73863, 164.746)
 
 [node name="PhysicsBox53" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 7.73863, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 7.73863, 164.746)
 
 [node name="PhysicsBox54" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 7.73863, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 7.73863, 164.746)
 
 [node name="PhysicsBox55" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 7.73863, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 7.73863, 164.746)
 
 [node name="PhysicsBox56" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 9.00497, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 9.00497, 164.746)
 
 [node name="PhysicsBox57" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 9.00497, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 9.00497, 164.746)
 
 [node name="PhysicsBox58" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 9.00497, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 9.00497, 164.746)
 
 [node name="PhysicsBox59" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 9.00497, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 9.00497, 164.746)
 
 [node name="PhysicsBox60" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 9.00497, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 9.00497, 164.746)
 
 [node name="PhysicsBox61" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 7.73863, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 7.73863, 166.331)
 
 [node name="PhysicsBox62" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 7.73863, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 7.73863, 166.331)
 
 [node name="PhysicsBox63" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 7.73863, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 7.73863, 166.331)
 
 [node name="PhysicsBox64" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 7.73863, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 7.73863, 166.331)
 
 [node name="PhysicsBox65" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 7.73863, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 7.73863, 166.331)
 
 [node name="PhysicsBox66" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 9.00497, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 9.00497, 166.331)
 
 [node name="PhysicsBox67" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 9.00497, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 9.00497, 166.331)
 
 [node name="PhysicsBox68" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 9.00497, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 9.00497, 166.331)
 
 [node name="PhysicsBox69" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 9.00497, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 9.00497, 166.331)
 
 [node name="PhysicsBox70" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 9.00497, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 9.00497, 166.331)
 
 [node name="PhysicsBox71" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 7.73863, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 7.73863, 167.932)
 
 [node name="PhysicsBox72" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 7.73863, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 7.73863, 167.932)
 
 [node name="PhysicsBox73" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 7.73863, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 7.73863, 167.932)
 
 [node name="PhysicsBox74" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 7.73863, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 7.73863, 167.932)
 
 [node name="PhysicsBox75" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 7.73863, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 7.73863, 167.932)
 
 [node name="PhysicsBox76" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 9.00497, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 9.00497, 167.932)
 
 [node name="PhysicsBox77" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 9.00497, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 9.00497, 167.932)
 
 [node name="PhysicsBox78" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 9.00497, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 9.00497, 167.932)
 
 [node name="PhysicsBox79" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 9.00497, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 9.00497, 167.932)
 
 [node name="PhysicsBox80" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 9.00497, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 9.00497, 167.932)
 
 [node name="PhysicsBox81" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 10.4187, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 10.4187, 163.181)
 
 [node name="PhysicsBox82" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 10.4187, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 10.4187, 163.181)
 
 [node name="PhysicsBox83" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 10.4187, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 10.4187, 163.181)
 
 [node name="PhysicsBox84" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 10.4187, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 10.4187, 163.181)
 
 [node name="PhysicsBox85" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 10.4187, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 10.4187, 163.181)
 
 [node name="PhysicsBox86" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 11.685, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 11.685, 163.181)
 
 [node name="PhysicsBox87" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 11.685, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 11.685, 163.181)
 
 [node name="PhysicsBox88" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 11.685, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 11.685, 163.181)
 
 [node name="PhysicsBox89" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 11.685, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 11.685, 163.181)
 
 [node name="PhysicsBox90" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 11.685, 158.778)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 11.685, 163.181)
 
 [node name="PhysicsBox91" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 10.4187, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 10.4187, 164.746)
 
 [node name="PhysicsBox92" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 10.4187, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 10.4187, 164.746)
 
 [node name="PhysicsBox93" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 10.4187, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 10.4187, 164.746)
 
 [node name="PhysicsBox94" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 10.4187, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 10.4187, 164.746)
 
 [node name="PhysicsBox95" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 10.4187, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 10.4187, 164.746)
 
 [node name="PhysicsBox96" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 11.685, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 11.685, 164.746)
 
 [node name="PhysicsBox97" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 11.685, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 11.685, 164.746)
 
 [node name="PhysicsBox98" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 11.685, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 11.685, 164.746)
 
 [node name="PhysicsBox99" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 11.685, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 11.685, 164.746)
 
 [node name="PhysicsBox100" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 11.685, 160.343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 11.685, 164.746)
 
 [node name="PhysicsBox101" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 10.4187, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 10.4187, 166.331)
 
 [node name="PhysicsBox102" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 10.4187, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 10.4187, 166.331)
 
 [node name="PhysicsBox103" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 10.4187, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 10.4187, 166.331)
 
 [node name="PhysicsBox104" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 10.4187, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 10.4187, 166.331)
 
 [node name="PhysicsBox105" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 10.4187, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 10.4187, 166.331)
 
 [node name="PhysicsBox106" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 11.685, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 11.685, 166.331)
 
 [node name="PhysicsBox107" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 11.685, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 11.685, 166.331)
 
 [node name="PhysicsBox108" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 11.685, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 11.685, 166.331)
 
 [node name="PhysicsBox109" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 11.685, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 11.685, 166.331)
 
 [node name="PhysicsBox110" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 11.685, 161.928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 11.685, 166.331)
 
 [node name="PhysicsBox111" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 10.4187, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 10.4187, 167.932)
 
 [node name="PhysicsBox112" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 10.4187, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 10.4187, 167.932)
 
 [node name="PhysicsBox113" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 10.4187, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 10.4187, 167.932)
 
 [node name="PhysicsBox114" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 10.4187, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 10.4187, 167.932)
 
 [node name="PhysicsBox115" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 10.4187, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 10.4187, 167.932)
 
 [node name="PhysicsBox116" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 11.685, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.243, 11.685, 167.932)
 
 [node name="PhysicsBox117" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 11.685, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.791, 11.685, 167.932)
 
 [node name="PhysicsBox118" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 11.685, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.066, 11.685, 167.932)
 
 [node name="PhysicsBox119" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 11.685, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.245, 11.685, 167.932)
 
 [node name="PhysicsBox120" parent="BossRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 11.685, 163.529)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160.448, 11.685, 167.932)
 
 [node name="ExplosionController" type="Area3D" parent="BossRoom" node_paths=PackedStringArray("particles", "explosionSound")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.264, 4.3621, 166.905)

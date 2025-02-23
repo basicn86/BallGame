@@ -41,6 +41,7 @@ one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
 collision_base_size = 0.1
+visibility_aabb = AABB(-100, -100, -100, 200, 200, 200)
 process_material = SubResource("ParticleProcessMaterial_h776a")
 draw_pass_1 = SubResource("BoxMesh_gyfg6")
 
