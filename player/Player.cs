@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 public partial class Player : RigidBody3D
 {
-	[ExportCategory("Player References")]
 	[Export]
-	private PlayerCamera cameraNode;
+	private PlayerCameraManager cameraManager;
+
 	[Export]
 	public MeshInstance3D playerModel;
 	[Export]
@@ -52,15 +52,13 @@ public partial class Player : RigidBody3D
 	[Export]
 	public AudioStreamPlayer3D landSound;
 
-	public static Player Instance;
+	public static Player Instance; //TODO: possibly remove this
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		if (Instance != null) QueueFree();
 		Instance = this;
-
-		cameraNode.PlayerRid = GetRid();
 
 		groundCast.TopLevel = true;
 
@@ -75,22 +73,22 @@ public partial class Player : RigidBody3D
 			Task.Delay(500).Wait();
 		}
 
-		cameraNode.TargetPosition = playerModel.GlobalPosition;
+		cameraManager.TargetPosition = playerModel.GlobalPosition;
 
-		laserPistol.UpdatePosition(GlobalPosition, cameraNode.Basis);
+		laserPistol.UpdatePosition(GlobalPosition, cameraManager.CameraBasis);
 		if (Input.IsActionJustPressed("attack")) //possibly move this to physics process
 		{
-			laserPistol.Fire(cameraNode.GetCrosshairCollisionPoint());
+			laserPistol.Fire(cameraManager.GetCrosshairCollisionPoint());
 		}
 
-		grenadeThrower.UpdatePosition(GlobalPosition, cameraNode.Basis);
+		grenadeThrower.UpdatePosition(GlobalPosition, cameraManager.CameraBasis);
 		if (Input.IsActionJustPressed("throw_grenade")) //possibly move this to physics process
 		{
 			grenadeThrower.Fire();
 		}
 		if(Input.IsActionJustReleased("throw_grenade"))
 		{
-			grenadeThrower.Release(cameraNode.GetCrosshairCollisionPoint());
+			grenadeThrower.Release(cameraManager.GetCrosshairCollisionPoint());
 		}
 	}
 
@@ -108,7 +106,7 @@ public partial class Player : RigidBody3D
 		Vector3 moveVector = new Vector3();
 		moveVector.X = Input.GetAxis("left", "right");
 		moveVector.Z = Input.GetAxis("forward", "backward");
-		moveVector *= cameraNode.Basis.Inverse();
+		moveVector *= cameraManager.CameraBasis.Inverse();
 		moveVector.Y = 0;
 
 		if (moveVector.IsZeroApprox())

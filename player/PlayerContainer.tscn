@@ -1,17 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://cit34jlsj207i"]
+[gd_scene load_steps=9 format=3 uid="uid://cit34jlsj207i"]
 
 [ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://player/player.tscn" id="1_wklvn"]
 [ext_resource type="PackedScene" uid="uid://b4e4fq5r5oyg5" path="res://player/PlayerRespawner.tscn" id="2_cnp5t"]
+[ext_resource type="Script" path="res://player/PlayerCameraManager.cs" id="3_72fxf"]
 [ext_resource type="PackedScene" uid="uid://bycuwkrqgkrc3" path="res://player/playerCamera.tscn" id="3_tl1pj"]
 [ext_resource type="PackedScene" uid="uid://11b4biydrmn2" path="res://weapons/LaserPistol/LaserPistol.tscn" id="4_gv132"]
+[ext_resource type="Script" path="res://player/LockOnCamera.cs" id="4_thknk"]
 [ext_resource type="PackedScene" uid="uid://csiqtfnx8jbmn" path="res://weapons/Grenade/GrenadeThrower.tscn" id="5_cwmpy"]
 [ext_resource type="PackedScene" uid="uid://cmclnyunnsjjs" path="res://weapons/Grenade/Grenade.tscn" id="6_xq3iv"]
 
 [node name="PlayerContainer" type="Node3D"]
 
-[node name="Player" parent="." node_paths=PackedStringArray("cameraNode", "laserPistol", "grenadeThrower") instance=ExtResource("1_wklvn")]
+[node name="Player" parent="." node_paths=PackedStringArray("cameraManager", "laserPistol", "grenadeThrower") instance=ExtResource("1_wklvn")]
 collision_mask = 5
-cameraNode = NodePath("../CameraPivot")
+cameraManager = NodePath("../CameraManager")
 AirAcceleration = 10.0
 JumpForce = 12.0
 JumpHeldGravityScale = 2.5
@@ -21,15 +23,26 @@ grenadeThrower = NodePath("../GrenadeThrower")
 
 [node name="PlayerRespawner" parent="." instance=ExtResource("2_cnp5t")]
 
+[node name="CameraManager" type="Node3D" parent="." node_paths=PackedStringArray("StandardCamera", "LockOnCamera")]
+script = ExtResource("3_72fxf")
+StandardCamera = NodePath("../CameraPivot")
+LockOnCamera = NodePath("../LockOnCamera")
+
 [node name="CameraPivot" parent="." instance=ExtResource("3_tl1pj")]
 
-[node name="LaserPistol" parent="." instance=ExtResource("4_gv132")]
+[node name="LockOnCamera" type="Node3D" parent="." node_paths=PackedStringArray("camera")]
+script = ExtResource("4_thknk")
+camera = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="LockOnCamera"]
 
 [node name="GrenadeThrower" parent="." instance=ExtResource("5_cwmpy")]
 Offset = Vector3(0.35, 0, 0)
 Direction = Vector3(-50, 200, -400)
 grenadeScene = ExtResource("6_xq3iv")
 throwForce = 20.0
+
+[node name="LaserPistol" parent="." instance=ExtResource("4_gv132")]
 
 [connection signal="PlayerDied" from="Player" to="PlayerRespawner" method="_on_player_player_died"]
 [connection signal="RespawnNow" from="PlayerRespawner" to="Player" method="_on_player_respawner_respawn_now"]

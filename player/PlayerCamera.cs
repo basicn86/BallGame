@@ -1,22 +1,12 @@
 using Godot;
+using Godot.Collections;
 using System;
 
-public partial class PlayerCamera : Node3D
+public partial class PlayerCamera : Node3D, IPlayerCamera
 {
 	private float sensitivity = 0.1f;
 
-	
-	public Rid PlayerRid
-	{
-		get { return playerRid; }
-		set {
-			playerRid = value;
-			obstacleRaycast.AddExceptionRid(playerRid);
-			crosshairRaycast.AddExceptionRid(playerRid);
-		}
-	}
-	private Rid playerRid;
-	public Vector3 TargetPosition;
+	public Vector3 TargetPosition { get; set; }
 	[Export]
 	private Node3D pitch;
 	[Export]
@@ -24,11 +14,15 @@ public partial class PlayerCamera : Node3D
 	[Export]
 	private RayCast3D crosshairRaycast;
 	[Export]
+	private RayCast3D lockOnRaycast;
+	[Export]
 	private Node3D crosshairNoncollidingPoint;
 
+	//default camera position and distance
 	private Vector3 normalCameraPosition;
 	private float normalCameraDistance;
 	private Vector3 normalObstacleRaycastPosition;
+	private Vector3 desiredCameraLocalPosition;
 
 	[Export]
 	public Camera3D camera;
@@ -52,15 +46,38 @@ public partial class PlayerCamera : Node3D
 			return crosshairNoncollidingPoint.GlobalTransform.Origin;
 		}
 	}
+
+	public Node3D GetLockOnTarget()
+	{
+		//This is to prevent locking on through walls
+		Vector3 targetPosition = GetCrosshairCollisionPoint();
+		lockOnRaycast.TargetPosition = new Vector3(0f,0f, -((targetPosition - crosshairRaycast.GlobalPosition).LengthSquared()));
+
+		lockOnRaycast.ForceRaycastUpdate();
+		if (!lockOnRaycast.IsColliding()) return null;
+		return lockOnRaycast.GetCollider() as Node3D;
+	}
 	public RayCast3D CrosshairRaycast
 	{
 		get { return crosshairRaycast; }
+	}
+
+	public void Activate()
+	{
+		camera.Current = true;
+	}
+
+	public void ResetPosition(Vector3 targetPosition)
+	{
+		camera.GlobalPosition = targetPosition;
 	}
 	#endregion
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		lockOnRaycast.Enabled = false;
+
 		obstacleRaycast.TargetPosition = camera.Position + new Vector3(0, -0.1f, 0);
 
 		normalCameraPosition = camera.Position;
@@ -78,16 +95,24 @@ public partial class PlayerCamera : Node3D
 		GlobalPosition = GlobalPosition.Lerp(TargetPosition, 20.0f * (float)delta);
 
 		MoveCameraAwayFromEnvironment();
+		camera.Position = camera.Position.Lerp(desiredCameraLocalPosition, 20.0f * (float)delta);
 
 		ToggleFullscreen();
 
 		if (Input.IsActionJustPressed("ui_cancel")) Input.MouseMode = Input.MouseModeEnum.Visible;
 
 		HandleJoystickCameraRotation(delta);
+
+		if (Input.IsKeyLabelPressed(Key.E))
+		{
+			Node3D lockOnTarget = GetLockOnTarget();
+			if (lockOnTarget != null) GD.Print("Locking on to " + lockOnTarget.Name);
+		}
 	}
 
 	private void ToggleFullscreen()
 	{
+		//TODO: move to UI code, doesnt make sense to have it here
 		if (Input.IsActionJustPressed("fullscreen"))
 		{
 			Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -135,15 +160,16 @@ public partial class PlayerCamera : Node3D
 		{
 			Vector3 localCollisionPoint = obstacleRaycast.GetCollisionPoint() - obstacleRaycast.GlobalPosition;
 			float localDistance = localCollisionPoint.Length();
-			camera.Position = normalCameraPosition * (localDistance / normalCameraDistance);
+			desiredCameraLocalPosition = normalCameraPosition * (localDistance / normalCameraDistance);
 			//move the camera up a little bit when it is colliding with the environment
-			camera.Position += new Vector3(0, 0.5f * Math.Clamp((1f-(localDistance/normalCameraDistance))*2f, 0f, 1f), 0);
+			//TODO: possibly replace this with a curve rather than an equation
+			desiredCameraLocalPosition += new Vector3(0, 0.5f * Math.Clamp((1f-(localDistance/normalCameraDistance))*2f, 0f, 1f), 0);
 
 			crosshairRaycast.Position = normalObstacleRaycastPosition * (localDistance / normalCameraDistance);
 		}
 		else
 		{
-			camera.Position = normalCameraPosition;
+			desiredCameraLocalPosition = normalCameraPosition;
 			crosshairRaycast.Position = normalObstacleRaycastPosition;
 		}
 	}
