@@ -11,20 +11,20 @@ public partial class GrassMultiMeshInstance3D : MultiMeshInstance3D
 	public Material Material { get; set; }
 
 	//Caching the transforms increases performance by 2x, even if it adds more operations, since we do not need to wait for the rendering server.
-	//TODO: possibly make this an array for better performance?
-	private List<Transform3D> transforms;
+	private Transform3D[] transforms;
 
 	public override void _Ready()
 	{
 		Multimesh.Mesh.SurfaceSetMaterial(0, Material);
 		Multimesh.VisibleInstanceCount = Multimesh.InstanceCount;
 
-		transforms = new List<Transform3D>(Multimesh.InstanceCount);
+		transforms = new Transform3D[Multimesh.InstanceCount];
 		for (int i = 0; i < Multimesh.InstanceCount; i++)
 		{
-			transforms.Add(Multimesh.GetInstanceTransform(i));
+			transforms[i] = Multimesh.GetInstanceTransform(i);
 		}
 	}
+
 	public void RemoveWithinDistance(Vector3 position, float distance)
 	{
 		List<int> instanceIndexes = GetInstancesToRemove(position, distance, 0, Multimesh.VisibleInstanceCount);
