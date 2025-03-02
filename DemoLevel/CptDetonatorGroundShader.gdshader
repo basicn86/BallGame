@@ -10,9 +10,9 @@ void vertex() {
 
 void fragment() {
 	vec3 regularAlbedo = texture(RegularTexture, UV * 32.0).xyz * 0.5f;
-	
+
 	float blendFactor = texture(Mask, UV).x;
-	
+
 	ALBEDO = mix(texture(BurnedTexture, UV * 32.0).xyz, regularAlbedo, blendFactor);
 }
 

@@ -2,8 +2,51 @@ using Godot;
 using Godot.Collections;
 using System;
 
-public partial class PlayerCamera : Node3D, IPlayerCamera
+//Camera Requirements:
+//The camera should lerp to the player's position
+//When in free look mode, the rotation should have no lerping
+//When locking onto an enemy, the camera should lerp to its lock-on position
+//The camera should not clip into the environment, when it does, lerp the camera towards the player
+public partial class PlayerCamera : Node3D
 {
+	enum CameraMode
+	{
+		FreeLook,
+		EnteringLockOn,
+		LockOn
+	}
+	private class LockOnTargetInfo
+	{
+		private Node3D target;
+		public Node3D Target
+		{
+			get { return target; }
+			set
+			{
+				target = value;
+				prevPos = target.GlobalPosition;
+				currentPos = target.GlobalPosition;
+			}
+		}
+		private Vector3 prevPos;
+		private Vector3 currentPos;
+
+		public bool IsAlive()
+		{
+			return IsInstanceValid(Target);
+		}
+		public void UpdatePosition()
+		{
+			prevPos = currentPos;
+			currentPos = Target.GlobalPosition;
+		}
+		public Vector3 GetInterpolatedPos()
+		{
+			return prevPos.Lerp(currentPos, (float)Engine.GetPhysicsInterpolationFraction());
+		}
+	}
+	CameraMode cameraMode = CameraMode.FreeLook;
+
 	private float sensitivity = 0.1f;
 
 	public Vector3 TargetPosition { get; set; }
@@ -20,12 +63,21 @@ public partial class PlayerCamera : Node3D, IPlayerCamera
 
 	//default camera position and distance
 	private Vector3 normalCameraPosition;
+	private Vector3 normalCameraRotation;
 	private float normalCameraDistance;
 	private Vector3 normalObstacleRaycastPosition;
 	private Vector3 desiredCameraLocalPosition;
+	private LockOnTargetInfo lockOnTargetInfo = new LockOnTargetInfo();
 
 	[Export]
 	public Camera3D camera;
+
+	//These are nodes that the camera will sit on.
+	[ExportCategory("Pedestals")]
+	[Export]
+	private Node3D FreeLookPedestal;
+	[Export]
+	private Node3D LockOnPedestal;
 
 	#region Publicly accessible properties
 	public float Pitch
@@ -71,6 +123,10 @@ public partial class PlayerCamera : Node3D, IPlayerCamera
 	{
 		camera.GlobalPosition = targetPosition;
 	}
+	public void ResetRotation(Vector3 rotation)
+	{
+		camera.GlobalRotation = rotation;
+	}
 	#endregion
 
 	// Called when the node enters the scene tree for the first time.
@@ -81,6 +137,7 @@ public partial class PlayerCamera : Node3D, IPlayerCamera
 		obstacleRaycast.TargetPosition = camera.Position + new Vector3(0, -0.1f, 0);
 
 		normalCameraPosition = camera.Position;
+		normalCameraRotation = camera.Rotation;
 		normalCameraDistance = camera.Position.DistanceTo(new Vector3());
 
 		normalObstacleRaycastPosition = crosshairRaycast.Position; //must be relative to the camera
@@ -94,20 +151,90 @@ public partial class PlayerCamera : Node3D, IPlayerCamera
 	{
 		GlobalPosition = GlobalPosition.Lerp(TargetPosition, 20.0f * (float)delta);
 
-		MoveCameraAwayFromEnvironment();
-		camera.Position = camera.Position.Lerp(desiredCameraLocalPosition, 20.0f * (float)delta);
+		switch(cameraMode)
+		{
+			case CameraMode.FreeLook:
+				HandleJoystickCameraRotation(delta);
+				camera.GlobalPosition = FreeLookPedestal.GlobalPosition;
+				camera.GlobalRotation = FreeLookPedestal.GlobalRotation;
+				break;
+			case CameraMode.EnteringLockOn:
+				EnteringLockOnState(delta);
+				break;
+			case CameraMode.LockOn:
+				LockOnState();
+				break;
+		}
 
+		//TODO: reimplement this
+		//MoveCameraAwayFromEnvironment();
+
+		//TODO: Move the UI code away from here
 		ToggleFullscreen();
-
 		if (Input.IsActionJustPressed("ui_cancel")) Input.MouseMode = Input.MouseModeEnum.Visible;
-
-		HandleJoystickCameraRotation(delta);
 
 		if (Input.IsKeyLabelPressed(Key.E))
 		{
-			Node3D lockOnTarget = GetLockOnTarget();
-			if (lockOnTarget != null) GD.Print("Locking on to " + lockOnTarget.Name);
+			if (cameraMode != CameraMode.FreeLook) return;
+			Node3D temp = GetLockOnTarget();
+			if (temp != null)
+			{
+				lockOnTargetInfo.Target = temp;
+				cameraMode = CameraMode.EnteringLockOn;
+				camera.Reparent(LockOnPedestal);
+			}
 		}
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		if (lockOnTargetInfo.IsAlive())
+		{
+			lockOnTargetInfo.UpdatePosition();
+		}
+	}
+
+	private void EnteringLockOnState(double delta)
+	{
+		if (!lockOnTargetInfo.IsAlive())
+		{
+			cameraMode = CameraMode.FreeLook;
+			return;
+		}
+
+		Vector3 lockOnPos = lockOnTargetInfo.GetInterpolatedPos();
+		LockOnPedestal.LookAt(lockOnPos);
+		lockOnPos.Y = GlobalPosition.Y;
+		LookAt(lockOnPos, Vector3.Up);
+
+		camera.GlobalPosition = camera.GlobalPosition.Lerp(LockOnPedestal.GlobalPosition, 10f * (float)delta);
+		Basis targetRotation = LockOnPedestal.GlobalBasis;
+		targetRotation = targetRotation.Orthonormalized();
+		camera.GlobalTransform = new Transform3D(
+			camera.GlobalBasis.Slerp(targetRotation, MathF.Min(10f * (float)delta, 1f)),
+			camera.GlobalTransform.Origin
+		);
+
+		if (camera.GlobalPosition.DistanceTo(LockOnPedestal.GlobalPosition) < 0.1f &&
+			camera.GlobalBasis.Z.Dot(LockOnPedestal.GlobalBasis.Z) > 0.9f)
+		{
+			cameraMode = CameraMode.LockOn;
+		}
+	}
+
+	private void LockOnState()
+	{
+		if (!lockOnTargetInfo.IsAlive())
+		{
+			cameraMode = CameraMode.FreeLook;
+			return;
+		}
+		Vector3 lockOnPos = lockOnTargetInfo.GetInterpolatedPos();
+		LockOnPedestal.LookAt(lockOnPos);
+		lockOnPos.Y = pitch.GlobalPosition.Y;
+		LookAt(lockOnPos, Vector3.Up);
+		camera.GlobalPosition = LockOnPedestal.GlobalPosition;
+		camera.GlobalRotation = LockOnPedestal.GlobalRotation;
 	}
 
 	private void ToggleFullscreen()
@@ -178,6 +305,8 @@ public partial class PlayerCamera : Node3D, IPlayerCamera
 	{
 		if (@event is InputEventMouseMotion)
 		{
+			if (cameraMode != CameraMode.FreeLook) return;
+
 			RotateCamera(
 				((InputEventMouseMotion)@event).Relative.X,
 				((InputEventMouseMotion)@event).Relative.Y

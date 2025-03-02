@@ -2,28 +2,34 @@
 
 [ext_resource type="Script" path="res://player/PlayerCamera.cs" id="1_iw32j"]
 
-[node name="PlayerCamera" type="Node3D" node_paths=PackedStringArray("pitch", "obstacleRaycast", "crosshairRaycast", "lockOnRaycast", "crosshairNoncollidingPoint", "camera")]
+[node name="PlayerCamera" type="Node3D" node_paths=PackedStringArray("pitch", "obstacleRaycast", "crosshairRaycast", "lockOnRaycast", "crosshairNoncollidingPoint", "camera", "FreeLookPedestal", "LockOnPedestal")]
 top_level = true
 script = ExtResource("1_iw32j")
 pitch = NodePath("PitchPivot")
 obstacleRaycast = NodePath("PitchPivot/ObstacleRaycast")
-crosshairRaycast = NodePath("PitchPivot/Camera3D/CrosshairRaycast")
-lockOnRaycast = NodePath("PitchPivot/Camera3D/LockOnRaycast")
-crosshairNoncollidingPoint = NodePath("PitchPivot/Camera3D/CrosshairNoncollidingPoint")
-camera = NodePath("PitchPivot/Camera3D")
+crosshairRaycast = NodePath("PitchPivot/FreeLookPedestal/Camera3D/CrosshairRaycast")
+lockOnRaycast = NodePath("PitchPivot/FreeLookPedestal/Camera3D/LockOnRaycast")
+crosshairNoncollidingPoint = NodePath("PitchPivot/FreeLookPedestal/Camera3D/CrosshairNoncollidingPoint")
+camera = NodePath("PitchPivot/FreeLookPedestal/Camera3D")
+FreeLookPedestal = NodePath("PitchPivot/FreeLookPedestal")
+LockOnPedestal = NodePath("LockOnPedestal")
 
 [node name="PitchPivot" type="Node3D" parent="."]
 
-[node name="Camera3D" type="Camera3D" parent="PitchPivot"]
+[node name="FreeLookPedestal" type="Node3D" parent="PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 1.5, 3)
 
-[node name="CrosshairRaycast" type="RayCast3D" parent="PitchPivot/Camera3D"]
+[node name="Camera3D" type="Camera3D" parent="PitchPivot/FreeLookPedestal"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 1.5, 3)
+top_level = true
+
+[node name="CrosshairRaycast" type="RayCast3D" parent="PitchPivot/FreeLookPedestal/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 target_position = Vector3(0, 0, -50)
 collision_mask = 5
 debug_shape_thickness = 4
 
-[node name="LockOnRaycast" type="RayCast3D" parent="PitchPivot/Camera3D"]
+[node name="LockOnRaycast" type="RayCast3D" parent="PitchPivot/FreeLookPedestal/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 target_position = Vector3(0, 0, -50)
 collision_mask = 16
@@ -31,13 +37,16 @@ collide_with_areas = true
 collide_with_bodies = false
 debug_shape_thickness = 4
 
-[node name="CrosshairNoncollidingPoint" type="Node3D" parent="PitchPivot/Camera3D"]
+[node name="CrosshairNoncollidingPoint" type="Node3D" parent="PitchPivot/FreeLookPedestal/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -55)
 
-[node name="AudioListener3D" type="AudioListener3D" parent="PitchPivot/Camera3D"]
+[node name="AudioListener3D" type="AudioListener3D" parent="PitchPivot/FreeLookPedestal/Camera3D"]
 current = true
 
 [node name="ObstacleRaycast" type="RayCast3D" parent="PitchPivot"]
 target_position = Vector3(0, 0, -1)
 hit_from_inside = true
 debug_shape_thickness = 1
+
+[node name="LockOnPedestal" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5)

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 public partial class Player : RigidBody3D
 {
 	[Export]
-	private PlayerCameraManager cameraManager;
+	private PlayerCamera CameraNode;
 
 	[Export]
 	public MeshInstance3D playerModel;
@@ -73,22 +73,22 @@ public partial class Player : RigidBody3D
 			Task.Delay(500).Wait();
 		}
 
-		cameraManager.TargetPosition = playerModel.GlobalPosition;
+		CameraNode.TargetPosition = playerModel.GlobalPosition;
 
-		laserPistol.UpdatePosition(GlobalPosition, cameraManager.CameraBasis);
+		laserPistol.UpdatePosition(GlobalPosition, CameraNode.Basis);
 		if (Input.IsActionJustPressed("attack")) //possibly move this to physics process
 		{
-			laserPistol.Fire(cameraManager.GetCrosshairCollisionPoint());
+			laserPistol.Fire(CameraNode.GetCrosshairCollisionPoint());
 		}
 
-		grenadeThrower.UpdatePosition(GlobalPosition, cameraManager.CameraBasis);
+		grenadeThrower.UpdatePosition(GlobalPosition, CameraNode.Basis);
 		if (Input.IsActionJustPressed("throw_grenade")) //possibly move this to physics process
 		{
 			grenadeThrower.Fire();
 		}
 		if(Input.IsActionJustReleased("throw_grenade"))
 		{
-			grenadeThrower.Release(cameraManager.GetCrosshairCollisionPoint());
+			grenadeThrower.Release(CameraNode.GetCrosshairCollisionPoint());
 		}
 	}
 
@@ -106,7 +106,7 @@ public partial class Player : RigidBody3D
 		Vector3 moveVector = new Vector3();
 		moveVector.X = Input.GetAxis("left", "right");
 		moveVector.Z = Input.GetAxis("forward", "backward");
-		moveVector *= cameraManager.CameraBasis.Inverse();
+		moveVector *= CameraNode.Basis.Inverse();
 		moveVector.Y = 0;
 
 		if (moveVector.IsZeroApprox())

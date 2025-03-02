@@ -430,9 +430,6 @@ shape = SubResource("BoxShape3D_yu183")
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 161.678, 5.40572, 89.0561)
 
-[node name="LockOnCamera" parent="PlayerContainer" index="4" node_paths=PackedStringArray("target")]
-target = NodePath("../../BossRoom/CptDetonator")
-
 [node name="DeathPlane" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.8539, 0)
 script = ExtResource("2_xq41t")
