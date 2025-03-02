@@ -6,6 +6,40 @@ using System.Threading;
 
 public partial class CptDetonatorGround : StaticBody3D
 {
+	private class TextureCoord
+	{
+		public Vector3 worldPos;
+		public Vector2I pixel;
+	}
+
+	private class TextureCoordIsland
+	{
+		//maximum a coordinate will be from the center of the island
+		private const float islandRadius = 5f;
+		private TextureCoord center;
+
+		public List<TextureCoord> textureCoords = new List<TextureCoord>();
+
+		public TextureCoordIsland(TextureCoord center)
+		{
+			this.center = center;
+			textureCoords = new List<TextureCoord>();
+			textureCoords.Add(center);
+		}
+		public bool WithinIsland(TextureCoord coord)
+		{
+			return center.worldPos.DistanceTo(coord.worldPos) < islandRadius;
+		}
+		public void Add(TextureCoord coord)
+		{
+			textureCoords.Add(coord);
+		}
+		public bool BurnWithinIsland(Vector3 point, float radius)
+		{
+			return center.worldPos.DistanceTo(point) < islandRadius + radius;
+		}
+	}
+
 	[Export]
 	MeshInstance3D meshInstance3D;
 
@@ -15,7 +49,7 @@ public partial class CptDetonatorGround : StaticBody3D
 	//TODO: don't make this a singleton since we can only have one instance of this class. In the future we may want multiple instances of this class.
 	public static CptDetonatorGround? Instance { get; private set; }
 
-	Vector3[,] TextureCoords = new Vector3[width, width];
+	List<TextureCoordIsland> islands = new List<TextureCoordIsland>();
 
 	Vector3[] vertices;
 	Vector2[] uvs;
@@ -60,7 +94,23 @@ public partial class CptDetonatorGround : StaticBody3D
 			for (int j = 0; j < width; j++)
 			{
 				Vector3 worldPos = GetWorldPositionFromUV(new Vector2((float)i / (float)width, (float)j / (float)width));
-				TextureCoords[i, j] = worldPos;
+				TextureCoord coord = new TextureCoord();
+				coord.worldPos = worldPos;
+				coord.pixel = new Vector2I(i, j);
+				bool added = false;
+				foreach (TextureCoordIsland island in islands)
+				{
+					if (island.WithinIsland(coord))
+					{
+						island.Add(coord);
+						added = true;
+						break;
+					}
+				}
+				if (!added)
+				{
+					islands.Add(new TextureCoordIsland(coord));
+				}
 			}
 		}
 	}
@@ -81,43 +131,23 @@ public partial class CptDetonatorGround : StaticBody3D
 	
 	public void AddBurnPoint(Vector3 point)
 	{
-		Thread threadA = new Thread(() => AddBurnPointHelper(point, 0, 2));
-		Thread threadB = new Thread(() => AddBurnPointHelper(point, 1, 2));
-
-		threadA.Start();
-		threadB.Start();
-
-		threadA.Join();
-		threadB.Join();
+		foreach (TextureCoordIsland island in islands)
+		{
+			if (island.BurnWithinIsland(point, burnRadius))
+			{
+				foreach (TextureCoord coord in island.textureCoords)
+				{
+					if (point.DistanceSquaredTo(coord.worldPos) < burnRadiusSquared)
+					{
+						img.SetPixel(coord.pixel.X, coord.pixel.Y, new Color(0.0f, 0.0f, 0.0f, 0.0f));
+					}
+				}
+			}
+		}
 
 		img.GenerateMipmaps();
 		imageTexture.Update(img);
 		shader.SetShaderParameter("Mask", imageTexture);
-	}
-
-	//For multithreading
-	private void AddBurnPointHelper(Vector3 point, int start, int increment)
-	{
-		for (int i = start; i < width; i+=increment)
-		{
-			for (int j = 0; j < width; j++)
-			{
-				Vector3 worldPos = TextureCoords[i, j];
-				if (NotWithinBoundingBox(point, worldPos)) continue;
-				if (worldPos.DistanceSquaredTo(point) < burnRadiusSquared)
-				{
-					img.SetPixel(i, j, new Color(0.0f, 0.0f, 0.0f, 0.0f));
-				}
-			}
-		}
-	}
-
-	public bool NotWithinBoundingBox(Vector3 point, Vector3 textureCoord)
-	{
-		if (point.X < textureCoord.X - burnRadius || point.X > textureCoord.X + burnRadius) return true;
-		if (point.Y < textureCoord.Y - burnRadius || point.Y > textureCoord.Y + burnRadius) return true;
-		if (point.Z < textureCoord.Z - burnRadius || point.Z > textureCoord.Z + burnRadius) return true;
-		return false;
 	}
 
 	public Vector3 GetBarycentrics(Vector2 p, Vector2 a, Vector2 b, Vector2 c)
