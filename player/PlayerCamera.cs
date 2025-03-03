@@ -170,18 +170,37 @@ public partial class PlayerCamera : Node3D
 				Node3D temp = GetLockOnTarget();
 				if (temp != null)
 				{
-					lockOnTargetInfo.Target = temp;
-					_enterLockOnStateLerp = 0;
-					cameraMode = CameraMode.EnteringLockOn;
-					camera.Reparent(LockOnPedestal);
+					LockOn(temp);
 				}
 			}
 			else if (cameraMode == CameraMode.LockOn)
 			{
-				cameraMode = CameraMode.FreeLook;
-				camera.Reparent(FreeLookPedestal);
+				StopLockOn();
 			}
 		}
+	}
+
+	private void LockOn(Node3D target)
+	{
+		lockOnTargetInfo.Target = target;
+		_enterLockOnStateLerp = 0;
+		cameraMode = CameraMode.EnteringLockOn;
+		camera.Reparent(LockOnPedestal);
+
+		if (target is LockOnArea lockOnArea)
+		{
+			lockOnArea.TargetLocked();
+		}
+	}
+
+	private void StopLockOn()
+	{
+		if (lockOnTargetInfo.Target is LockOnArea lockOnArea)
+		{
+			lockOnArea.TargetUnlocked();
+		}
+		cameraMode = CameraMode.FreeLook;
+		camera.Reparent(FreeLookPedestal);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -225,7 +244,7 @@ public partial class PlayerCamera : Node3D
 			camera.GlobalTransform.Origin
 		);
 
-		if (_enterLockOnStateLerp >= 1.0)
+		if (_enterLockOnStateLerp >= 0.5)
 		{
 			_enterLockOnStateLerp = 0;
 			cameraMode = CameraMode.LockOn;

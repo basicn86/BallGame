@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=131 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Script" path="res://Hint.cs" id="1_oddph"]
@@ -44,6 +44,7 @@
 [ext_resource type="AudioStream" uid="uid://dbvpykvx7fuvl" path="res://music/y0pod.mp3" id="35_fwv8b"]
 [ext_resource type="Texture2D" uid="uid://dy2f3u06kp37c" path="res://DemoLevel/NukeVelocityLimitDemoLevel.tres" id="36_dd6fc"]
 [ext_resource type="Script" path="res://DemoLevel/CptDetonatorGround.cs" id="37_pd2jn"]
+[ext_resource type="Script" path="res://LockOnArea.cs" id="37_s7pc0"]
 [ext_resource type="Material" uid="uid://cdtgbm1a6m7t6" path="res://DemoLevel/CptDetonatorGroundMaterial.tres" id="38_srsny"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yu183"]
@@ -218,6 +219,16 @@ scale_curve = SubResource("CurveTexture_7i8pr")
 
 [sub_resource type="BoxMesh" id="BoxMesh_8ksyu"]
 size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qs0ps"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_2l6go"]
+material = SubResource("StandardMaterial3D_qs0ps")
+text = "V"
+font_size = 12
+pixel_size = 0.1
+depth = 0.2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wtpav"]
 radius = 4.0
@@ -906,11 +917,19 @@ interpolate = false
 process_material = SubResource("ParticleProcessMaterial_atlxl")
 draw_pass_1 = SubResource("BoxMesh_8ksyu")
 
-[node name="LockOnArea" type="Area3D" parent="BossRoom/CptDetonator"]
+[node name="LockOnArea" type="Area3D" parent="BossRoom/CptDetonator" node_paths=PackedStringArray("meshInstance")]
 collision_layer = 16
 collision_mask = 16
 monitoring = false
 monitorable = false
+script = ExtResource("37_s7pc0")
+meshInstance = NodePath("MeshInstance3D")
+meshOffset = Vector3(0, 2, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BossRoom/CptDetonator/LockOnArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.183, 5.2287, 139.288)
+top_level = true
+mesh = SubResource("TextMesh_2l6go")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BossRoom/CptDetonator/LockOnArea"]
 shape = SubResource("SphereShape3D_wtpav")
