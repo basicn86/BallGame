@@ -136,9 +136,9 @@ public partial class PlayerCamera : Node3D
 
 		obstacleRaycast.TargetPosition = camera.Position + new Vector3(0, -0.1f, 0);
 
-		normalCameraPosition = camera.Position;
-		normalCameraRotation = camera.Rotation;
-		normalCameraDistance = camera.Position.DistanceTo(new Vector3());
+		normalCameraPosition = FreeLookPedestal.Position;
+		normalCameraRotation = FreeLookPedestal.Rotation;
+		normalCameraDistance = FreeLookPedestal.Position.DistanceTo(new Vector3());
 
 		normalObstacleRaycastPosition = crosshairRaycast.Position; //must be relative to the camera
 	}
@@ -151,9 +151,7 @@ public partial class PlayerCamera : Node3D
 		switch(cameraMode)
 		{
 			case CameraMode.FreeLook:
-				HandleJoystickCameraRotation(delta);
-				camera.GlobalPosition = FreeLookPedestal.GlobalPosition;
-				camera.GlobalRotation = FreeLookPedestal.GlobalRotation;
+				FreeLookState(delta);
 				break;
 			case CameraMode.EnteringLockOn:
 				EnteringLockOnState(delta);
@@ -166,15 +164,22 @@ public partial class PlayerCamera : Node3D
 		//TODO: reimplement this
 		//MoveCameraAwayFromEnvironment();
 
-		if (Input.IsKeyLabelPressed(Key.E))
+		if (Input.IsActionJustPressed("target_lock"))
 		{
-			if (cameraMode != CameraMode.FreeLook) return;
-			Node3D temp = GetLockOnTarget();
-			if (temp != null)
+			if (cameraMode == CameraMode.FreeLook) {
+				Node3D temp = GetLockOnTarget();
+				if (temp != null)
+				{
+					lockOnTargetInfo.Target = temp;
+					_enterLockOnStateLerp = 0;
+					cameraMode = CameraMode.EnteringLockOn;
+					camera.Reparent(LockOnPedestal);
+				}
+			}
+			else if (cameraMode == CameraMode.LockOn)
 			{
-				lockOnTargetInfo.Target = temp;
-				cameraMode = CameraMode.EnteringLockOn;
-				camera.Reparent(LockOnPedestal);
+				cameraMode = CameraMode.FreeLook;
+				camera.Reparent(FreeLookPedestal);
 			}
 		}
 	}
@@ -187,30 +192,42 @@ public partial class PlayerCamera : Node3D
 		}
 	}
 
+	private void FreeLookState(double delta)
+	{
+		HandleJoystickCameraRotation(delta);
+		camera.GlobalPosition = FreeLookPedestal.GlobalPosition;
+		camera.GlobalRotation = FreeLookPedestal.GlobalRotation;
+		MoveCameraAwayFromEnvironment(delta);
+	}
+
+	private double _enterLockOnStateLerp = 0;
 	private void EnteringLockOnState(double delta)
 	{
 		if (!lockOnTargetInfo.IsAlive())
 		{
 			cameraMode = CameraMode.FreeLook;
+			_enterLockOnStateLerp = 0;
 			return;
 		}
+
+		_enterLockOnStateLerp += delta;
 
 		Vector3 lockOnPos = lockOnTargetInfo.GetInterpolatedPos();
 		LockOnPedestal.LookAt(lockOnPos);
 		lockOnPos.Y = GlobalPosition.Y;
 		LookAt(lockOnPos, Vector3.Up);
 
-		camera.GlobalPosition = camera.GlobalPosition.Lerp(LockOnPedestal.GlobalPosition, 10f * (float)delta);
+		camera.GlobalPosition = camera.GlobalPosition.Lerp(LockOnPedestal.GlobalPosition, (float)_enterLockOnStateLerp);
 		Basis targetRotation = LockOnPedestal.GlobalBasis;
 		targetRotation = targetRotation.Orthonormalized();
 		camera.GlobalTransform = new Transform3D(
-			camera.GlobalBasis.Slerp(targetRotation, MathF.Min(10f * (float)delta, 1f)),
+			camera.GlobalBasis.Slerp(targetRotation, (float)_enterLockOnStateLerp),
 			camera.GlobalTransform.Origin
 		);
 
-		if (camera.GlobalPosition.DistanceTo(LockOnPedestal.GlobalPosition) < 0.1f &&
-			camera.GlobalBasis.Z.Dot(LockOnPedestal.GlobalBasis.Z) > 0.9f)
+		if (_enterLockOnStateLerp >= 1.0)
 		{
+			_enterLockOnStateLerp = 0;
 			cameraMode = CameraMode.LockOn;
 		}
 	}
@@ -258,7 +275,7 @@ public partial class PlayerCamera : Node3D
 	/// to its normal position.
 	/// We also need to update the crosshairRaycast position to match the camera position when the camera is colliding with the environment. When it is not colliding with the environment, we set the crosshairRaycast position to its normal position, which is usually a little bit ahead of the player. This prevents entities from being selected when an entity walks in between the player and the camera, and prevents the player from attacking backwards.
 	/// </summary>
-	private void MoveCameraAwayFromEnvironment()
+	private void MoveCameraAwayFromEnvironment(double delta)
 	{
 		obstacleRaycast.ForceRaycastUpdate();
 		if (obstacleRaycast.IsColliding())
@@ -277,6 +294,7 @@ public partial class PlayerCamera : Node3D
 			desiredCameraLocalPosition = normalCameraPosition;
 			crosshairRaycast.Position = normalObstacleRaycastPosition;
 		}
+		FreeLookPedestal.Position = FreeLookPedestal.Position.Lerp(desiredCameraLocalPosition, 20f * (float)delta);
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
