@@ -141,9 +141,6 @@ public partial class PlayerCamera : Node3D
 		normalCameraDistance = camera.Position.DistanceTo(new Vector3());
 
 		normalObstacleRaycastPosition = crosshairRaycast.Position; //must be relative to the camera
-
-		//capture the mouse
-		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -168,10 +165,6 @@ public partial class PlayerCamera : Node3D
 
 		//TODO: reimplement this
 		//MoveCameraAwayFromEnvironment();
-
-		//TODO: Move the UI code away from here
-		ToggleFullscreen();
-		if (Input.IsActionJustPressed("ui_cancel")) Input.MouseMode = Input.MouseModeEnum.Visible;
 
 		if (Input.IsKeyLabelPressed(Key.E))
 		{
@@ -235,21 +228,6 @@ public partial class PlayerCamera : Node3D
 		LookAt(lockOnPos, Vector3.Up);
 		camera.GlobalPosition = LockOnPedestal.GlobalPosition;
 		camera.GlobalRotation = LockOnPedestal.GlobalRotation;
-	}
-
-	private void ToggleFullscreen()
-	{
-		//TODO: move to UI code, doesnt make sense to have it here
-		if (Input.IsActionJustPressed("fullscreen"))
-		{
-			Input.MouseMode = Input.MouseModeEnum.Captured;
-
-			//Exclusive fullscreen is needed for FreeSync/G-Sync to work
-			if (DisplayServer.WindowGetMode() == DisplayServer.WindowMode.ExclusiveFullscreen)
-				DisplayServer.WindowSetMode(DisplayServer.WindowMode.Maximized);
-			else
-				DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
-		}
 	}
 
 	private void HandleJoystickCameraRotation(double delta)
