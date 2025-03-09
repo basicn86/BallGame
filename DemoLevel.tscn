@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Script" uid="uid://pkmqwx6sx4y6" path="res://Hint.cs" id="1_oddph"]
-[ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_yi0ja"]
 [ext_resource type="ArrayMesh" uid="uid://dumcr0fu0fwdj" path="res://QuestionMarkMesh.res" id="2_1yi8e"]
 [ext_resource type="Script" uid="uid://du8cwf636gg70" path="res://environment/Spikes/SpikeArea.cs" id="2_xq41t"]
 [ext_resource type="PackedScene" uid="uid://cnpb27we1lbh3" path="res://ui/PauseMenu.tscn" id="3_lnbl7"]
@@ -10,6 +9,7 @@
 [ext_resource type="Material" uid="uid://ov73e2vq13t6" path="res://DemoLevel/GrassGroundMaterial.tres" id="4_le0gn"]
 [ext_resource type="Script" uid="uid://d1tvxivu1buex" path="res://GrassMultiMeshInstance3D.cs" id="4_scv88"]
 [ext_resource type="Material" uid="uid://b7mcadtf10vtg" path="res://environment/Grass/GrassShader.tres" id="5_jexvf"]
+[ext_resource type="Texture2D" uid="uid://mbn5xemgcifr" path="res://autumn_field_puresky_4k.hdr" id="5_rh67q"]
 [ext_resource type="PackedScene" uid="uid://ctiw3gw6hbfhh" path="res://ui/crosshair.tscn" id="7_2qhh3"]
 [ext_resource type="Material" uid="uid://chj3j5rorgeu" path="res://DemoLevel/BurningGroundMaterial.tres" id="7_q8n0o"]
 [ext_resource type="PackedScene" uid="uid://m3ac8gckgd4j" path="res://environment/FlyingPlatform/FlyingPlatform.tscn" id="7_v7g34"]
@@ -54,7 +54,7 @@ size = Vector3(2, 2, 2)
 size = Vector3(5000, 20, 5000)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_u6uwp"]
-panorama = ExtResource("1_yi0ja")
+panorama = ExtResource("5_rh67q")
 
 [sub_resource type="Sky" id="Sky_p2gfp"]
 sky_material = SubResource("PanoramaSkyMaterial_u6uwp")

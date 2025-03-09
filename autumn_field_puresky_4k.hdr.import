@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://85ap486xpxjw"
-path="res://.godot/imported/autumn_field_puresky_1k.hdr-d050ad2ccd471df7b997d47532febf09.ctex"
+uid="uid://mbn5xemgcifr"
+path.bptc="res://.godot/imported/autumn_field_puresky_4k.hdr-d355268e42197985cd1623f1957ca5b5.bptc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://autumn_field_puresky_1k.hdr"
-dest_files=["res://.godot/imported/autumn_field_puresky_1k.hdr-d050ad2ccd471df7b997d47532febf09.ctex"]
+source_file="res://autumn_field_puresky_4k.hdr"
+dest_files=["res://.godot/imported/autumn_field_puresky_4k.hdr-d355268e42197985cd1623f1957ca5b5.bptc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
