@@ -7,6 +7,8 @@ public partial class Player : RigidBody3D
 	[Export]
 	private PlayerCamera CameraNode;
 
+	private int health = 100;
+
 	[Export]
 	public MeshInstance3D playerModel;
 	[Export]
@@ -203,6 +205,10 @@ public partial class Player : RigidBody3D
 	private void _on_area_3d_take_damage(long amount, long team)
 	{
 		if (team == (long)BallGame.Common.Team.Player) return;
+
+		health -= (int)amount;
+
+		HealthBar.Instance.SetHealth(health);
 
 		Node3D _deathParticles = (Node3D)deathParticles.Instantiate();
 		GetParent().AddChild(_deathParticles);

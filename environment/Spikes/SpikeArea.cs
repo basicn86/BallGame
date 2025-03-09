@@ -18,7 +18,7 @@ public partial class SpikeArea : Area3D
 	{
 		if (area is HitBoxComponent hitBoxComponent)
 		{
-			hitBoxComponent.EmitSignal("TakeDamage", 10, (int)Team.Neutral);
+			hitBoxComponent.EmitSignal("TakeDamage", 1000, (int)Team.Neutral);
 		}
 	}
 }

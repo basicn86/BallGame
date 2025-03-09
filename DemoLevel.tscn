@@ -1,4 +1,4 @@
-[gd_scene load_steps=131 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=134 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Script" uid="uid://pkmqwx6sx4y6" path="res://Hint.cs" id="1_oddph"]
@@ -24,7 +24,10 @@
 [ext_resource type="PackedScene" uid="uid://787c5e1qbail" path="res://environment/Flower2/Flower2.tscn" id="18_82srm"]
 [ext_resource type="Script" uid="uid://dpiwq6ery73nn" path="res://DemoLevel/WindArea.cs" id="21_thcbr"]
 [ext_resource type="Script" uid="uid://djm32k7bugxf0" path="res://HintPanel.cs" id="21_u3x08"]
+[ext_resource type="Texture2D" uid="uid://bv8akp5blneis" path="res://player/HealthBar.png" id="22_wjtn7"]
+[ext_resource type="Texture2D" uid="uid://73vvj4rcb0vx" path="res://player/HealthBarProgress.png" id="23_iogn7"]
 [ext_resource type="PackedScene" uid="uid://bus6cf3kkaeui" path="res://SpinningStar.tscn" id="24_0up3j"]
+[ext_resource type="Script" uid="uid://htw124q8ef0s" path="res://ui/HealthBar.cs" id="24_ges3u"]
 [ext_resource type="PackedScene" uid="uid://cq0lt4ix88bc4" path="res://DemoLevel/gear_8_tooth_slim.tscn" id="26_liqvs"]
 [ext_resource type="PackedScene" uid="uid://dq6dbrv6sbaii" path="res://OnOffBlockContainer.tscn" id="27_ljybl"]
 [ext_resource type="PackedScene" uid="uid://dp2t3hiyxyipb" path="res://BlueOnOffPlatform.tscn" id="28_bqrkm"]
@@ -712,6 +715,25 @@ layout_mode = 2
 mouse_filter = 2
 text = "Hint Text
 "
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="GUI"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -98.0
+offset_right = 96.0
+offset_bottom = -90.0
+grow_vertical = 0
+scale = Vector2(5, 5)
+mouse_filter = 2
+step = 0.01
+value = 100.0
+texture_under = ExtResource("22_wjtn7")
+texture_progress = ExtResource("23_iogn7")
+script = ExtResource("24_ges3u")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_hlu0w")

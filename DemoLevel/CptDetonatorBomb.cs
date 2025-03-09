@@ -28,7 +28,7 @@ public partial class CptDetonatorBomb : RigidBody3D
 			if (body is HitBoxComponent)
 			{
 				HitBoxComponent hitBox = body as HitBoxComponent;
-				hitBox.EmitSignal("TakeDamage", 100, (int)BallGame.Common.Team.Enemy);
+				hitBox.EmitSignal("TakeDamage", 10, (int)BallGame.Common.Team.Enemy);
 			}
 		}
 	}
