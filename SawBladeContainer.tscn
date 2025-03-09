@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://l0f51fiwyojq"]
 
-[ext_resource type="Script" path="res://SawBladeProjectile.cs" id="1_jq1sq"]
+[ext_resource type="Script" uid="uid://c5eibfmuvhfnb" path="res://SawBladeProjectile.cs" id="1_jq1sq"]
 [ext_resource type="PackedScene" uid="uid://bgeuy136ci127" path="res://SawBlade.blend" id="2_7042k"]
-[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="3_125jv"]
-[ext_resource type="Script" path="res://environment/Spikes/SpikeArea.cs" id="3_extfn"]
+[ext_resource type="Script" uid="uid://cbwy58owe0mcp" path="res://common/ModelInterpolator.cs" id="3_125jv"]
+[ext_resource type="Script" uid="uid://du8cwf636gg70" path="res://environment/Spikes/SpikeArea.cs" id="3_extfn"]
 [ext_resource type="AudioStream" uid="uid://cnn4n5dscqwwy" path="res://DemoLevel/metal-grinding-very-slow-72680.mp3" id="5_sa5pq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8s57"]

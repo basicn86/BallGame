@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://cnpb27we1lbh3"]
 
-[ext_resource type="Script" path="res://PauseMenu.cs" id="1_mbcr5"]
+[ext_resource type="Script" uid="uid://cw1yyredbysu" path="res://PauseMenu.cs" id="1_mbcr5"]
 [ext_resource type="StyleBox" uid="uid://dkh88htrj522q" path="res://ui/PauseMenuPanel.tres" id="2_gbsgt"]
 [ext_resource type="PackedScene" uid="uid://dwor6aejvqbhb" path="res://ui/ChangeMenuButton.tscn" id="2_wo4me"]
-[ext_resource type="Script" path="res://ui/MSAADropdown.cs" id="3_ckwlj"]
-[ext_resource type="Script" path="res://ui/UIScaleSlider.cs" id="4_asjyt"]
-[ext_resource type="Script" path="res://ui/FPSLimiter.cs" id="5_k1w7l"]
+[ext_resource type="Script" uid="uid://xs60adn3sykm" path="res://ui/MSAADropdown.cs" id="3_ckwlj"]
+[ext_resource type="Script" uid="uid://cerxjt4vwasxf" path="res://ui/UIScaleSlider.cs" id="4_asjyt"]
+[ext_resource type="Script" uid="uid://crhfm7peqe6jr" path="res://ui/FPSLimiter.cs" id="5_k1w7l"]
 
 [node name="PauseMenu" type="MarginContainer"]
 process_mode = 3

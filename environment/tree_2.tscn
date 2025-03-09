@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://chm55taavgilw"]
 
 [ext_resource type="PackedScene" uid="uid://deyxm2tc11a7w" path="res://environment/Tree2.glb" id="1_xax2h"]
-[ext_resource type="Shader" path="res://environment/TreeLeaves.gdshader" id="2_7npqv"]
+[ext_resource type="Shader" uid="uid://dhcsltfspc5aw" path="res://environment/TreeLeaves.gdshader" id="2_7npqv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o0d5r"]
 albedo_color = Color(0.482353, 0.317647, 0, 1)

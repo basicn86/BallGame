@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://ur6yyp0n0nlb"]
 
-[ext_resource type="Script" path="res://scripts/GrenadeParticles.cs" id="1_2hst6"]
+[ext_resource type="Script" uid="uid://dree6fe0d85vg" path="res://scripts/GrenadeParticles.cs" id="1_2hst6"]
 [ext_resource type="AudioStream" uid="uid://4t3movgxu1eu" path="res://Explosion.wav" id="2_k7dxy"]
 
 [sub_resource type="Gradient" id="Gradient_h5b36"]

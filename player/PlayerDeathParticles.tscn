@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://b25px6lkbxcw0"]
 
 [ext_resource type="ArrayMesh" uid="uid://bk60o4evjj67t" path="res://player/PlayerBall.obj" id="1_ecvik"]
-[ext_resource type="Script" path="res://common/OneShotParticleSystem.cs" id="2_xxchu"]
+[ext_resource type="Script" uid="uid://bbcx8elr4hkcf" path="res://common/OneShotParticleSystem.cs" id="2_xxchu"]
 [ext_resource type="AudioStream" uid="uid://4t3movgxu1eu" path="res://Explosion.wav" id="3_r8yn7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vkbji"]

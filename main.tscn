@@ -6,28 +6,28 @@
 [ext_resource type="PackedScene" uid="uid://dcojo2t0kpp15" path="res://environment/Elevator.tscn" id="7_isqio"]
 [ext_resource type="PackedScene" uid="uid://ctiw3gw6hbfhh" path="res://ui/crosshair.tscn" id="7_p7ewv"]
 [ext_resource type="PackedScene" uid="uid://mqbycbrcjyk4" path="res://PhysicsBox.tscn" id="7_xb6ro"]
-[ext_resource type="Script" path="res://scripts/ResetScene.cs" id="11_0pohk"]
-[ext_resource type="Script" path="res://FPSCounter.cs" id="11_4h4rb"]
+[ext_resource type="Script" uid="uid://cvyd01ekn6400" path="res://scripts/ResetScene.cs" id="11_0pohk"]
+[ext_resource type="Script" uid="uid://cpb4mj3q5qd8t" path="res://FPSCounter.cs" id="11_4h4rb"]
 [ext_resource type="PackedScene" uid="uid://cnpb27we1lbh3" path="res://ui/PauseMenu.tscn" id="12_elqkh"]
 [ext_resource type="PackedScene" uid="uid://c5nkr1epkcv1t" path="res://environment/Spikes/Spike.tscn" id="15_ispr2"]
-[ext_resource type="Script" path="res://environment/Spikes/SpikeArea.cs" id="16_ug8nn"]
+[ext_resource type="Script" uid="uid://du8cwf636gg70" path="res://environment/Spikes/SpikeArea.cs" id="16_ug8nn"]
 [ext_resource type="AudioStream" uid="uid://b1blbjo32ntll" path="res://music/Mega Man 7 - Slash Man.wav" id="18_0t7j3"]
 [ext_resource type="ArrayMesh" uid="uid://b068fmyqswrb8" path="res://environment/Tree1.obj" id="19_x0har"]
-[ext_resource type="Shader" path="res://environment/TreeLeaves.gdshader" id="20_hpep5"]
+[ext_resource type="Shader" uid="uid://dhcsltfspc5aw" path="res://environment/TreeLeaves.gdshader" id="20_hpep5"]
 [ext_resource type="PackedScene" uid="uid://chm55taavgilw" path="res://environment/tree_2.tscn" id="21_od8pj"]
 [ext_resource type="PackedScene" uid="uid://m3ac8gckgd4j" path="res://environment/FlyingPlatform/FlyingPlatform.tscn" id="22_dypbc"]
 [ext_resource type="PackedScene" uid="uid://s7lyixiwg325" path="res://environment/WoodBarrel.tscn" id="22_ipffj"]
 [ext_resource type="ArrayMesh" uid="uid://csxqt716caoeu" path="res://environment/Flower2/Flower2.obj" id="23_kw6hu"]
-[ext_resource type="Script" path="res://environment/Flower2/FlowerMultiMeshInstance3d.cs" id="24_pfpe5"]
+[ext_resource type="Script" uid="uid://i2ipkoni0x7g" path="res://environment/Flower2/FlowerMultiMeshInstance3d.cs" id="24_pfpe5"]
 [ext_resource type="Material" uid="uid://trcmk7xlc61k" path="res://environment/Flower2/BluePetal.tres" id="25_5v6p0"]
 [ext_resource type="Material" uid="uid://30yd8r7leet3" path="res://environment/Flower2/Stem.tres" id="26_voeat"]
-[ext_resource type="Script" path="res://Spinner.cs" id="27_iakb2"]
+[ext_resource type="Script" uid="uid://c0r1hfvw2kw31" path="res://Spinner.cs" id="27_iakb2"]
 [ext_resource type="Material" uid="uid://gyhw1hsmjgwk" path="res://environment/Flower2/Center.tres" id="27_qvfad"]
 [ext_resource type="Material" uid="uid://b7mcadtf10vtg" path="res://environment/Grass/GrassShader.tres" id="27_uxty2"]
 [ext_resource type="ArrayMesh" uid="uid://dwju2ewaplx15" path="res://environment/Grass/GrassBlade.obj" id="28_0drbp"]
-[ext_resource type="Script" path="res://MovingPlatformAnimator.cs" id="28_ob6fv"]
-[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="28_rhn0r"]
-[ext_resource type="Script" path="res://GrassMultiMeshInstance3D.cs" id="29_1q6w2"]
+[ext_resource type="Script" uid="uid://usm8k08bx6hq" path="res://MovingPlatformAnimator.cs" id="28_ob6fv"]
+[ext_resource type="Script" uid="uid://cbwy58owe0mcp" path="res://common/ModelInterpolator.cs" id="28_rhn0r"]
+[ext_resource type="Script" uid="uid://d1tvxivu1buex" path="res://GrassMultiMeshInstance3D.cs" id="29_1q6w2"]
 [ext_resource type="PackedScene" uid="uid://5t66n6i6dv8o" path="res://Checkpoint.tscn" id="29_14bmr"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1ws2m"]
@@ -204,8 +204,8 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 4, 1, 0, 0, 0, 1, 5, 1, 0.7
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1smtt"]
 _data = {
-"RESET": SubResource("Animation_iwrx4"),
-"moveplatform": SubResource("Animation_tglca")
+&"RESET": SubResource("Animation_iwrx4"),
+&"moveplatform": SubResource("Animation_tglca")
 }
 
 [sub_resource type="BoxMesh" id="BoxMesh_mdr2a"]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bus6cf3kkaeui"]
 
 [ext_resource type="PackedScene" uid="uid://dp7nswvtgucpf" path="res://Star.blend" id="1_rjmem"]
-[ext_resource type="Script" path="res://SpinningStar.cs" id="2_dkw5n"]
+[ext_resource type="Script" uid="uid://bje6cvwpv71oj" path="res://SpinningStar.cs" id="2_dkw5n"]
 [ext_resource type="Texture2D" uid="uid://vefvk3euujx8" path="res://wood1.png" id="3_miwp4"]
-[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="3_qqek5"]
+[ext_resource type="Script" uid="uid://cbwy58owe0mcp" path="res://common/ModelInterpolator.cs" id="3_qqek5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_almgg"]
 albedo_texture = ExtResource("3_miwp4")

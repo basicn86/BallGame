@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bxdr8t0s16o0"]
 
-[ext_resource type="Script" path="res://common/OneShotParticleSystem.cs" id="1_t5hpe"]
+[ext_resource type="Script" uid="uid://bbcx8elr4hkcf" path="res://common/OneShotParticleSystem.cs" id="1_t5hpe"]
 
 [sub_resource type="Curve" id="Curve_t5wa5"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

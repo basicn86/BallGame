@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ckjg8vgokuseq"]
 
-[ext_resource type="Script" path="res://common/OneShotParticleSystem.cs" id="1_8wvor"]
+[ext_resource type="Script" uid="uid://bbcx8elr4hkcf" path="res://common/OneShotParticleSystem.cs" id="1_8wvor"]
 [ext_resource type="AudioStream" uid="uid://4t3movgxu1eu" path="res://Explosion.wav" id="2_iv72m"]
 
 [sub_resource type="Curve" id="Curve_5qbr8"]

@@ -1,14 +1,14 @@
 [gd_scene load_steps=131 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
-[ext_resource type="Script" path="res://Hint.cs" id="1_oddph"]
+[ext_resource type="Script" uid="uid://pkmqwx6sx4y6" path="res://Hint.cs" id="1_oddph"]
 [ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_yi0ja"]
 [ext_resource type="ArrayMesh" uid="uid://dumcr0fu0fwdj" path="res://QuestionMarkMesh.res" id="2_1yi8e"]
-[ext_resource type="Script" path="res://environment/Spikes/SpikeArea.cs" id="2_xq41t"]
+[ext_resource type="Script" uid="uid://du8cwf636gg70" path="res://environment/Spikes/SpikeArea.cs" id="2_xq41t"]
 [ext_resource type="PackedScene" uid="uid://cnpb27we1lbh3" path="res://ui/PauseMenu.tscn" id="3_lnbl7"]
 [ext_resource type="ArrayMesh" uid="uid://dwju2ewaplx15" path="res://environment/Grass/GrassBlade.obj" id="3_nbtbs"]
 [ext_resource type="Material" uid="uid://ov73e2vq13t6" path="res://DemoLevel/GrassGroundMaterial.tres" id="4_le0gn"]
-[ext_resource type="Script" path="res://GrassMultiMeshInstance3D.cs" id="4_scv88"]
+[ext_resource type="Script" uid="uid://d1tvxivu1buex" path="res://GrassMultiMeshInstance3D.cs" id="4_scv88"]
 [ext_resource type="Material" uid="uid://b7mcadtf10vtg" path="res://environment/Grass/GrassShader.tres" id="5_jexvf"]
 [ext_resource type="PackedScene" uid="uid://ctiw3gw6hbfhh" path="res://ui/crosshair.tscn" id="7_2qhh3"]
 [ext_resource type="Material" uid="uid://chj3j5rorgeu" path="res://DemoLevel/BurningGroundMaterial.tres" id="7_q8n0o"]
@@ -16,24 +16,24 @@
 [ext_resource type="PackedScene" uid="uid://5t66n6i6dv8o" path="res://Checkpoint.tscn" id="9_sdew7"]
 [ext_resource type="AudioStream" uid="uid://b1blbjo32ntll" path="res://music/Mega Man 7 - Slash Man.wav" id="11_hlu0w"]
 [ext_resource type="Material" uid="uid://3pfcca4k5cfb" path="res://DemoLevel/RotatingBar.tres" id="12_q2wlt"]
-[ext_resource type="Script" path="res://DemoLevel/RotatingBar.cs" id="13_q4ssb"]
-[ext_resource type="Script" path="res://BigPhysicsBoxRespawner.cs" id="13_vh2t3"]
+[ext_resource type="Script" uid="uid://3l1f71nouf7d" path="res://DemoLevel/RotatingBar.cs" id="13_q4ssb"]
+[ext_resource type="Script" uid="uid://bws8mtu8cg3rg" path="res://BigPhysicsBoxRespawner.cs" id="13_vh2t3"]
 [ext_resource type="PackedScene" uid="uid://bwrfl2br4aml3" path="res://BigPhysicsBox.tscn" id="13_y4msl"]
-[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="14_ax6jt"]
+[ext_resource type="Script" uid="uid://cbwy58owe0mcp" path="res://common/ModelInterpolator.cs" id="14_ax6jt"]
 [ext_resource type="PackedScene" uid="uid://chm55taavgilw" path="res://environment/tree_2.tscn" id="17_q6wjd"]
 [ext_resource type="PackedScene" uid="uid://787c5e1qbail" path="res://environment/Flower2/Flower2.tscn" id="18_82srm"]
-[ext_resource type="Script" path="res://DemoLevel/WindArea.cs" id="21_thcbr"]
-[ext_resource type="Script" path="res://HintPanel.cs" id="21_u3x08"]
+[ext_resource type="Script" uid="uid://dpiwq6ery73nn" path="res://DemoLevel/WindArea.cs" id="21_thcbr"]
+[ext_resource type="Script" uid="uid://djm32k7bugxf0" path="res://HintPanel.cs" id="21_u3x08"]
 [ext_resource type="PackedScene" uid="uid://bus6cf3kkaeui" path="res://SpinningStar.tscn" id="24_0up3j"]
 [ext_resource type="PackedScene" uid="uid://cq0lt4ix88bc4" path="res://DemoLevel/gear_8_tooth_slim.tscn" id="26_liqvs"]
 [ext_resource type="PackedScene" uid="uid://dq6dbrv6sbaii" path="res://OnOffBlockContainer.tscn" id="27_ljybl"]
 [ext_resource type="PackedScene" uid="uid://dp2t3hiyxyipb" path="res://BlueOnOffPlatform.tscn" id="28_bqrkm"]
 [ext_resource type="PackedScene" uid="uid://cdo1qcb6giosg" path="res://SawBladeShooter.tscn" id="28_shcdo"]
 [ext_resource type="PackedScene" uid="uid://cc82pp7t1dbk3" path="res://RedOnOffPlatform.tscn" id="29_rnx5l"]
-[ext_resource type="Script" path="res://DemoLevel/CptDetonator.cs" id="31_2si1f"]
+[ext_resource type="Script" uid="uid://crecx4ucgq01s" path="res://DemoLevel/CptDetonator.cs" id="31_2si1f"]
 [ext_resource type="Material" uid="uid://b78e2fvlx1ltc" path="res://DemoLevel/GrassMaterialDemoExplosion.tres" id="31_5f7up"]
 [ext_resource type="ArrayMesh" uid="uid://bk60o4evjj67t" path="res://player/PlayerBall.obj" id="31_axpm2"]
-[ext_resource type="Script" path="res://DemoLevelExplosion.cs" id="31_mtn5b"]
+[ext_resource type="Script" uid="uid://b4bvronvomtnn" path="res://DemoLevelExplosion.cs" id="31_mtn5b"]
 [ext_resource type="Material" uid="uid://cp1mras1f5knq" path="res://DemoLevel/NukeParticleMaterial.tres" id="32_2b8tn"]
 [ext_resource type="PackedScene" uid="uid://l0f51fiwyojq" path="res://SawBladeContainer.tscn" id="32_dsjag"]
 [ext_resource type="Texture2D" uid="uid://cbt1muqpu3iwn" path="res://DemoLevel/NukeColorGradient.tres" id="33_13s2t"]
@@ -43,8 +43,8 @@
 [ext_resource type="PackedScene" uid="uid://mqbycbrcjyk4" path="res://PhysicsBox.tscn" id="35_1t037"]
 [ext_resource type="AudioStream" uid="uid://dbvpykvx7fuvl" path="res://music/y0pod.mp3" id="35_fwv8b"]
 [ext_resource type="Texture2D" uid="uid://dy2f3u06kp37c" path="res://DemoLevel/NukeVelocityLimitDemoLevel.tres" id="36_dd6fc"]
-[ext_resource type="Script" path="res://DemoLevel/CptDetonatorGround.cs" id="37_pd2jn"]
-[ext_resource type="Script" path="res://LockOnArea.cs" id="37_s7pc0"]
+[ext_resource type="Script" uid="uid://cutlaiqw4noky" path="res://DemoLevel/CptDetonatorGround.cs" id="37_pd2jn"]
+[ext_resource type="Script" uid="uid://6eyvraq0iheq" path="res://LockOnArea.cs" id="37_s7pc0"]
 [ext_resource type="Material" uid="uid://cdtgbm1a6m7t6" path="res://DemoLevel/CptDetonatorGroundMaterial.tres" id="38_srsny"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yu183"]
@@ -273,6 +273,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 3.0
 emission_ring_radius = 2.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 angle_min = 1.07288e-05
 angle_max = 1.07288e-05
 spread = 180.0
@@ -327,6 +328,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 4.0
 emission_ring_radius = 10.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 angle_min = 1.07288e-05
 angle_max = 360.0
 direction = Vector3(0, 1, 0)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bycuwkrqgkrc3"]
 
-[ext_resource type="Script" path="res://player/PlayerCamera.cs" id="1_iw32j"]
+[ext_resource type="Script" uid="uid://h5qmfyobdujt" path="res://player/PlayerCamera.cs" id="1_iw32j"]
 
 [node name="PlayerCamera" type="Node3D" node_paths=PackedStringArray("pitch", "obstacleRaycast", "crosshairRaycast", "lockOnRaycast", "crosshairNoncollidingPoint", "camera", "FreeLookPedestal", "LockOnPedestal")]
 top_level = true

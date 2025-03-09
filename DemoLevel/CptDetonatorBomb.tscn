@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bwlhnxskjdsj7"]
 
-[ext_resource type="Script" path="res://DemoLevel/CptDetonatorBomb.cs" id="1_7enr5"]
-[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="1_qeehx"]
+[ext_resource type="Script" uid="uid://8uxd0h7wqv2c" path="res://DemoLevel/CptDetonatorBomb.cs" id="1_7enr5"]
+[ext_resource type="Script" uid="uid://cbwy58owe0mcp" path="res://common/ModelInterpolator.cs" id="1_qeehx"]
 [ext_resource type="PackedScene" uid="uid://ur6yyp0n0nlb" path="res://weapons/Grenade/grenade_particles.tscn" id="2_h8pf8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kwqn6"]

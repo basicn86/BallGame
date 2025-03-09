@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://m3ac8gckgd4j"]
 
-[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="1_w35kg"]
-[ext_resource type="Script" path="res://environment/FlyingPlatform/FlyingPlatform.cs" id="1_xf5vd"]
+[ext_resource type="Script" uid="uid://cbwy58owe0mcp" path="res://common/ModelInterpolator.cs" id="1_w35kg"]
+[ext_resource type="Script" uid="uid://cn74mjrgcw0r0" path="res://environment/FlyingPlatform/FlyingPlatform.cs" id="1_xf5vd"]
 [ext_resource type="ArrayMesh" uid="uid://bv1vrhg13wv2j" path="res://environment/FlyingPlatform/FlyingPlatform.obj" id="2_7ytcy"]
-[ext_resource type="Script" path="res://environment/FlyingPlatform/FanBlades.cs" id="3_hwyxr"]
+[ext_resource type="Script" uid="uid://nnairptjvqrf" path="res://environment/FlyingPlatform/FanBlades.cs" id="3_hwyxr"]
 [ext_resource type="Material" uid="uid://10q8yyjoewf1" path="res://environment/FlyingPlatform/FlyingPlatform.tres" id="3_ko127"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6sqyx"]
@@ -22,6 +22,7 @@ emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.1
 emission_ring_radius = 1.0
 emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
 direction = Vector3(0, -1, 0)
 spread = 25.0
 initial_velocity_min = 2.0

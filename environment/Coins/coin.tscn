@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bpyj8r7bwgvyu"]
 
-[ext_resource type="Script" path="res://environment/Coins/Coin.cs" id="1_rp1aj"]
+[ext_resource type="Script" uid="uid://bqbrlicwibxel" path="res://environment/Coins/Coin.cs" id="1_rp1aj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4y3b8"]
 albedo_color = Color(2.59906e-06, 0.70971, 0.642416, 1)

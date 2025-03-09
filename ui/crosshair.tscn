@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ctiw3gw6hbfhh"]
 
-[ext_resource type="Script" path="res://Crosshair.cs" id="1_mgeys"]
+[ext_resource type="Script" uid="uid://co5l7cc8gr34r" path="res://Crosshair.cs" id="1_mgeys"]
 
 [node name="Crosshair" type="CenterContainer"]
 anchors_preset = 8

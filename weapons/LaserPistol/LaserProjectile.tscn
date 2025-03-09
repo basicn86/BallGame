@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://cnp2bm7va434i"]
 
-[ext_resource type="Script" path="res://weapons/LaserPistol/LaserProjectile.cs" id="1_ahsb0"]
+[ext_resource type="Script" uid="uid://0yavq04eujy6" path="res://weapons/LaserPistol/LaserProjectile.cs" id="1_ahsb0"]
 [ext_resource type="PackedScene" uid="uid://bxe6dxk3uc1eq" path="res://weapons/LaserPistol/LaserParticles.tscn" id="2_6cs73"]
-[ext_resource type="Shader" path="res://weapons/LaserPistol/LaserProjectile.gdshader" id="3_fg8j6"]
-[ext_resource type="Script" path="res://weapons/LaserPistol/LaserProjectileInterpolator.cs" id="4_ca20s"]
-[ext_resource type="Script" path="res://weapons/LaserPistol/LaserPistolProjectile.cs" id="4_ri4uu"]
+[ext_resource type="Shader" uid="uid://b1octagu787gn" path="res://weapons/LaserPistol/LaserProjectile.gdshader" id="3_fg8j6"]
+[ext_resource type="Script" uid="uid://cfy5h1nkbosyu" path="res://weapons/LaserPistol/LaserProjectileInterpolator.cs" id="4_ca20s"]
+[ext_resource type="Script" uid="uid://b1o3id4a7xqku" path="res://weapons/LaserPistol/LaserPistolProjectile.cs" id="4_ri4uu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2pwt"]
 cull_mode = 1

@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://bwrfl2br4aml3"]
 
-[ext_resource type="Script" path="res://PhysicsBox.cs" id="1_lan2y"]
+[ext_resource type="Script" uid="uid://rs704lak0mfq" path="res://PhysicsBox.cs" id="1_lan2y"]
 [ext_resource type="PackedScene" uid="uid://ckjg8vgokuseq" path="res://PhysicsBoxExplosion.tscn" id="2_cggm1"]
-[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="4_bt3kf"]
-[ext_resource type="Script" path="res://common/HitBoxComponent.cs" id="4_siceg"]
+[ext_resource type="Script" uid="uid://cbwy58owe0mcp" path="res://common/ModelInterpolator.cs" id="4_bt3kf"]
+[ext_resource type="Script" uid="uid://drxua1kmiojx7" path="res://common/HitBoxComponent.cs" id="4_siceg"]
 [ext_resource type="PackedScene" uid="uid://nxb7fmcaldgn" path="res://CardBoardBox.blend" id="5_w8b5h"]
 [ext_resource type="Texture2D" uid="uid://ba41m5bjfduxv" path="res://BoxTexture1.png" id="6_wx5u1"]
 

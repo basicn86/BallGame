@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://dq6dbrv6sbaii"]
 
-[ext_resource type="Script" path="res://OnOffBlockContainer.cs" id="1_pxj00"]
+[ext_resource type="Script" uid="uid://co30fdclyh1up" path="res://OnOffBlockContainer.cs" id="1_pxj00"]
 [ext_resource type="PackedScene" uid="uid://dy3ww30arcr2h" path="res://OffBlock.blend" id="2_5rmec"]
 [ext_resource type="Material" uid="uid://b85ieqxxwy73y" path="res://OffBlockMaterial.tres" id="3_icsrw"]
 [ext_resource type="PackedScene" uid="uid://mad84gg8fgvy" path="res://OnBlock.blend" id="3_pi3xw"]
-[ext_resource type="Script" path="res://OnOffBlockSensor.cs" id="4_67s4y"]
+[ext_resource type="Script" uid="uid://pbb2qybur358" path="res://OnOffBlockSensor.cs" id="4_67s4y"]
 [ext_resource type="Material" uid="uid://bu8bxwt8ohky3" path="res://OnBlockMaterial.tres" id="5_h4073"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gucsr"]

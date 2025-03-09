@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dp2t3hiyxyipb"]
 
-[ext_resource type="Script" path="res://OnOffPlatform.cs" id="1_gte4g"]
+[ext_resource type="Script" uid="uid://dcjh0nerfjsy6" path="res://OnOffPlatform.cs" id="1_gte4g"]
 [ext_resource type="PackedScene" uid="uid://ta8ils8x8wl7" path="res://WireFramePlatform8x4x1.blend" id="2_s5omk"]
 [ext_resource type="Material" uid="uid://b85ieqxxwy73y" path="res://OffBlockMaterial.tres" id="3_8stqw"]
 
