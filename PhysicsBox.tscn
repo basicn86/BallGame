@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://mqbycbrcjyk4"]
+[gd_scene load_steps=8 format=3 uid="uid://mqbycbrcjyk4"]
 
-[ext_resource type="Script" uid="uid://cbwy58owe0mcp" path="res://common/ModelInterpolator.cs" id="1_ipnu3"]
 [ext_resource type="Script" uid="uid://rs704lak0mfq" path="res://PhysicsBox.cs" id="1_veju4"]
 [ext_resource type="PackedScene" uid="uid://ckjg8vgokuseq" path="res://PhysicsBoxExplosion.tscn" id="2_ga5aj"]
 [ext_resource type="Material" uid="uid://cf45eg04u0u62" path="res://PhysicsBoxMaterial.tres" id="3_5mx1k"]
@@ -14,6 +13,7 @@ material = ExtResource("3_5mx1k")
 [sub_resource type="BoxShape3D" id="BoxShape3D_5nm4g"]
 
 [node name="PhysicsBox" type="RigidBody3D"]
+physics_interpolation_mode = 1
 collision_layer = 4
 collision_mask = 7
 mass = 0.5
@@ -21,11 +21,9 @@ can_sleep = false
 script = ExtResource("1_veju4")
 explosionScene = ExtResource("2_ga5aj")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_f7o52")
 skeleton = NodePath("../CollisionShape3D")
-script = ExtResource("1_ipnu3")
-targetRigidBody = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_6mou2")
