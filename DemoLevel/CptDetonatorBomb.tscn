@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwlhnxskjdsj7"]
+[gd_scene load_steps=7 format=3 uid="uid://bwlhnxskjdsj7"]
 
 [ext_resource type="Script" uid="uid://8uxd0h7wqv2c" path="res://DemoLevel/CptDetonatorBomb.cs" id="1_7enr5"]
-[ext_resource type="Script" uid="uid://cbwy58owe0mcp" path="res://common/ModelInterpolator.cs" id="1_qeehx"]
 [ext_resource type="PackedScene" uid="uid://ur6yyp0n0nlb" path="res://weapons/Grenade/grenade_particles.tscn" id="2_h8pf8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kwqn6"]
@@ -17,6 +16,7 @@ size = Vector3(0.8, 0.8, 0.8)
 radius = 3.0
 
 [node name="CptDetonatorBomb" type="RigidBody3D" node_paths=PackedStringArray("explosionArea")]
+physics_interpolation_mode = 1
 collision_layer = 0
 physics_material_override = SubResource("PhysicsMaterial_kwqn6")
 gravity_scale = 4.0
@@ -24,10 +24,8 @@ script = ExtResource("1_7enr5")
 explosionScene = ExtResource("2_h8pf8")
 explosionArea = NodePath("Area3D")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_0ho1t")
-script = ExtResource("1_qeehx")
-targetRigidBody = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_jg3y4")
