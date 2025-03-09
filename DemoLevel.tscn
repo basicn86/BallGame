@@ -423,6 +423,7 @@ size = Vector3(1, 100, 110)
 size = Vector3(1, 100, 110)
 
 [node name="Node3D" type="Node3D"]
+physics_interpolation_mode = 2
 
 [node name="Hint" type="Node3D" parent="." node_paths=PackedStringArray("Mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12837, -27.2833)
