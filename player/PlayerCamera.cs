@@ -11,10 +11,13 @@ public partial class PlayerCamera : Node3D
 {
 	enum CameraMode
 	{
+		EnteringFreeLook,
 		FreeLook,
 		EnteringLockOn,
 		LockOn
 	}
+
+	private double _stateTransitionTimer = 0;
 	private class LockOnTargetInfo
 	{
 		private Node3D target;
@@ -150,6 +153,9 @@ public partial class PlayerCamera : Node3D
 
 		switch(cameraMode)
 		{
+			case CameraMode.EnteringFreeLook:
+				EnteringFreeLookState(delta);
+				break;
 			case CameraMode.FreeLook:
 				FreeLookState(delta);
 				break;
@@ -160,9 +166,6 @@ public partial class PlayerCamera : Node3D
 				LockOnState();
 				break;
 		}
-
-		//TODO: reimplement this
-		//MoveCameraAwayFromEnvironment();
 
 		if (Input.IsActionJustPressed("target_lock"))
 		{
@@ -183,7 +186,7 @@ public partial class PlayerCamera : Node3D
 	private void LockOn(Node3D target)
 	{
 		lockOnTargetInfo.Target = target;
-		_enterLockOnStateLerp = 0;
+		_stateTransitionTimer = 0;
 		cameraMode = CameraMode.EnteringLockOn;
 		camera.Reparent(LockOnPedestal);
 
@@ -195,11 +198,12 @@ public partial class PlayerCamera : Node3D
 
 	private void StopLockOn()
 	{
-		if (lockOnTargetInfo.Target is LockOnArea lockOnArea)
+		if (lockOnTargetInfo.Target is LockOnArea lockOnArea && IsInstanceValid(lockOnArea))
 		{
 			lockOnArea.TargetUnlocked();
 		}
-		cameraMode = CameraMode.FreeLook;
+		cameraMode = CameraMode.EnteringFreeLook;
+		_stateTransitionTimer = 0;
 		camera.Reparent(FreeLookPedestal);
 	}
 
@@ -211,6 +215,27 @@ public partial class PlayerCamera : Node3D
 		}
 	}
 
+	private void EnteringFreeLookState(double delta)
+	{
+		pitch.RotationDegrees = new Vector3(LockOnPedestal.GlobalRotationDegrees.X + 10f, 0.0f, 0.0f);
+		_stateTransitionTimer += delta * 2.0;
+		camera.GlobalPosition = camera.GlobalPosition.Lerp(FreeLookPedestal.GlobalPosition, (float)_stateTransitionTimer);
+
+		Basis targetBasis = FreeLookPedestal.GlobalBasis;
+		targetBasis = targetBasis.Orthonormalized();
+		camera.GlobalTransform = new Transform3D(
+			camera.GlobalBasis.Slerp(targetBasis, (float)_stateTransitionTimer),
+			camera.GlobalTransform.Origin
+		);
+
+		HandleJoystickCameraRotation(delta);
+
+		if (_stateTransitionTimer > 0.5)
+		{
+			cameraMode = CameraMode.FreeLook;
+		}
+	}
+
 	private void FreeLookState(double delta)
 	{
 		HandleJoystickCameraRotation(delta);
@@ -219,34 +244,33 @@ public partial class PlayerCamera : Node3D
 		MoveCameraAwayFromEnvironment(delta);
 	}
 
-	private double _enterLockOnStateLerp = 0;
 	private void EnteringLockOnState(double delta)
 	{
 		if (!lockOnTargetInfo.IsAlive())
 		{
 			cameraMode = CameraMode.FreeLook;
-			_enterLockOnStateLerp = 0;
+			_stateTransitionTimer = 0;
 			return;
 		}
 
-		_enterLockOnStateLerp += delta;
+		_stateTransitionTimer += delta;
 
 		Vector3 lockOnPos = lockOnTargetInfo.GetInterpolatedPos();
 		LockOnPedestal.LookAt(lockOnPos);
 		lockOnPos.Y = GlobalPosition.Y;
 		LookAt(lockOnPos, Vector3.Up);
 
-		camera.GlobalPosition = camera.GlobalPosition.Lerp(LockOnPedestal.GlobalPosition, (float)_enterLockOnStateLerp);
+		camera.GlobalPosition = camera.GlobalPosition.Lerp(LockOnPedestal.GlobalPosition, (float)_stateTransitionTimer);
 		Basis targetRotation = LockOnPedestal.GlobalBasis;
 		targetRotation = targetRotation.Orthonormalized();
 		camera.GlobalTransform = new Transform3D(
-			camera.GlobalBasis.Slerp(targetRotation, (float)_enterLockOnStateLerp),
+			camera.GlobalBasis.Slerp(targetRotation, (float)_stateTransitionTimer),
 			camera.GlobalTransform.Origin
 		);
 
-		if (_enterLockOnStateLerp >= 0.5)
+		if (_stateTransitionTimer >= 0.5)
 		{
-			_enterLockOnStateLerp = 0;
+			_stateTransitionTimer = 0;
 			cameraMode = CameraMode.LockOn;
 		}
 	}
@@ -255,7 +279,8 @@ public partial class PlayerCamera : Node3D
 	{
 		if (!lockOnTargetInfo.IsAlive())
 		{
-			cameraMode = CameraMode.FreeLook;
+			cameraMode = CameraMode.EnteringFreeLook;
+			_stateTransitionTimer = 0;
 			return;
 		}
 		Vector3 lockOnPos = lockOnTargetInfo.GetInterpolatedPos();
@@ -320,12 +345,18 @@ public partial class PlayerCamera : Node3D
 	{
 		if (@event is InputEventMouseMotion)
 		{
-			if (cameraMode != CameraMode.FreeLook) return;
-
-			RotateCamera(
-				((InputEventMouseMotion)@event).Relative.X,
-				((InputEventMouseMotion)@event).Relative.Y
-			);
+			switch (cameraMode)
+			{
+				case CameraMode.FreeLook:
+				case CameraMode.EnteringFreeLook:
+					RotateCamera(
+						((InputEventMouseMotion)@event).Relative.X,
+						((InputEventMouseMotion)@event).Relative.Y
+					);
+					break;
+				default:
+					break;
+			}
 		}
 	}
 }
