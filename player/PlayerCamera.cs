@@ -83,10 +83,6 @@ public partial class PlayerCamera : Node3D
 	private Node3D LockOnPedestal;
 
 	#region Publicly accessible properties
-	public float Pitch
-	{
-		get { return pitch.Rotation.X; }
-	}
 	/// <summary>
 	/// Gets the collision point of the crosshair raycast if it is colliding with something. If it is not colliding with anything, it returns the ending point of the crosshair raycast. This allows us to get the point where the player is aiming at, even if the crosshair is not colliding with anything.
 	/// </summary>
@@ -111,24 +107,6 @@ public partial class PlayerCamera : Node3D
 		lockOnRaycast.ForceRaycastUpdate();
 		if (!lockOnRaycast.IsColliding()) return null;
 		return lockOnRaycast.GetCollider() as Node3D;
-	}
-	public RayCast3D CrosshairRaycast
-	{
-		get { return crosshairRaycast; }
-	}
-
-	public void Activate()
-	{
-		camera.Current = true;
-	}
-
-	public void ResetPosition(Vector3 targetPosition)
-	{
-		camera.GlobalPosition = targetPosition;
-	}
-	public void ResetRotation(Vector3 rotation)
-	{
-		camera.GlobalRotation = rotation;
 	}
 	#endregion
 
