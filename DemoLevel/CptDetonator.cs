@@ -44,6 +44,8 @@ public partial class CptDetonator : RigidBody3D
 	[ExportCategory("Player")]
 	[Export]
 	public Node3D playerDetectionNode;
+	[Export]
+	public CptDetonatorEyes eyes;
 
 	[Export]
 	public GrassMultiMeshInstance3D grassMultiMeshInstance;
@@ -306,7 +308,8 @@ public partial class CptDetonator : RigidBody3D
 	{
 		if (body is not Player) return;
 		player = body as Player;
-		state = State.ShootingBombs;
+		state = State.EnterShootingSawBlades;
+		eyes.player = player;
 		playerDetectionNode.QueueFree();
 	}
 

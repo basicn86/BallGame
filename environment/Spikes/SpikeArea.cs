@@ -4,6 +4,9 @@ using BallGame.Common;
 
 public partial class SpikeArea : Area3D
 {
+	[Export]
+	public int Damage = 1000;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -18,7 +21,7 @@ public partial class SpikeArea : Area3D
 	{
 		if (area is HitBoxComponent hitBoxComponent)
 		{
-			hitBoxComponent.EmitSignal("TakeDamage", 1000, (int)Team.Neutral);
+			hitBoxComponent.EmitSignal("TakeDamage", Damage, (int)Team.Neutral);
 		}
 	}
 }
