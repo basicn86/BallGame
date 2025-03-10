@@ -22,7 +22,6 @@ public partial class ExploderComponent : Area3D
 
 	public void Explode()
 	{
-		GD.Print("Exploding!");
 		ulong parentInstanceId = GetParent().GetInstanceId();
 
 		foreach (var item in GetOverlappingBodies())
@@ -40,9 +39,6 @@ public partial class ExploderComponent : Area3D
 				forceDirection = forceDirection.Normalized();
 
 				i.ApplyCentralForce(forceDirection * 1000f / distance);
-
-				//for debug output, print the name of the object that was hit
-				GD.Print(i.Name);
 			}
 		}
 	}

@@ -21,8 +21,6 @@ public partial class OnOffBlockSensor : Area3D
 
 		IsOn = !IsOn;
 
-		GD.Print("OnOffBlockSensor: " + IsOn);
-
 		GetTree().CallGroup("OnOffBlock", "OnOffToggle", IsOn);
 	}
 }

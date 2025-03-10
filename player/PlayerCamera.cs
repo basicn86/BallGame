@@ -88,7 +88,11 @@ public partial class PlayerCamera : Node3D
 	/// </summary>
 	public Vector3 GetCrosshairCollisionPoint()
 	{
-		if (crosshairRaycast.IsColliding())
+		if (cameraMode == CameraMode.LockOn || cameraMode == CameraMode.EnteringLockOn)
+		{
+			return lockOnTargetInfo.GetInterpolatedPos();
+		}
+		else if (crosshairRaycast.IsColliding())
 		{
 			return crosshairRaycast.GetCollisionPoint();
 		}

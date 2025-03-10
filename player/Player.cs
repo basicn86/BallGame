@@ -193,7 +193,6 @@ public partial class Player : RigidBody3D
 		{
 			hasLanded = true;
 			SpawnLandingParticles();
-			GD.Print("Y Velocity: " + LinearVelocity.Y);
 			landSound.Play();
 		}
 		else if (!groundCast.IsColliding() && hasLanded)

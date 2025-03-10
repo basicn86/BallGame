@@ -23,7 +23,6 @@ public partial class Coin : Node3D
 
 	private void body_entered(Node3D node)
 	{
-		GD.Print("Coin body entered");
 		//TODO: actually implement this. We are queueing free for debugging purposes
 		if (node is Player) QueueFree();
 	}
