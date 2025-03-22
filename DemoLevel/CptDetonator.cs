@@ -132,8 +132,8 @@ public partial class CptDetonator : RigidBody3D
 		ApplyCentralForce(-LinearVelocity.Normalized() * 50f);
 		ApplyCentralForce((player.GlobalTransform.Origin - GlobalTransform.Origin).Normalized() * 150f);
 		if (nextStateTimer.IsStopped()) {
-			nextStateTimer.Start(1.0);
-			nextState = State.ShootingBombs;
+			nextStateTimer.Start(10.0);
+			nextState = State.EnterShootingSawBlades;
 		}
 	}
 
@@ -161,7 +161,7 @@ public partial class CptDetonator : RigidBody3D
 	{
 		if (bombCounter > maxBombs)
 		{
-			state = State.Idle;
+			state = State.EnterShootingSawBlades;
 			bombCounter = 0;
 			return;
 		}
@@ -207,7 +207,7 @@ public partial class CptDetonator : RigidBody3D
 		if (nextStateTimer.IsStopped())
 		{
 			nextStateTimer.Start(10.0);
-			nextState = State.Chasing;
+			nextState = State.ShootingBombs;
 		}
 	}
 

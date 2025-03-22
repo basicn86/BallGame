@@ -1,5 +1,7 @@
 using Godot;
+using Godot.Collections;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
@@ -75,7 +77,7 @@ public partial class CptDetonatorGround : StaticBody3D
 		uvs = (Vector2[])mesh.SurfaceGetArrays(0)[(int)Mesh.ArrayType.TexUV];
 		indices = (int[])mesh.SurfaceGetArrays(0)[(int)Mesh.ArrayType.Index];
 
-		img = Image.CreateEmpty(width, width, true, Image.Format.Rf);
+		img = Image.CreateEmpty(width, width, true, Image.Format.R8);
 
 		for (int i = 0; i < width; i++)
 		{
@@ -147,7 +149,6 @@ public partial class CptDetonatorGround : StaticBody3D
 
 		img.GenerateMipmaps();
 		imageTexture.Update(img);
-		shader.SetShaderParameter("Mask", imageTexture);
 	}
 
 	public Vector3 GetBarycentrics(Vector2 p, Vector2 a, Vector2 b, Vector2 c)

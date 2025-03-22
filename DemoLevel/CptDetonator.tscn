@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dpgnu7m4327pr"]
+[gd_scene load_steps=24 format=3 uid="uid://dpgnu7m4327pr"]
 
 [ext_resource type="Script" uid="uid://crecx4ucgq01s" path="res://DemoLevel/CptDetonator.cs" id="1_mcj7g"]
 [ext_resource type="PackedScene" uid="uid://l0f51fiwyojq" path="res://SawBladeContainer.tscn" id="2_rulcr"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://b7speov6vg6sc" path="res://DemoLevel/CptDetonatorRocket.tscn" id="4_e5mo2"]
 [ext_resource type="Material" uid="uid://b78e2fvlx1ltc" path="res://DemoLevel/GrassMaterialDemoExplosion.tres" id="5_vtdl5"]
 [ext_resource type="ArrayMesh" uid="uid://bk60o4evjj67t" path="res://player/PlayerBall.obj" id="6_38ttf"]
-[ext_resource type="Script" uid="uid://cbwy58owe0mcp" path="res://common/ModelInterpolator.cs" id="7_06mmj"]
 [ext_resource type="Script" uid="uid://b76s8oy3lynf6" path="res://CptDetonatorEyes.cs" id="8_y36m0"]
 [ext_resource type="Script" uid="uid://du8cwf636gg70" path="res://environment/Spikes/SpikeArea.cs" id="9_e62ou"]
 [ext_resource type="Script" uid="uid://6eyvraq0iheq" path="res://LockOnArea.cs" id="10_i1iy6"]
@@ -64,6 +63,7 @@ depth = 0.2
 radius = 4.0
 
 [node name="CptDetonator" type="RigidBody3D" node_paths=PackedStringArray("nextStateTimer", "tornadoParticles", "playerDetectionNode", "eyes")]
+physics_interpolation_mode = 1
 collision_layer = 4
 collision_mask = 7
 mass = 4.0
@@ -71,25 +71,23 @@ continuous_cd = true
 script = ExtResource("1_mcj7g")
 nextStateTimer = NodePath("StateTimer")
 sawBladeScene = ExtResource("2_rulcr")
-sawBladeCooldown = 0.1
-sawBladeAttackApproachDistance = 15.0
+sawBladeCooldown = 0.2
+sawBladeAttackApproachDistance = 25.0
 bombScene = ExtResource("3_8n0kg")
 bombCooldown = 0.01
 maxBombs = 100
-maxHorizontalVelocity = 40.0
-maxVerticalVelocity = 25.0
+maxHorizontalVelocity = 35.0
+maxVerticalVelocity = 30.0
 rocketScene = ExtResource("4_e5mo2")
 grassMaterial = ExtResource("5_vtdl5")
 tornadoParticles = NodePath("GPUParticles3D")
 playerDetectionNode = NodePath("PlayerDetectionZone")
 eyes = NodePath("EyesContainer")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 mesh = ExtResource("6_38ttf")
 surface_material_override/0 = SubResource("StandardMaterial3D_idmjl")
-script = ExtResource("7_06mmj")
-targetRigidBody = NodePath("..")
 
 [node name="EyesContainer" type="Node3D" parent="."]
 script = ExtResource("8_y36m0")
