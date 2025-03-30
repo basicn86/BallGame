@@ -117,6 +117,8 @@ public partial class PlayerCamera : Node3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		camera.Current = true;
+
 		lockOnRaycast.Enabled = false;
 
 		obstacleRaycast.TargetPosition = camera.Position + new Vector3(0, -0.1f, 0);

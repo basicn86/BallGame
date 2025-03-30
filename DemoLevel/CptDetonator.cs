@@ -48,6 +48,9 @@ public partial class CptDetonator : RigidBody3D
 	public CptDetonatorEyes eyes;
 
 	[Export]
+	public PackedScene jugglingBombScene;
+
+	[Export]
 	public GrassMultiMeshInstance3D grassMultiMeshInstance;
 
 	//Important note: need to add entering and exiting states. This is to ensure the nodes are setup properly in between states.
@@ -62,9 +65,14 @@ public partial class CptDetonator : RigidBody3D
 
 		ShootingBombs,
 
+		BombWall,
+
 		EnterTornado,
 		Tornado,
 		ExitTornado,
+
+		EnterJuggling,
+		Juggling,
 
 		DashAttack
 	}
@@ -103,6 +111,9 @@ public partial class CptDetonator : RigidBody3D
 			case State.ShootingBombs:
 				ShootBombs();
 				break;
+			case State.BombWall:
+				BombWall();
+				break;
 			case State.EnterShootingSawBlades:
 				EnterShootingSawBlades();
 				break;
@@ -118,6 +129,12 @@ public partial class CptDetonator : RigidBody3D
 			case State.ExitTornado:
 				ExitTornado();
 				break;
+			case State.EnterJuggling:
+				EnterJuggling();
+				break;
+			case State.Juggling:
+				Juggling();
+				break;
 			default:
 				break;
 		}
@@ -125,6 +142,26 @@ public partial class CptDetonator : RigidBody3D
 
 		if(sawBladeCooldownTimer > 0.0) sawBladeCooldownTimer -= delta;
 		if (shootBombCooldownTimer > 0.0) shootBombCooldownTimer -= delta;
+	}
+
+	private void EnterJuggling()
+	{
+		state = State.Juggling;
+		CptDetonatorJugglingBomb jugglingBomb = jugglingBombScene.Instantiate() as CptDetonatorJugglingBomb;
+		GetParent().AddChild(jugglingBomb);
+		jugglingBomb.GlobalPosition = GlobalPosition;
+
+		Vector3 direction = player.GlobalPosition - GlobalPosition;
+		direction.Y = 0f;
+		direction.Normalized();
+		direction *= 0.2f;
+		direction.Y = 10f;
+		jugglingBomb.LinearVelocity = direction;
+	}
+
+	private void Juggling()
+	{
+
 	}
 
 	private void ChasePlayer()
@@ -144,6 +181,38 @@ public partial class CptDetonator : RigidBody3D
 		state = State.Idle;
 		nextStateTimer.Start(1.0);
 		nextState = State.EnterTornado;
+	}
+
+	private void BombWall()
+	{
+		Vector3 direction;
+		direction = player.GlobalPosition - GlobalPosition;
+		direction.Y = 0f;
+		direction = direction.Normalized();
+		direction = direction.Rotated(Vector3.Up, 0.3f);
+		for (int i = 0; i < 20; i++)
+		{
+			CptDetonatorBomb bomb = bombScene.Instantiate() as CptDetonatorBomb;
+			GetParent().AddChild(bomb);
+			bomb.GlobalPosition = GlobalPosition;
+			bomb.LinearVelocity = direction * 20f + new Vector3(0f, i * 3f, 0f);
+			bomb.grassMultiMeshInstance3D = grassMultiMeshInstance;
+		}
+
+		direction = player.GlobalPosition - GlobalPosition;
+		direction.Y = 0f;
+		direction = direction.Normalized();
+		direction = direction.Rotated(Vector3.Up, -0.3f);
+		for (int i = 0; i < 20; i++)
+		{
+			CptDetonatorBomb bomb = bombScene.Instantiate() as CptDetonatorBomb;
+			GetParent().AddChild(bomb);
+			bomb.GlobalPosition = GlobalPosition;
+			bomb.LinearVelocity = direction * 20f + new Vector3(0f, i * 3f, 0f);
+			bomb.grassMultiMeshInstance3D = grassMultiMeshInstance;
+		}
+
+		state = State.ShootingSawBlades;
 	}
 
 	public void LaunchRockets()
@@ -245,62 +314,45 @@ public partial class CptDetonator : RigidBody3D
 		return v3;
 	}
 
+
+	private float tornadoAngle = 0f; //in radians
 	private void EnterTornado()
 	{
-		tornadoParticles.Emitting = true;
+		tornadoAngle = 0f;
 		state = State.Tornado;
 	}
 
 	private void ExitTornado()
 	{
-		tornadoParticles.Emitting = false;
-		grassMaterial.SetShaderParameter("windStrength", 0.0f);
 		state = State.Chasing;
 	}
 
 	private void TornadoAttack()
 	{
 		ApplyCentralForce(-LinearVelocity.Normalized() * 15f);
-		ApplyCentralForce((player.GlobalTransform.Origin - GlobalTransform.Origin).Normalized() * 25f);
 
-		ClearDespawnedBodies();
+		SawBladeProjectile sawBlade = sawBladeScene.Instantiate() as SawBladeProjectile;
+		GetParent().AddChild(sawBlade);
+		sawBlade.GlobalPosition = GlobalPosition;
 
-		foreach (RigidBody3D body in affectedBodiesArray)
+		SawBladeProjectile sawBladeOpposite = sawBladeScene.Instantiate() as SawBladeProjectile;
+		GetParent().AddChild(sawBladeOpposite);
+		sawBladeOpposite.GlobalPosition = GlobalPosition;
+
+		Vector3 direction = player.GlobalPosition - GlobalPosition;
+		direction.Y = 0f;
+		direction = direction.Normalized();
+		direction = direction.Rotated(Vector3.Up, tornadoAngle);
+		sawBlade.speed = 25f;
+		sawBlade.direction = direction;
+		sawBladeOpposite.speed = 25f;
+		sawBladeOpposite.direction = -direction;
+
+		tornadoAngle += 0.2f;
+
+		if (tornadoAngle > 300f)
 		{
-			Vector3 directionToCenter = (GlobalTransform.Origin - body.GlobalTransform.Origin).Normalized();
-			Vector3 orbitalDirection = new Vector3(-directionToCenter.Z, 0, directionToCenter.X).Normalized(); // Perpendicular vector for orbiting
-			Vector3 force = directionToCenter * 20 * body.Mass + orbitalDirection * 10 * body.Mass; // Combine central and orbital forces
-			Vector3 upwardForce = Vector3.Up * 4f * body.Mass; // Upward force to keep bodies in the air
-			body.ApplyCentralForce(force + upwardForce);
-		}
-
-		//pull the player towards the center
-		player.ApplyCentralForce((GlobalTransform.Origin - player.GlobalTransform.Origin).Normalized() * 50f);
-
-		grassMaterial.SetShaderParameter("windStrength", -1.0f);
-		grassMaterial.SetShaderParameter("windPoint", new Vector2(GlobalPosition.X, GlobalPosition.Z));
-
-		//TODO: This needs to be moved to _Process, however, we cannot communicate with the model at the moment.
-		//Using _PhysicsProcess will cause the particles to update at 60 fps rather than the monitor's refresh rate.
-		tornadoParticles.GlobalPosition = GlobalPosition;
-
-		if (nextStateTimer.IsStopped())
-		{
-			nextStateTimer.Start(10.0);
-			nextState = State.ExitTornado;
-		}
-	}
-
-	private void ClearDespawnedBodies()
-	{
-		for (int i = 0; i < affectedBodiesArray.Count; i++)
-		{
-			//if a body is despawned, it will NOT be null, so we need to use IsInstanceValid
-			if (!IsInstanceValid(affectedBodiesArray[i]))
-			{
-				affectedBodiesArray.RemoveAt(i);
-				i--;
-			}
+			state = State.Idle;
 		}
 	}
 
@@ -308,7 +360,7 @@ public partial class CptDetonator : RigidBody3D
 	{
 		if (body is not Player) return;
 		player = body as Player;
-		state = State.EnterShootingSawBlades;
+		state = State.EnterJuggling;
 		eyes.player = player;
 		playerDetectionNode.QueueFree();
 	}

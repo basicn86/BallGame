@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=123 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Script" uid="uid://pkmqwx6sx4y6" path="res://Hint.cs" id="1_oddph"]
@@ -37,12 +37,14 @@
 [ext_resource type="Script" uid="uid://b4bvronvomtnn" path="res://DemoLevelExplosion.cs" id="31_mtn5b"]
 [ext_resource type="Material" uid="uid://cp1mras1f5knq" path="res://DemoLevel/NukeParticleMaterial.tres" id="32_2b8tn"]
 [ext_resource type="Texture2D" uid="uid://cbt1muqpu3iwn" path="res://DemoLevel/NukeColorGradient.tres" id="33_13s2t"]
+[ext_resource type="Script" uid="uid://cs810818io067" path="res://DemoLevel/CptDetonatorCutscene.cs" id="34_dt8i1"]
 [ext_resource type="AudioStream" uid="uid://cexpm60ke5i36" path="res://DemoLevel/explosion.ogg" id="34_l50xh"]
 [ext_resource type="PackedScene" uid="uid://dpgnu7m4327pr" path="res://DemoLevel/CptDetonator.tscn" id="34_m5s2p"]
 [ext_resource type="PackedScene" uid="uid://mqbycbrcjyk4" path="res://PhysicsBox.tscn" id="35_1t037"]
 [ext_resource type="AudioStream" uid="uid://dbvpykvx7fuvl" path="res://music/y0pod.mp3" id="35_fwv8b"]
 [ext_resource type="Texture2D" uid="uid://dy2f3u06kp37c" path="res://DemoLevel/NukeVelocityLimitDemoLevel.tres" id="36_dd6fc"]
 [ext_resource type="Script" uid="uid://cutlaiqw4noky" path="res://DemoLevel/CptDetonatorGround.cs" id="37_pd2jn"]
+[ext_resource type="PackedScene" uid="uid://cajpfcg3thanr" path="res://DemoLevel/CptDetonatorJugglingBomb.tscn" id="37_rh67q"]
 [ext_resource type="Material" uid="uid://cdtgbm1a6m7t6" path="res://DemoLevel/CptDetonatorGroundMaterial.tres" id="38_srsny"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yu183"]
@@ -188,6 +190,91 @@ size = Vector3(10, 1, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bympn"]
 size = Vector3(10, 1, 50)
+
+[sub_resource type="Animation" id="Animation_m5s2p"]
+resource_name = "CptDetonatorIntro"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CutScene/Camera3D:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.0666667, 2, 2.03333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("CutScene/AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CutScene/Camera3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(157.861, 5.69763, 137.013), Vector3(157.861, 3.224, 137.013)]
+}
+
+[sub_resource type="Animation" id="Animation_dt8i1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CutScene/Camera3D:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CutScene/AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CutScene/Camera3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(157.861, 5.69763, 137.013)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rh67q"]
+_data = {
+&"CptDetonatorIntro": SubResource("Animation_m5s2p"),
+&"RESET": SubResource("Animation_dt8i1")
+}
 
 [sub_resource type="BoxMesh" id="BoxMesh_k2ike"]
 material = ExtResource("38_srsny")
@@ -830,10 +917,31 @@ shape = SubResource("BoxShape3D_bympn")
 
 [node name="BossRoom" type="Node3D" parent="."]
 
+[node name="CutScene" type="Node3D" parent="BossRoom"]
+
+[node name="CptDetonatorCutscene" type="AnimationPlayer" parent="BossRoom/CutScene"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_rh67q")
+}
+script = ExtResource("34_dt8i1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BossRoom/CutScene"]
+stream = ExtResource("35_fwv8b")
+bus = &"Music"
+
+[node name="Camera3D" type="Camera3D" parent="BossRoom/CutScene"]
+transform = Transform3D(-0.692874, 0, -0.721059, 0, 1, 0, 0.721059, 0, -0.692874, 157.861, 5.69763, 137.013)
+current = true
+
 [node name="CptDetonator" parent="BossRoom" node_paths=PackedStringArray("affectedBodies", "grassMultiMeshInstance") instance=ExtResource("34_m5s2p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.183, 3.2287, 139.288)
 affectedBodies = NodePath("../PhysicsBoxes")
+jugglingBombScene = ExtResource("37_rh67q")
 grassMultiMeshInstance = NodePath("../GrassMultiMesh")
+
+[node name="CptDetonatorJugglingBomb" parent="BossRoom" instance=ExtResource("37_rh67q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.958, 4.89225, 92.2855)
 
 [node name="DynamicGround" type="StaticBody3D" parent="BossRoom" node_paths=PackedStringArray("meshInstance3D")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 151.68, 1.83157, 130.205)
@@ -1370,11 +1478,6 @@ mesh = SubResource("BoxMesh_qo7p6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BossRoom/Fence3"]
 shape = SubResource("BoxShape3D_r1ouu")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BossRoom"]
-stream = ExtResource("35_fwv8b")
-autoplay = true
-bus = &"Music"
 
 [connection signal="body_entered" from="Hint/Area3D" to="Hint" method="body_entered"]
 [connection signal="body_exited" from="Hint/Area3D" to="Hint" method="body_exited"]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://cajpfcg3thanr"]
+
+[ext_resource type="Script" uid="uid://b8oyugsg6ul8j" path="res://DemoLevel/CptDetonatorJugglingBomb.cs" id="1_dsmjh"]
+
+[sub_resource type="TextMesh" id="TextMesh_2ou1b"]
+text = "T"
+font_size = 96
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dt8i1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rh67q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rh67q"]
+
+[node name="CptDetonatorJugglingBomb" type="RigidBody3D" node_paths=PackedStringArray("groundRay", "groundIndicatorMesh")]
+physics_interpolation_mode = 1
+collision_layer = 0
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+gravity_scale = 0.5
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_dsmjh")
+groundRay = NodePath("RayCast3D")
+groundIndicatorMesh = NodePath("GroundIndicator")
+
+[node name="GroundIndicator" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+mesh = SubResource("TextMesh_2ou1b")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, -20, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_dt8i1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_rh67q")
+
+[node name="PlayerDetection" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.170183, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetection"]
+shape = SubResource("BoxShape3D_rh67q")
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_player_entered"]

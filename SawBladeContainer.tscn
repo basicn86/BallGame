@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://l0f51fiwyojq"]
+[gd_scene load_steps=8 format=3 uid="uid://l0f51fiwyojq"]
 
 [ext_resource type="Script" uid="uid://c5eibfmuvhfnb" path="res://SawBladeProjectile.cs" id="1_jq1sq"]
 [ext_resource type="PackedScene" uid="uid://bgeuy136ci127" path="res://SawBlade.blend" id="2_7042k"]
-[ext_resource type="Script" uid="uid://cbwy58owe0mcp" path="res://common/ModelInterpolator.cs" id="3_125jv"]
 [ext_resource type="Script" uid="uid://du8cwf636gg70" path="res://environment/Spikes/SpikeArea.cs" id="3_extfn"]
 [ext_resource type="AudioStream" uid="uid://cnn4n5dscqwwy" path="res://DemoLevel/metal-grinding-very-slow-72680.mp3" id="5_sa5pq"]
 
@@ -17,6 +16,7 @@ radius = 1.0
 size = Vector3(1, 0.25, 1)
 
 [node name="SawBladeContainer" type="RigidBody3D" node_paths=PackedStringArray("lifeTimer")]
+physics_interpolation_mode = 1
 collision_layer = 0
 custom_integrator = true
 continuous_cd = true
@@ -28,10 +28,8 @@ lifeTimer = NodePath("Timer")
 
 [node name="SawBlade2" parent="." instance=ExtResource("2_7042k")]
 
-[node name="Cylinder" parent="SawBlade2" index="0" node_paths=PackedStringArray("targetRigidBody")]
+[node name="Cylinder" parent="SawBlade2" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_a8s57")
-script = ExtResource("3_125jv")
-targetRigidBody = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
