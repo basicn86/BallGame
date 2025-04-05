@@ -8,16 +8,33 @@ public partial class CptDetonatorJugglingBomb : RigidBody3D
 	private RayCast3D groundRay;
 	[Export]
 	private MeshInstance3D groundIndicatorMesh;
+	private bool finished = false;
+
+	public Node3D CptDet;
+
+	private int hits = 0;
+	public int maxHits = 5;
+
+	private bool firstFrame = true;
 
 	public override void _Ready()
 	{
-		groundIndicatorMesh.TopLevel = true;
+		groundIndicatorMesh.GlobalPosition = GlobalPosition;
+		ResetPhysicsInterpolation();
 	}
 
 	public override void _Process(double delta)
 	{
+		if (finished) return;
+
 		groundRay.ForceRaycastUpdate();
 		groundIndicatorMesh.GlobalPosition = groundRay.GetCollisionPoint();
+
+		if (firstFrame)
+		{
+			ResetPhysicsInterpolation();
+			firstFrame = false;
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -30,11 +47,35 @@ public partial class CptDetonatorJugglingBomb : RigidBody3D
 
 	public void _player_entered(Node3D body)
 	{
+		if (finished) return;
 		if (body is not Player) return;
 		Player player = body as Player;
+		Vector3 direction = Vector3.Zero;
 
-		Vector3 direction = new Vector3(Random.Shared.NextSingle(), 5f, Random.Shared.NextSingle());
+		if (hits >= maxHits)
+		{
+			direction = CptDet.GlobalPosition - GlobalPosition;
+			direction.Y = 0f;
+			float dist = direction.Length();
+			direction = direction.Normalized();
+			direction *= 20f;
+			direction.Y = dist / 8f;
+			LinearVelocity = direction;
+
+			finished = true;
+			groundRay.QueueFree();
+			groundIndicatorMesh.QueueFree();
+			return;
+		}
+
+		direction = new Vector3(Random.Shared.NextSingle(), 5f, Random.Shared.NextSingle());
+		direction.X -= 0.5f;
+		direction.Z -= 0.5f;
+		direction.X *= 8f;
+		direction.Z *= 8f;
 
 		LinearVelocity = direction;
+
+		hits++;
 	}
 }

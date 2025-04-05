@@ -106,7 +106,8 @@ public partial class PlayerCamera : Node3D
 	{
 		//This is to prevent locking on through walls
 		Vector3 targetPosition = GetCrosshairCollisionPoint();
-		lockOnRaycast.TargetPosition = new Vector3(0f,0f, -((targetPosition - crosshairRaycast.GlobalPosition).LengthSquared()));
+		lockOnRaycast.GlobalPosition = crosshairRaycast.GlobalPosition;
+		lockOnRaycast.TargetPosition = targetPosition - lockOnRaycast.GlobalPosition;
 
 		lockOnRaycast.ForceRaycastUpdate();
 		if (!lockOnRaycast.IsColliding()) return null;

@@ -213,7 +213,6 @@ public partial class Player : RigidBody3D
 		GetParent().AddChild(_deathParticles);
 		_deathParticles.GlobalPosition = GlobalPosition;
 
-		return; //debugging
 		ProcessMode = ProcessModeEnum.Disabled;
 		EmitSignal("PlayerDied");
 	}

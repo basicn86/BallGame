@@ -485,7 +485,7 @@ collision_mask = 2
 shape = SubResource("BoxShape3D_yu183")
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 161.678, 5.40572, 89.0561)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 151.98, 3.08001, 93.1886)
 
 [node name="DeathPlane" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.8539, 0)
@@ -824,10 +824,10 @@ shape = SubResource("BoxShape3D_de0ge")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.042, 15.9732, 21.1156)
 
 [node name="OnOffBlockContainer" parent="." instance=ExtResource("27_ljybl")]
-transform = Transform3D(0.999749, -0.0223907, 0, 0.0223907, 0.999749, 0, 0, 0, 1, 80.0512, 22.2992, 23.0049)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.0512, 22.2992, 23.0049)
 
 [node name="OnOffBlockContainer3" parent="." instance=ExtResource("27_ljybl")]
-transform = Transform3D(0.999749, -0.0223907, 0, 0.0223907, 0.999749, 0, 0, 0, 1, 112.049, 17.6144, 4.13921)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.049, 17.6144, 4.13921)
 
 [node name="OnOffBlockContainer2" parent="." instance=ExtResource("27_ljybl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.237, 19.3116, 20.1008)
@@ -939,9 +939,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.183, 3.2287, 139.288)
 affectedBodies = NodePath("../PhysicsBoxes")
 jugglingBombScene = ExtResource("37_rh67q")
 grassMultiMeshInstance = NodePath("../GrassMultiMesh")
-
-[node name="CptDetonatorJugglingBomb" parent="BossRoom" instance=ExtResource("37_rh67q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 159.958, 4.89225, 92.2855)
 
 [node name="DynamicGround" type="StaticBody3D" parent="BossRoom" node_paths=PackedStringArray("meshInstance3D")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 151.68, 1.83157, 130.205)

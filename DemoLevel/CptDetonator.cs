@@ -150,6 +150,7 @@ public partial class CptDetonator : RigidBody3D
 		CptDetonatorJugglingBomb jugglingBomb = jugglingBombScene.Instantiate() as CptDetonatorJugglingBomb;
 		GetParent().AddChild(jugglingBomb);
 		jugglingBomb.GlobalPosition = GlobalPosition;
+		jugglingBomb.CptDet = this;
 
 		Vector3 direction = player.GlobalPosition - GlobalPosition;
 		direction.Y = 0f;
@@ -161,7 +162,7 @@ public partial class CptDetonator : RigidBody3D
 
 	private void Juggling()
 	{
-
+		
 	}
 
 	private void ChasePlayer()
