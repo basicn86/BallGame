@@ -13,7 +13,7 @@ public partial class CptDetonatorJugglingBomb : RigidBody3D
 	public Node3D CptDet;
 
 	private int hits = 0;
-	public int maxHits = 5;
+	public int maxHits = 1;
 
 	private bool firstFrame = true;
 
@@ -55,11 +55,12 @@ public partial class CptDetonatorJugglingBomb : RigidBody3D
 		if (hits >= maxHits)
 		{
 			direction = CptDet.GlobalPosition - GlobalPosition;
+			float height = direction.Y;
 			direction.Y = 0f;
 			float dist = direction.Length();
 			direction = direction.Normalized();
 			direction *= 20f;
-			direction.Y = dist / 8f;
+			direction.Y = (dist / 8f) - MathF.Abs(height);
 			LinearVelocity = direction;
 
 			finished = true;
