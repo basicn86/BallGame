@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=124 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Script" uid="uid://pkmqwx6sx4y6" path="res://Hint.cs" id="1_oddph"]
@@ -8,8 +8,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dwju2ewaplx15" path="res://environment/Grass/GrassBlade.obj" id="3_nbtbs"]
 [ext_resource type="Material" uid="uid://ov73e2vq13t6" path="res://DemoLevel/GrassGroundMaterial.tres" id="4_le0gn"]
 [ext_resource type="Script" uid="uid://d1tvxivu1buex" path="res://GrassMultiMeshInstance3D.cs" id="4_scv88"]
-[ext_resource type="Script" uid="uid://bs0wfsdqa0oan" path="res://RedBox.cs" id="4_wjtn7"]
-[ext_resource type="Script" uid="uid://bvdkfere7wshj" path="res://RedBoxDamageSender.cs" id="5_iogn7"]
+[ext_resource type="PackedScene" uid="uid://ha5t40v1wac4" path="res://RedBox.tscn" id="4_wjtn7"]
 [ext_resource type="Material" uid="uid://b7mcadtf10vtg" path="res://environment/Grass/GrassShader.tres" id="5_jexvf"]
 [ext_resource type="Texture2D" uid="uid://mbn5xemgcifr" path="res://autumn_field_puresky_4k.hdr" id="5_rh67q"]
 [ext_resource type="PackedScene" uid="uid://ctiw3gw6hbfhh" path="res://ui/crosshair.tscn" id="7_2qhh3"]
@@ -51,20 +50,6 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yu183"]
 size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rh67q"]
-albedo_color = Color(0.654902, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_rh67q"]
-material = SubResource("StandardMaterial3D_rh67q")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_rh67q"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_iogn7"]
-size = Vector3(8, 8, 8)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_wjtn7"]
-size = Vector3(1.2, 1.2, 1.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wqqyb"]
 size = Vector3(5000, 20, 5000)
@@ -503,32 +488,8 @@ shape = SubResource("BoxShape3D_yu183")
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.4788, 1.48092, -50.1251)
 
-[node name="RedBox" type="RigidBody3D" parent="." node_paths=PackedStringArray("PlayerDetectionArea")]
-physics_interpolation_mode = 1
+[node name="RedBox" parent="." instance=ExtResource("4_wjtn7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.2923, 2.35557, -61.8518)
-collision_layer = 4
-collision_mask = 7
-script = ExtResource("4_wjtn7")
-PlayerDetectionArea = NodePath("PlayerDetection")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RedBox"]
-mesh = SubResource("BoxMesh_rh67q")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RedBox"]
-shape = SubResource("BoxShape3D_rh67q")
-
-[node name="PlayerDetection" type="Area3D" parent="RedBox"]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RedBox/PlayerDetection"]
-shape = SubResource("BoxShape3D_iogn7")
-
-[node name="HurtBox" type="Area3D" parent="RedBox"]
-script = ExtResource("5_iogn7")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RedBox/HurtBox"]
-shape = SubResource("BoxShape3D_wjtn7")
 
 [node name="DeathPlane" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.8539, 0)
@@ -1521,9 +1482,6 @@ shape = SubResource("BoxShape3D_r1ouu")
 
 [connection signal="body_entered" from="Hint/Area3D" to="Hint" method="body_entered"]
 [connection signal="body_exited" from="Hint/Area3D" to="Hint" method="body_exited"]
-[connection signal="body_entered" from="RedBox/PlayerDetection" to="RedBox" method="_player_area_entered"]
-[connection signal="JumpedByPlayer" from="RedBox/HurtBox" to="RedBox" method="_on_hurt_box_jumped_by_player"]
-[connection signal="area_entered" from="RedBox/HurtBox" to="RedBox/HurtBox" method="_on_area_entered"]
 [connection signal="area_entered" from="DeathPlane" to="DeathPlane" method="_on_area_entered"]
 [connection signal="tree_exited" from="BigPhysicsBoxRespawner/BigPhysicsBox" to="BigPhysicsBoxRespawner" method="BoxDied"]
 [connection signal="timeout" from="BigPhysicsBoxRespawner/Timer" to="BigPhysicsBoxRespawner" method="SpawnBox"]

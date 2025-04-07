@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dpgnu7m4327pr"]
+[gd_scene load_steps=23 format=3 uid="uid://dpgnu7m4327pr"]
 
 [ext_resource type="Script" uid="uid://crecx4ucgq01s" path="res://DemoLevel/CptDetonator.cs" id="1_mcj7g"]
 [ext_resource type="PackedScene" uid="uid://l0f51fiwyojq" path="res://SawBladeContainer.tscn" id="2_rulcr"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://b76s8oy3lynf6" path="res://CptDetonatorEyes.cs" id="8_y36m0"]
 [ext_resource type="Script" uid="uid://du8cwf636gg70" path="res://environment/Spikes/SpikeArea.cs" id="9_e62ou"]
 [ext_resource type="Script" uid="uid://6eyvraq0iheq" path="res://LockOnArea.cs" id="10_i1iy6"]
+[ext_resource type="PackedScene" uid="uid://cg3xty8msc6nv" path="res://LockOnIndicator.tscn" id="10_mcj7g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_idmjl"]
 albedo_color = Color(0.632225, 1.9493e-06, 3.36915e-07, 1)
@@ -48,16 +49,6 @@ scale_curve = SubResource("CurveTexture_7i8pr")
 
 [sub_resource type="BoxMesh" id="BoxMesh_8ksyu"]
 size = Vector3(0.2, 0.2, 0.2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qs0ps"]
-albedo_color = Color(1, 1, 0, 1)
-
-[sub_resource type="TextMesh" id="TextMesh_2l6go"]
-material = SubResource("StandardMaterial3D_qs0ps")
-text = "V"
-font_size = 12
-pixel_size = 0.1
-depth = 0.2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wtpav"]
 radius = 4.0
@@ -161,10 +152,8 @@ script = ExtResource("10_i1iy6")
 meshInstance = NodePath("MeshInstance3D")
 meshOffset = Vector3(0, 2, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="LockOnArea"]
+[node name="MeshInstance3D" parent="LockOnArea" instance=ExtResource("10_mcj7g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92419, 0)
-top_level = true
-mesh = SubResource("TextMesh_2l6go")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LockOnArea"]
 shape = SubResource("SphereShape3D_wtpav")

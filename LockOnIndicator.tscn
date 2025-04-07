@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg3xty8msc6nv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qs0ps"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_2l6go"]
+material = SubResource("StandardMaterial3D_qs0ps")
+text = "V"
+font_size = 12
+pixel_size = 0.1
+depth = 0.2
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+top_level = true
+mesh = SubResource("TextMesh_2l6go")

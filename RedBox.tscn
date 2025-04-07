@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://ha5t40v1wac4"]
+
+[ext_resource type="Script" uid="uid://bs0wfsdqa0oan" path="res://RedBox.cs" id="1_jqfd8"]
+[ext_resource type="Script" uid="uid://bvdkfere7wshj" path="res://RedBoxDamageSender.cs" id="2_ww4kn"]
+[ext_resource type="Script" uid="uid://6eyvraq0iheq" path="res://LockOnArea.cs" id="3_dmxay"]
+[ext_resource type="PackedScene" uid="uid://cg3xty8msc6nv" path="res://LockOnIndicator.tscn" id="4_hm8aq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rh67q"]
+albedo_color = Color(0.654902, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rh67q"]
+material = SubResource("StandardMaterial3D_rh67q")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rh67q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iogn7"]
+size = Vector3(8, 8, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wjtn7"]
+size = Vector3(1.2, 1.2, 1.2)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_aaymc"]
+radius = 2.0
+
+[node name="RedBox" type="RigidBody3D" node_paths=PackedStringArray("PlayerDetectionArea")]
+physics_interpolation_mode = 1
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_jqfd8")
+PlayerDetectionArea = NodePath("PlayerDetection")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_rh67q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_rh67q")
+
+[node name="PlayerDetection" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetection"]
+shape = SubResource("BoxShape3D_iogn7")
+
+[node name="HurtBox" type="Area3D" parent="."]
+script = ExtResource("2_ww4kn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
+shape = SubResource("BoxShape3D_wjtn7")
+
+[node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("meshInstance")]
+collision_layer = 16
+collision_mask = 16
+monitoring = false
+monitorable = false
+script = ExtResource("3_dmxay")
+meshInstance = NodePath("MeshInstance3D")
+meshOffset = Vector3(0, 1.7, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_aaymc")
+
+[node name="MeshInstance3D" parent="Area3D" instance=ExtResource("4_hm8aq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_player_area_entered"]
+[connection signal="JumpedByPlayer" from="HurtBox" to="." method="_on_hurt_box_jumped_by_player"]
+[connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]
