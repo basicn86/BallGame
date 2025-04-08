@@ -32,6 +32,9 @@ public partial class RedBox : RigidBody3D
 		impulseDirection = impulseDirection.Normalized();
 		impulseDirection.Y += 1f;
 		ApplyCentralImpulse(impulseDirection * 4f);
+		impulseDirection.Y = 0f;
+		impulseDirection = impulseDirection.Rotated(Vector3.Up, Mathf.Pi / 2f);
+		ApplyTorqueImpulse(impulseDirection);
 	}
 
 	public void _player_area_entered(Node3D body)
