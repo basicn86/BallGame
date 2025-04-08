@@ -17,7 +17,7 @@ public partial class RedBox : RigidBody3D
 		if (player == null) return;
 
 		attackCooldownTimer -= (float)delta;
-		if (attackCooldownTimer < 0f && LinearVelocity.Length() < 1f)
+		if (attackCooldownTimer < 0f && LinearVelocity.Length() < 1f && AngularVelocity.Length() < 0.1f)
 		{
 			LinearVelocity = Vector3.Zero;
 			AttackPlayer();
@@ -33,7 +33,7 @@ public partial class RedBox : RigidBody3D
 		impulseDirection.Y += 1f;
 		ApplyCentralImpulse(impulseDirection * 4f);
 		impulseDirection.Y = 0f;
-		impulseDirection = impulseDirection.Rotated(Vector3.Up, Mathf.Pi / 2f);
+		impulseDirection = impulseDirection.Cross(Vector3.Down);
 		ApplyTorqueImpulse(impulseDirection);
 	}
 
