@@ -144,6 +144,7 @@ target_lock={
 3d_physics/layer_3="Entity"
 3d_physics/layer_4="Projectile"
 3d_physics/layer_5="LockOn"
+3d_physics/layer_6="Enemy"
 
 [physics]
 

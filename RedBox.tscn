@@ -24,10 +24,11 @@ radius = 2.0
 
 [node name="RedBox" type="RigidBody3D" node_paths=PackedStringArray("PlayerDetectionArea")]
 physics_interpolation_mode = 1
-collision_layer = 4
-collision_mask = 7
+collision_layer = 32
+collision_mask = 39
 script = ExtResource("1_jqfd8")
 PlayerDetectionArea = NodePath("PlayerDetection")
+AttackCooldown = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_rh67q")
@@ -48,7 +49,7 @@ script = ExtResource("2_ww4kn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
 shape = SubResource("BoxShape3D_wjtn7")
 
-[node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("meshInstance")]
+[node name="LockOnArea" type="Area3D" parent="." node_paths=PackedStringArray("meshInstance")]
 collision_layer = 16
 collision_mask = 16
 monitoring = false
@@ -57,10 +58,10 @@ script = ExtResource("3_dmxay")
 meshInstance = NodePath("MeshInstance3D")
 meshOffset = Vector3(0, 1.7, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LockOnArea"]
 shape = SubResource("SphereShape3D_aaymc")
 
-[node name="MeshInstance3D" parent="Area3D" instance=ExtResource("4_hm8aq")]
+[node name="MeshInstance3D" parent="LockOnArea" instance=ExtResource("4_hm8aq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_player_area_entered"]
