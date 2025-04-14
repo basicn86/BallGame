@@ -201,7 +201,7 @@ public partial class Player : RigidBody3D
 		}
 	}
 
-	private void _on_area_3d_take_damage(long amount, long team)
+	private void _on_area_3d_take_damage(long amount, long team, Vector3 knockback)
 	{
 		if (team == (long)BallGame.Common.Team.Player) return;
 

@@ -25,9 +25,9 @@ public partial class CptDetonatorBomb : RigidBody3D
 		Godot.Collections.Array<Area3D> bodies = explosionArea.GetOverlappingAreas();
 		foreach (Area3D body in bodies)
 		{
-			if (body is HitBoxComponent)
+			if (body is DamageReceiver)
 			{
-				HitBoxComponent hitBox = body as HitBoxComponent;
+				DamageReceiver hitBox = body as DamageReceiver;
 				hitBox.EmitSignal("TakeDamage", 10, (int)BallGame.Common.Team.Enemy);
 			}
 		}

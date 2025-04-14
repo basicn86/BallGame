@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://ha5t40v1wac4"]
+[gd_scene load_steps=13 format=3 uid="uid://ha5t40v1wac4"]
 
-[ext_resource type="Script" uid="uid://bs0wfsdqa0oan" path="res://RedBox.cs" id="1_jqfd8"]
-[ext_resource type="Script" uid="uid://bvdkfere7wshj" path="res://RedBoxDamageSender.cs" id="2_ww4kn"]
+[ext_resource type="Script" uid="uid://bs0wfsdqa0oan" path="res://enemies/RedBox/RedBox.cs" id="1_jqfd8"]
+[ext_resource type="Script" uid="uid://bvdkfere7wshj" path="res://enemies/RedBox/RedBoxDamageSender.cs" id="2_ww4kn"]
 [ext_resource type="Script" uid="uid://6eyvraq0iheq" path="res://LockOnArea.cs" id="3_dmxay"]
+[ext_resource type="Script" uid="uid://drxua1kmiojx7" path="res://common/DamageReceiver.cs" id="3_hm8aq"]
 [ext_resource type="PackedScene" uid="uid://cg3xty8msc6nv" path="res://LockOnIndicator.tscn" id="4_hm8aq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rh67q"]
@@ -14,9 +15,12 @@ material = SubResource("StandardMaterial3D_rh67q")
 [sub_resource type="BoxShape3D" id="BoxShape3D_rh67q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iogn7"]
-size = Vector3(8, 8, 8)
+size = Vector3(14, 14, 14)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wjtn7"]
+size = Vector3(1.2, 1.2, 1.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dmxay"]
 size = Vector3(1.2, 1.2, 1.2)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_aaymc"]
@@ -27,7 +31,7 @@ physics_interpolation_mode = 1
 collision_layer = 32
 collision_mask = 39
 script = ExtResource("1_jqfd8")
-PlayerDetectionArea = NodePath("PlayerDetection")
+PlayerDetectionArea = NodePath("PlayerActivationArea")
 AttackCooldown = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -36,20 +40,31 @@ mesh = SubResource("BoxMesh_rh67q")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_rh67q")
 
-[node name="PlayerDetection" type="Area3D" parent="."]
+[node name="PlayerActivationArea" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetection"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerActivationArea"]
 shape = SubResource("BoxShape3D_iogn7")
 
-[node name="HurtBox" type="Area3D" parent="."]
+[node name="DamageSender" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 3
 script = ExtResource("2_ww4kn")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageSender"]
 shape = SubResource("BoxShape3D_wjtn7")
 
+[node name="HitBox" type="Area3D" parent="."]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("3_hm8aq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+shape = SubResource("BoxShape3D_dmxay")
+
 [node name="LockOnArea" type="Area3D" parent="." node_paths=PackedStringArray("meshInstance")]
+physics_interpolation_mode = 1
 collision_layer = 16
 collision_mask = 16
 monitoring = false
@@ -64,6 +79,7 @@ shape = SubResource("SphereShape3D_aaymc")
 [node name="MeshInstance3D" parent="LockOnArea" instance=ExtResource("4_hm8aq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 
-[connection signal="body_entered" from="PlayerDetection" to="." method="_player_area_entered"]
-[connection signal="JumpedByPlayer" from="HurtBox" to="." method="_on_hurt_box_jumped_by_player"]
-[connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]
+[connection signal="body_entered" from="PlayerActivationArea" to="." method="_player_area_entered"]
+[connection signal="JumpedByPlayer" from="DamageSender" to="." method="jumped_by_player"]
+[connection signal="area_entered" from="DamageSender" to="DamageSender" method="_on_area_entered"]
+[connection signal="TakeDamage" from="HitBox" to="." method="take_damage"]

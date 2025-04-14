@@ -8,7 +8,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dwju2ewaplx15" path="res://environment/Grass/GrassBlade.obj" id="3_nbtbs"]
 [ext_resource type="Material" uid="uid://ov73e2vq13t6" path="res://DemoLevel/GrassGroundMaterial.tres" id="4_le0gn"]
 [ext_resource type="Script" uid="uid://d1tvxivu1buex" path="res://GrassMultiMeshInstance3D.cs" id="4_scv88"]
-[ext_resource type="PackedScene" uid="uid://ha5t40v1wac4" path="res://RedBox.tscn" id="4_wjtn7"]
+[ext_resource type="PackedScene" uid="uid://ha5t40v1wac4" path="res://enemies/RedBox/RedBox.tscn" id="4_wjtn7"]
 [ext_resource type="Material" uid="uid://b7mcadtf10vtg" path="res://environment/Grass/GrassShader.tres" id="5_jexvf"]
 [ext_resource type="Texture2D" uid="uid://mbn5xemgcifr" path="res://autumn_field_puresky_4k.hdr" id="5_rh67q"]
 [ext_resource type="PackedScene" uid="uid://ctiw3gw6hbfhh" path="res://ui/crosshair.tscn" id="7_2qhh3"]
@@ -491,8 +491,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.4788, 1.48092, -50.1251)
 [node name="RedBox" parent="." instance=ExtResource("4_wjtn7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.2923, 2.35557, -61.8518)
 
+[node name="RedBox2" parent="." instance=ExtResource("4_wjtn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.591, 2.35557, -61.8518)
+
+[node name="RedBox3" parent="." instance=ExtResource("4_wjtn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.5811, 2.35557, -63.4658)
+
+[node name="RedBox4" parent="." instance=ExtResource("4_wjtn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.7282, 2.35557, -63.4658)
+
+[node name="RedBox5" parent="." instance=ExtResource("4_wjtn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.253, 2.35557, -65.0746)
+
+[node name="RedBox6" parent="." instance=ExtResource("4_wjtn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.5517, 2.35557, -65.0746)
+
 [node name="DeathPlane" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.8539, 0)
+collision_layer = 0
+collision_mask = 39
 script = ExtResource("2_xq41t")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathPlane"]

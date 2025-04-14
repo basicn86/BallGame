@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dbv12oqcf8r40" path="res://player/landing_particles.tscn" id="2_vu4ki"]
 [ext_resource type="PackedScene" uid="uid://b25px6lkbxcw0" path="res://player/PlayerDeathParticles.tscn" id="3_jbxwk"]
 [ext_resource type="Script" uid="uid://cpam5ek1nkkld" path="res://player/PlayerModelComponent.cs" id="4_ie68q"]
-[ext_resource type="Script" uid="uid://drxua1kmiojx7" path="res://common/HitBoxComponent.cs" id="5_rnpcn"]
+[ext_resource type="Script" uid="uid://drxua1kmiojx7" path="res://common/DamageReceiver.cs" id="5_rnpcn"]
 [ext_resource type="AudioStream" uid="uid://cppvf4iqq5i68" path="res://player/Jump.wav" id="7_5gxdp"]
 [ext_resource type="AudioStream" uid="uid://bc8c5k71teb71" path="res://player/Landing.wav" id="8_c1um3"]
 
@@ -60,12 +60,13 @@ top_level = true
 target_position = Vector3(0, -0.75, 0)
 collision_mask = 5
 
-[node name="Area3D" type="Area3D" parent="."]
-collision_layer = 5
-collision_mask = 5
+[node name="HitBox" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("5_rnpcn")
+IsPlayer = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
 shape = SubResource("SphereShape3D_1pijw")
 
 [node name="JumpingAudio" type="AudioStreamPlayer3D" parent="."]
@@ -80,4 +81,4 @@ bus = &"Player SFX"
 
 [connection signal="PlayerDied" from="." to="PlayerModel" method="_on_player_player_died"]
 [connection signal="timeout" from="PlayerModel/InvisibilityTimer" to="PlayerModel" method="_on_invisibility_timer_timeout"]
-[connection signal="TakeDamage" from="Area3D" to="." method="_on_area_3d_take_damage"]
+[connection signal="TakeDamage" from="HitBox" to="." method="_on_area_3d_take_damage"]

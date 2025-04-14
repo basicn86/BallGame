@@ -15,7 +15,7 @@ public partial class LaserPistolProjectile : Area3D
 
 	private void _on_area_entered(Area3D area)
 	{
-		if(area is HitBoxComponent hitBoxComponent)
+		if(area is DamageReceiver hitBoxComponent)
 		{
 			hitBoxComponent.EmitSignal("TakeDamage", 10, 0);
 		}

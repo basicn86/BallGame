@@ -16,7 +16,7 @@ public partial class PhysicsBox : RigidBody3D
 	{
 	}
 
-	private void _on_area_3d_take_damage(int amount, int team)
+	private void _on_area_3d_take_damage(int amount, int team, Vector3 knockback)
 	{
 		Node3D explosion = (Node3D)explosionScene.Instantiate();
 		GetParent().AddChild(explosion);

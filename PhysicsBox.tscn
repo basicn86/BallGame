@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://rs704lak0mfq" path="res://PhysicsBox.cs" id="1_veju4"]
 [ext_resource type="PackedScene" uid="uid://ckjg8vgokuseq" path="res://PhysicsBoxExplosion.tscn" id="2_ga5aj"]
 [ext_resource type="Material" uid="uid://cf45eg04u0u62" path="res://PhysicsBoxMaterial.tres" id="3_5mx1k"]
-[ext_resource type="Script" uid="uid://drxua1kmiojx7" path="res://common/HitBoxComponent.cs" id="4_n6r5e"]
+[ext_resource type="Script" uid="uid://drxua1kmiojx7" path="res://common/DamageReceiver.cs" id="4_n6r5e"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_f7o52"]
 material = ExtResource("3_5mx1k")

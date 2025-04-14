@@ -173,7 +173,6 @@ public partial class PlayerCamera : Node3D
 		lockOnTargetInfo.Target = target;
 		_stateTransitionTimer = 0;
 		cameraMode = CameraMode.EnteringLockOn;
-		camera.Reparent(LockOnPedestal);
 
 		if (target is LockOnArea lockOnArea)
 		{
@@ -189,7 +188,6 @@ public partial class PlayerCamera : Node3D
 		}
 		cameraMode = CameraMode.EnteringFreeLook;
 		_stateTransitionTimer = 0;
-		camera.Reparent(FreeLookPedestal);
 	}
 
 	public override void _PhysicsProcess(double delta)

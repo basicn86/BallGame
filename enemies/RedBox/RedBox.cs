@@ -32,9 +32,10 @@ public partial class RedBox : RigidBody3D
 		impulseDirection = impulseDirection.Normalized();
 		impulseDirection.Y += 1f;
 		ApplyCentralImpulse(impulseDirection * 4f);
-		impulseDirection.Y = 0f;
-		impulseDirection = impulseDirection.Cross(Vector3.Down);
-		ApplyTorqueImpulse(impulseDirection);
+
+		Vector3 torqueAxis = impulseDirection;
+		torqueAxis.Y = 0f;
+		ApplyTorqueImpulse(torqueAxis.Cross(Vector3.Down));
 	}
 
 	public void _player_area_entered(Node3D body)
@@ -46,12 +47,22 @@ public partial class RedBox : RigidBody3D
 		AttackPlayer();
 	}
 
-	public void _on_hurt_box_jumped_by_player()
+	public void jumped_by_player()
 	{
+		if (player == null)
+		{
+			QueueFree();
+			return;
+		}
 		Vector3 playerVelocity = player.LinearVelocity;
 		playerVelocity.Y = 0f;
 		player.LinearVelocity = playerVelocity;
 		player.ApplyCentralImpulse(Vector3.Up * 15f);
+		QueueFree();
+	}
+
+	public void take_damage(int damage, int team, Vector3 knockbackForce)
+	{
 		QueueFree();
 	}
 }
