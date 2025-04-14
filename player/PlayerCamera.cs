@@ -18,36 +18,7 @@ public partial class PlayerCamera : Node3D
 	}
 
 	private double _stateTransitionTimer = 0;
-	private class LockOnTargetInfo
-	{
-		private Node3D target;
-		public Node3D Target
-		{
-			get { return target; }
-			set
-			{
-				target = value;
-				prevPos = target.GlobalPosition;
-				currentPos = target.GlobalPosition;
-			}
-		}
-		private Vector3 prevPos;
-		private Vector3 currentPos;
 
-		public bool IsAlive()
-		{
-			return IsInstanceValid(Target);
-		}
-		public void UpdatePosition()
-		{
-			prevPos = currentPos;
-			currentPos = Target.GlobalPosition;
-		}
-		public Vector3 GetInterpolatedPos()
-		{
-			return prevPos.Lerp(currentPos, (float)Engine.GetPhysicsInterpolationFraction());
-		}
-	}
 	CameraMode cameraMode = CameraMode.FreeLook;
 
 	private float sensitivity = 0.1f;
@@ -70,7 +41,7 @@ public partial class PlayerCamera : Node3D
 	private float normalCameraDistance;
 	private Vector3 normalObstacleRaycastPosition;
 	private Vector3 desiredCameraLocalPosition;
-	private LockOnTargetInfo lockOnTargetInfo = new LockOnTargetInfo();
+	private LockOnArea? lockOnTarget;
 
 	[Export]
 	public Camera3D camera;
@@ -90,7 +61,7 @@ public partial class PlayerCamera : Node3D
 	{
 		if (cameraMode == CameraMode.LockOn || cameraMode == CameraMode.EnteringLockOn)
 		{
-			return lockOnTargetInfo.GetInterpolatedPos();
+			return lockOnTarget.GetInterpolatedPos();
 		}
 		else if (crosshairRaycast.IsColliding())
 		{
@@ -102,7 +73,7 @@ public partial class PlayerCamera : Node3D
 		}
 	}
 
-	public Node3D GetLockOnTarget()
+	public LockOnArea GetLockOnTarget()
 	{
 		//This is to prevent locking on through walls
 		Vector3 targetPosition = GetCrosshairCollisionPoint();
@@ -111,7 +82,8 @@ public partial class PlayerCamera : Node3D
 
 		lockOnRaycast.ForceRaycastUpdate();
 		if (!lockOnRaycast.IsColliding()) return null;
-		return lockOnRaycast.GetCollider() as Node3D;
+		if (lockOnRaycast.GetCollider() is not LockOnArea) return null;
+		return lockOnRaycast.GetCollider() as LockOnArea;
 	}
 	#endregion
 
@@ -155,7 +127,7 @@ public partial class PlayerCamera : Node3D
 		if (Input.IsActionJustPressed("target_lock"))
 		{
 			if (cameraMode == CameraMode.FreeLook) {
-				Node3D temp = GetLockOnTarget();
+				LockOnArea temp = GetLockOnTarget();
 				if (temp != null)
 				{
 					LockOn(temp);
@@ -168,34 +140,22 @@ public partial class PlayerCamera : Node3D
 		}
 	}
 
-	private void LockOn(Node3D target)
+	private void LockOn(LockOnArea target)
 	{
-		lockOnTargetInfo.Target = target;
+		lockOnTarget = target;
 		_stateTransitionTimer = 0;
 		cameraMode = CameraMode.EnteringLockOn;
-
-		if (target is LockOnArea lockOnArea)
-		{
-			lockOnArea.TargetLocked();
-		}
+		target.TargetLocked();
 	}
 
 	private void StopLockOn()
 	{
-		if (lockOnTargetInfo.Target is LockOnArea lockOnArea && IsInstanceValid(lockOnArea))
+		if (IsInstanceValid(lockOnTarget))
 		{
-			lockOnArea.TargetUnlocked();
+			lockOnTarget.TargetUnlocked();
 		}
 		cameraMode = CameraMode.EnteringFreeLook;
 		_stateTransitionTimer = 0;
-	}
-
-	public override void _PhysicsProcess(double delta)
-	{
-		if (lockOnTargetInfo.IsAlive())
-		{
-			lockOnTargetInfo.UpdatePosition();
-		}
 	}
 
 	private void EnteringFreeLookState(double delta)
@@ -233,7 +193,7 @@ public partial class PlayerCamera : Node3D
 	{
 		Crosshair.Instance.Visible = false;
 
-		if (!lockOnTargetInfo.IsAlive())
+		if (!IsInstanceValid(lockOnTarget))
 		{
 			cameraMode = CameraMode.EnteringFreeLook;
 			_stateTransitionTimer = 0;
@@ -242,7 +202,7 @@ public partial class PlayerCamera : Node3D
 
 		_stateTransitionTimer += delta;
 
-		Vector3 lockOnPos = lockOnTargetInfo.GetInterpolatedPos();
+		Vector3 lockOnPos = lockOnTarget.GetInterpolatedPos();
 		LockOnPedestal.LookAt(lockOnPos);
 		lockOnPos.Y = GlobalPosition.Y;
 		LookAt(lockOnPos, Vector3.Up);
@@ -264,13 +224,13 @@ public partial class PlayerCamera : Node3D
 
 	private void LockOnState()
 	{
-		if (!lockOnTargetInfo.IsAlive())
+		if (!IsInstanceValid(lockOnTarget))
 		{
 			cameraMode = CameraMode.EnteringFreeLook;
 			_stateTransitionTimer = 0;
 			return;
 		}
-		Vector3 lockOnPos = lockOnTargetInfo.GetInterpolatedPos();
+		Vector3 lockOnPos = lockOnTarget.GetInterpolatedPos();
 		LockOnPedestal.LookAt(lockOnPos);
 		lockOnPos.Y = pitch.GlobalPosition.Y;
 		LookAt(lockOnPos, Vector3.Up);

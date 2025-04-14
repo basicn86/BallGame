@@ -64,7 +64,6 @@ script = ExtResource("3_hm8aq")
 shape = SubResource("BoxShape3D_dmxay")
 
 [node name="LockOnArea" type="Area3D" parent="." node_paths=PackedStringArray("meshInstance")]
-physics_interpolation_mode = 1
 collision_layer = 16
 collision_mask = 16
 monitoring = false
