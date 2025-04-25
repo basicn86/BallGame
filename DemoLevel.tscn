@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=128 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Script" uid="uid://pkmqwx6sx4y6" path="res://Hint.cs" id="1_oddph"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://du8cwf636gg70" path="res://environment/Spikes/SpikeArea.cs" id="2_xq41t"]
 [ext_resource type="PackedScene" uid="uid://cnpb27we1lbh3" path="res://ui/PauseMenu.tscn" id="3_lnbl7"]
 [ext_resource type="ArrayMesh" uid="uid://dwju2ewaplx15" path="res://environment/Grass/GrassBlade.obj" id="3_nbtbs"]
+[ext_resource type="Script" uid="uid://daw86lyq7litx" path="res://Spring.cs" id="4_ges3u"]
 [ext_resource type="Material" uid="uid://ov73e2vq13t6" path="res://DemoLevel/GrassGroundMaterial.tres" id="4_le0gn"]
 [ext_resource type="Script" uid="uid://d1tvxivu1buex" path="res://GrassMultiMeshInstance3D.cs" id="4_scv88"]
 [ext_resource type="PackedScene" uid="uid://ha5t40v1wac4" path="res://enemies/RedBox/RedBox.tscn" id="4_wjtn7"]
@@ -51,6 +52,14 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yu183"]
 size = Vector3(2, 2, 2)
+
+[sub_resource type="PrismMesh" id="PrismMesh_iogn7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ci3n"]
+size = Vector3(1, 0.75, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ges3u"]
+size = Vector3(0.9, 0.5, 0.9)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wqqyb"]
 size = Vector3(5000, 20, 5000)
@@ -487,6 +496,27 @@ shape = SubResource("BoxShape3D_yu183")
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.696, 5, -42.1595)
+
+[node name="Spring" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5974, 3.86033, -45.0974)
+script = ExtResource("4_ges3u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spring"]
+mesh = SubResource("PrismMesh_iogn7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Spring"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.155213, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spring/StaticBody3D"]
+shape = SubResource("BoxShape3D_2ci3n")
+
+[node name="Area3D" type="Area3D" parent="Spring"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.265646, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spring/Area3D"]
+shape = SubResource("BoxShape3D_ges3u")
 
 [node name="RedBox" parent="." instance=ExtResource("4_wjtn7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.2923, 2.35557, -61.8518)
@@ -1451,6 +1481,7 @@ shape = SubResource("BoxShape3D_r1ouu")
 
 [connection signal="body_entered" from="Hint/Area3D" to="Hint" method="body_entered"]
 [connection signal="body_exited" from="Hint/Area3D" to="Hint" method="body_exited"]
+[connection signal="body_entered" from="Spring/Area3D" to="Spring" method="_on_area_3d_body_entered"]
 [connection signal="area_entered" from="DeathPlane" to="DeathPlane" method="_on_area_entered"]
 [connection signal="tree_exited" from="BigPhysicsBoxRespawner/BigPhysicsBox" to="BigPhysicsBoxRespawner" method="BoxDied"]
 [connection signal="timeout" from="BigPhysicsBoxRespawner/Timer" to="BigPhysicsBoxRespawner" method="SpawnBox"]
