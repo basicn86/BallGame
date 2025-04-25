@@ -6,11 +6,21 @@ public partial class RedBox : RigidBody3D
 	[Export]
 	private Area3D PlayerDetectionArea;
 
+	[Export]
+	private Area3D DamageSender;
+
 	private Player? player;
 
 	[Export]
 	private float AttackCooldown;
 	private float attackCooldownTimer = 0f;
+
+	private Vector3 initialSpawnPosition = Vector3.Zero;
+
+	public override void _Ready()
+	{
+		initialSpawnPosition = GlobalPosition;
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -51,18 +61,45 @@ public partial class RedBox : RigidBody3D
 	{
 		if (player == null)
 		{
-			QueueFree();
+			DisableProcessing();
 			return;
 		}
 		Vector3 playerVelocity = player.LinearVelocity;
 		playerVelocity.Y = 0f;
 		player.LinearVelocity = playerVelocity;
 		player.ApplyCentralImpulse(Vector3.Up * 15f);
-		QueueFree();
+
+		DisableProcessing();
 	}
+
 
 	public void take_damage(int damage, int team, Vector3 knockbackForce)
 	{
-		QueueFree();
+		DisableProcessing();
+	}
+
+	public void PlayerDied()
+	{
+		EnableProcessing();
+		GlobalPosition = initialSpawnPosition;
+		GlobalRotation = Vector3.Zero;
+		LinearVelocity = Vector3.Zero;
+		AngularVelocity = Vector3.Zero;
+		ResetPhysicsInterpolation();
+	}
+
+	private void DisableProcessing()
+	{
+		SetDeferred("process_mode", (int)ProcessModeEnum.Disabled);
+		DamageSender.SetDeferred("monitorable", false);
+		DamageSender.SetDeferred("monitoring", false);
+		Visible = false;
+	}
+	private void EnableProcessing()
+	{
+		SetDeferred("process_mode", (int)ProcessModeEnum.Inherit);
+		DamageSender.SetDeferred("monitorable", true);
+		DamageSender.SetDeferred("monitoring", true);
+		Visible = true;
 	}
 }

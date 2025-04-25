@@ -215,6 +215,7 @@ public partial class Player : RigidBody3D
 
 		ProcessMode = ProcessModeEnum.Disabled;
 		EmitSignal("PlayerDied");
+		GetTree().CallGroup("PlayerDied", "PlayerDied");
 	}
 
 	[Signal]

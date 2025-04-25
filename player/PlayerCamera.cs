@@ -193,8 +193,9 @@ public partial class PlayerCamera : Node3D
 	{
 		Crosshair.Instance.Visible = false;
 
-		if (!IsInstanceValid(lockOnTarget))
+		if (!lockOnTarget.CanProcess())
 		{
+			lockOnTarget.TargetUnlocked();
 			cameraMode = CameraMode.EnteringFreeLook;
 			_stateTransitionTimer = 0;
 			return;
@@ -224,8 +225,9 @@ public partial class PlayerCamera : Node3D
 
 	private void LockOnState()
 	{
-		if (!IsInstanceValid(lockOnTarget))
+		if (!lockOnTarget.CanProcess())
 		{
+			lockOnTarget.TargetUnlocked();
 			cameraMode = CameraMode.EnteringFreeLook;
 			_stateTransitionTimer = 0;
 			return;
