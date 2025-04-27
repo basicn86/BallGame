@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://ha5t40v1wac4"]
+[gd_scene load_steps=14 format=3 uid="uid://ha5t40v1wac4"]
 
 [ext_resource type="Script" uid="uid://bs0wfsdqa0oan" path="res://enemies/RedBox/RedBox.cs" id="1_jqfd8"]
+[ext_resource type="PackedScene" uid="uid://b4pimk8uqc15v" path="res://environment/Coins/DynamicCoin.tscn" id="2_kyy54"]
 [ext_resource type="Script" uid="uid://bvdkfere7wshj" path="res://enemies/RedBox/RedBoxDamageSender.cs" id="2_ww4kn"]
 [ext_resource type="Script" uid="uid://6eyvraq0iheq" path="res://LockOnArea.cs" id="3_dmxay"]
 [ext_resource type="Script" uid="uid://drxua1kmiojx7" path="res://common/DamageReceiver.cs" id="3_hm8aq"]
@@ -34,6 +35,7 @@ script = ExtResource("1_jqfd8")
 PlayerDetectionArea = NodePath("PlayerActivationArea")
 DamageSender = NodePath("DamageSender")
 AttackCooldown = 2.0
+CoinScene = ExtResource("2_kyy54")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_rh67q")

@@ -17,6 +17,9 @@ public partial class RedBox : RigidBody3D
 
 	private Vector3 initialSpawnPosition = Vector3.Zero;
 
+	[Export]
+	private PackedScene CoinScene;
+
 	public override void _Ready()
 	{
 		initialSpawnPosition = GlobalPosition;
@@ -70,6 +73,7 @@ public partial class RedBox : RigidBody3D
 		player.ApplyCentralImpulse(Vector3.Up * 15f);
 
 		DisableProcessing();
+		SpawnCoins();
 	}
 
 
@@ -86,6 +90,21 @@ public partial class RedBox : RigidBody3D
 		LinearVelocity = Vector3.Zero;
 		AngularVelocity = Vector3.Zero;
 		ResetPhysicsInterpolation();
+	}
+
+	private void SpawnCoins()
+	{
+		for (int i = 0; i < 10; i++) {
+			DynamicCoin coin = CoinScene.Instantiate() as DynamicCoin;
+			GetParent().AddChild(coin);
+			coin.GlobalPosition = GlobalPosition;
+			Vector3 RandomCoinDirection = new Vector3(
+				(float)GD.RandRange(-1.0, 1.0),
+				1.0f,
+				(float)GD.RandRange(-1.0, 1.0)
+			).Normalized();
+			coin.ApplyCentralImpulse(RandomCoinDirection * 5f);
+		}
 	}
 
 	private void DisableProcessing()

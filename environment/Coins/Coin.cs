@@ -9,6 +9,11 @@ public partial class Coin : Node3D
 	[Export]
 	private MeshInstance3D mesh;
 
+	private Player? player = null;
+
+	[Export]
+	private Area3D DetectionArea;
+
 	public override void _Ready()
 	{
 		if(mesh == null) QueueFree();
@@ -19,11 +24,19 @@ public partial class Coin : Node3D
 	{
 		//we only need to rotate the mesh, it makes no sense to rotate the entire node including the collision shape
 		mesh.RotateY(RotationSpeed * (float)delta);
+
+		if (player == null) return;
+		GlobalTranslate((player.GlobalPosition - GlobalPosition).Normalized() * 6f * (float)delta);
+		if (GlobalPosition.DistanceTo(player.GlobalPosition) < 0.25f)
+		{
+			QueueFree();
+		}
 	}
 
 	private void body_entered(Node3D node)
 	{
-		//TODO: actually implement this. We are queueing free for debugging purposes
-		if (node is Player) QueueFree();
+		if (node is not Player) return;
+		player = node as Player;
+		DetectionArea.QueueFree();
 	}
 }

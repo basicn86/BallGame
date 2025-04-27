@@ -1,4 +1,4 @@
-[gd_scene load_steps=135 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=139 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://ct1cdqottsrdb" path="res://Bush.tscn" id="1_3avgc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
@@ -51,6 +51,10 @@
 [ext_resource type="Script" uid="uid://cutlaiqw4noky" path="res://DemoLevel/CptDetonatorGround.cs" id="37_pd2jn"]
 [ext_resource type="PackedScene" uid="uid://cajpfcg3thanr" path="res://DemoLevel/CptDetonatorJugglingBomb.tscn" id="37_rh67q"]
 [ext_resource type="Material" uid="uid://cdtgbm1a6m7t6" path="res://DemoLevel/CptDetonatorGroundMaterial.tres" id="38_srsny"]
+[ext_resource type="PackedScene" uid="uid://bpyj8r7bwgvyu" path="res://environment/Coins/StaticCoin.tscn" id="52_kfonh"]
+[ext_resource type="PackedScene" uid="uid://cl07s3vux1dhg" path="res://environment/Coins/StaticCoin2.tscn" id="53_uv337"]
+[ext_resource type="PackedScene" uid="uid://bdf4tkvb4noqm" path="res://environment/Coins/StaticCoin3.tscn" id="54_mme67"]
+[ext_resource type="PackedScene" uid="uid://b4pimk8uqc15v" path="res://environment/Coins/DynamicCoin.tscn" id="55_1adq6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ci3n"]
 albedo_color = Color(0.537255, 0.423529, 1, 1)
@@ -507,6 +511,59 @@ physics_interpolation_mode = 2
 
 [node name="SpawnRoom" type="Node3D" parent="."]
 
+[node name="RedBox" parent="SpawnRoom" instance=ExtResource("4_wjtn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3512, 1.60207, -25.1681)
+
+[node name="Coins" type="Node3D" parent="SpawnRoom"]
+
+[node name="Coin12" parent="SpawnRoom/Coins" instance=ExtResource("53_uv337")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.6148, 0.660646, -16.7892)
+
+[node name="Coin17" parent="SpawnRoom/Coins" instance=ExtResource("53_uv337")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.6603, 0.660646, -16.0701)
+
+[node name="Coin14" parent="SpawnRoom/Coins" instance=ExtResource("53_uv337")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.6819, 0.660646, -18.166)
+
+[node name="Coin13" parent="SpawnRoom/Coins" instance=ExtResource("53_uv337")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.7995, 0.660646, -17.3259)
+
+[node name="Coin8" parent="SpawnRoom/Coins" instance=ExtResource("53_uv337")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.5756, 0.660646, -8.12398)
+
+[node name="Coin9" parent="SpawnRoom/Coins" instance=ExtResource("53_uv337")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.2453, 0.660646, -7.60197)
+
+[node name="Coin10" parent="SpawnRoom/Coins" instance=ExtResource("53_uv337")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.2061, 0.660646, -11.5241)
+
+[node name="Coin18" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.9001, 0.660646, -16.0514)
+
+[node name="Coin19" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.6612, 0.660646, -15.4642)
+
+[node name="Coin20" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0128, 0.660646, -15.3141)
+
+[node name="Coin11" parent="SpawnRoom/Coins" instance=ExtResource("54_mme67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.3147, 0.660646, -16.3307)
+
+[node name="Coin15" parent="SpawnRoom/Coins" instance=ExtResource("54_mme67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.0705, 0.660646, -16.7719)
+
+[node name="Coin16" parent="SpawnRoom/Coins" instance=ExtResource("54_mme67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5258, 0.660646, -16.4813)
+
+[node name="Coin5" parent="SpawnRoom/Coins" instance=ExtResource("54_mme67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.6105, 0.660646, -11.5701)
+
+[node name="Coin6" parent="SpawnRoom/Coins" instance=ExtResource("54_mme67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.6687, 0.660646, -11.0206)
+
+[node name="Coin7" parent="SpawnRoom/Coins" instance=ExtResource("54_mme67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.3473, 0.660646, -12.1277)
+
 [node name="Bush" parent="SpawnRoom" instance=ExtResource("1_3avgc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.6133, 0.62988, -0.706905)
 
@@ -539,9 +596,6 @@ transform = Transform3D(0.996255, 0, -0.0864602, 0, 1, 0, 0.0864602, 0, 0.996255
 
 [node name="Bush5" parent="SpawnRoom" instance=ExtResource("1_3avgc")]
 transform = Transform3D(0.996255, 0, -0.0864602, 0, 1, 0, 0.0864602, 0, 0.996255, -32.7499, 0.629879, -12.9677)
-
-[node name="RedBox2" parent="SpawnRoom" instance=ExtResource("4_wjtn7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.2313, 2.35557, 3.04011)
 
 [node name="Tree3" parent="SpawnRoom" instance=ExtResource("17_q6wjd")]
 transform = Transform3D(0.937943, 0, 0.346788, 0, 1, 0, -0.346788, 0, 0.937943, -62.2064, -1.56115, -13.0111)
@@ -625,7 +679,7 @@ collision_mask = 2
 shape = SubResource("BoxShape3D_yu183")
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.827, 1.33858, -10.5487)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.1254, 1.33858, -28.27)
 
 [node name="RedBox" parent="." instance=ExtResource("4_wjtn7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.2923, 2.35557, -61.8518)
@@ -659,14 +713,14 @@ mesh = SubResource("BoxMesh_pvsit")
 
 [node name="GrassMultiMeshLeft" type="MultiMeshInstance3D" parent="SpawnPlatform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-visibility_range_end = 50.0
+visibility_range_end = 100.0
 multimesh = SubResource("MultiMesh_lpjqe")
 script = ExtResource("4_scv88")
 Material = ExtResource("5_jexvf")
 
 [node name="GrassMultiMeshRight" type="MultiMeshInstance3D" parent="SpawnPlatform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-visibility_range_end = 50.0
+visibility_range_end = 100.0
 multimesh = SubResource("MultiMesh_spxmh")
 script = ExtResource("4_scv88")
 Material = ExtResource("5_jexvf")
@@ -1589,6 +1643,9 @@ mesh = SubResource("BoxMesh_qo7p6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BossRoom/Fence3"]
 shape = SubResource("BoxShape3D_r1ouu")
+
+[node name="Coin" parent="." instance=ExtResource("55_1adq6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.3493, 2.44298, -31.596)
 
 [connection signal="body_entered" from="SpawnRoom/Spring/Area3D" to="SpawnRoom/Spring" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="Hint/Area3D" to="Hint" method="body_entered"]

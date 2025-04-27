@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4pimk8uqc15v"]
+
+[ext_resource type="Script" uid="uid://da5wfhj51tiw" path="res://environment/Coins/DynamicCoin.cs" id="1_kehjf"]
+[ext_resource type="PackedScene" uid="uid://bi6a4c3uceim7" path="res://environment/Coins/Gem.blend" id="2_s62th"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4y3b8"]
+albedo_color = Color(0, 0.682353, 0.388235, 1)
+metallic_specular = 1.0
+roughness = 0.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f731l"]
+radius = 1.25
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kehjf"]
+size = Vector3(0.5, 0.7, 0.5)
+
+[node name="Coin" type="RigidBody3D" node_paths=PackedStringArray("mesh", "DetectionArea")]
+collision_layer = 0
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_kehjf")
+RotationSpeed = 3.0
+mesh = NodePath("Gem/Icosphere")
+DetectionArea = NodePath("PlayerDetectionArea")
+
+[node name="Gem" parent="." instance=ExtResource("2_s62th")]
+
+[node name="Icosphere" parent="Gem" index="0"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+top_level = true
+surface_material_override/0 = SubResource("StandardMaterial3D_4y3b8")
+
+[node name="PlayerDetectionArea" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectionArea"]
+shape = SubResource("SphereShape3D_f731l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_kehjf")
+
+[connection signal="body_entered" from="PlayerDetectionArea" to="." method="body_entered"]
+
+[editable path="Gem"]

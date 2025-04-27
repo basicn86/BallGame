@@ -56,7 +56,7 @@ material_override = ExtResource("1_58dsv")
 mesh = ExtResource("2_vuovt")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.243206, 0, -0.205504)
+transform = Transform3D(0.695309, 0.655321, -0.295127, -0.603231, 0.75535, 0.256044, 0.390715, 0, 0.920512, -0.243206, 0, -0.205504)
 material_override = ExtResource("1_58dsv")
 mesh = ExtResource("2_vuovt")
 
@@ -71,12 +71,12 @@ material_override = ExtResource("1_58dsv")
 mesh = ExtResource("2_vuovt")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.103867, 0.240538, -0.240876)
+transform = Transform3D(0.934559, 0, 0.355808, 0, 1, 0, -0.355808, 0, 0.934559, -0.103867, 0.240538, -0.240876)
 material_override = ExtResource("1_58dsv")
 mesh = ExtResource("2_vuovt")
 
 [node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.103867, 0.140615, 0.245349)
+transform = Transform3D(0.73278, 0, -0.680465, 0, 1, 0, 0.680465, 0, 0.73278, -0.103867, 0.140615, 0.245349)
 material_override = ExtResource("1_58dsv")
 mesh = ExtResource("2_vuovt")
 
