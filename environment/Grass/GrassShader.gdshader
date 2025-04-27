@@ -1,5 +1,4 @@
 shader_type spatial;
-render_mode unshaded;
 render_mode cull_disabled;
 render_mode world_vertex_coords;
 
@@ -34,7 +33,10 @@ void fragment() {
 	ALBEDO = currentColor;
 }
 
-//void light() {
-	// Called for every pixel for every light affecting the material.
-	// Uncomment to replace the default light processing function with this one.
-//}
+void light() {
+	if(ATTENUATION > 0.1){
+		DIFFUSE_LIGHT = vec3(1);
+	} else {
+		DIFFUSE_LIGHT = vec3(0);
+	}
+}

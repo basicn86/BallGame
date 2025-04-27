@@ -625,7 +625,7 @@ collision_mask = 2
 shape = SubResource("BoxShape3D_yu183")
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.0717, 1.33858, -27.788)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.827, 1.33858, -10.5487)
 
 [node name="RedBox" parent="." instance=ExtResource("4_wjtn7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.2923, 2.35557, -61.8518)
@@ -1596,5 +1596,3 @@ shape = SubResource("BoxShape3D_r1ouu")
 [connection signal="area_entered" from="DeathPlane" to="DeathPlane" method="_on_area_entered"]
 [connection signal="tree_exited" from="BigPhysicsBoxRespawner/BigPhysicsBox" to="BigPhysicsBoxRespawner" method="BoxDied"]
 [connection signal="timeout" from="BigPhysicsBoxRespawner/Timer" to="BigPhysicsBoxRespawner" method="SpawnBox"]
-
-[editable path="PlayerContainer"]
