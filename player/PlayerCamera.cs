@@ -307,5 +307,6 @@ public partial class PlayerCamera : Node3D
 					break;
 			}
 		}
+		@event.Dispose();
 	}
 }
