@@ -26,7 +26,7 @@ public partial class Coin : Node3D
 		mesh.RotateY(RotationSpeed * (float)delta);
 
 		if (player == null) return;
-		GlobalTranslate((player.GlobalPosition - GlobalPosition).Normalized() * 6f * (float)delta);
+		GlobalTranslate((player.GlobalPosition - GlobalPosition).Normalized() * 9f * (float)delta);
 		if (GlobalPosition.DistanceTo(player.GlobalPosition) < 0.25f)
 		{
 			QueueFree();

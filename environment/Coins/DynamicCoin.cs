@@ -67,5 +67,6 @@ public partial class DynamicCoin : RigidBody3D
 		player = node as Player;
 		DetectionArea.QueueFree();
 		CustomIntegrator = true;
+		CollisionMask = 0;
 	}
 }

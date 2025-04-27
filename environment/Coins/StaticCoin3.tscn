@@ -9,7 +9,7 @@ metallic_specular = 1.0
 roughness = 0.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_f731l"]
-radius = 0.75
+radius = 1.0
 
 [node name="Coin" type="Node3D" node_paths=PackedStringArray("mesh", "DetectionArea")]
 script = ExtResource("1_kjek1")
