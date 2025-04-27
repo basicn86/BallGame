@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=129 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Script" uid="uid://pkmqwx6sx4y6" path="res://Hint.cs" id="1_oddph"]
@@ -10,6 +10,7 @@
 [ext_resource type="Material" uid="uid://ov73e2vq13t6" path="res://DemoLevel/GrassGroundMaterial.tres" id="4_le0gn"]
 [ext_resource type="Script" uid="uid://d1tvxivu1buex" path="res://GrassMultiMeshInstance3D.cs" id="4_scv88"]
 [ext_resource type="PackedScene" uid="uid://ha5t40v1wac4" path="res://enemies/RedBox/RedBox.tscn" id="4_wjtn7"]
+[ext_resource type="AudioStream" uid="uid://18qpmwfsnu3d" path="res://boing-spring-mouth-harp-04-20-13-4-103346.mp3" id="5_2ci3n"]
 [ext_resource type="Material" uid="uid://b7mcadtf10vtg" path="res://environment/Grass/GrassShader.tres" id="5_jexvf"]
 [ext_resource type="Texture2D" uid="uid://mbn5xemgcifr" path="res://autumn_field_puresky_4k.hdr" id="5_rh67q"]
 [ext_resource type="PackedScene" uid="uid://ctiw3gw6hbfhh" path="res://ui/crosshair.tscn" id="7_2qhh3"]
@@ -53,13 +54,18 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_yu183"]
 size = Vector3(2, 2, 2)
 
-[sub_resource type="PrismMesh" id="PrismMesh_iogn7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ci3n"]
+albedo_color = Color(0.537255, 0.423529, 1, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2ci3n"]
-size = Vector3(1, 0.75, 1)
+[sub_resource type="SphereMesh" id="SphereMesh_3avgc"]
+material = SubResource("StandardMaterial3D_2ci3n")
+height = 0.5
+radial_segments = 32
+rings = 16
+is_hemisphere = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ges3u"]
-size = Vector3(0.9, 0.5, 0.9)
+size = Vector3(0.9, 1, 0.9)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wqqyb"]
 size = Vector3(5000, 20, 5000)
@@ -497,21 +503,20 @@ shape = SubResource("BoxShape3D_yu183")
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.696, 5, -42.1595)
 
-[node name="Spring" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5974, 3.86033, -45.0974)
+[node name="Spring" type="Node3D" parent="." node_paths=PackedStringArray("AudioPlayer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5974, 2.86298, -45.0974)
 script = ExtResource("4_ges3u")
+AudioPlayer = NodePath("AudioStreamPlayer3D")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Spring"]
+stream = ExtResource("5_2ci3n")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Spring"]
-mesh = SubResource("PrismMesh_iogn7")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Spring"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.155213, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Spring/StaticBody3D"]
-shape = SubResource("BoxShape3D_2ci3n")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.245623, 0)
+mesh = SubResource("SphereMesh_3avgc")
 
 [node name="Area3D" type="Area3D" parent="Spring"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.265646, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.553472, 0)
 collision_layer = 0
 collision_mask = 2
 
