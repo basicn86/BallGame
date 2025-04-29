@@ -44,9 +44,5 @@ void fragment() {
 }
 
 void light() {
-	if(ATTENUATION > 0.1){
-		DIFFUSE_LIGHT = vec3(1);
-	} else {
-		DIFFUSE_LIGHT = vec3(0);
-	}
+	DIFFUSE_LIGHT += ATTENUATION;
 }
