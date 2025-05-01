@@ -1093,6 +1093,24 @@ Count = 22
 Offset = Vector3(0, 0, -2.2)
 Rotation = 90.0
 
+[node name="FenceSpawner3" type="Node3D" parent="SpawnRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7588, 1.23938, 7.17731)
+script = ExtResource("12_hx1fq")
+FenceMesh = ExtResource("13_q6q4p")
+FenceMaterial = ExtResource("14_m8mxy")
+Count = 22
+Offset = Vector3(-2.2, 0, 0)
+Rotation = 180.0
+
+[node name="FenceSpawner4" type="Node3D" parent="SpawnRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.759, 1.239, -41.053)
+script = ExtResource("12_hx1fq")
+FenceMesh = ExtResource("13_q6q4p")
+FenceMaterial = ExtResource("14_m8mxy")
+Count = 17
+Offset = Vector3(0, 0, 2.2)
+Rotation = -90.0
+
 [node name="Hint" type="Node3D" parent="." node_paths=PackedStringArray("Mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12837, -27.2833)
 script = ExtResource("1_oddph")
