@@ -108,7 +108,7 @@ public partial class Player : RigidBody3D
 		Vector3 moveVector = new Vector3();
 		moveVector.X = Input.GetAxis("left", "right");
 		moveVector.Z = Input.GetAxis("forward", "backward");
-		moveVector *= CameraNode.Basis.Inverse();
+		moveVector *= CameraNode.GetCameraRotation().Inverse();
 		moveVector.Y = 0;
 
 		if (moveVector.IsZeroApprox())

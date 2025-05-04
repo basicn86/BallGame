@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://h5qmfyobdujt" path="res://player/PlayerCamera.cs" id="1_iw32j"]
 
-[node name="PlayerCamera" type="Node3D" node_paths=PackedStringArray("pitch", "obstacleRaycast", "crosshairRaycast", "lockOnRaycast", "crosshairNoncollidingPoint", "camera", "FreeLookPedestal", "LockOnPedestal")]
+[node name="PlayerCamera" type="Node3D" node_paths=PackedStringArray("pitch", "obstacleRaycast", "crosshairRaycast", "lockOnRaycast", "crosshairNoncollidingPoint", "camera", "FreeLookPedestal", "LockOnPedestal", "AutomaticPedestal")]
 top_level = true
 script = ExtResource("1_iw32j")
 pitch = NodePath("PitchPivot")
@@ -13,6 +13,7 @@ crosshairNoncollidingPoint = NodePath("PitchPivot/FreeLookPedestal/Camera3D/Cros
 camera = NodePath("PitchPivot/FreeLookPedestal/Camera3D")
 FreeLookPedestal = NodePath("PitchPivot/FreeLookPedestal")
 LockOnPedestal = NodePath("LockOnPedestal")
+AutomaticPedestal = NodePath("AutomaticPedestal")
 
 [node name="PitchPivot" type="Node3D" parent="."]
 
@@ -53,3 +54,6 @@ debug_shape_thickness = 1
 
 [node name="LockOnPedestal" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5)
+
+[node name="AutomaticPedestal" type="Node3D" parent="."]
+top_level = true

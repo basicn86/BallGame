@@ -14,12 +14,13 @@ public partial class PlayerCamera : Node3D
 		EnteringFreeLook,
 		FreeLook,
 		EnteringLockOn,
-		LockOn
+		LockOn,
+		Automatic
 	}
 
 	private double _stateTransitionTimer = 0;
 
-	CameraMode cameraMode = CameraMode.FreeLook;
+	CameraMode cameraMode = CameraMode.Automatic;
 
 	private float sensitivity = 0.1f;
 
@@ -52,6 +53,8 @@ public partial class PlayerCamera : Node3D
 	private Node3D FreeLookPedestal;
 	[Export]
 	private Node3D LockOnPedestal;
+	[Export]
+	private Node3D AutomaticPedestal;
 
 	#region Publicly accessible properties
 	/// <summary>
@@ -84,6 +87,12 @@ public partial class PlayerCamera : Node3D
 		if (!lockOnRaycast.IsColliding()) return null;
 		if (lockOnRaycast.GetCollider() is not LockOnArea) return null;
 		return lockOnRaycast.GetCollider() as LockOnArea;
+	}
+	
+	public Basis GetCameraRotation()
+	{
+		Basis cameraRotation = new Basis(Vector3.Up, camera.GlobalRotation.Y);
+		return cameraRotation;
 	}
 	#endregion
 
@@ -122,6 +131,11 @@ public partial class PlayerCamera : Node3D
 			case CameraMode.LockOn:
 				LockOnState();
 				break;
+			case CameraMode.Automatic:
+				Automatic(delta);
+				break;
+			default:
+				break;
 		}
 
 		if (Input.IsActionJustPressed("target_lock"))
@@ -138,6 +152,24 @@ public partial class PlayerCamera : Node3D
 				StopLockOn();
 			}
 		}
+	}
+
+	private void Automatic(double delta)
+	{
+		float distance = AutomaticPedestal.GlobalPosition.DistanceTo(TargetPosition + new Vector3(0, 2, 0));
+
+		if (distance > 5.0f)
+		{
+			float speedRatio = distance - 5.0f;
+			speedRatio = Mathf.Clamp(speedRatio, 0.0f, 1.0f);
+
+			AutomaticPedestal.GlobalPosition = AutomaticPedestal.GlobalPosition.Lerp(TargetPosition + new Vector3(0, 2, 0), 2f * (float)(delta * speedRatio));
+
+		}
+		camera.GlobalPosition = AutomaticPedestal.GlobalPosition;
+		Vector3 lookAtPos = TargetPosition;
+		lookAtPos.Y = camera.GlobalPosition.Y + (TargetPosition.Y - camera.GlobalPosition.Y) * 0.5f;
+		camera.LookAt(lookAtPos);
 	}
 
 	private void LockOn(LockOnArea target)
