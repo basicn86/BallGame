@@ -156,6 +156,8 @@ public partial class PlayerCamera : Node3D
 
 	private void Automatic(double delta)
 	{
+		HandleJoystickCameraRotation(delta);
+
 		float distance = AutomaticPedestal.GlobalPosition.DistanceTo(TargetPosition + new Vector3(0, 2, 0));
 
 		if (distance > 5.0f)
@@ -277,6 +279,18 @@ public partial class PlayerCamera : Node3D
 		float horizontalAxis = Input.GetAxis("look_left", "look_right") * 2000f * (float)delta;
 		float verticalAxis = Input.GetAxis("look_up", "look_down") * 2000f * (float)delta;
 		RotateCamera(horizontalAxis, verticalAxis);
+		switch (cameraMode)
+		{
+			case CameraMode.EnteringFreeLook:
+			case CameraMode.FreeLook:
+				RotateCamera(horizontalAxis, verticalAxis);
+				break;
+			case CameraMode.Automatic:
+				AutoRotateCamera(horizontalAxis, verticalAxis);
+				break;
+			default:
+				break;
+		}
 	}
 
 	private void RotateCamera(float X, float Y)
@@ -291,6 +305,15 @@ public partial class PlayerCamera : Node3D
 			pitch.RotationDegrees.Y,
 			pitch.RotationDegrees.Z
 	   );
+	}
+
+	private void AutoRotateCamera(float X, float Y)
+	{
+		float UIScale = GetWindow().ContentScaleFactor;
+
+		Vector3 rightVector = GetCameraRotation().X;
+
+		AutomaticPedestal.GlobalPosition += rightVector * X * sensitivity * UIScale * 0.1f;
 	}
 
 	/// <summary>
@@ -331,6 +354,12 @@ public partial class PlayerCamera : Node3D
 				case CameraMode.FreeLook:
 				case CameraMode.EnteringFreeLook:
 					RotateCamera(
+						((InputEventMouseMotion)@event).Relative.X,
+						((InputEventMouseMotion)@event).Relative.Y
+					);
+					break;
+				case CameraMode.Automatic:
+					AutoRotateCamera(
 						((InputEventMouseMotion)@event).Relative.X,
 						((InputEventMouseMotion)@event).Relative.Y
 					);
