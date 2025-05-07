@@ -279,41 +279,33 @@ public partial class PlayerCamera : Node3D
 		float horizontalAxis = Input.GetAxis("look_left", "look_right") * 2000f * (float)delta;
 		float verticalAxis = Input.GetAxis("look_up", "look_down") * 2000f * (float)delta;
 		RotateCamera(horizontalAxis, verticalAxis);
-		switch (cameraMode)
-		{
-			case CameraMode.EnteringFreeLook:
-			case CameraMode.FreeLook:
-				RotateCamera(horizontalAxis, verticalAxis);
-				break;
-			case CameraMode.Automatic:
-				AutoRotateCamera(horizontalAxis, verticalAxis);
-				break;
-			default:
-				break;
-		}
 	}
 
 	private void RotateCamera(float X, float Y)
 	{
 		//this is stupid, but the UI scaling also affects the mouse sensitivity, so we need to do this to keep the mouse sensitivity consistent across different UI scales
 		float UIScale = GetWindow().ContentScaleFactor;
-		RotationDegrees += new Vector3(0, -X * sensitivity * UIScale, 0);
-		pitch.RotationDegrees += new Vector3(-Y * sensitivity * UIScale, 0, 0);
 
-		pitch.RotationDegrees = new Vector3(
-			Mathf.Clamp(pitch.RotationDegrees.X, -80f, 80f),
-			pitch.RotationDegrees.Y,
-			pitch.RotationDegrees.Z
-	   );
-	}
+		switch (cameraMode)
+		{
+			case CameraMode.EnteringFreeLook:
+			case CameraMode.FreeLook:
+				RotationDegrees += new Vector3(0, -X * sensitivity * UIScale, 0);
+				pitch.RotationDegrees += new Vector3(-Y * sensitivity * UIScale, 0, 0);
 
-	private void AutoRotateCamera(float X, float Y)
-	{
-		float UIScale = GetWindow().ContentScaleFactor;
-
-		Vector3 rightVector = GetCameraRotation().X;
-
-		AutomaticPedestal.GlobalPosition += rightVector * X * sensitivity * UIScale * 0.1f;
+				pitch.RotationDegrees = new Vector3(
+					Mathf.Clamp(pitch.RotationDegrees.X, -80f, 80f),
+					pitch.RotationDegrees.Y,
+					pitch.RotationDegrees.Z
+			   );
+				break;
+			case CameraMode.Automatic:
+				Vector3 rightVector = GetCameraRotation().X;
+				AutomaticPedestal.GlobalPosition += rightVector * X * sensitivity * UIScale * 0.1f;
+				break;
+			default:
+				break;
+		}
 	}
 
 	/// <summary>
@@ -349,24 +341,10 @@ public partial class PlayerCamera : Node3D
 	{
 		if (@event is InputEventMouseMotion)
 		{
-			switch (cameraMode)
-			{
-				case CameraMode.FreeLook:
-				case CameraMode.EnteringFreeLook:
-					RotateCamera(
-						((InputEventMouseMotion)@event).Relative.X,
-						((InputEventMouseMotion)@event).Relative.Y
-					);
-					break;
-				case CameraMode.Automatic:
-					AutoRotateCamera(
-						((InputEventMouseMotion)@event).Relative.X,
-						((InputEventMouseMotion)@event).Relative.Y
-					);
-					break;
-				default:
-					break;
-			}
+			RotateCamera(
+				((InputEventMouseMotion)@event).Relative.X,
+				((InputEventMouseMotion)@event).Relative.Y
+			);
 		}
 		@event.Dispose();
 	}
