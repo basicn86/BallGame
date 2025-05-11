@@ -167,7 +167,15 @@ public partial class PlayerCamera : Node3D
 
 			AutomaticPedestal.GlobalPosition = AutomaticPedestal.GlobalPosition.Lerp(TargetPosition + new Vector3(0, 2, 0), 2f * (float)(delta * speedRatio));
 
+		} else if (distance < 3.5f)
+		{
+			float speedRatio = 3.5f - distance;
+			Vector3 directionToTarget = (AutomaticPedestal.GlobalPosition - TargetPosition);
+			directionToTarget.Y = 0;
+			directionToTarget = directionToTarget.Normalized();
+			AutomaticPedestal.GlobalPosition += directionToTarget * 6f * speedRatio * (float)delta;
 		}
+
 		camera.GlobalPosition = AutomaticPedestal.GlobalPosition;
 		Vector3 lookAtPos = TargetPosition;
 		lookAtPos.Y = camera.GlobalPosition.Y + (TargetPosition.Y - camera.GlobalPosition.Y) * 0.5f;
