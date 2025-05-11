@@ -140,7 +140,7 @@ public partial class PlayerCamera : Node3D
 
 		if (Input.IsActionJustPressed("target_lock"))
 		{
-			if (cameraMode == CameraMode.FreeLook) {
+			if (cameraMode == CameraMode.FreeLook || cameraMode == CameraMode.Automatic) {
 				LockOnArea temp = GetLockOnTarget();
 				if (temp != null)
 				{
@@ -196,7 +196,7 @@ public partial class PlayerCamera : Node3D
 		{
 			lockOnTarget.TargetUnlocked();
 		}
-		cameraMode = CameraMode.EnteringFreeLook;
+		cameraMode = CameraMode.Automatic;
 		_stateTransitionTimer = 0;
 	}
 
@@ -237,9 +237,7 @@ public partial class PlayerCamera : Node3D
 
 		if (!lockOnTarget.CanProcess())
 		{
-			lockOnTarget.TargetUnlocked();
-			cameraMode = CameraMode.EnteringFreeLook;
-			_stateTransitionTimer = 0;
+			StopLockOn();
 			return;
 		}
 
@@ -269,9 +267,7 @@ public partial class PlayerCamera : Node3D
 	{
 		if (!lockOnTarget.CanProcess())
 		{
-			lockOnTarget.TargetUnlocked();
-			cameraMode = CameraMode.EnteringFreeLook;
-			_stateTransitionTimer = 0;
+			StopLockOn();
 			return;
 		}
 		Vector3 lockOnPos = lockOnTarget.GetInterpolatedPos();
@@ -293,6 +289,7 @@ public partial class PlayerCamera : Node3D
 	{
 		//this is stupid, but the UI scaling also affects the mouse sensitivity, so we need to do this to keep the mouse sensitivity consistent across different UI scales
 		float UIScale = GetWindow().ContentScaleFactor;
+		float magicnumber = 3.75f;
 
 		switch (cameraMode)
 		{
@@ -309,7 +306,15 @@ public partial class PlayerCamera : Node3D
 				break;
 			case CameraMode.Automatic:
 				Vector3 rightVector = GetCameraRotation().X;
+				Vector3 directionToPlayer = (AutomaticPedestal.GlobalPosition - TargetPosition);
 				AutomaticPedestal.GlobalPosition += rightVector * X * sensitivity * UIScale * 0.1f;
+				if (Y > 0.0f) //camera goes towards player
+				{
+					AutomaticPedestal.GlobalPosition += directionToPlayer.Normalized() * Y * sensitivity * UIScale * 0.04f;
+				} else if (Y < 0.0f) //camera goes away from player
+				{
+					AutomaticPedestal.GlobalPosition += directionToPlayer.Normalized() * Y * sensitivity * UIScale * 0.04f * Mathf.Clamp((directionToPlayer.Length() - magicnumber), 0.0f, 1.0f);
+				}
 				break;
 			default:
 				break;
