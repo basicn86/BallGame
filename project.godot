@@ -33,6 +33,14 @@ enabled=PackedStringArray()
 OnOffBlock="OnOffBlock Listening Group"
 PlayerDied="Emitted when player dies"
 
+[importer_defaults]
+
+texture={
+&"compress/high_quality": true,
+&"compress/mode": 2,
+&"mipmaps/generate": true
+}
+
 [input]
 
 ui_accept={
@@ -158,4 +166,5 @@ common/physics_interpolation=true
 
 textures/canvas_textures/default_texture_filter=0
 anti_aliasing/quality/msaa_3d=2
+textures/default_filters/texture_mipmap_bias=-0.5
 mesh_lod/lod_change/threshold_pixels=0.0

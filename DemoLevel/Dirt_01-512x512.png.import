@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bf2dfwmnhwfjc"
-path.bptc="res://.godot/imported/Elements_05-512x512.png-d6f05c6dfd53468dda9643def6f44abd.bptc.ctex"
+uid="uid://bempk1msb3n8f"
+path.bptc="res://.godot/imported/Dirt_01-512x512.png-003a04b694c16fa05acef01cc57fa96d.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://DemoLevel/Elements_05-512x512.png"
-dest_files=["res://.godot/imported/Elements_05-512x512.png-d6f05c6dfd53468dda9643def6f44abd.bptc.ctex"]
+source_file="res://DemoLevel/Dirt_01-512x512.png"
+dest_files=["res://.godot/imported/Dirt_01-512x512.png-003a04b694c16fa05acef01cc57fa96d.bptc.ctex"]
 
 [params]
 
