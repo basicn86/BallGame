@@ -29,6 +29,7 @@ public partial class Coin : Node3D
 		GlobalTranslate((player.GlobalPosition - GlobalPosition).Normalized() * 9f * (float)delta);
 		if (GlobalPosition.DistanceTo(player.GlobalPosition) < 0.25f)
 		{
+			CoinCounter.Instance.AddCoins(1);
 			QueueFree();
 		}
 	}

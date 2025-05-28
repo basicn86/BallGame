@@ -96,6 +96,7 @@ alignment = 1
 selected = 0
 item_count = 4
 popup/item_0/text = "MSAA Off"
+popup/item_0/id = 0
 popup/item_1/text = "MSAA 2x"
 popup/item_1/id = 1
 popup/item_2/text = "MSAA 4x"
