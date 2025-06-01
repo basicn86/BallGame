@@ -14,6 +14,10 @@ public partial class Coin : Node3D
 	[Export]
 	private Area3D DetectionArea;
 
+	[Export]
+	private AudioStreamPlayer3D CoinPickupSound;
+	private bool PickedUp = false;
+
 	public override void _Ready()
 	{
 		if(mesh == null) QueueFree();
@@ -22,6 +26,13 @@ public partial class Coin : Node3D
 	
 	public override void _Process(double delta)
 	{
+		if (PickedUp)
+		{
+			if (CoinPickupSound.Playing) return;
+			QueueFree();
+			return;
+		}
+
 		//we only need to rotate the mesh, it makes no sense to rotate the entire node including the collision shape
 		mesh.RotateY(RotationSpeed * (float)delta);
 
@@ -30,7 +41,9 @@ public partial class Coin : Node3D
 		if (GlobalPosition.DistanceTo(player.GlobalPosition) < 0.25f)
 		{
 			CoinCounter.Instance.AddCoins(1);
-			QueueFree();
+			PickedUp = true;
+			CoinPickupSound.Play();
+			Visible = false;
 		}
 	}
 
