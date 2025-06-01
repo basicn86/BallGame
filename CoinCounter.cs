@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class CoinCounter : RichTextLabel
+public partial class CoinCounter : Label
 {
 	public static CoinCounter Instance { get; private set; }
 	private int _coinCount = 0;

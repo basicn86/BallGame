@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnpb27we1lbh3"]
+[gd_scene load_steps=8 format=3 uid="uid://cnpb27we1lbh3"]
 
 [ext_resource type="Script" uid="uid://cw1yyredbysu" path="res://PauseMenu.cs" id="1_mbcr5"]
 [ext_resource type="StyleBox" uid="uid://dkh88htrj522q" path="res://ui/PauseMenuPanel.tres" id="2_gbsgt"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://xs60adn3sykm" path="res://ui/MSAADropdown.cs" id="3_ckwlj"]
 [ext_resource type="Script" uid="uid://cerxjt4vwasxf" path="res://ui/UIScaleSlider.cs" id="4_asjyt"]
 [ext_resource type="Script" uid="uid://crhfm7peqe6jr" path="res://ui/FPSLimiter.cs" id="5_k1w7l"]
+[ext_resource type="Script" uid="uid://kmsg8pxe0h0y" path="res://ui/VSyncToggle.cs" id="7_fdrbn"]
 
 [node name="PauseMenu" type="MarginContainer"]
 process_mode = 3
@@ -90,6 +91,12 @@ max_length = 3
 script = ExtResource("5_k1w7l")
 defaultValue = 160
 
+[node name="VSync Toggle" type="CheckBox" parent="SettingsPanel/Settings"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "VSYNC"
+script = ExtResource("7_fdrbn")
+
 [node name="MSAA" type="OptionButton" parent="SettingsPanel/Settings"]
 layout_mode = 2
 alignment = 1
@@ -116,4 +123,5 @@ ControlToHide = NodePath("../..")
 [connection signal="drag_ended" from="SettingsPanel/Settings/UIScaleSlider" to="SettingsPanel/Settings/UIScaleSlider" method="_on_drag_ended"]
 [connection signal="focus_exited" from="SettingsPanel/Settings/FPSLimit/HBoxContainer/LineEdit" to="SettingsPanel/Settings/FPSLimit/HBoxContainer/LineEdit" method="_on_focus_exited"]
 [connection signal="text_submitted" from="SettingsPanel/Settings/FPSLimit/HBoxContainer/LineEdit" to="SettingsPanel/Settings/FPSLimit/HBoxContainer/LineEdit" method="_on_text_submitted"]
+[connection signal="toggled" from="SettingsPanel/Settings/VSync Toggle" to="SettingsPanel/Settings/VSync Toggle" method="_on_toggled"]
 [connection signal="item_selected" from="SettingsPanel/Settings/MSAA" to="SettingsPanel/Settings/MSAA" method="_on_item_selected"]

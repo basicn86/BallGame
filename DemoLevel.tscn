@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=128 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://ct1cdqottsrdb" path="res://Bush.tscn" id="1_3avgc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
@@ -49,6 +49,7 @@
 [ext_resource type="PackedScene" uid="uid://dpgnu7m4327pr" path="res://DemoLevel/CptDetonator.tscn" id="34_m5s2p"]
 [ext_resource type="PackedScene" uid="uid://mqbycbrcjyk4" path="res://PhysicsBox.tscn" id="35_1t037"]
 [ext_resource type="AudioStream" uid="uid://dbvpykvx7fuvl" path="res://music/y0pod.mp3" id="35_fwv8b"]
+[ext_resource type="PackedScene" uid="uid://diobrh3rolllb" path="res://ui/FpsPanel.tscn" id="35_q6q4p"]
 [ext_resource type="Texture2D" uid="uid://dy2f3u06kp37c" path="res://DemoLevel/NukeVelocityLimitDemoLevel.tres" id="36_dd6fc"]
 [ext_resource type="Script" uid="uid://cutlaiqw4noky" path="res://DemoLevel/CptDetonatorGround.cs" id="37_pd2jn"]
 [ext_resource type="PackedScene" uid="uid://cajpfcg3thanr" path="res://DemoLevel/CptDetonatorJugglingBomb.tscn" id="37_rh67q"]
@@ -141,6 +142,11 @@ size = Vector3(40, 4, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1npi3"]
 size = Vector3(40, 4, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q6q4p"]
+font_size = 48
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rcuot"]
 size = Vector3(40, 12, 8)
@@ -1211,7 +1217,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="GUI"]
+[node name="CoinPanelContainer" type="PanelContainer" parent="GUI"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -1224,11 +1230,10 @@ grow_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("27_hx1fq")
 
-[node name="CoinCounter" type="RichTextLabel" parent="GUI/PanelContainer"]
+[node name="Label" type="Label" parent="GUI/CoinPanelContainer"]
 layout_mode = 2
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 48
 text = "Coins: 0000"
+label_settings = SubResource("LabelSettings_q6q4p")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("27_1adq6")
@@ -1286,6 +1291,9 @@ value = 100.0
 texture_under = ExtResource("22_wjtn7")
 texture_progress = ExtResource("23_iogn7")
 script = ExtResource("24_ges3u")
+
+[node name="FPSPanel" parent="GUI" instance=ExtResource("35_q6q4p")]
+layout_mode = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_hlu0w")
