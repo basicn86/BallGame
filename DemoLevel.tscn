@@ -1,7 +1,8 @@
-[gd_scene load_steps=128 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=133 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://ct1cdqottsrdb" path="res://Bush.tscn" id="1_3avgc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
+[ext_resource type="Shader" uid="uid://c2xy5aqf4bhem" path="res://Ocean.gdshader" id="1_m8mxy"]
 [ext_resource type="Script" uid="uid://du8cwf636gg70" path="res://environment/Spikes/SpikeArea.cs" id="2_xq41t"]
 [ext_resource type="PackedScene" uid="uid://cnpb27we1lbh3" path="res://ui/PauseMenu.tscn" id="3_lnbl7"]
 [ext_resource type="ArrayMesh" uid="uid://dwju2ewaplx15" path="res://environment/Grass/GrassBlade.obj" id="3_nbtbs"]
@@ -57,6 +58,27 @@
 [ext_resource type="PackedScene" uid="uid://bpyj8r7bwgvyu" path="res://environment/Coins/StaticCoin.tscn" id="52_kfonh"]
 [ext_resource type="PackedScene" uid="uid://cl07s3vux1dhg" path="res://environment/Coins/StaticCoin2.tscn" id="53_uv337"]
 [ext_resource type="PackedScene" uid="uid://bdf4tkvb4noqm" path="res://environment/Coins/StaticCoin3.tscn" id="54_mme67"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_m8mxy"]
+noise_type = 3
+fractal_type = 2
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qwe3r"]
+seamless = true
+noise = SubResource("FastNoiseLite_m8mxy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m8mxy"]
+render_priority = 0
+shader = ExtResource("1_m8mxy")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_qwe3r")
+shader_parameter/wave_horizontal_scale = 0.2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_81cih"]
+material = SubResource("ShaderMaterial_m8mxy")
+size = Vector2(800, 800)
+subdivide_width = 128
+subdivide_depth = 128
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3avgc"]
 albedo_texture = ExtResource("16_iogn7")
@@ -463,6 +485,10 @@ size = Vector3(1, 100, 110)
 [node name="Node3D" type="Node3D"]
 physics_interpolation_mode = 2
 metadata/_edit_lock_ = true
+
+[node name="WaterPlane" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.23933, 0)
+mesh = SubResource("PlaneMesh_81cih")
 
 [node name="SpawnRoom" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.2274, 0, 0)
@@ -1017,42 +1043,46 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.52316, 0, 0)
 multimesh = SubResource("MultiMesh_3avgc")
 
 [node name="FenceSpawner" type="Node3D" parent="SpawnRoom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.1665, 1.23938, -41.0533)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.1665, 0.740624, -41.0533)
 script = ExtResource("12_hx1fq")
 FenceMesh = ExtResource("13_q6q4p")
 FenceMaterial = ExtResource("14_m8mxy")
-Count = 22
+Count = 44
 Offset = Vector3(2.2, 0, 0)
+Scale = 0.5
 
 [node name="FenceSpawner2" type="Node3D" parent="SpawnRoom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.1383, 1.23938, 7.17731)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.1383, 0.740624, 7.17731)
 script = ExtResource("12_hx1fq")
 FenceMesh = ExtResource("13_q6q4p")
 FenceMaterial = ExtResource("14_m8mxy")
-Count = 22
+Count = 44
 Offset = Vector3(0, 0, -2.2)
 Rotation = 90.0
+Scale = 0.5
 
 [node name="FenceSpawner3" type="Node3D" parent="SpawnRoom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7588, 1.23938, 7.17731)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7588, 0.740624, 7.17731)
 script = ExtResource("12_hx1fq")
 FenceMesh = ExtResource("13_q6q4p")
 FenceMaterial = ExtResource("14_m8mxy")
-Count = 22
+Count = 44
 Offset = Vector3(-2.2, 0, 0)
 Rotation = 180.0
+Scale = 0.5
 
 [node name="FenceSpawner4" type="Node3D" parent="SpawnRoom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.759, 1.239, -41.053)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.759, 0.740244, -41.053)
 script = ExtResource("12_hx1fq")
 FenceMesh = ExtResource("13_q6q4p")
 FenceMaterial = ExtResource("14_m8mxy")
-Count = 22
+Count = 44
 Offset = Vector3(0, 0, 2.2)
 Rotation = -90.0
+Scale = 0.5
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.6669, 1.33858, 0.256801)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88.8022, 1.33858, -35.6128)
 
 [node name="RedBox" parent="." instance=ExtResource("4_wjtn7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.2923, 2.35557, -61.8518)
