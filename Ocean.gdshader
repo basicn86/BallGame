@@ -2,7 +2,7 @@ shader_type spatial;
 
 uniform sampler2D noise_tex : source_color;
 
-uniform float wave_horizontal_scale = 0.02;
+uniform float wave_horizontal_scale = 0.2;
 varying float wave_height;
 
 void vertex() {
@@ -25,7 +25,7 @@ void fragment() {
 	float foam = smoothstep(1.9, 1.92, wave_height);
 	ALBEDO = mix(vec3(0.0, 0.2, 0.5), vec3(0.5, 0.5, 0.5), foam);
 	
-	float fresnel = pow(1.0 - dot(NORMAL, VIEW), 3.0);
+	float fresnel = pow(1.0 - dot(NORMAL, VIEW), 5.0);
 	ALBEDO += fresnel * 0.1;
 }
 

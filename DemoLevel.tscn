@@ -61,10 +61,15 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_m8mxy"]
 noise_type = 3
+seed = 400
+frequency = 0.005
 fractal_type = 2
 fractal_octaves = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qwe3r"]
+width = 1024
+height = 1024
+generate_mipmaps = false
 seamless = true
 noise = SubResource("FastNoiseLite_m8mxy")
 
@@ -72,13 +77,13 @@ noise = SubResource("FastNoiseLite_m8mxy")
 render_priority = 0
 shader = ExtResource("1_m8mxy")
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_qwe3r")
-shader_parameter/wave_horizontal_scale = 0.2
+shader_parameter/wave_horizontal_scale = 0.01
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_81cih"]
 material = SubResource("ShaderMaterial_m8mxy")
 size = Vector2(800, 800)
-subdivide_width = 128
-subdivide_depth = 128
+subdivide_width = 256
+subdivide_depth = 256
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3avgc"]
 albedo_texture = ExtResource("16_iogn7")
@@ -119,10 +124,10 @@ tonemap_white = 8.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_ygdqb"]
 material = ExtResource("7_q8n0o")
-size = Vector3(8, 1, 12)
+size = Vector3(16, 1, 8)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ela1v"]
-size = Vector3(8, 1, 12)
+size = Vector3(16, 1, 8)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1q5g4"]
 material = ExtResource("12_q2wlt")
@@ -486,9 +491,10 @@ size = Vector3(1, 100, 110)
 physics_interpolation_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="WaterPlane" type="MeshInstance3D" parent="."]
+[node name="WaterPlane" type="MeshInstance3D" parent="." groups=["PlayerRespawned"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.23933, 0)
 mesh = SubResource("PlaneMesh_81cih")
+metadata/_edit_lock_ = true
 
 [node name="SpawnRoom" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.2274, 0, 0)
@@ -1105,20 +1111,22 @@ shadow_bias = 0.05
 environment = SubResource("Environment_wmfxm")
 
 [node name="CheckpointPlatform" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1701, 2.40947, -41.3782)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.2507, 1.04514, 2.88301)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CheckpointPlatform"]
 material_override = ExtResource("4_le0gn")
 mesh = SubResource("BoxMesh_ygdqb")
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CheckpointPlatform"]
 shape = SubResource("BoxShape3D_ela1v")
+metadata/_edit_lock_ = true
 
 [node name="Checkpoint" parent="." instance=ExtResource("9_sdew7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.0425, 4.0438, -39.7319)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7914, 2.67947, 2.63649)
 
 [node name="RotatingBar1" type="AnimatableBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.3722, 3.0172, -41.4232)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.914488, 0.952212, 2.61565)
 script = ExtResource("13_q4ssb")
 RotationSpeed = 0.005
 
@@ -1413,24 +1421,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 149.83
 
 [node name="FlyingPlatform7" parent="FlyingPlatforms" instance=ExtResource("7_v7g34")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.271, 14.9235, 19.9866)
-
-[node name="FlyingPlatform" parent="FlyingPlatforms" instance=ExtResource("7_v7g34")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.517372, 0, -47.0535)
-
-[node name="FlyingPlatform2" parent="FlyingPlatforms" instance=ExtResource("7_v7g34")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.28424, 0, -51.2616)
-
-[node name="FlyingPlatform5" parent="FlyingPlatforms" instance=ExtResource("7_v7g34")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.28718, 0, -46.1846)
-
-[node name="FlyingPlatform8" parent="FlyingPlatforms" instance=ExtResource("7_v7g34")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8346, 0, -45.2703)
-
-[node name="FlyingPlatform3" parent="FlyingPlatforms" instance=ExtResource("7_v7g34")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3199, 0, -51.5413)
-
-[node name="FlyingPlatform4" parent="FlyingPlatforms" instance=ExtResource("7_v7g34")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5213, 2.39029, -50.8884)
 
 [node name="FlyingPlatform6" parent="FlyingPlatforms" instance=ExtResource("7_v7g34")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.4354, 3.86589, -56.2831)

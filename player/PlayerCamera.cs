@@ -289,7 +289,7 @@ public partial class PlayerCamera : Node3D
 	{
 		//this is stupid, but the UI scaling also affects the mouse sensitivity, so we need to do this to keep the mouse sensitivity consistent across different UI scales
 		float UIScale = GetWindow().ContentScaleFactor;
-		float magicnumber = 3.75f;
+		float MinCamDistance = 2.5f;
 
 		switch (cameraMode)
 		{
@@ -313,7 +313,7 @@ public partial class PlayerCamera : Node3D
 					AutomaticPedestal.GlobalPosition += directionToPlayer.Normalized() * Y * sensitivity * UIScale * 0.04f;
 				} else if (Y < 0.0f) //camera goes away from player
 				{
-					AutomaticPedestal.GlobalPosition += directionToPlayer.Normalized() * Y * sensitivity * UIScale * 0.04f * Mathf.Clamp((directionToPlayer.Length() - magicnumber), 0.0f, 1.0f);
+					AutomaticPedestal.GlobalPosition += directionToPlayer.Normalized() * Y * sensitivity * UIScale * 0.04f * Mathf.Clamp((directionToPlayer.Length() - MinCamDistance), 0.0f, 1.0f);
 				}
 				break;
 			default:
