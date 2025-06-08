@@ -1,6 +1,7 @@
 shader_type spatial;
 
 uniform sampler2D noise_tex : source_color;
+uniform sampler2D noise_tex2 : source_color;
 
 uniform float wave_horizontal_scale = 0.2;
 varying float wave_height;
@@ -11,7 +12,14 @@ void vertex() {
     VERTEX.z * wave_horizontal_scale + TIME * 0.02
 	);
 	
+	vec2 uv2 = vec2(
+	-VERTEX.x * wave_horizontal_scale * 0.5 + TIME * 0.05,
+	-VERTEX.z * wave_horizontal_scale * 0.5 + TIME * 0.05	
+	);
+	
 	VERTEX.y += texture(noise_tex, uv).r * 2.0;
+	VERTEX.y += texture(noise_tex2, uv2).r * 1.5;
+	
 	wave_height = VERTEX.y;
 }
 
@@ -22,7 +30,7 @@ void fragment() {
     NORMAL = -normalize(cross(dx, dz));
 	
 	ROUGHNESS = 0.0;
-	float foam = smoothstep(1.9, 1.92, wave_height);
+	float foam = smoothstep(2.85, 3.1, wave_height);
 	ALBEDO = mix(vec3(0.0, 0.2, 0.5), vec3(0.5, 0.5, 0.5), foam);
 	
 	float fresnel = pow(1.0 - dot(NORMAL, VIEW), 5.0);

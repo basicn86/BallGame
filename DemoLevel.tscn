@@ -1,4 +1,4 @@
-[gd_scene load_steps=133 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=135 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://ct1cdqottsrdb" path="res://Bush.tscn" id="1_3avgc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
@@ -73,10 +73,19 @@ generate_mipmaps = false
 seamless = true
 noise = SubResource("FastNoiseLite_m8mxy")
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qwe3r"]
+fractal_type = 2
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_81cih"]
+seamless = true
+noise = SubResource("FastNoiseLite_qwe3r")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m8mxy"]
 render_priority = 0
 shader = ExtResource("1_m8mxy")
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_qwe3r")
+shader_parameter/noise_tex2 = SubResource("NoiseTexture2D_81cih")
 shader_parameter/wave_horizontal_scale = 0.01
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_81cih"]
@@ -492,7 +501,7 @@ physics_interpolation_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="WaterPlane" type="MeshInstance3D" parent="." groups=["PlayerRespawned"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.23933, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.239, 0)
 mesh = SubResource("PlaneMesh_81cih")
 metadata/_edit_lock_ = true
 
