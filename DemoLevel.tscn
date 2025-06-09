@@ -1,4 +1,4 @@
-[gd_scene load_steps=135 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=136 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://ct1cdqottsrdb" path="res://Bush.tscn" id="1_3avgc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
@@ -41,6 +41,7 @@
 [ext_resource type="PackedScene" uid="uid://dp2t3hiyxyipb" path="res://BlueOnOffPlatform.tscn" id="28_bqrkm"]
 [ext_resource type="PackedScene" uid="uid://cdo1qcb6giosg" path="res://SawBladeShooter.tscn" id="28_shcdo"]
 [ext_resource type="PackedScene" uid="uid://cc82pp7t1dbk3" path="res://RedOnOffPlatform.tscn" id="29_rnx5l"]
+[ext_resource type="AudioStream" uid="uid://da3ahgxu3eoul" path="res://environment/Coins/coin_2-89099.mp3" id="30_qwe3r"]
 [ext_resource type="Material" uid="uid://b78e2fvlx1ltc" path="res://DemoLevel/GrassMaterialDemoExplosion.tres" id="31_5f7up"]
 [ext_resource type="Script" uid="uid://b4bvronvomtnn" path="res://DemoLevelExplosion.cs" id="31_mtn5b"]
 [ext_resource type="Material" uid="uid://cp1mras1f5knq" path="res://DemoLevel/NukeParticleMaterial.tres" id="32_2b8tn"]
@@ -1277,13 +1278,18 @@ grow_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("27_hx1fq")
 
-[node name="Label" type="Label" parent="GUI/CoinPanelContainer"]
+[node name="Label" type="Label" parent="GUI/CoinPanelContainer" node_paths=PackedStringArray("CoinSound")]
 layout_mode = 2
 text = "Coins: 0000"
 label_settings = SubResource("LabelSettings_q6q4p")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("27_1adq6")
+CoinSound = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GUI/CoinPanelContainer/Label"]
+stream = ExtResource("30_qwe3r")
+volume_db = -8.0
 
 [node name="Crosshair" parent="GUI" instance=ExtResource("7_2qhh3")]
 visible = false

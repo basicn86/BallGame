@@ -133,7 +133,16 @@ public partial class Player : RigidBody3D
 	{
 		Vector3 velocity = LinearVelocity;
 		velocity.Y = 0; //don't restrict vertical velocity
-		if (velocity.Length() > MaxVelocity) ApplyCentralForce(-velocity.Normalized() * MaxVelocityPushback);
+		float speed = velocity.Length();
+		if (speed > MaxVelocity)
+		{
+			float excessVelocity = speed - MaxVelocity;
+
+			float t = Mathf.Clamp(excessVelocity, 0f, 1f);
+
+			Vector3 pushback = -velocity.Normalized() * MaxVelocityPushback * t;
+			ApplyCentralForce(pushback);
+		}
 	}
 
 	private void TryJumping()

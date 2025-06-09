@@ -6,6 +6,9 @@ public partial class CoinCounter : Label
 	public static CoinCounter Instance { get; private set; }
 	private int _coinCount = 0;
 
+	[Export]
+	private AudioStreamPlayer CoinSound;
+
 	public override void _Ready()
 	{
 		if (Instance == null)
@@ -23,6 +26,11 @@ public partial class CoinCounter : Label
 
 	public void AddCoins(int amount)
 	{
+		if(CoinSound.GetPlaybackPosition() > 0.05f || !CoinSound.Playing)
+		{
+			CoinSound.PitchScale = (float)GD.RandRange(0.98f, 1.0f);
+			CoinSound.Play();
+		}
 		_coinCount += amount;
 		UpdateCoinDisplay();
 	}
