@@ -29,7 +29,7 @@ public partial class CoinCounter : Label
 		if(CoinSound.GetPlaybackPosition() > 0.05f || !CoinSound.Playing)
 		{
 			CoinSound.PitchScale = (float)GD.RandRange(0.98f, 1.0f);
-			CoinSound.Play();
+			CoinSound.Play(0.02f);
 		}
 		_coinCount += amount;
 		UpdateCoinDisplay();
