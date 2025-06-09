@@ -1,8 +1,9 @@
-[gd_scene load_steps=136 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=143 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://ct1cdqottsrdb" path="res://Bush.tscn" id="1_3avgc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Shader" uid="uid://c2xy5aqf4bhem" path="res://Ocean.gdshader" id="1_m8mxy"]
+[ext_resource type="AudioStream" uid="uid://cg4jni45p84ej" path="res://music/Juhani Junkala [Retro Game Music Pack] Level 1.wav" id="1_qwe3r"]
 [ext_resource type="Script" uid="uid://du8cwf636gg70" path="res://environment/Spikes/SpikeArea.cs" id="2_xq41t"]
 [ext_resource type="PackedScene" uid="uid://cnpb27we1lbh3" path="res://ui/PauseMenu.tscn" id="3_lnbl7"]
 [ext_resource type="ArrayMesh" uid="uid://dwju2ewaplx15" path="res://environment/Grass/GrassBlade.obj" id="3_nbtbs"]
@@ -16,7 +17,6 @@
 [ext_resource type="Material" uid="uid://chj3j5rorgeu" path="res://DemoLevel/BurningGroundMaterial.tres" id="7_q8n0o"]
 [ext_resource type="PackedScene" uid="uid://m3ac8gckgd4j" path="res://environment/FlyingPlatform/FlyingPlatform.tscn" id="7_v7g34"]
 [ext_resource type="PackedScene" uid="uid://5t66n6i6dv8o" path="res://Checkpoint.tscn" id="9_sdew7"]
-[ext_resource type="AudioStream" uid="uid://b1blbjo32ntll" path="res://music/Mega Man 7 - Slash Man.wav" id="11_hlu0w"]
 [ext_resource type="Script" uid="uid://eljweku2tmx0" path="res://FenceSpawner.cs" id="12_hx1fq"]
 [ext_resource type="Material" uid="uid://3pfcca4k5cfb" path="res://DemoLevel/RotatingBar.tres" id="12_q2wlt"]
 [ext_resource type="Script" uid="uid://3l1f71nouf7d" path="res://DemoLevel/RotatingBar.cs" id="13_q4ssb"]
@@ -94,6 +94,28 @@ material = SubResource("ShaderMaterial_m8mxy")
 size = Vector2(800, 800)
 subdivide_width = 256
 subdivide_depth = 256
+
+[sub_resource type="BoxMesh" id="BoxMesh_qwe3r"]
+material = ExtResource("4_le0gn")
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_81cih"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_81cih"]
+size = Vector3(4, 1, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wmtx3"]
+size = Vector3(4, 1, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wmtx3"]
+size = Vector3(4, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oh6wr"]
+size = Vector3(4, 1, 2)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qwe3r"]
+bounce = 0.6
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3avgc"]
 albedo_texture = ExtResource("16_iogn7")
@@ -501,6 +523,11 @@ size = Vector3(1, 100, 110)
 physics_interpolation_mode = 2
 metadata/_edit_lock_ = true
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_qwe3r")
+autoplay = true
+bus = &"Music"
+
 [node name="WaterPlane" type="MeshInstance3D" parent="." groups=["PlayerRespawned"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.239, 0)
 mesh = SubResource("PlaneMesh_81cih")
@@ -508,6 +535,92 @@ metadata/_edit_lock_ = true
 
 [node name="SpawnRoom" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.2274, 0, 0)
+
+[node name="SpawnPlatform" type="StaticBody3D" parent="SpawnRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.8049, 16.5355, -81.1723)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SpawnRoom/SpawnPlatform"]
+mesh = SubResource("BoxMesh_qwe3r")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnRoom/SpawnPlatform"]
+shape = SubResource("BoxShape3D_81cih")
+metadata/_edit_lock_ = true
+
+[node name="Ramp" type="StaticBody3D" parent="SpawnRoom"]
+transform = Transform3D(1, 0, 0, 0, 0.919328, -0.393493, 0, 0.393493, 0.919328, -42.3186, 10.5487, -57.5954)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SpawnRoom/Ramp"]
+mesh = SubResource("BoxMesh_81cih")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnRoom/Ramp"]
+shape = SubResource("BoxShape3D_wmtx3")
+metadata/_edit_lock_ = true
+
+[node name="RampLip" type="StaticBody3D" parent="SpawnRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.3186, 4.6469, -42.7648)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SpawnRoom/RampLip"]
+mesh = SubResource("BoxMesh_wmtx3")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnRoom/RampLip"]
+shape = SubResource("BoxShape3D_oh6wr")
+metadata/_edit_lock_ = true
+
+[node name="PhysicsBoxes" type="Node3D" parent="SpawnRoom"]
+metadata/_edit_lock_ = true
+
+[node name="PhysicsBox" parent="SpawnRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.6828, 5.6828, -42.4512)
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_qwe3r")
+
+[node name="PhysicsBox2" parent="SpawnRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.7217, 5.6828, -42.4512)
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_qwe3r")
+
+[node name="PhysicsBox3" parent="SpawnRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.7544, 5.6828, -42.4512)
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_qwe3r")
+
+[node name="PhysicsBox7" parent="SpawnRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.7896, 5.6828, -42.4512)
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_qwe3r")
+
+[node name="PhysicsBox8" parent="SpawnRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.1967, 6.71769, -42.4512)
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_qwe3r")
+
+[node name="PhysicsBox9" parent="SpawnRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.6431, 7.73094, -42.4512)
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_qwe3r")
+
+[node name="PhysicsBox10" parent="SpawnRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.0838, 8.75412, -42.4512)
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_qwe3r")
+
+[node name="PhysicsBox4" parent="SpawnRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.1687, 6.70276, -42.4512)
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_qwe3r")
+
+[node name="PhysicsBox5" parent="SpawnRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.1096, 6.70276, -42.4512)
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_qwe3r")
+
+[node name="PhysicsBox6" parent="SpawnRoom/PhysicsBoxes" instance=ExtResource("35_1t037")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.5879, 7.72037, -42.4512)
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_qwe3r")
 
 [node name="Coins" type="Node3D" parent="SpawnRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.52316, 0, 0)
@@ -1032,19 +1145,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.3892, 0.324862, -4.61262)
 [node name="Spring4" parent="SpawnRoom" instance=ExtResource("7_mme67")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9018, 0.324862, -15.6619)
 
-[node name="SpawnPlatform2" type="StaticBody3D" parent="SpawnRoom"]
+[node name="SecondPlatform" type="StaticBody3D" parent="SpawnRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.1224, -0.185241, -16.8383)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SpawnRoom/SpawnPlatform2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SpawnRoom/SecondPlatform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, 0)
 mesh = SubResource("BoxMesh_2ci3n")
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnRoom/SpawnPlatform2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnRoom/SecondPlatform"]
 shape = SubResource("BoxShape3D_3avgc")
 metadata/_edit_lock_ = true
 
-[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="SpawnRoom/SpawnPlatform2"]
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="SpawnRoom/SecondPlatform"]
 size = Vector3(50, 1, 50)
 metadata/_edit_lock_ = true
 
@@ -1098,7 +1211,7 @@ Rotation = -90.0
 Scale = 0.5
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88.8022, 1.33858, -35.6128)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.099, 22.7132, -76.8877)
 
 [node name="RedBox" parent="." instance=ExtResource("4_wjtn7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.2923, 2.35557, -61.8518)
@@ -1347,11 +1460,6 @@ script = ExtResource("24_ges3u")
 
 [node name="FPSPanel" parent="GUI" instance=ExtResource("35_q6q4p")]
 layout_mode = 0
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_hlu0w")
-autoplay = true
-bus = &"Music"
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 109.153, 17.8282, -26.4722)

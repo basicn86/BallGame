@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwrfl2br4aml3"]
+[gd_scene load_steps=11 format=3 uid="uid://bwrfl2br4aml3"]
 
 [ext_resource type="Script" uid="uid://rs704lak0mfq" path="res://PhysicsBox.cs" id="1_lan2y"]
 [ext_resource type="PackedScene" uid="uid://ckjg8vgokuseq" path="res://PhysicsBoxExplosion.tscn" id="2_cggm1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://drxua1kmiojx7" path="res://common/DamageReceiver.cs" id="4_siceg"]
 [ext_resource type="PackedScene" uid="uid://nxb7fmcaldgn" path="res://CardBoardBox.blend" id="5_w8b5h"]
 [ext_resource type="Texture2D" uid="uid://ba41m5bjfduxv" path="res://BoxTexture1.png" id="6_wx5u1"]
+[ext_resource type="AudioStream" uid="uid://dqjk4k6s6qfnh" path="res://cardboard_small-impact_06-43160.mp3" id="7_2y1iy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gyshf"]
 albedo_texture = ExtResource("6_wx5u1")
@@ -16,12 +17,13 @@ size = Vector3(2.5, 2.5, 2.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_56p4e"]
 size = Vector3(2.5, 2.5, 2.5)
 
-[node name="BigPhysicsBox" type="RigidBody3D"]
+[node name="BigPhysicsBox" type="RigidBody3D" node_paths=PackedStringArray("MovementRustle")]
 collision_layer = 4
 collision_mask = 7
 mass = 0.25
 script = ExtResource("1_lan2y")
 explosionScene = ExtResource("2_cggm1")
+MovementRustle = NodePath("AudioStreamPlayer3D")
 
 [node name="CardBoardBox" parent="." instance=ExtResource("5_w8b5h")]
 
@@ -39,6 +41,11 @@ script = ExtResource("4_siceg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
 shape = SubResource("BoxShape3D_56p4e")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_2y1iy")
+volume_db = -12.0
+bus = &"Boxes"
 
 [connection signal="TakeDamage" from="HitBox" to="." method="_on_area_3d_take_damage"]
 

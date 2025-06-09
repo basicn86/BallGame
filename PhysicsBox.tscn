@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://mqbycbrcjyk4"]
+[gd_scene load_steps=9 format=3 uid="uid://mqbycbrcjyk4"]
 
 [ext_resource type="Script" uid="uid://rs704lak0mfq" path="res://PhysicsBox.cs" id="1_veju4"]
 [ext_resource type="PackedScene" uid="uid://ckjg8vgokuseq" path="res://PhysicsBoxExplosion.tscn" id="2_ga5aj"]
 [ext_resource type="Material" uid="uid://cf45eg04u0u62" path="res://PhysicsBoxMaterial.tres" id="3_5mx1k"]
 [ext_resource type="Script" uid="uid://drxua1kmiojx7" path="res://common/DamageReceiver.cs" id="4_n6r5e"]
+[ext_resource type="AudioStream" uid="uid://dqjk4k6s6qfnh" path="res://cardboard_small-impact_06-43160.mp3" id="5_t2yh1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_f7o52"]
 material = ExtResource("3_5mx1k")
@@ -12,7 +13,7 @@ material = ExtResource("3_5mx1k")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5nm4g"]
 
-[node name="PhysicsBox" type="RigidBody3D"]
+[node name="PhysicsBox" type="RigidBody3D" node_paths=PackedStringArray("MovementRustle")]
 physics_interpolation_mode = 1
 collision_layer = 4
 collision_mask = 7
@@ -20,6 +21,7 @@ mass = 0.5
 can_sleep = false
 script = ExtResource("1_veju4")
 explosionScene = ExtResource("2_ga5aj")
+MovementRustle = NodePath("AudioStreamPlayer3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_f7o52")
@@ -33,5 +35,9 @@ script = ExtResource("4_n6r5e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
 shape = SubResource("BoxShape3D_5nm4g")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_t2yh1")
+bus = &"Boxes"
 
 [connection signal="TakeDamage" from="HitBox" to="." method="_on_area_3d_take_damage"]

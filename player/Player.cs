@@ -152,6 +152,7 @@ public partial class Player : RigidBody3D
 			LinearVelocity = new Vector3(LinearVelocity.X, Mathf.Max(0f, LinearVelocity.Y * JumpVelocityIgnoreFactor), LinearVelocity.Z);
 			ApplyCentralImpulse(new Vector3(0, JumpForce, 0));
 			jumpSound.Play();
+			return;
 		}
 
 		//Let the player jump higher if the jump button is held down
@@ -159,7 +160,10 @@ public partial class Player : RigidBody3D
 		{
 			GravityScale = JumpUnheldGravityScale;
 		}
-		else
+		else if (groundCast.IsColliding())
+		{
+			GravityScale = 1.0f; //reset gravity scale when on the ground
+		} else
 		{
 			GravityScale = JumpHeldGravityScale;
 		}
