@@ -48,6 +48,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -55)
 current = true
 
 [node name="ObstacleRaycast" type="RayCast3D" parent="PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 target_position = Vector3(0, 0, -1)
 hit_from_inside = true
 debug_shape_thickness = 1

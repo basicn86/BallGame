@@ -120,6 +120,7 @@ public partial class CptDetonatorGround : StaticBody3D
 	public override void _Process(double delta)
 	{
 		//this is for debug.
+		/*
 		if (Input.IsActionJustPressed("debugf2")) {
 			Stopwatch sw = new Stopwatch();
 			sw.Start();
@@ -128,7 +129,7 @@ public partial class CptDetonatorGround : StaticBody3D
 
 			sw.Stop();
 			GD.Print("Time micro seconds: " + sw.ElapsedTicks / (Stopwatch.Frequency / 1000000L));
-		}
+		}*/
 	}
 	
 	public void AddBurnPoint(Vector3 point)

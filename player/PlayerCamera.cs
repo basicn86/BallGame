@@ -38,10 +38,6 @@ public partial class PlayerCamera : Node3D
 
 	//default camera position and distance
 	private Vector3 normalCameraPosition;
-	private Vector3 normalCameraRotation;
-	private float normalCameraDistance;
-	private Vector3 normalObstacleRaycastPosition;
-	private Vector3 desiredCameraLocalPosition;
 	private LockOnArea? lockOnTarget;
 
 	[Export]
@@ -103,13 +99,9 @@ public partial class PlayerCamera : Node3D
 
 		lockOnRaycast.Enabled = false;
 
-		obstacleRaycast.TargetPosition = camera.Position + new Vector3(0, -0.1f, 0);
+		obstacleRaycast.TargetPosition = camera.Position - obstacleRaycast.Position;
 
 		normalCameraPosition = FreeLookPedestal.Position;
-		normalCameraRotation = FreeLookPedestal.Rotation;
-		normalCameraDistance = FreeLookPedestal.Position.DistanceTo(new Vector3());
-
-		normalObstacleRaycastPosition = crosshairRaycast.Position; //must be relative to the camera
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -150,6 +142,19 @@ public partial class PlayerCamera : Node3D
 			else if (cameraMode == CameraMode.LockOn)
 			{
 				StopLockOn();
+			}
+		}
+
+		if (Input.IsActionJustPressed("debugf2"))
+		{
+			if(cameraMode == CameraMode.Automatic)
+			{
+				_stateTransitionTimer = 0;
+				cameraMode = CameraMode.EnteringFreeLook;
+			} else if (cameraMode == CameraMode.FreeLook)
+			{
+				AutomaticPedestal.GlobalPosition = LockOnPedestal.GlobalPosition;
+				cameraMode = CameraMode.Automatic;
 			}
 		}
 	}
@@ -321,33 +326,18 @@ public partial class PlayerCamera : Node3D
 		}
 	}
 
-	/// <summary>
-	/// Adjusts the camera's position to avoid clipping into the environment.
-	/// If the camera is colliding with the environment, it calculates the distance to the collision point
-	/// and moves the camera closer to the player. If the camera is not colliding with anything, it sets the camera's position
-	/// to its normal position.
-	/// We also need to update the crosshairRaycast position to match the camera position when the camera is colliding with the environment. When it is not colliding with the environment, we set the crosshairRaycast position to its normal position, which is usually a little bit ahead of the player. This prevents entities from being selected when an entity walks in between the player and the camera, and prevents the player from attacking backwards.
-	/// </summary>
 	private void MoveCameraAwayFromEnvironment(double delta)
 	{
 		obstacleRaycast.ForceRaycastUpdate();
 		if (obstacleRaycast.IsColliding())
 		{
-			Vector3 localCollisionPoint = obstacleRaycast.GetCollisionPoint() - obstacleRaycast.GlobalPosition;
-			float localDistance = localCollisionPoint.Length();
-			desiredCameraLocalPosition = normalCameraPosition * (localDistance / normalCameraDistance);
-			//move the camera up a little bit when it is colliding with the environment
-			//TODO: possibly replace this with a curve rather than an equation
-			desiredCameraLocalPosition += new Vector3(0, 0.5f * Math.Clamp((1f-(localDistance/normalCameraDistance))*2f, 0f, 1f), 0);
-
-			crosshairRaycast.Position = normalObstacleRaycastPosition * (localDistance / normalCameraDistance);
-		}
-		else
+			Vector3 desiredPosition = obstacleRaycast.GetCollisionPoint();
+			desiredPosition -= (desiredPosition - obstacleRaycast.GlobalPosition).Normalized() * 0.2f;
+			FreeLookPedestal.GlobalPosition = FreeLookPedestal.GlobalPosition.Lerp(desiredPosition, 20f * (float)delta);
+		} else
 		{
-			desiredCameraLocalPosition = normalCameraPosition;
-			crosshairRaycast.Position = normalObstacleRaycastPosition;
+			FreeLookPedestal.Position = FreeLookPedestal.Position.Lerp(normalCameraPosition, 20f * (float)delta);
 		}
-		FreeLookPedestal.Position = FreeLookPedestal.Position.Lerp(desiredCameraLocalPosition, 20f * (float)delta);
 	}
 
 	public override void _UnhandledInput(InputEvent @event)

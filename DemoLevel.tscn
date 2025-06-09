@@ -1289,7 +1289,7 @@ CoinSound = NodePath("AudioStreamPlayer")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GUI/CoinPanelContainer/Label"]
 stream = ExtResource("30_qwe3r")
-volume_db = -8.0
+volume_db = -12.0
 
 [node name="Crosshair" parent="GUI" instance=ExtResource("7_2qhh3")]
 visible = false
