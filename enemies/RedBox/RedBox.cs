@@ -9,6 +9,9 @@ public partial class RedBox : RigidBody3D
 	[Export]
 	private Area3D DamageSender;
 
+	[Export]
+	AudioStreamPlayer3D JumpSound;
+
 	private Player? player;
 
 	[Export]
@@ -49,6 +52,8 @@ public partial class RedBox : RigidBody3D
 		Vector3 torqueAxis = impulseDirection;
 		torqueAxis.Y = 0f;
 		ApplyTorqueImpulse(torqueAxis.Cross(Vector3.Down));
+
+		JumpSound.Play();
 	}
 
 	public void _player_area_entered(Node3D body)

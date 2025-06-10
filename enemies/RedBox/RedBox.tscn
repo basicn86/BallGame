@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ha5t40v1wac4"]
+[gd_scene load_steps=15 format=3 uid="uid://ha5t40v1wac4"]
 
 [ext_resource type="Script" uid="uid://bs0wfsdqa0oan" path="res://enemies/RedBox/RedBox.cs" id="1_jqfd8"]
 [ext_resource type="PackedScene" uid="uid://b4pimk8uqc15v" path="res://environment/Coins/DynamicCoin.tscn" id="2_kyy54"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://6eyvraq0iheq" path="res://LockOnArea.cs" id="3_dmxay"]
 [ext_resource type="Script" uid="uid://drxua1kmiojx7" path="res://common/DamageReceiver.cs" id="3_hm8aq"]
 [ext_resource type="PackedScene" uid="uid://cg3xty8msc6nv" path="res://LockOnIndicator.tscn" id="4_hm8aq"]
+[ext_resource type="AudioStream" uid="uid://cppvf4iqq5i68" path="res://player/Jump.wav" id="7_7ggp8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rh67q"]
 albedo_color = Color(0.654902, 0, 0, 1)
@@ -27,13 +28,14 @@ size = Vector3(1.2, 1.2, 1.2)
 [sub_resource type="SphereShape3D" id="SphereShape3D_aaymc"]
 radius = 2.0
 
-[node name="RedBox" type="RigidBody3D" node_paths=PackedStringArray("PlayerDetectionArea", "DamageSender") groups=["PlayerDied"]]
+[node name="RedBox" type="RigidBody3D" node_paths=PackedStringArray("PlayerDetectionArea", "DamageSender", "JumpSound") groups=["PlayerDied"]]
 physics_interpolation_mode = 1
 collision_layer = 32
 collision_mask = 39
 script = ExtResource("1_jqfd8")
 PlayerDetectionArea = NodePath("PlayerActivationArea")
 DamageSender = NodePath("DamageSender")
+JumpSound = NodePath("AudioStreamPlayer3D")
 AttackCooldown = 2.0
 CoinScene = ExtResource("2_kyy54")
 
@@ -80,6 +82,11 @@ shape = SubResource("SphereShape3D_aaymc")
 
 [node name="MeshInstance3D" parent="LockOnArea" instance=ExtResource("4_hm8aq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_7ggp8")
+pitch_scale = 0.8
+bus = &"RedBoxJump"
 
 [connection signal="body_entered" from="PlayerActivationArea" to="." method="_player_area_entered"]
 [connection signal="JumpedByPlayer" from="DamageSender" to="." method="jumped_by_player"]

@@ -141,6 +141,10 @@ public partial class Player : RigidBody3D
 			float t = Mathf.Clamp(excessVelocity, 0f, 1f);
 
 			Vector3 pushback = -velocity.Normalized() * MaxVelocityPushback * t;
+			if (groundCast.IsColliding())
+			{
+				pushback = AdjustMoveVectorBySlope(pushback, groundCast.GetCollisionNormal());
+			}
 			ApplyCentralForce(pushback);
 		}
 	}

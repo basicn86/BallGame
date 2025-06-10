@@ -14,7 +14,7 @@ public partial class RedBoxDamageSender : Area3D
 		{
 			if (damageReceiver.IsPlayer) {
 				Vector3 directionToPlayer = (damageReceiver.GlobalPosition - GlobalPosition).Normalized();
-				if (Vector3.Up.Dot(directionToPlayer) > 0.707f)
+				if (Vector3.Up.Dot(directionToPlayer) > 0.5f)
 				{
 					EmitSignal(SignalName.JumpedByPlayer);
 					return;
