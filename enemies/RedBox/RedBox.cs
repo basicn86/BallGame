@@ -26,13 +26,32 @@ public partial class RedBox : RigidBody3D
 	public override void _Ready()
 	{
 		initialSpawnPosition = GlobalPosition;
+
+		PlayerDetectionArea.TopLevel = true;
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (player == null) return;
-
 		attackCooldownTimer -= (float)delta;
+		if (player == null)
+		{
+			if (GlobalPosition.DistanceTo(PlayerDetectionArea.GlobalPosition) > 4.0f && LinearVelocity.Length() < 1f && AngularVelocity.Length() < 0.1f)
+			{
+				Vector3 impulseDirection = PlayerDetectionArea.GlobalPosition - GlobalPosition;
+				impulseDirection = impulseDirection.Normalized();
+				impulseDirection.Y += 1f;
+				ApplyCentralImpulse(impulseDirection * 4f);
+
+				Vector3 torqueAxis = impulseDirection;
+				torqueAxis.Y = 0f;
+				ApplyTorqueImpulse(torqueAxis.Cross(Vector3.Down));
+
+				JumpSound.Play();
+			}
+			return;
+		}
+
+		
 		if (attackCooldownTimer < 0f && LinearVelocity.Length() < 1f && AngularVelocity.Length() < 0.1f)
 		{
 			LinearVelocity = Vector3.Zero;
@@ -60,9 +79,12 @@ public partial class RedBox : RigidBody3D
 	{
 		if (body is not Player) return;
 		player = body as Player;
-		PlayerDetectionArea.QueueFree();
+	}
 
-		AttackPlayer();
+	public void _player_area_exited(Node3D body)
+	{
+		if (body is not Player) return;
+		player = null;
 	}
 
 	public void jumped_by_player()

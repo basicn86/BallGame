@@ -1,4 +1,4 @@
-[gd_scene load_steps=154 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=157 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://ct1cdqottsrdb" path="res://Bush.tscn" id="1_3avgc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
@@ -186,6 +186,18 @@ buffer = PackedFloat32Array(-0.820406, 0, 0.573528, -25.4225, 0, 1.001, 0, 1.522
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_oh6wr"]
 size = Vector2(32, 24)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1mgwv"]
+albedo_texture = ExtResource("4_81cih")
+uv1_scale = Vector3(10, 4, 1)
+texture_filter = 4
+
+[sub_resource type="BoxMesh" id="BoxMesh_d8eh8"]
+material = SubResource("StandardMaterial3D_1mgwv")
+size = Vector3(40, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1mgwv"]
+size = Vector3(10, 1, 40)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wqqyb"]
 size = Vector3(5000, 20, 5000)
@@ -679,18 +691,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.6603, 0.660646, -16.0701)
 [node name="Coin14" parent="SpawnRoom/Coins" instance=ExtResource("53_uv337")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.6819, 0.660646, -18.166)
 
-[node name="Coin107" parent="SpawnRoom/Coins" instance=ExtResource("53_uv337")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.4334, 4.17323, -31.6761)
-
-[node name="Coin108" parent="SpawnRoom/Coins" instance=ExtResource("53_uv337")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.7716, 4.17323, -31.6761)
-
-[node name="Coin109" parent="SpawnRoom/Coins" instance=ExtResource("53_uv337")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.4334, 4.17323, -32.4886)
-
-[node name="Coin110" parent="SpawnRoom/Coins" instance=ExtResource("53_uv337")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.7716, 4.17323, -32.4886)
-
 [node name="Coin13" parent="SpawnRoom/Coins" instance=ExtResource("53_uv337")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.7995, 0.660646, -17.3259)
 
@@ -835,54 +835,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.3941, 0.660646, -36.3057)
 [node name="Coin87" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.3941, 0.660646, -35.6594)
 
-[node name="Coin91" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.8749, 3.44647, -31.8292)
-
-[node name="Coin92" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.8749, 3.44647, -31.3498)
-
-[node name="Coin93" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.8749, 3.44647, -32.8207)
-
-[node name="Coin94" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.8749, 3.44647, -32.3412)
-
-[node name="Coin95" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.2943, 3.44647, -31.8292)
-
-[node name="Coin96" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.2943, 3.44647, -31.3498)
-
-[node name="Coin97" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.2943, 3.44647, -32.8207)
-
-[node name="Coin98" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.2943, 3.44647, -32.3412)
-
-[node name="Coin99" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.7172, 3.44647, -31.8292)
-
-[node name="Coin100" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.7172, 3.44647, -31.3498)
-
-[node name="Coin101" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.7172, 3.44647, -32.8207)
-
-[node name="Coin102" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.7172, 3.44647, -32.3412)
-
-[node name="Coin103" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.4224, 3.44647, -31.8292)
-
-[node name="Coin104" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.4224, 3.44647, -31.3498)
-
-[node name="Coin105" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.4224, 3.44647, -32.8207)
-
-[node name="Coin106" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.4224, 3.44647, -32.3412)
-
 [node name="Coin88" parent="SpawnRoom/Coins" instance=ExtResource("52_kfonh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.3941, 0.660646, -35.0441)
 
@@ -994,9 +946,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.3978, 5.88708, -15.6682)
 [node name="Coin45" parent="SpawnRoom/Coins" instance=ExtResource("54_mme67")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.3978, 6.79196, -15.6682)
 
-[node name="Coin111" parent="SpawnRoom/Coins" instance=ExtResource("54_mme67")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.1261, 4.7709, -32.0916)
-
 [node name="Coin5" parent="SpawnRoom/Coins" instance=ExtResource("54_mme67")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.6105, 0.660646, -11.5701)
 
@@ -1058,10 +1007,10 @@ transform = Transform3D(0.815108, 0, 0.57931, 0, 1, 0, -0.57931, 0, 0.815108, -2
 transform = Transform3D(-0.0648286, 0, 0.997897, 0, 1, 0, -0.997897, 0, -0.0648286, -46.2603, 0.62988, -21.3041)
 
 [node name="Bush20" parent="SpawnRoom/Bushes" instance=ExtResource("1_3avgc")]
-transform = Transform3D(-0.0648286, 0, 0.997897, 0, 1, 0, -0.997897, 0, -0.0648286, -37.3937, 0.62988, -29.5293)
+transform = Transform3D(-0.0648286, 0, 0.997897, 0, 1, 0, -0.997897, 0, -0.0648286, -25.6731, 0.62988, -29.5293)
 
 [node name="Bush21" parent="SpawnRoom/Bushes" instance=ExtResource("1_3avgc")]
-transform = Transform3D(-0.0648286, 0, 0.997897, 0, 1, 0, -0.997897, 0, -0.0648286, -38.9505, 0.62988, -24.0092)
+transform = Transform3D(-0.0648286, 0, 0.997897, 0, 1, 0, -0.997897, 0, -0.0648286, -27.5266, 0.62988, -35.1078)
 
 [node name="Bush22" parent="SpawnRoom/Bushes" instance=ExtResource("1_3avgc")]
 transform = Transform3D(-0.0648286, 0, 0.997897, 0, 1, 0, -0.997897, 0, -0.0648286, -49.2332, 0.62988, -21.8503)
@@ -1171,9 +1120,6 @@ transform = Transform3D(0.187826, 0, -0.233926, 0, 0.3, 0, 0.233926, 0, 0.187826
 [node name="Flower7" parent="SpawnRoom/Flowers" instance=ExtResource("18_82srm")]
 transform = Transform3D(0.0035185, 0, -0.299979, 0, 0.3, 0, 0.299979, 0, 0.0035185, -15.3824, 0.339023, -29.0341)
 
-[node name="FlyingPlatform9" parent="SpawnRoom" instance=ExtResource("7_v7g34")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5703, 2.80226, -32.1731)
-
 [node name="Spring2" parent="SpawnRoom" instance=ExtResource("7_mme67")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.0345, 0.324862, -9.99739)
 
@@ -1240,7 +1186,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7588, 0.740624, 7.17731)
 script = ExtResource("12_hx1fq")
 FenceMesh = ExtResource("13_q6q4p")
 FenceMaterial = ExtResource("14_m8mxy")
-Count = 44
+Count = 15
 Offset = Vector3(-2.2, 0, 0)
 Rotation = 180.0
 Scale = 0.5
@@ -1266,6 +1212,9 @@ metadata/_edit_lock_ = true
 shape = SubResource("BoxShape3D_sx6qo")
 debug_color = Color(0, 0.380392, 0.447059, 1)
 metadata/_edit_lock_ = true
+
+[node name="RedBox3" parent="." instance=ExtResource("4_wjtn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.5253, 2.35557, -0.360137)
 
 [node name="Room2" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
@@ -1441,7 +1390,7 @@ mesh = SubResource("PlaneMesh_oh6wr")
 skeleton = NodePath("../..")
 
 [node name="Checkpoint" parent="Room2" instance=ExtResource("9_sdew7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.0726, 2.67947, 3.7501)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.9035, 1.67133, 0.293033)
 
 [node name="FenceSpawner" type="Node3D" parent="Room2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7808, 1.88175, 14.9412)
@@ -1468,8 +1417,23 @@ ReturnForce = 40.0
 [node name="FlyingPlatform2" parent="Room2" instance=ExtResource("28_oh6wr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.2732, 2.02159, 10.8078)
 
+[node name="Bridges" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Bridges"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.9887, -0.200738, 28.1211)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bridges/StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_d8eh8")
+skeleton = NodePath("../..")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bridges/StaticBody3D"]
+shape = SubResource("BoxShape3D_1mgwv")
+metadata/_edit_lock_ = true
+
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.7064, 2.50242, 1.96188)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.9202, 1.3321, -0.494033)
 
 [node name="RedBox" parent="." instance=ExtResource("4_wjtn7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.2923, 2.35557, -61.8518)
