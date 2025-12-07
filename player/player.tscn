@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfncrprg4epon"]
+[gd_scene load_steps=14 format=3 uid="uid://dfncrprg4epon"]
 
 [ext_resource type="Script" uid="uid://crsev7gnp4j1t" path="res://player/Player.cs" id="1_8wcbe"]
 [ext_resource type="ArrayMesh" uid="uid://bk60o4evjj67t" path="res://player/PlayerBall.obj" id="2_76w44"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://drxua1kmiojx7" path="res://common/DamageReceiver.cs" id="5_rnpcn"]
 [ext_resource type="AudioStream" uid="uid://cppvf4iqq5i68" path="res://player/Jump.wav" id="7_5gxdp"]
 [ext_resource type="AudioStream" uid="uid://bc8c5k71teb71" path="res://player/Landing.wav" id="8_c1um3"]
+[ext_resource type="Script" uid="uid://bhjnfpnfhumt1" path="res://player/PlayerGroundDecal.cs" id="9_hg6s5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0d2g"]
 albedo_color = Color(0, 0.639216, 1, 1)
@@ -19,6 +20,8 @@ backlight = Color(1, 0, 0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1pijw"]
 radius = 0.6
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rgyib"]
 
 [node name="Player" type="RigidBody3D" node_paths=PackedStringArray("playerModel", "groundCast", "jumpSound", "landSound")]
 collision_layer = 2
@@ -41,6 +44,7 @@ jumpSound = NodePath("JumpingAudio")
 landSound = NodePath("LandingAudio")
 
 [node name="PlayerModel" type="MeshInstance3D" parent="." node_paths=PackedStringArray("player", "InvisibilityTimer")]
+layers = 2
 gi_mode = 2
 mesh = ExtResource("2_76w44")
 surface_material_override/0 = SubResource("StandardMaterial3D_h0d2g")
@@ -79,6 +83,15 @@ bus = &"Player SFX"
 stream = ExtResource("8_c1um3")
 attenuation_model = 3
 bus = &"Player SFX"
+
+[node name="GroundDecal" type="Decal" parent="." node_paths=PackedStringArray("player", "groundCast")]
+top_level = true
+size = Vector3(2, 10, 2)
+texture_albedo = SubResource("NoiseTexture2D_rgyib")
+script = ExtResource("9_hg6s5")
+player = NodePath("..")
+groundCast = NodePath("../GroundRaycast")
+offset = -6.0
 
 [connection signal="PlayerDied" from="." to="PlayerModel" method="_on_player_player_died"]
 [connection signal="timeout" from="PlayerModel/InvisibilityTimer" to="PlayerModel" method="_on_invisibility_timer_timeout"]

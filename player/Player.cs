@@ -13,6 +13,8 @@ public partial class Player : RigidBody3D
 	public MeshInstance3D playerModel;
 	[Export]
 	public RayCast3D groundCast;
+
+	[ExportGroup("Effects")]
 	[Export]
 	public PackedScene jumpParticles;
 	[Export]
