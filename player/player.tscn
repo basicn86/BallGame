@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://drxua1kmiojx7" path="res://common/DamageReceiver.cs" id="5_rnpcn"]
 [ext_resource type="AudioStream" uid="uid://cppvf4iqq5i68" path="res://player/Jump.wav" id="7_5gxdp"]
 [ext_resource type="AudioStream" uid="uid://bc8c5k71teb71" path="res://player/Landing.wav" id="8_c1um3"]
+[ext_resource type="Texture2D" uid="uid://cylbef1ss2ncj" path="res://player/GroundDecal.png" id="9_8t03j"]
 [ext_resource type="Script" uid="uid://bhjnfpnfhumt1" path="res://player/PlayerGroundDecal.cs" id="9_hg6s5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0d2g"]
@@ -20,8 +21,6 @@ backlight = Color(1, 0, 0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1pijw"]
 radius = 0.6
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rgyib"]
 
 [node name="Player" type="RigidBody3D" node_paths=PackedStringArray("playerModel", "groundCast", "jumpSound", "landSound")]
 collision_layer = 2
@@ -86,8 +85,9 @@ bus = &"Player SFX"
 
 [node name="GroundDecal" type="Decal" parent="." node_paths=PackedStringArray("player", "groundCast")]
 top_level = true
-size = Vector3(2, 10, 2)
-texture_albedo = SubResource("NoiseTexture2D_rgyib")
+size = Vector3(1.5, 10, 1.5)
+texture_albedo = ExtResource("9_8t03j")
+lower_fade = 0.1
 script = ExtResource("9_hg6s5")
 player = NodePath("..")
 groundCast = NodePath("../GroundRaycast")
