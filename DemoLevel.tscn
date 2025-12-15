@@ -1,4 +1,4 @@
-[gd_scene load_steps=157 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=159 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://ct1cdqottsrdb" path="res://Bush.tscn" id="1_3avgc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://d15t6ak65t441" path="res://DemoLevel/Grass_24-512x512.png" id="16_iogn7"]
 [ext_resource type="PackedScene" uid="uid://chm55taavgilw" path="res://environment/tree_2.tscn" id="17_q6wjd"]
 [ext_resource type="PackedScene" uid="uid://787c5e1qbail" path="res://environment/Flower2/Flower2.tscn" id="18_82srm"]
+[ext_resource type="Script" uid="uid://n2efxcro4t1v" path="res://FenceSpawnerPath.cs" id="19_d8eh8"]
 [ext_resource type="Texture2D" uid="uid://dhopm4nfln55d" path="res://Textures/Wood/Wood_18-512x512.png" id="20_1mgwv"]
 [ext_resource type="Script" uid="uid://dpiwq6ery73nn" path="res://DemoLevel/WindArea.cs" id="21_thcbr"]
 [ext_resource type="Script" uid="uid://djm32k7bugxf0" path="res://HintPanel.cs" id="21_u3x08"]
@@ -163,6 +164,13 @@ size = Vector3(10, 1, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sx6qo"]
 size = Vector3(10, 1, 4)
+
+[sub_resource type="Curve3D" id="Curve3D_6nk0g"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, -5, 0, 0, 0, 0, 0, 0, 3, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
 
 [sub_resource type="BoxMesh" id="BoxMesh_1q5g4"]
 material = ExtResource("12_q2wlt")
@@ -1201,6 +1209,16 @@ Offset = Vector3(0, 0, 2.2)
 Rotation = -90.0
 Scale = 0.5
 
+[node name="FenceSpawner5" type="Node3D" parent="SpawnRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.601, 0.58934, -15.4062)
+script = ExtResource("19_d8eh8")
+FenceMesh = ExtResource("13_q6q4p")
+FenceMaterial = ExtResource("14_m8mxy")
+Count = 32
+Rotation = 90.0
+Scale = 0.25
+PathNode = NodePath("../Path3D")
+
 [node name="ExitRamp" type="StaticBody3D" parent="SpawnRoom"]
 transform = Transform3D(0.990268, -0.139173, 0, 0.139173, 0.990268, 0, 0, 0, 1, -6.89516, 0.361266, 3.6031)
 
@@ -1212,6 +1230,10 @@ metadata/_edit_lock_ = true
 shape = SubResource("BoxShape3D_sx6qo")
 debug_color = Color(0, 0.380392, 0.447059, 1)
 metadata/_edit_lock_ = true
+
+[node name="Path3D" type="Path3D" parent="SpawnRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.601, 0.58934, -15.4062)
+curve = SubResource("Curve3D_6nk0g")
 
 [node name="RedBox3" parent="." instance=ExtResource("4_wjtn7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.5253, 2.35557, -0.360137)

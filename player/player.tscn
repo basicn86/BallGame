@@ -85,7 +85,7 @@ bus = &"Player SFX"
 
 [node name="GroundDecal" type="Decal" parent="." node_paths=PackedStringArray("player", "groundCast")]
 top_level = true
-size = Vector3(1.5, 10, 1.5)
+size = Vector3(1, 10, 1)
 texture_albedo = ExtResource("9_8t03j")
 lower_fade = 0.1
 script = ExtResource("9_hg6s5")

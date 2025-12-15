@@ -278,7 +278,7 @@ public partial class PlayerCamera : Node3D
 		}
 		Vector3 lockOnPos = lockOnTarget.GetInterpolatedPos();
 		LockOnPedestal.LookAt(lockOnPos);
-		lockOnPos.Y = pitch.GlobalPosition.Y;
+		lockOnPos.Y = GlobalPosition.Y;
 		LookAt(lockOnPos, Vector3.Up);
 		camera.GlobalPosition = LockOnPedestal.GlobalPosition;
 		camera.GlobalRotation = LockOnPedestal.GlobalRotation;
