@@ -6,6 +6,7 @@ public partial class FenceSpawnerPath : Node3D
 {
 	[Export] public Mesh FenceMesh;
 	[Export] public Material FenceMaterial;
+	[Export] public Shape3D FenceCollisionShape;
 	[Export] public int Count = 10;
 	[Export] public float Rotation = 0.0f;
 	[Export] public float Scale = 1.0f;
@@ -14,6 +15,9 @@ public partial class FenceSpawnerPath : Node3D
 	[Export] public NodePath PathNode; // The Path3D node
 
 	private MultiMeshInstance3D _multiMeshInstance;
+
+
+	private bool rebuilt = false;
 
 	public override void _Process(double delta)
 	{
@@ -24,12 +28,28 @@ public partial class FenceSpawnerPath : Node3D
 			GlobalPosition = GetNodeOrNull<Path3D>(PathNode).GlobalPosition;
 		}
 
-		if (!Engine.IsEditorHint())
+		if (!Engine.IsEditorHint() && !rebuilt)
 		{
 			RebuildFence();
-			ProcessMode = ProcessModeEnum.Disabled;
+			rebuilt = true;
 			return;
 		}
+	}
+
+	private void AddCollision(Vector3 position, Vector3 direction)
+	{
+		if (Engine.IsEditorHint()) return;
+		StaticBody3D staticBody = new StaticBody3D();
+		AddChild(staticBody);
+		staticBody.GlobalPosition = position;
+		staticBody.LookAt(position + direction, Vector3.Up);
+
+		CollisionShape3D collisionShape = new CollisionShape3D();
+		collisionShape.Shape = FenceCollisionShape;
+		staticBody.AddChild(collisionShape);
+		collisionShape.Position = Vector3.Zero;
+
+		GD.Print("Added collision at: " + collisionShape.GlobalPosition);
 	}
 
 	private void RebuildFence()
@@ -89,6 +109,8 @@ public partial class FenceSpawnerPath : Node3D
 			// Optional rotation and scale
 			xform = xform.RotatedLocal(Vector3.Up, Mathf.DegToRad(Rotation));
 			xform = xform.ScaledLocal(new Vector3(Scale, Scale, Scale));
+
+			AddCollision(currentPos + GlobalPosition, direction);
 
 			multiMesh.SetInstanceTransform(i, xform);
 		}
