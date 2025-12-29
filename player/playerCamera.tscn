@@ -18,10 +18,10 @@ AutomaticPedestal = NodePath("AutomaticPedestal")
 [node name="PitchPivot" type="Node3D" parent="."]
 
 [node name="FreeLookPedestal" type="Node3D" parent="PitchPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 1.5, 3)
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 2, 5)
 
 [node name="Camera3D" type="Camera3D" parent="PitchPivot/FreeLookPedestal"]
-transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 1.5, 3)
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 2, 5)
 top_level = true
 current = true
 
