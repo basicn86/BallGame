@@ -1,9 +1,10 @@
-[gd_scene load_steps=129 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=131 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://ct1cdqottsrdb" path="res://Bush.tscn" id="1_3avgc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Shader" uid="uid://c2xy5aqf4bhem" path="res://Ocean.gdshader" id="1_m8mxy"]
 [ext_resource type="AudioStream" uid="uid://cg4jni45p84ej" path="res://music/Juhani Junkala [Retro Game Music Pack] Level 1.wav" id="1_qwe3r"]
+[ext_resource type="Script" uid="uid://flhqtt5wc1vn" path="res://tools/ResetParentNodePosition.cs" id="2_q6q4p"]
 [ext_resource type="Script" uid="uid://du8cwf636gg70" path="res://environment/Spikes/SpikeArea.cs" id="2_xq41t"]
 [ext_resource type="Texture2D" uid="uid://bempk1msb3n8f" path="res://DemoLevel/Dirt_01-512x512.png" id="3_a2uqh"]
 [ext_resource type="PackedScene" uid="uid://cnpb27we1lbh3" path="res://ui/PauseMenu.tscn" id="3_lnbl7"]
@@ -74,6 +75,13 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 12
+
+[sub_resource type="Curve3D" id="Curve3D_q6q4p"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 1.03646, 0, -2.29726, -1.03646, 0, 2.29726, -2.54417, 4.41074e-05, 5.13432, 1.76039, 0, -3.7192, -1.76039, 0, 3.7192, -3.35699, 4.41074e-05, 13.8324, 1.73916, 0, -2.26272, -1.73916, 0, 2.26272, -10.4928, 4.41074e-05, 18.75, 0.337959, 0, -3.13175, -0.337959, 0, 3.13175, -13.3542, 4.41074e-05, 25.3064, 0, 0, -2.38824, 0, 0, 2.38824, -13.3284, 4.41074e-05, 31.4047),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
 
 [sub_resource type="MultiMesh" id="MultiMesh_sx6qo"]
 transform_format = 1
@@ -494,10 +502,10 @@ visible = false
 mesh = ExtResource("3_nbtbs")
 
 [node name="SpawnRoom2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.5619, 0, -63.9704)
+script = ExtResource("2_q6q4p")
 
 [node name="DemoSpawnArea2" parent="SpawnRoom2" instance=ExtResource("65_6nk0g")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -66.1592, 0.154558, 97.7278)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.2607, 0.15455, 40.1258)
 
 [node name="Plane" parent="SpawnRoom2/DemoSpawnArea2" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_sx6qo")
@@ -515,7 +523,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_a2uqh")
 surface_material_override/0 = SubResource("StandardMaterial3D_a2uqh")
 
 [node name="FenceSpawner5WithPath" type="Node3D" parent="SpawnRoom2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.9432, -0.407094, 90.9327)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0447, -0.407102, 33.3307)
 script = ExtResource("19_d8eh8")
 FenceMesh = ExtResource("13_q6q4p")
 FenceMaterial = ExtResource("14_m8mxy")
@@ -526,45 +534,60 @@ Scale = 0.25
 PathNode = NodePath("../FencePath")
 
 [node name="FencePath" type="Path3D" parent="SpawnRoom2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.9432, -0.407094, 90.9327)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0447, -0.407102, 33.3307)
 curve = SubResource("Curve3D_sx6qo")
 
+[node name="FencePath2" type="Path3D" parent="SpawnRoom2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.93803, 3.11539, 56.4301)
+curve = SubResource("Curve3D_q6q4p")
+
+[node name="FenceSpawner5WithPath2" type="Node3D" parent="SpawnRoom2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.93803, 3.11539, 56.4301)
+script = ExtResource("19_d8eh8")
+FenceMesh = ExtResource("13_q6q4p")
+FenceMaterial = ExtResource("14_m8mxy")
+FenceCollisionShape = SubResource("BoxShape3D_d8eh8")
+Count = 70
+Rotation = 90.0
+Scale = 0.25
+PathNode = NodePath("../FencePath2")
+
 [node name="GrassMultiMesh2" type="MultiMeshInstance3D" parent="SpawnRoom2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.52316, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.4217, -7.62939e-06, -57.602)
 multimesh = SubResource("MultiMesh_sx6qo")
 
 [node name="Tree2" parent="SpawnRoom2" instance=ExtResource("17_q6wjd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.2614, -0.626277, 89.8792)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.63709, -0.626285, 32.2773)
 
 [node name="Bush" parent="SpawnRoom2" instance=ExtResource("1_3avgc")]
-transform = Transform3D(0.723967, 0, 0.689834, 0, 1, 0, -0.689834, 0, 0.723967, -70.8047, -0.238348, 93.2307)
+transform = Transform3D(0.723967, 0, 0.689834, 0, 1, 0, -0.689834, 0, 0.723967, -12.9062, -0.238356, 35.6287)
 
 [node name="Bush2" parent="SpawnRoom2" instance=ExtResource("1_3avgc")]
-transform = Transform3D(0.83888, 0, 0.544317, 0, 1, 0, -0.544317, 0, 0.83888, -68.9459, -0.238348, 95.3644)
+transform = Transform3D(0.83888, 0, 0.544317, 0, 1, 0, -0.544317, 0, 0.83888, -11.0474, -0.238356, 37.7625)
 
 [node name="Bush3" parent="SpawnRoom2" instance=ExtResource("1_3avgc")]
-transform = Transform3D(-0.667066, 0, 0.744999, 0, 1, 0, -0.744999, 0, -0.667066, -61.0831, -0.304851, 93.9565)
+transform = Transform3D(-0.667066, 0, 0.744999, 0, 1, 0, -0.744999, 0, -0.667066, -3.18459, -0.304859, 36.3545)
 
 [node name="Bush4" parent="SpawnRoom2" instance=ExtResource("1_3avgc")]
-transform = Transform3D(-0.301105, 0, 0.953591, 0, 1, 0, -0.953591, 0, -0.301105, -54.807, -0.304851, 91.5446)
+transform = Transform3D(-0.301105, 0, 0.953591, 0, 1, 0, -0.953591, 0, -0.301105, 3.0915, -0.304859, 33.9426)
 
 [node name="Bush5" parent="SpawnRoom2" instance=ExtResource("1_3avgc")]
-transform = Transform3D(0.881303, 0, 0.472551, 0, 1, 0, -0.472551, 0, 0.881303, -52.0221, -0.304852, 80.5016)
+transform = Transform3D(0.881303, 0, 0.472551, 0, 1, 0, -0.472551, 0, 0.881303, 5.8764, -0.30486, 22.8997)
 
 [node name="Bush6" parent="SpawnRoom2" instance=ExtResource("1_3avgc")]
-transform = Transform3D(0.619327, 0, 0.785133, 0, 1, 0, -0.785133, 0, 0.619327, -55.9312, -0.304852, 76.94)
+transform = Transform3D(0.619327, 0, 0.785133, 0, 1, 0, -0.785133, 0, 0.619327, 1.96729, -0.30486, 19.3381)
 
 [node name="Bush7" parent="SpawnRoom2" instance=ExtResource("1_3avgc")]
-transform = Transform3D(0.996064, 0, -0.0886335, 0, 1, 0, 0.0886335, 0, 0.996064, -75.7179, -0.304852, 81.3291)
+transform = Transform3D(0.996064, 0, -0.0886335, 0, 1, 0, 0.0886335, 0, 0.996064, -17.8194, -0.30486, 23.7271)
 
 [node name="Bush8" parent="SpawnRoom2" instance=ExtResource("1_3avgc")]
-transform = Transform3D(0.996064, 0, -0.0886335, 0, 1, 0, 0.0886335, 0, 0.996064, -76.3347, -0.304852, 83.7988)
+transform = Transform3D(0.996064, 0, -0.0886335, 0, 1, 0, 0.0886335, 0, 0.996064, -18.4362, -0.30486, 26.1968)
 
 [node name="Bush9" parent="SpawnRoom2" instance=ExtResource("1_3avgc")]
-transform = Transform3D(0.996064, 0, -0.0886335, 0, 1, 0, 0.0886335, 0, 0.996064, -75.8146, -0.304852, 86.3963)
+transform = Transform3D(0.996064, 0, -0.0886335, 0, 1, 0, 0.0886335, 0, 0.996064, -17.9161, -0.30486, 28.7943)
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258423, 0.47076, 12.3852)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.92584, 0.717709, 18.4977)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_qwe3r")
