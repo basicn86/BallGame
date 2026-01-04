@@ -9,6 +9,8 @@ using System;
 //The camera should not clip into the environment, when it does, lerp the camera towards the player
 public partial class PlayerCamera : Node3D
 {
+	public static PlayerCamera Instance = null;
+
 	enum CameraMode
 	{
 		EnteringFreeLook,
@@ -51,6 +53,8 @@ public partial class PlayerCamera : Node3D
 	private Node3D LockOnPedestal;
 	[Export]
 	private Node3D AutomaticPedestal;
+
+	public Vector3 RespawnPosition;
 
 	#region Publicly accessible properties
 	/// <summary>
@@ -95,6 +99,15 @@ public partial class PlayerCamera : Node3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		if(Instance != null)
+		{
+			GD.PrintErr("Multiple PlayerCamera instances detected! Deleting extra instance.");
+			QueueFree();
+			return;
+		}
+
+		Instance = this;
+
 		camera.Current = true;
 
 		lockOnRaycast.Enabled = false;
@@ -311,7 +324,7 @@ public partial class PlayerCamera : Node3D
 			   );
 				break;
 			case CameraMode.Automatic:
-				Vector3 rightVector = GetCameraRotation().X;
+				Vector3 rightVector = -GetCameraRotation().X;
 				Vector3 directionToPlayer = (AutomaticPedestal.GlobalPosition - TargetPosition);
 				AutomaticPedestal.GlobalPosition += rightVector * X * sensitivity * UIScale * 0.1f;
 				if (Y > 0.0f) //camera goes towards player
@@ -321,6 +334,20 @@ public partial class PlayerCamera : Node3D
 				{
 					AutomaticPedestal.GlobalPosition += directionToPlayer.Normalized() * Y * sensitivity * UIScale * 0.04f * Mathf.Clamp((directionToPlayer.Length() - MinCamDistance), 0.0f, 1.0f);
 				}
+				break;
+			default:
+				break;
+		}
+	}
+
+	public void ResetCameraPosition()
+	{
+		switch (cameraMode)
+		{
+			case CameraMode.FreeLook:
+				break;
+			case CameraMode.Automatic:
+				AutomaticPedestal.GlobalPosition = RespawnPosition;
 				break;
 			default:
 				break;

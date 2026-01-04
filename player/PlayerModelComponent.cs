@@ -46,6 +46,14 @@ public partial class PlayerModelComponent : MeshInstance3D
 		currentRotation = player.Quaternion;
 	}
 
+	public void ResetSmoothing()
+	{
+		previousPos = player.GlobalPosition;
+		currentPos = player.GlobalPosition;
+		previousRotation = player.Quaternion;
+		currentRotation = player.Quaternion;
+	}
+
 	private void _on_player_player_died()
 	{
 		InvisibilityTimer.Start();

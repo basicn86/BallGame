@@ -17,6 +17,8 @@ public partial class Checkpoint : Node3D
 
 	private bool playerNearby = false;
 
+	[Export]
+	public Vector3 ResetCameraPosition; //This is the global position that the camera will respawn, offset by the global position of the checkpoint.
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -41,6 +43,7 @@ public partial class Checkpoint : Node3D
 		if (body is not Player) return;
 		Player player = (Player)body;
 		player.UpdateRespawnPos(GlobalPosition);
+		PlayerCamera.Instance.RespawnPosition = ResetCameraPosition + GlobalPosition;
 		playerNearby = true;
 		particles.Emitting = false;
 		if(IsInstanceValid(lightNode)) lightNode.QueueFree();

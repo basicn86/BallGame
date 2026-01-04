@@ -10,7 +10,7 @@ public partial class Player : RigidBody3D
 	private int health = 100;
 
 	[Export]
-	public MeshInstance3D playerModel;
+	public PlayerModelComponent playerModel;
 	[Export]
 	public RayCast3D groundCast;
 
@@ -247,6 +247,8 @@ public partial class Player : RigidBody3D
 
 		LinearVelocity = Vector3.Zero;
 		AngularVelocity = Vector3.Zero;
+		playerModel.ResetSmoothing();
+		CameraNode.ResetCameraPosition();
 	}
 
 	public void UpdateRespawnPos(Vector3 pos)
