@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class RedBox : RigidBody3D
+public partial class RedBoxPatrolPoints : RigidBody3D
 {
 	[Export]
 	private Area3D PlayerDetectionArea;
@@ -23,8 +23,25 @@ public partial class RedBox : RigidBody3D
 	[Export]
 	private PackedScene CoinScene;
 
+	[Export]
+	private Area3D[] PatrolAreas;
+
+	private int currentPatrolIndex = 0;
+
 	public override void _Ready()
 	{
+		if (PatrolAreas.Length == 0)
+		{
+			GD.PrintErr("RedBoxPatrolPoints: No patrol areas assigned!");
+			QueueFree();
+			return;
+		}
+
+		foreach (Area3D area in PatrolAreas)
+		{
+			area.BodyEntered += _patrol_area_entered;
+		}
+
 		initialSpawnPosition = GlobalPosition;
 
 		PlayerDetectionArea.TopLevel = true;
@@ -33,37 +50,27 @@ public partial class RedBox : RigidBody3D
 	public override void _PhysicsProcess(double delta)
 	{
 		attackCooldownTimer -= (float)delta;
+		if (attackCooldownTimer > 0.0f) return;
 		if (player == null)
 		{
-			if (GlobalPosition.DistanceTo(PlayerDetectionArea.GlobalPosition) > 4.0f && LinearVelocity.Length() < 1f && AngularVelocity.Length() < 0.1f)
+			if (LinearVelocity.Length() < 1f && AngularVelocity.Length() < 0.1f)
 			{
-				Vector3 impulseDirection = PlayerDetectionArea.GlobalPosition - GlobalPosition;
-				impulseDirection = impulseDirection.Normalized();
-				impulseDirection.Y += 1f;
-				ApplyCentralImpulse(impulseDirection * 4f);
-
-				Vector3 torqueAxis = impulseDirection;
-				torqueAxis.Y = 0f;
-				ApplyTorqueImpulse(torqueAxis.Cross(Vector3.Down));
-
-				JumpSound.Play();
+				JumpTowards(PatrolAreas[currentPatrolIndex].GlobalPosition);
 			}
 			return;
 		}
 
-		
-		if (attackCooldownTimer < 0f && LinearVelocity.Length() < 1f && AngularVelocity.Length() < 0.1f)
+
+		if (LinearVelocity.Length() < 1f && AngularVelocity.Length() < 0.1f)
 		{
 			LinearVelocity = Vector3.Zero;
-			AttackPlayer();
-			attackCooldownTimer = AttackCooldown;
+			JumpTowards(player.GlobalPosition);
 		}
 	}
 
-	private void AttackPlayer()
+	private void JumpTowards(Vector3 TargetPos)
 	{
-		if (player == null) return;
-		Vector3 impulseDirection = player.GlobalPosition - GlobalPosition;
+		Vector3 impulseDirection = TargetPos - GlobalPosition;
 		impulseDirection = impulseDirection.Normalized();
 		impulseDirection.Y += 1f;
 		ApplyCentralImpulse(impulseDirection * 4f);
@@ -73,6 +80,16 @@ public partial class RedBox : RigidBody3D
 		ApplyTorqueImpulse(torqueAxis.Cross(Vector3.Down));
 
 		JumpSound.Play();
+
+		attackCooldownTimer = AttackCooldown;
+	}
+
+	public void _patrol_area_entered(Node body)
+	{
+		if (body is not RedBoxPatrolPoints) return;
+		if (body != this) return;
+		currentPatrolIndex++;
+		if (currentPatrolIndex >= PatrolAreas.Length) currentPatrolIndex = 0;
 	}
 
 	public void _player_area_entered(Node3D body)
@@ -121,7 +138,8 @@ public partial class RedBox : RigidBody3D
 
 	private void SpawnCoins()
 	{
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 10; i++)
+		{
 			DynamicCoin coin = CoinScene.Instantiate() as DynamicCoin;
 			GetParent().AddChild(coin);
 			coin.GlobalPosition = GlobalPosition;
