@@ -1,4 +1,4 @@
-[gd_scene load_steps=134 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=140 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://ct1cdqottsrdb" path="res://Bush.tscn" id="1_3avgc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
@@ -25,6 +25,10 @@
 [ext_resource type="PackedScene" uid="uid://bwrfl2br4aml3" path="res://BigPhysicsBox.tscn" id="13_y4msl"]
 [ext_resource type="Script" uid="uid://cbwy58owe0mcp" path="res://common/ModelInterpolator.cs" id="14_ax6jt"]
 [ext_resource type="Material" uid="uid://dcs6taqesc7qi" path="res://environment/Fence.tres" id="14_m8mxy"]
+[ext_resource type="PackedScene" uid="uid://ha5t40v1wac4" path="res://enemies/RedBox/RedBox.tscn" id="14_oh6wr"]
+[ext_resource type="PackedScene" uid="uid://bwothpig70ni6" path="res://DemoLevel/Terrain/EnemyIsland.blend" id="14_qwe3r"]
+[ext_resource type="Texture2D" uid="uid://b3o8tsh60bm6r" path="res://Textures/Wood/Wood_06-512x512.png" id="15_81cih"]
+[ext_resource type="Texture2D" uid="uid://crutfdek6ow1m" path="res://Textures/Bricks/Bricks_01-512x512.png" id="15_wmtx3"]
 [ext_resource type="Texture2D" uid="uid://d15t6ak65t441" path="res://DemoLevel/Grass_24-512x512.png" id="16_iogn7"]
 [ext_resource type="PackedScene" uid="uid://chm55taavgilw" path="res://environment/tree_2.tscn" id="17_q6wjd"]
 [ext_resource type="PackedScene" uid="uid://787c5e1qbail" path="res://environment/Flower2/Flower2.tscn" id="18_82srm"]
@@ -96,6 +100,14 @@ buffer = PackedFloat32Array(0.789091, 6.27269e-10, -0.615903, -87.9368, -1.22384
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwe3r"]
 albedo_texture = ExtResource("13_qwe3r")
+uv1_scale = Vector3(2, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oh6wr"]
+albedo_texture = ExtResource("15_wmtx3")
+uv1_scale = Vector3(30, 30, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wmtx3"]
+albedo_texture = ExtResource("15_81cih")
 uv1_scale = Vector3(2, 2, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_m8mxy"]
@@ -622,8 +634,22 @@ transform = Transform3D(0.0604735, 0, 0.99817, 0, 1, 0, -0.99817, 0, 0.0604735, 
 [node name="Cylinder" parent="JumpingSegment/SmallIsland3" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_qwe3r")
 
+[node name="RedBox" parent="." instance=ExtResource("14_oh6wr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.8306, 2.0998, 151.012)
+
+[node name="EnemyRoom" type="Node3D" parent="."]
+
+[node name="EnemyIsland" parent="EnemyRoom" instance=ExtResource("14_qwe3r")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 45.4106, -2.20764, 149.713)
+
+[node name="island" parent="EnemyRoom/EnemyIsland" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_oh6wr")
+
+[node name="bridge" parent="EnemyRoom/EnemyIsland" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_wmtx3")
+
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.2451, 6.49216, 110.799)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9081, 2.40071, 149.983)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_qwe3r")
@@ -1225,3 +1251,4 @@ debug_color = Color(0, 0.380392, 0.447059, 1)
 [editable path="JumpingSegment/SmallIsland"]
 [editable path="JumpingSegment/SmallIsland2"]
 [editable path="JumpingSegment/SmallIsland3"]
+[editable path="EnemyRoom/EnemyIsland"]
