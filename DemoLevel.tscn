@@ -589,12 +589,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.4212, 0.822467, 151.292)
 PatrolAreas = [NodePath("../PatrolPoints2/PatrolPoint1"), NodePath("../PatrolPoints2/PatrolPoint2")]
 
 [node name="PatrolPoints2" type="Node3D" parent="EnemyRoom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1284, 0, 0)
 script = ExtResource("2_q6q4p")
-ResetPosition = true
 
 [node name="PatrolPoint1" type="Area3D" parent="EnemyRoom/PatrolPoints2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.1029, 0.831994, 143.286)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.2313, 0.831994, 143.286)
 collision_layer = 32
 collision_mask = 32
 
@@ -603,7 +601,7 @@ shape = SubResource("BoxShape3D_81cih")
 metadata/_edit_lock_ = true
 
 [node name="PatrolPoint2" type="Area3D" parent="EnemyRoom/PatrolPoints2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.6304, 0.831993, 156.182)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.7588, 0.831993, 156.182)
 collision_layer = 32
 collision_mask = 32
 
@@ -611,8 +609,12 @@ collision_mask = 32
 shape = SubResource("BoxShape3D_81cih")
 metadata/_edit_lock_ = true
 
+[node name="Checkpoint" parent="EnemyRoom" instance=ExtResource("9_sdew7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9155, 1.03197, 149.834)
+ResetCameraPosition = Vector3(-5, 3, 0)
+
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9081, 2.40071, 149.983)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.32509, 0.898391, 18.534)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_qwe3r")
