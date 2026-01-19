@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=103 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://ct1cdqottsrdb" path="res://Bush.tscn" id="1_3avgc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://bwothpig70ni6" path="res://DemoLevel/Terrain/EnemyIsland.blend" id="14_qwe3r"]
 [ext_resource type="Texture2D" uid="uid://b3o8tsh60bm6r" path="res://Textures/Wood/Wood_06-512x512.png" id="15_81cih"]
 [ext_resource type="Texture2D" uid="uid://crutfdek6ow1m" path="res://Textures/Bricks/Bricks_01-512x512.png" id="15_wmtx3"]
-[ext_resource type="Texture2D" uid="uid://d15t6ak65t441" path="res://DemoLevel/Grass_24-512x512.png" id="16_iogn7"]
 [ext_resource type="PackedScene" uid="uid://bdwgh65g42tao" path="res://enemies/RedBox/RedBoxPatrolPoints.tscn" id="17_81cih"]
 [ext_resource type="PackedScene" uid="uid://chm55taavgilw" path="res://environment/tree_2.tscn" id="17_q6wjd"]
 [ext_resource type="Script" uid="uid://n2efxcro4t1v" path="res://FenceSpawnerPath.cs" id="19_d8eh8"]
@@ -50,14 +49,6 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sx6qo"]
 albedo_texture = ExtResource("3_a2uqh")
 uv1_scale = Vector3(5, 5, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a2uqh"]
-albedo_texture = ExtResource("16_iogn7")
-uv1_scale = Vector3(2, 2, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q6q4p"]
-albedo_texture = ExtResource("16_iogn7")
-uv1_scale = Vector3(6, 6, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d8eh8"]
 size = Vector3(0.2, 1, 0.5)
@@ -446,21 +437,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.260
 [node name="Plane" parent="SpawnRoom2/DemoSpawnArea2" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_sx6qo")
 
-[node name="Grass" parent="SpawnRoom2/DemoSpawnArea2" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_a2uqh")
-
-[node name="Grass2" parent="SpawnRoom2/DemoSpawnArea2" index="2"]
-surface_material_override/0 = SubResource("StandardMaterial3D_a2uqh")
-
-[node name="Grass4" parent="SpawnRoom2/DemoSpawnArea2" index="3"]
-surface_material_override/0 = SubResource("StandardMaterial3D_a2uqh")
-
-[node name="Grass3" parent="SpawnRoom2/DemoSpawnArea2" index="4"]
-surface_material_override/0 = SubResource("StandardMaterial3D_q6q4p")
-
-[node name="GrassPlane" parent="SpawnRoom2/DemoSpawnArea2" index="5"]
-visible = false
-
 [node name="FenceSpawner5WithPath" type="Node3D" parent="SpawnRoom2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0447, -0.407102, 33.3307)
 script = ExtResource("19_d8eh8")
@@ -477,10 +453,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0447, -0.407102, 33.3307)
 curve = SubResource("Curve3D_sx6qo")
 
 [node name="FencePath2" type="Path3D" parent="SpawnRoom2"]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.93803, 3.11539, 56.4301)
 curve = SubResource("Curve3D_q6q4p")
 
 [node name="FenceSpawner5WithPath2" type="Node3D" parent="SpawnRoom2"]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.93803, 3.11539, 56.4301)
 script = ExtResource("19_d8eh8")
 FenceMesh = ExtResource("13_q6q4p")
