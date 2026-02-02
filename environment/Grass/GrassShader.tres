@@ -13,6 +13,6 @@ noise = SubResource("FastNoiseLite_jbv85")
 [resource]
 render_priority = 0
 shader = ExtResource("1_hhdu0")
-shader_parameter/color = Color(0, 0.513002, 1.92523e-07, 1)
-shader_parameter/tipColor = Color(0, 1, 0, 1)
+shader_parameter/color = Color(1.20327e-08, 0.400108, 9.62615e-07, 1)
+shader_parameter/tipColor = Color(0, 0.803263, 0, 1)
 shader_parameter/waves = SubResource("NoiseTexture2D_5ttsv")
