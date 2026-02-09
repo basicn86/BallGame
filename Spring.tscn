@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://chq2dr6nrktyc"]
+[gd_scene load_steps=8 format=3 uid="uid://chq2dr6nrktyc"]
 
 [ext_resource type="Script" uid="uid://daw86lyq7litx" path="res://Spring.cs" id="1_3jopu"]
 [ext_resource type="AudioStream" uid="uid://18qpmwfsnu3d" path="res://boing-spring-mouth-harp-04-20-13-4-103346.mp3" id="2_opj1b"]
+[ext_resource type="PackedScene" uid="uid://bjew45mbc0d2p" path="res://environment/Mushrooms/Mushroom.blend" id="3_opj1b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ci3n"]
 albedo_color = Color(0.537255, 0.423529, 1, 1)
@@ -16,6 +17,8 @@ is_hemisphere = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_ges3u"]
 size = Vector3(0.9, 1, 0.9)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bm0f2"]
+
 [node name="Spring" type="Node3D" node_paths=PackedStringArray("AudioPlayer")]
 script = ExtResource("1_3jopu")
 AudioPlayer = NodePath("AudioStreamPlayer3D")
@@ -25,6 +28,7 @@ stream = ExtResource("2_opj1b")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.245623, 0)
+visible = false
 mesh = SubResource("SphereMesh_3avgc")
 
 [node name="Area3D" type="Area3D" parent="."]
@@ -35,4 +39,13 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_ges3u")
 
+[node name="Mushroom" parent="." instance=ExtResource("3_opj1b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.135959, 0)
+
+[node name="Cylinder" parent="Mushroom" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_2ci3n")
+surface_material_override/1 = SubResource("StandardMaterial3D_bm0f2")
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+
+[editable path="Mushroom"]

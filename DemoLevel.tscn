@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=62 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://ct1cdqottsrdb" path="res://Bush.tscn" id="1_3avgc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
@@ -9,10 +9,15 @@
 [ext_resource type="Texture2D" uid="uid://bempk1msb3n8f" path="res://DemoLevel/Dirt_01-512x512.png" id="3_a2uqh"]
 [ext_resource type="PackedScene" uid="uid://cnpb27we1lbh3" path="res://ui/PauseMenu.tscn" id="3_lnbl7"]
 [ext_resource type="ArrayMesh" uid="uid://dwju2ewaplx15" path="res://environment/Grass/GrassBlade.obj" id="3_nbtbs"]
+[ext_resource type="Texture2D" uid="uid://d15t6ak65t441" path="res://DemoLevel/Grass_24-512x512.png" id="5_48120"]
 [ext_resource type="Texture2D" uid="uid://mbn5xemgcifr" path="res://autumn_field_puresky_4k.hdr" id="5_rh67q"]
+[ext_resource type="PackedScene" uid="uid://yhdpvdw84e3b" path="res://environment/Mushrooms/BlueMushroom.tscn" id="6_akrou"]
+[ext_resource type="Texture2D" uid="uid://bjb53if2y0rlk" path="res://Textures/Stone/Stone_15-512x512.png" id="6_bymsf"]
 [ext_resource type="PackedScene" uid="uid://ctiw3gw6hbfhh" path="res://ui/crosshair.tscn" id="7_2qhh3"]
+[ext_resource type="PackedScene" uid="uid://tidiqd1qwkgt" path="res://environment/Mushrooms/RedMushroom.tscn" id="7_bymsf"]
 [ext_resource type="Script" uid="uid://br0v0i3qutglf" path="res://GrassBladeMultiMesh.cs" id="9_nbtrp"]
 [ext_resource type="PackedScene" uid="uid://5t66n6i6dv8o" path="res://Checkpoint.tscn" id="9_sdew7"]
+[ext_resource type="PackedScene" uid="uid://d4fody0jto72m" path="res://environment/ArrowSign.tscn" id="9_wybiu"]
 [ext_resource type="Material" uid="uid://b7mcadtf10vtg" path="res://environment/Grass/GrassShader.tres" id="10_48120"]
 [ext_resource type="PackedScene" uid="uid://cqh775vh6xbcf" path="res://DemoLevel/Terrain/SmallIsland.blend" id="13_m8mxy"]
 [ext_resource type="ArrayMesh" uid="uid://dwbmud2kyddb" path="res://environment/Fence.obj" id="13_q6q4p"]
@@ -37,6 +42,16 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sx6qo"]
 albedo_texture = ExtResource("3_a2uqh")
 uv1_scale = Vector3(5, 5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f6v1d"]
+albedo_texture = ExtResource("5_48120")
+uv1_scale = Vector3(12, 12, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wybiu"]
+albedo_texture = ExtResource("6_bymsf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rgufl"]
+albedo_texture = ExtResource("6_bymsf")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d8eh8"]
 size = Vector3(0.2, 1, 0.5)
@@ -150,6 +165,19 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -27.96
 
 [node name="Plane" parent="SpawnRoom2/DemoSpawnArea2" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_sx6qo")
+surface_material_override/1 = SubResource("StandardMaterial3D_f6v1d")
+
+[node name="Mound" parent="SpawnRoom2/DemoSpawnArea2" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_wybiu")
+
+[node name="Mound_001" parent="SpawnRoom2/DemoSpawnArea2" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgufl")
+
+[node name="Mound_002" parent="SpawnRoom2/DemoSpawnArea2" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgufl")
+
+[node name="Mound_003" parent="SpawnRoom2/DemoSpawnArea2" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgufl")
 
 [node name="FenceSpawner5WithPath" type="Node3D" parent="SpawnRoom2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.7462, -0.407102, -34.3899)
@@ -161,6 +189,27 @@ Count = 140
 Rotation = 90.0
 Scale = 0.25
 PathNode = NodePath("../FencePath")
+
+[node name="GreenMushroom" parent="SpawnRoom2" instance=ExtResource("6_akrou")]
+transform = Transform3D(1, 0, 0, 0, 0.954464, 0.298325, 0, -0.298325, 0.954464, -35.6882, -0.730572, -33.5048)
+
+[node name="RedMushroom" parent="SpawnRoom2" instance=ExtResource("7_bymsf")]
+transform = Transform3D(0.994377, 0.1059, 3.55271e-15, -0.1053, 0.988748, 0.106247, 0.0112515, -0.105649, 0.99434, -36.6403, -0.893338, -34.0557)
+
+[node name="RedMushroom2" parent="SpawnRoom2" instance=ExtResource("7_bymsf")]
+transform = Transform3D(0.992126, 0.123831, -0.0187785, -0.11132, 0.940553, 0.320885, 0.0573977, -0.316268, 0.946932, -37.0796, -0.781092, -34.4364)
+
+[node name="RedMushroom3" parent="SpawnRoom2" instance=ExtResource("7_bymsf")]
+transform = Transform3D(0.980734, -0.195347, 0, 0.192424, 0.966057, 0.172359, -0.0336698, -0.169038, 0.985034, -37.1286, -0.785842, -34.0964)
+
+[node name="ArrowSign" parent="SpawnRoom2" instance=ExtResource("9_wybiu")]
+transform = Transform3D(0.682317, 0, -0.731056, 0, 1, 0, -0.731056, 0, -0.682317, -29.6424, 0.373715, -30.8443)
+
+[node name="ArrowSign2" parent="SpawnRoom2" instance=ExtResource("9_wybiu")]
+transform = Transform3D(-0.590507, 0, 0.807033, 0, 1, 0, -0.807033, 0, -0.590507, -43.7503, 3.87486, 32.4044)
+
+[node name="ArrowSign3" parent="SpawnRoom2" instance=ExtResource("9_wybiu")]
+transform = Transform3D(0.608027, 0, -0.793916, 0, 1, 0, -0.793916, 0, -0.608027, -54.9631, 3.78379, 108.969)
 
 [node name="FencePath" type="Path3D" parent="SpawnRoom2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.7462, -0.407102, -34.3899)
@@ -220,34 +269,35 @@ transform = Transform3D(0.996064, 0, -0.0886335, 0, 1, 0, 0.0886335, 0, 0.996064
 transform = Transform3D(0.996064, 0, -0.0886335, 0, 1, 0, 0.0886335, 0, 0.996064, -37.6176, -0.30486, -38.9263)
 
 [node name="Checkpoint" parent="SpawnRoom2" instance=ExtResource("9_sdew7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.4466, 3.88228, 55.4678)
-ResetCameraPosition = Vector3(-5, 2, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.9243, 4.1756, 104.806)
+ResetCameraPosition = Vector3(0, 2, -7)
 
 [node name="JumpingSegment" type="Node3D" parent="."]
 script = ExtResource("2_q6q4p")
 
 [node name="SmallIsland" parent="JumpingSegment" instance=ExtResource("13_m8mxy")]
-transform = Transform3D(0.96312, 0, -0.269071, 0, 1, 0, 0.269071, 0, 0.96312, 49.9041, -0.857523, 64.2242)
+transform = Transform3D(0.96312, 0, -0.269071, 0, 1, 0, 0.269071, 0, 0.96312, -48.3914, -0.857523, 121.029)
 
 [node name="Cylinder" parent="JumpingSegment/SmallIsland" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_qwe3r")
 
 [node name="SmallIsland2" parent="JumpingSegment" instance=ExtResource("13_m8mxy")]
-transform = Transform3D(0.841152, 0, 0.540798, 0, 1, 0, -0.540798, 0, 0.841152, 59.6241, -2.17875, 75.4342)
+transform = Transform3D(0.841152, 0, 0.540798, 0, 1, 0, -0.540798, 0, 0.841152, -38.6714, -2.17875, 132.239)
 
 [node name="Cylinder" parent="JumpingSegment/SmallIsland2" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_qwe3r")
 
 [node name="SmallIsland3" parent="JumpingSegment" instance=ExtResource("13_m8mxy")]
-transform = Transform3D(0.0604735, 0, 0.99817, 0, 1, 0, -0.99817, 0, 0.0604735, 60.2885, -3.77275, 90.1523)
+transform = Transform3D(0.0604735, 0, 0.99817, 0, 1, 0, -0.99817, 0, 0.0604735, -38.007, -3.77275, 146.957)
 
 [node name="Cylinder" parent="JumpingSegment/SmallIsland3" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_qwe3r")
 
 [node name="EnemyRoom" type="Node3D" parent="."]
+script = ExtResource("2_q6q4p")
 
 [node name="EnemyIsland" parent="EnemyRoom" instance=ExtResource("14_qwe3r")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 59.8742, -2.20764, 136.22)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -38.8248, -2.20764, 193.105)
 
 [node name="island" parent="EnemyRoom/EnemyIsland" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_oh6wr")
@@ -256,10 +306,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_oh6wr")
 surface_material_override/0 = SubResource("StandardMaterial3D_wmtx3")
 
 [node name="RedBox" parent="EnemyRoom" node_paths=PackedStringArray("PatrolAreas") instance=ExtResource("17_81cih")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.1307, 0.822468, 132.89)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5683, 0.822468, 189.775)
 PatrolAreas = [NodePath("../PatrolPoints/PatrolPoint1"), NodePath("../PatrolPoints/PatrolPoint2")]
 
 [node name="PatrolPoints" type="Node3D" parent="EnemyRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.699, 0, 56.8853)
 
 [node name="PatrolPoint1" type="Area3D" parent="EnemyRoom/PatrolPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.6854, 0.831994, 133.1)
@@ -280,10 +331,11 @@ shape = SubResource("BoxShape3D_81cih")
 metadata/_edit_lock_ = true
 
 [node name="RedBox2" parent="EnemyRoom" node_paths=PackedStringArray("PatrolAreas") instance=ExtResource("17_81cih")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.4212, 0.822467, 151.292)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.2778, 0.822467, 208.177)
 PatrolAreas = [NodePath("../PatrolPoints2/PatrolPoint1"), NodePath("../PatrolPoints2/PatrolPoint2")]
 
 [node name="PatrolPoints2" type="Node3D" parent="EnemyRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.699, 0, 56.8853)
 script = ExtResource("2_q6q4p")
 
 [node name="PatrolPoint1" type="Area3D" parent="EnemyRoom/PatrolPoints2"]
@@ -305,7 +357,7 @@ shape = SubResource("BoxShape3D_81cih")
 metadata/_edit_lock_ = true
 
 [node name="Checkpoint" parent="EnemyRoom" instance=ExtResource("9_sdew7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.7415, 1.03197, 118.265)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.9575, 1.03197, 175.15)
 ResetCameraPosition = Vector3(0, 3, -5)
 
 [node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]

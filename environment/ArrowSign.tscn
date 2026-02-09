@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4fody0jto72m"]
+
+[ext_resource type="PackedScene" uid="uid://bhdtgbh1ph54f" path="res://environment/ArrowSign.blend" id="1_bj7b7"]
+[ext_resource type="Texture2D" uid="uid://haqk6ifdqafh" path="res://Textures/Wood/Wood_16-512x512.png" id="2_0b8s8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0b8s8"]
+albedo_texture = ExtResource("2_0b8s8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51ci1"]
+albedo_texture = ExtResource("2_0b8s8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bj7b7"]
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = ExtResource("2_0b8s8")
+
+[node name="ArrowSign" type="Node3D"]
+
+[node name="ArrowSign" parent="." instance=ExtResource("1_bj7b7")]
+
+[node name="Post" parent="ArrowSign" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0b8s8")
+
+[node name="Plate" parent="ArrowSign" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_51ci1")
+surface_material_override/1 = SubResource("StandardMaterial3D_bj7b7")
+
+[editable path="ArrowSign"]

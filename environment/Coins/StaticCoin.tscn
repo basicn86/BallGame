@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bpyj8r7bwgvyu"]
 
 [ext_resource type="Script" uid="uid://bqbrlicwibxel" path="res://environment/Coins/Coin.cs" id="1_rp1aj"]
-[ext_resource type="PackedScene" uid="uid://bi6a4c3uceim7" path="res://environment/Coins/Gem.blend" id="2_hg03e"]
+[ext_resource type="PackedScene" uid="uid://8iu2d8e2sdxo" path="res://environment/Coins/Gem2.blend" id="2_hc5ed"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4y3b8"]
 albedo_color = Color(0, 0.682353, 0.388235, 1)
@@ -14,13 +14,13 @@ radius = 1.0
 [node name="Coin" type="Node3D" node_paths=PackedStringArray("mesh", "DetectionArea")]
 script = ExtResource("1_rp1aj")
 RotationSpeed = 3.0
-mesh = NodePath("Gem/Icosphere")
+mesh = NodePath("Gem2/Cube")
 DetectionArea = NodePath("PlayerDetectionArea")
 
-[node name="Gem" parent="." instance=ExtResource("2_hg03e")]
+[node name="Gem2" parent="." instance=ExtResource("2_hc5ed")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
-[node name="Icosphere" parent="Gem" index="0"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+[node name="Cube" parent="Gem2" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_4y3b8")
 
 [node name="PlayerDetectionArea" type="Area3D" parent="."]
@@ -32,4 +32,4 @@ shape = SubResource("SphereShape3D_f731l")
 
 [connection signal="body_entered" from="PlayerDetectionArea" to="." method="body_entered"]
 
-[editable path="Gem"]
+[editable path="Gem2"]
