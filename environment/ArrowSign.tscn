@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4fody0jto72m"]
+[gd_scene load_steps=7 format=3 uid="uid://d4fody0jto72m"]
 
 [ext_resource type="PackedScene" uid="uid://bhdtgbh1ph54f" path="res://environment/ArrowSign.blend" id="1_bj7b7"]
 [ext_resource type="Texture2D" uid="uid://haqk6ifdqafh" path="res://Textures/Wood/Wood_16-512x512.png" id="2_0b8s8"]
@@ -13,6 +13,9 @@ albedo_texture = ExtResource("2_0b8s8")
 albedo_color = Color(1, 0, 0, 1)
 albedo_texture = ExtResource("2_0b8s8")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_0b8s8"]
+size = Vector3(0.253479, 1.91138, 1.88889)
+
 [node name="ArrowSign" type="Node3D"]
 
 [node name="ArrowSign" parent="." instance=ExtResource("1_bj7b7")]
@@ -23,5 +26,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_0b8s8")
 [node name="Plate" parent="ArrowSign" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_51ci1")
 surface_material_override/1 = SubResource("StandardMaterial3D_bj7b7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0501404, -0.0587158, 0.0432892)
+shape = SubResource("BoxShape3D_0b8s8")
 
 [editable path="ArrowSign"]

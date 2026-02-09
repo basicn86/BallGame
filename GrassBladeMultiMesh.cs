@@ -16,6 +16,8 @@ public partial class GrassBladeMultiMesh : MultiMeshInstance3D
 
 			Basis b = new Basis(Vector3.Up, GD.Randf());
 
+			b = b.Scaled(t.Basis.Scale);
+
 			t.Basis = b;
 
 			Multimesh.SetInstanceTransform(i, t);

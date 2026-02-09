@@ -7,7 +7,7 @@ albedo_color = Color(0, 0.337255, 0.635294, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3g0f"]
 
-[node name="GreenMushroom" type="Node3D"]
+[node name="BlueMushroom" type="Node3D"]
 
 [node name="Mushroom" parent="." instance=ExtResource("1_mwxgp")]
 

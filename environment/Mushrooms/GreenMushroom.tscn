@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bjew45mbc0d2p" path="res://environment/Mushrooms/Mushroom.blend" id="1_t3fsb"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yofqm"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3fsb"]
 albedo_color = Color(0, 0.345098, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3g0f"]
@@ -12,7 +12,7 @@ albedo_color = Color(0, 0.345098, 0, 1)
 [node name="Mushroom" parent="." instance=ExtResource("1_t3fsb")]
 
 [node name="Cylinder" parent="Mushroom" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_yofqm")
+surface_material_override/0 = SubResource("StandardMaterial3D_t3fsb")
 surface_material_override/1 = SubResource("StandardMaterial3D_i3g0f")
 
 [editable path="Mushroom"]
