@@ -88,6 +88,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_ijl5e")
 surface_material_override/2 = SubResource("ShaderMaterial_jn4cu")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+visible = false
 cast_shadow = 0
 amount = 128
 lifetime = 3.0
