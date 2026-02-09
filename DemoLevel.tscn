@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene load_steps=54 format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://ct1cdqottsrdb" path="res://Bush.tscn" id="1_3avgc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://bempk1msb3n8f" path="res://DemoLevel/Dirt_01-512x512.png" id="3_a2uqh"]
 [ext_resource type="PackedScene" uid="uid://cnpb27we1lbh3" path="res://ui/PauseMenu.tscn" id="3_lnbl7"]
 [ext_resource type="ArrayMesh" uid="uid://dwju2ewaplx15" path="res://environment/Grass/GrassBlade.obj" id="3_nbtbs"]
-[ext_resource type="Texture2D" uid="uid://d15t6ak65t441" path="res://DemoLevel/Grass_24-512x512.png" id="5_bnjan"]
 [ext_resource type="Texture2D" uid="uid://mbn5xemgcifr" path="res://autumn_field_puresky_4k.hdr" id="5_rh67q"]
 [ext_resource type="PackedScene" uid="uid://ctiw3gw6hbfhh" path="res://ui/crosshair.tscn" id="7_2qhh3"]
 [ext_resource type="Script" uid="uid://br0v0i3qutglf" path="res://GrassBladeMultiMesh.cs" id="9_nbtrp"]
@@ -38,10 +37,6 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sx6qo"]
 albedo_texture = ExtResource("3_a2uqh")
 uv1_scale = Vector3(5, 5, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nbtrp"]
-albedo_texture = ExtResource("5_bnjan")
-uv1_scale = Vector3(10, 10, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d8eh8"]
 size = Vector3(0.2, 1, 0.5)
@@ -156,21 +151,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -27.96
 [node name="Plane" parent="SpawnRoom2/DemoSpawnArea2" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_sx6qo")
 
-[node name="Grass1" parent="SpawnRoom2/DemoSpawnArea2" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_nbtrp")
-
-[node name="Grass2" parent="SpawnRoom2/DemoSpawnArea2" index="2"]
-surface_material_override/0 = SubResource("StandardMaterial3D_nbtrp")
-
-[node name="Grass3" parent="SpawnRoom2/DemoSpawnArea2" index="3"]
-surface_material_override/0 = SubResource("StandardMaterial3D_nbtrp")
-
-[node name="Grass4" parent="SpawnRoom2/DemoSpawnArea2" index="4"]
-surface_material_override/0 = SubResource("StandardMaterial3D_nbtrp")
-
-[node name="PlaneForBlades" parent="SpawnRoom2/DemoSpawnArea2" index="5"]
-visible = false
-
 [node name="FenceSpawner5WithPath" type="Node3D" parent="SpawnRoom2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.7462, -0.407102, -34.3899)
 script = ExtResource("19_d8eh8")
@@ -204,6 +184,7 @@ Scale = 0.25
 PathNode = NodePath("../FencePath2")
 
 [node name="GrassBladesMultiMesh" type="MultiMeshInstance3D" parent="SpawnRoom2"]
+visible = false
 multimesh = SubResource("MultiMesh_48120")
 script = ExtResource("9_nbtrp")
 Material = ExtResource("10_48120")
