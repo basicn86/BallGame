@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://cpgx0v4jjimr8"]
+[gd_scene format=3 uid="uid://cpgx0v4jjimr8"]
 
 [ext_resource type="PackedScene" uid="uid://ct1cdqottsrdb" path="res://Bush.tscn" id="1_3avgc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
@@ -120,16 +120,16 @@ fractal_octaves = 1
 width = 1024
 height = 1024
 generate_mipmaps = false
-seamless = true
 noise = SubResource("FastNoiseLite_m8mxy")
+seamless = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qwe3r"]
 fractal_type = 2
 fractal_octaves = 2
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_81cih"]
-seamless = true
 noise = SubResource("FastNoiseLite_qwe3r")
+seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m8mxy"]
 render_priority = 0
@@ -157,7 +157,6 @@ sky_material = SubResource("PanoramaSkyMaterial_u6uwp")
 background_mode = 2
 background_energy_multiplier = 0.75
 sky = SubResource("Sky_p2gfp")
-ambient_light_sky_contribution = 0.75
 reflected_light_source = 1
 tonemap_white = 8.0
 
@@ -166,19 +165,19 @@ font_size = 48
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=1101347116]
 physics_interpolation_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="GrassBladeForMultiMesh" type="MeshInstance3D" parent="."]
+[node name="GrassBladeForMultiMesh" type="MeshInstance3D" parent="." unique_id=1368300750]
 process_mode = 4
 visible = false
 mesh = ExtResource("3_nbtbs")
 
-[node name="SpawnRoom2" type="Node3D" parent="."]
+[node name="SpawnRoom2" type="Node3D" parent="." unique_id=854929879]
 script = ExtResource("2_q6q4p")
 
-[node name="DemoSpawnArea2" parent="SpawnRoom2" instance=ExtResource("65_6nk0g")]
+[node name="DemoSpawnArea2" parent="SpawnRoom2" unique_id=1528600046 instance=ExtResource("65_6nk0g")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -27.9622, 0.15455, -27.5948)
 
 [node name="Plane" parent="SpawnRoom2/DemoSpawnArea2" index="0"]
@@ -207,7 +206,7 @@ visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_wisyp")
 surface_material_override/1 = SubResource("StandardMaterial3D_g3lwr")
 
-[node name="FenceSpawner5WithPath" type="Node3D" parent="SpawnRoom2"]
+[node name="FenceSpawner5WithPath" type="Node3D" parent="SpawnRoom2" unique_id=1704648849]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.7462, -0.407102, -34.3899)
 script = ExtResource("19_d8eh8")
 FenceMesh = ExtResource("13_q6q4p")
@@ -218,33 +217,33 @@ Rotation = 90.0
 Scale = 0.25
 PathNode = NodePath("../FencePath")
 
-[node name="ArrowSign" parent="SpawnRoom2" instance=ExtResource("9_wybiu")]
+[node name="ArrowSign" parent="SpawnRoom2" unique_id=79286525 instance=ExtResource("9_wybiu")]
 transform = Transform3D(-0.692038, 0.0120796, 0.72176, 0.0174524, 0.999848, -9.65473e-10, -0.72165, 0.0125965, -0.692143, -23.3486, 0.373715, -32.5017)
 
-[node name="ArrowSign2" parent="SpawnRoom2" instance=ExtResource("9_wybiu")]
+[node name="ArrowSign2" parent="SpawnRoom2" unique_id=153498588 instance=ExtResource("9_wybiu")]
 transform = Transform3D(-0.590507, 0, 0.807033, 0, 1, 0, -0.807033, 0, -0.590507, -43.7503, 3.87486, 32.4044)
 
-[node name="ArrowSign3" parent="SpawnRoom2" instance=ExtResource("9_wybiu")]
+[node name="ArrowSign3" parent="SpawnRoom2" unique_id=1083941662 instance=ExtResource("9_wybiu")]
 transform = Transform3D(0.608027, 5.31554e-08, -0.793916, -8.74228e-08, 1, 0, -0.793916, -6.94063e-08, -0.608027, -53.4035, 3.78379, 109.551)
 
-[node name="ArrowSign4" parent="SpawnRoom2" instance=ExtResource("9_wybiu")]
+[node name="ArrowSign4" parent="SpawnRoom2" unique_id=753640196 instance=ExtResource("9_wybiu")]
 transform = Transform3D(-0.856736, 0, 0.515756, 0, 1, 0, -0.515756, 0, -0.856736, -45.5723, 3.78379, 109.393)
 
-[node name="FencePath" type="Path3D" parent="SpawnRoom2"]
+[node name="FencePath" type="Path3D" parent="SpawnRoom2" unique_id=1113892117]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.7462, -0.407102, -34.3899)
 curve = SubResource("Curve3D_sx6qo")
 metadata/_edit_lock_ = true
 
-[node name="FencePath2" type="Path3D" parent="SpawnRoom2"]
+[node name="FencePath2" type="Path3D" parent="SpawnRoom2" unique_id=521533679]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.6396, 3.11539, -11.2905)
 curve = SubResource("Curve3D_q6q4p")
 metadata/_edit_lock_ = true
 
-[node name="FencePath3" type="Path3D" parent="SpawnRoom2"]
+[node name="FencePath3" type="Path3D" parent="SpawnRoom2" unique_id=1120280795]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.1017, 4.39584, -33.0974)
 curve = SubResource("Curve3D_wisyp")
 
-[node name="FenceSpawner5WithPath2" type="Node3D" parent="SpawnRoom2"]
+[node name="FenceSpawner5WithPath2" type="Node3D" parent="SpawnRoom2" unique_id=825402481]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.6396, 3.11539, -11.2905)
 script = ExtResource("19_d8eh8")
 FenceMesh = ExtResource("13_q6q4p")
@@ -255,7 +254,7 @@ Rotation = 90.0
 Scale = 0.25
 PathNode = NodePath("../FencePath2")
 
-[node name="FenceSpawner5WithPath3" type="Node3D" parent="SpawnRoom2"]
+[node name="FenceSpawner5WithPath3" type="Node3D" parent="SpawnRoom2" unique_id=1529427619]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.1017, 4.39584, -33.0974)
 script = ExtResource("19_d8eh8")
 FenceMesh = ExtResource("13_q6q4p")
@@ -266,145 +265,145 @@ Rotation = 90.0
 Scale = 0.25
 PathNode = NodePath("../FencePath3")
 
-[node name="GrassBladesMultiMesh" type="MultiMeshInstance3D" parent="SpawnRoom2"]
+[node name="GrassBladesMultiMesh" type="MultiMeshInstance3D" parent="SpawnRoom2" unique_id=1916689790]
 multimesh = SubResource("MultiMesh_wisyp")
 script = ExtResource("9_nbtrp")
 Material = ExtResource("10_48120")
 
-[node name="Tree2" parent="SpawnRoom2" instance=ExtResource("17_q6wjd")]
+[node name="Tree2" parent="SpawnRoom2" unique_id=1286642669 instance=ExtResource("17_q6wjd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0645, -0.626285, -35.4433)
 
-[node name="Checkpoint" parent="SpawnRoom2" instance=ExtResource("9_sdew7")]
+[node name="Checkpoint" parent="SpawnRoom2" unique_id=1266620485 instance=ExtResource("9_sdew7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.9243, 3.70909, 94.6266)
 ResetCameraPosition = Vector3(0, 2, -7)
 
-[node name="Mushrooms" type="Node3D" parent="SpawnRoom2"]
+[node name="Mushrooms" type="Node3D" parent="SpawnRoom2" unique_id=1480675189]
 
-[node name="BlueMushroom" parent="SpawnRoom2/Mushrooms" instance=ExtResource("6_akrou")]
+[node name="BlueMushroom" parent="SpawnRoom2/Mushrooms" unique_id=1195432242 instance=ExtResource("6_akrou")]
 transform = Transform3D(1, 0, 0, 0, 0.954464, 0.298325, 0, -0.298325, 0.954464, -35.6882, -0.730572, -33.5048)
 
-[node name="RedMushroom" parent="SpawnRoom2/Mushrooms" instance=ExtResource("7_bymsf")]
+[node name="RedMushroom" parent="SpawnRoom2/Mushrooms" unique_id=698389517 instance=ExtResource("7_bymsf")]
 transform = Transform3D(0.994377, 0.1059, 3.55271e-15, -0.1053, 0.988748, 0.106247, 0.0112515, -0.105649, 0.99434, -36.6403, -0.893338, -34.0557)
 
-[node name="RedMushroom2" parent="SpawnRoom2/Mushrooms" instance=ExtResource("7_bymsf")]
+[node name="RedMushroom2" parent="SpawnRoom2/Mushrooms" unique_id=1619250213 instance=ExtResource("7_bymsf")]
 transform = Transform3D(0.992126, 0.123831, -0.0187785, -0.11132, 0.940553, 0.320885, 0.0573977, -0.316268, 0.946932, -37.0796, -0.781092, -34.4364)
 
-[node name="RedMushroom3" parent="SpawnRoom2/Mushrooms" instance=ExtResource("7_bymsf")]
+[node name="RedMushroom3" parent="SpawnRoom2/Mushrooms" unique_id=100509648 instance=ExtResource("7_bymsf")]
 transform = Transform3D(0.980734, -0.195347, 0, 0.192424, 0.966057, 0.172359, -0.0336698, -0.169038, 0.985034, -37.1286, -0.785842, -34.0964)
 
-[node name="GreenMushroom" parent="SpawnRoom2/Mushrooms" instance=ExtResource("17_wisyp")]
+[node name="GreenMushroom" parent="SpawnRoom2/Mushrooms" unique_id=1364784810 instance=ExtResource("17_wisyp")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -35.9367, 2.81404, 8.91302)
 
-[node name="BlueMushroom2" parent="SpawnRoom2/Mushrooms" instance=ExtResource("6_akrou")]
+[node name="BlueMushroom2" parent="SpawnRoom2/Mushrooms" unique_id=812926466 instance=ExtResource("6_akrou")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -36.1157, 2.74318, 9.31498)
 
-[node name="RedMushroom4" parent="SpawnRoom2/Mushrooms" instance=ExtResource("7_bymsf")]
+[node name="RedMushroom4" parent="SpawnRoom2/Mushrooms" unique_id=1891546812 instance=ExtResource("7_bymsf")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -36.3285, 2.70905, 8.91139)
 
-[node name="GreenMushroom2" parent="SpawnRoom2/Mushrooms" instance=ExtResource("17_wisyp")]
+[node name="GreenMushroom2" parent="SpawnRoom2/Mushrooms" unique_id=369236155 instance=ExtResource("17_wisyp")]
 transform = Transform3D(0.00738246, 0, 0.499945, 0, 0.5, 0, -0.499945, 0, 0.00738246, -33.134, 2.81404, 10.1667)
 
-[node name="BlueMushroom3" parent="SpawnRoom2/Mushrooms" instance=ExtResource("6_akrou")]
+[node name="BlueMushroom3" parent="SpawnRoom2/Mushrooms" unique_id=158636609 instance=ExtResource("6_akrou")]
 transform = Transform3D(0.00738246, 0, 0.499945, 0, 0.5, 0, -0.499945, 0, 0.00738246, -32.7348, 2.74318, 10.3517)
 
-[node name="RedMushroom5" parent="SpawnRoom2/Mushrooms" instance=ExtResource("7_bymsf")]
+[node name="RedMushroom5" parent="SpawnRoom2/Mushrooms" unique_id=480875941 instance=ExtResource("7_bymsf")]
 transform = Transform3D(0.00738246, 0, 0.499945, 0, 0.5, 0, -0.499945, 0, 0.00738246, -33.1415, 2.70905, 10.5585)
 
-[node name="GreenMushroom3" parent="SpawnRoom2/Mushrooms" instance=ExtResource("17_wisyp")]
+[node name="GreenMushroom3" parent="SpawnRoom2/Mushrooms" unique_id=281071888 instance=ExtResource("17_wisyp")]
 transform = Transform3D(-0.429877, 0, 0.255354, 0, 0.5, 0, -0.255354, 0, -0.429877, -44.8569, 2.81404, 9.84114)
 
-[node name="BlueMushroom4" parent="SpawnRoom2/Mushrooms" instance=ExtResource("6_akrou")]
+[node name="BlueMushroom4" parent="SpawnRoom2/Mushrooms" unique_id=26268770 instance=ExtResource("6_akrou")]
 transform = Transform3D(-0.429877, 0, 0.255354, 0, 0.5, 0, -0.255354, 0, -0.429877, -44.4977, 2.74318, 9.587)
 
-[node name="RedMushroom6" parent="SpawnRoom2/Mushrooms" instance=ExtResource("7_bymsf")]
+[node name="RedMushroom6" parent="SpawnRoom2/Mushrooms" unique_id=880951893 instance=ExtResource("7_bymsf")]
 transform = Transform3D(-0.429877, 0, 0.255354, 0, 0.5, 0, -0.255354, 0, -0.429877, -44.5209, 2.70905, 10.0426)
 
-[node name="GreenMushroom4" parent="SpawnRoom2/Mushrooms" instance=ExtResource("17_wisyp")]
+[node name="GreenMushroom4" parent="SpawnRoom2/Mushrooms" unique_id=1975010837 instance=ExtResource("17_wisyp")]
 transform = Transform3D(-0.429877, 0, 0.255354, 0, 0.5, 0, -0.255354, 0, -0.429877, -44.3931, 2.81404, 10.5329)
 
-[node name="BlueMushroom5" parent="SpawnRoom2/Mushrooms" instance=ExtResource("6_akrou")]
+[node name="BlueMushroom5" parent="SpawnRoom2/Mushrooms" unique_id=1496916854 instance=ExtResource("6_akrou")]
 transform = Transform3D(-0.429877, 0, 0.255354, 0, 0.5, 0, -0.255354, 0, -0.429877, -44.0339, 2.74318, 10.2787)
 
-[node name="RedMushroom8" parent="SpawnRoom2/Mushrooms" instance=ExtResource("7_bymsf")]
+[node name="RedMushroom8" parent="SpawnRoom2/Mushrooms" unique_id=697121671 instance=ExtResource("7_bymsf")]
 transform = Transform3D(-0.429877, 0, 0.255354, 0, 0.5, 0, -0.255354, 0, -0.429877, -43.9685, 2.70905, 10.9413)
 
-[node name="BlueMushroom7" parent="SpawnRoom2/Mushrooms" instance=ExtResource("6_akrou")]
+[node name="BlueMushroom7" parent="SpawnRoom2/Mushrooms" unique_id=1102404525 instance=ExtResource("6_akrou")]
 transform = Transform3D(-0.225338, 0, 0.446344, 0, 0.5, 0, -0.446344, 0, -0.225338, -45.0085, 2.74318, 9.37538)
 
-[node name="RedMushroom9" parent="SpawnRoom2/Mushrooms" instance=ExtResource("7_bymsf")]
+[node name="RedMushroom9" parent="SpawnRoom2/Mushrooms" unique_id=1039611312 instance=ExtResource("7_bymsf")]
 transform = Transform3D(-0.225338, 0, 0.446344, 0, 0.5, 0, -0.446344, 0, -0.225338, -45.2729, 2.70905, 9.7472)
 
-[node name="Bushes" type="Node3D" parent="SpawnRoom2"]
+[node name="Bushes" type="Node3D" parent="SpawnRoom2" unique_id=97121810]
 
-[node name="Bush" parent="SpawnRoom2/Bushes" instance=ExtResource("1_3avgc")]
+[node name="Bush" parent="SpawnRoom2/Bushes" unique_id=563084062 instance=ExtResource("1_3avgc")]
 transform = Transform3D(0.723967, 0, 0.689834, 0, 1, 0, -0.689834, 0, 0.723967, -32.6077, -0.238356, -32.0919)
 
-[node name="Bush2" parent="SpawnRoom2/Bushes" instance=ExtResource("1_3avgc")]
+[node name="Bush2" parent="SpawnRoom2/Bushes" unique_id=18794820 instance=ExtResource("1_3avgc")]
 transform = Transform3D(0.83888, 0, 0.544317, 0, 1, 0, -0.544317, 0, 0.83888, -30.7489, -0.238356, -29.9581)
 
-[node name="Bush3" parent="SpawnRoom2/Bushes" instance=ExtResource("1_3avgc")]
+[node name="Bush3" parent="SpawnRoom2/Bushes" unique_id=1500437695 instance=ExtResource("1_3avgc")]
 transform = Transform3D(-0.667066, 0, 0.744999, 0, 1, 0, -0.744999, 0, -0.667066, -22.8861, -0.304859, -31.3661)
 
-[node name="Bush4" parent="SpawnRoom2/Bushes" instance=ExtResource("1_3avgc")]
+[node name="Bush4" parent="SpawnRoom2/Bushes" unique_id=1899380258 instance=ExtResource("1_3avgc")]
 transform = Transform3D(-0.301105, 0, 0.953591, 0, 1, 0, -0.953591, 0, -0.301105, -16.61, -0.304859, -33.778)
 
-[node name="Bush5" parent="SpawnRoom2/Bushes" instance=ExtResource("1_3avgc")]
+[node name="Bush5" parent="SpawnRoom2/Bushes" unique_id=727854951 instance=ExtResource("1_3avgc")]
 transform = Transform3D(0.881303, 0, 0.472551, 0, 1, 0, -0.472551, 0, 0.881303, -13.8251, -0.30486, -44.8209)
 
-[node name="Bush6" parent="SpawnRoom2/Bushes" instance=ExtResource("1_3avgc")]
+[node name="Bush6" parent="SpawnRoom2/Bushes" unique_id=1496611186 instance=ExtResource("1_3avgc")]
 transform = Transform3D(0.619327, 0, 0.785133, 0, 1, 0, -0.785133, 0, 0.619327, -17.7343, -0.30486, -48.3825)
 
-[node name="Bush7" parent="SpawnRoom2/Bushes" instance=ExtResource("1_3avgc")]
+[node name="Bush7" parent="SpawnRoom2/Bushes" unique_id=1609554954 instance=ExtResource("1_3avgc")]
 transform = Transform3D(0.996064, 0, -0.0886335, 0, 1, 0, 0.0886335, 0, 0.996064, -37.5209, -0.30486, -43.9935)
 
-[node name="Bush8" parent="SpawnRoom2/Bushes" instance=ExtResource("1_3avgc")]
+[node name="Bush8" parent="SpawnRoom2/Bushes" unique_id=1475483302 instance=ExtResource("1_3avgc")]
 transform = Transform3D(0.996064, 0, -0.0886335, 0, 1, 0, 0.0886335, 0, 0.996064, -38.1377, -0.30486, -41.5238)
 
-[node name="Bush9" parent="SpawnRoom2/Bushes" instance=ExtResource("1_3avgc")]
+[node name="Bush9" parent="SpawnRoom2/Bushes" unique_id=1386710375 instance=ExtResource("1_3avgc")]
 transform = Transform3D(0.996064, 0, -0.0886335, 0, 1, 0, 0.0886335, 0, 0.996064, -37.6176, -0.30486, -38.9263)
 
-[node name="Flowers" type="Node3D" parent="SpawnRoom2"]
+[node name="Flowers" type="Node3D" parent="SpawnRoom2" unique_id=1249996025]
 
-[node name="Flower2" parent="SpawnRoom2/Flowers" instance=ExtResource("18_m1b60")]
+[node name="Flower2" parent="SpawnRoom2/Flowers" unique_id=1138929855 instance=ExtResource("18_m1b60")]
 transform = Transform3D(-0.16853, 0, -0.248189, 0, 0.3, 0, 0.248189, 0, -0.16853, -19.6025, -0.602025, -36.7323)
 
-[node name="Flower3" parent="SpawnRoom2/Flowers" instance=ExtResource("18_m1b60")]
+[node name="Flower3" parent="SpawnRoom2/Flowers" unique_id=1697702535 instance=ExtResource("18_m1b60")]
 transform = Transform3D(-0.162054, 0, -0.252465, 0, 0.3, 0, 0.252465, 0, -0.162054, -17.7938, -0.602021, -37.3416)
 
-[node name="Flower4" parent="SpawnRoom2/Flowers" instance=ExtResource("18_m1b60")]
+[node name="Flower4" parent="SpawnRoom2/Flowers" unique_id=966619157 instance=ExtResource("18_m1b60")]
 transform = Transform3D(-0.00622518, 0, -0.299935, 0, 0.3, 0, 0.299935, 0, -0.00622518, -20.1842, -0.60202, -34.9155)
 
-[node name="Flower5" parent="SpawnRoom2/Flowers" instance=ExtResource("18_m1b60")]
+[node name="Flower5" parent="SpawnRoom2/Flowers" unique_id=1007012371 instance=ExtResource("18_m1b60")]
 transform = Transform3D(0.0556434, 0, -0.294795, 0, 0.3, 0, 0.294795, 0, 0.0556434, -18.9713, -0.60202, -37.5238)
 
-[node name="Flower6" parent="SpawnRoom2/Flowers" instance=ExtResource("19_wisyp")]
+[node name="Flower6" parent="SpawnRoom2/Flowers" unique_id=240013867 instance=ExtResource("19_wisyp")]
 transform = Transform3D(-0.060908, 0, -0.293752, 0, 0.3, 0, 0.293752, 0, -0.060908, -19.7656, -0.602021, -35.9698)
 
-[node name="JumpingSegment" type="Node3D" parent="."]
+[node name="JumpingSegment" type="Node3D" parent="." unique_id=607470080]
 script = ExtResource("2_q6q4p")
 
-[node name="SmallIsland" parent="JumpingSegment" instance=ExtResource("13_m8mxy")]
+[node name="SmallIsland" parent="JumpingSegment" unique_id=765800767 instance=ExtResource("13_m8mxy")]
 transform = Transform3D(0.96312, 0, -0.269071, 0, 1, 0, 0.269071, 0, 0.96312, -48.3914, -0.857523, 121.029)
 
 [node name="Cylinder" parent="JumpingSegment/SmallIsland" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_qwe3r")
 
-[node name="SmallIsland2" parent="JumpingSegment" instance=ExtResource("13_m8mxy")]
+[node name="SmallIsland2" parent="JumpingSegment" unique_id=1887101126 instance=ExtResource("13_m8mxy")]
 transform = Transform3D(0.841152, 0, 0.540798, 0, 1, 0, -0.540798, 0, 0.841152, -38.6714, -2.17875, 132.239)
 
 [node name="Cylinder" parent="JumpingSegment/SmallIsland2" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_qwe3r")
 
-[node name="SmallIsland3" parent="JumpingSegment" instance=ExtResource("13_m8mxy")]
+[node name="SmallIsland3" parent="JumpingSegment" unique_id=1624776526 instance=ExtResource("13_m8mxy")]
 transform = Transform3D(0.0604735, 0, 0.99817, 0, 1, 0, -0.99817, 0, 0.0604735, -38.007, -3.77275, 146.957)
 
 [node name="Cylinder" parent="JumpingSegment/SmallIsland3" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_qwe3r")
 
-[node name="EnemyRoom" type="Node3D" parent="."]
+[node name="EnemyRoom" type="Node3D" parent="." unique_id=1716953917]
 script = ExtResource("2_q6q4p")
 
-[node name="EnemyIsland" parent="EnemyRoom" instance=ExtResource("14_qwe3r")]
+[node name="EnemyIsland" parent="EnemyRoom" unique_id=1127293103 instance=ExtResource("14_qwe3r")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -38.8248, -2.20764, 193.105)
 
 [node name="island" parent="EnemyRoom/EnemyIsland" index="0"]
@@ -413,93 +412,93 @@ surface_material_override/0 = SubResource("StandardMaterial3D_oh6wr")
 [node name="bridge" parent="EnemyRoom/EnemyIsland" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_wmtx3")
 
-[node name="RedBox" parent="EnemyRoom" node_paths=PackedStringArray("PatrolAreas") instance=ExtResource("17_81cih")]
+[node name="RedBox" parent="EnemyRoom" unique_id=1087123265 node_paths=PackedStringArray("PatrolAreas") instance=ExtResource("17_81cih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5683, 0.822468, 189.775)
 PatrolAreas = [NodePath("../PatrolPoints/PatrolPoint1"), NodePath("../PatrolPoints/PatrolPoint2")]
 
-[node name="PatrolPoints" type="Node3D" parent="EnemyRoom"]
+[node name="PatrolPoints" type="Node3D" parent="EnemyRoom" unique_id=1556145653]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.699, 0, 56.8853)
 
-[node name="PatrolPoint1" type="Area3D" parent="EnemyRoom/PatrolPoints"]
+[node name="PatrolPoint1" type="Area3D" parent="EnemyRoom/PatrolPoints" unique_id=153278593]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.6854, 0.831994, 133.1)
 collision_layer = 32
 collision_mask = 32
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyRoom/PatrolPoints/PatrolPoint1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyRoom/PatrolPoints/PatrolPoint1" unique_id=1864663131]
 shape = SubResource("BoxShape3D_81cih")
 metadata/_edit_lock_ = true
 
-[node name="PatrolPoint2" type="Area3D" parent="EnemyRoom/PatrolPoints"]
+[node name="PatrolPoint2" type="Area3D" parent="EnemyRoom/PatrolPoints" unique_id=1635071186]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.4879, 0.831993, 132.528)
 collision_layer = 32
 collision_mask = 32
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyRoom/PatrolPoints/PatrolPoint2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyRoom/PatrolPoints/PatrolPoint2" unique_id=312415776]
 shape = SubResource("BoxShape3D_81cih")
 metadata/_edit_lock_ = true
 
-[node name="RedBox2" parent="EnemyRoom" node_paths=PackedStringArray("PatrolAreas") instance=ExtResource("17_81cih")]
+[node name="RedBox2" parent="EnemyRoom" unique_id=1906089380 node_paths=PackedStringArray("PatrolAreas") instance=ExtResource("17_81cih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.2778, 0.822467, 208.177)
 PatrolAreas = [NodePath("../PatrolPoints2/PatrolPoint1"), NodePath("../PatrolPoints2/PatrolPoint2")]
 
-[node name="PatrolPoints2" type="Node3D" parent="EnemyRoom"]
+[node name="PatrolPoints2" type="Node3D" parent="EnemyRoom" unique_id=1864159413]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.699, 0, 56.8853)
 script = ExtResource("2_q6q4p")
 
-[node name="PatrolPoint1" type="Area3D" parent="EnemyRoom/PatrolPoints2"]
+[node name="PatrolPoint1" type="Area3D" parent="EnemyRoom/PatrolPoints2" unique_id=1709404705]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.3543, 0.831994, 151.089)
 collision_layer = 32
 collision_mask = 32
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyRoom/PatrolPoints2/PatrolPoint1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyRoom/PatrolPoints2/PatrolPoint1" unique_id=42168645]
 shape = SubResource("BoxShape3D_81cih")
 metadata/_edit_lock_ = true
 
-[node name="PatrolPoint2" type="Area3D" parent="EnemyRoom/PatrolPoints2"]
+[node name="PatrolPoint2" type="Area3D" parent="EnemyRoom/PatrolPoints2" unique_id=2118191489]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.7752, 0.831993, 151.246)
 collision_layer = 32
 collision_mask = 32
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyRoom/PatrolPoints2/PatrolPoint2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyRoom/PatrolPoints2/PatrolPoint2" unique_id=1323697253]
 shape = SubResource("BoxShape3D_81cih")
 metadata/_edit_lock_ = true
 
-[node name="Checkpoint" parent="EnemyRoom" instance=ExtResource("9_sdew7")]
+[node name="Checkpoint" parent="EnemyRoom" unique_id=1743606061 instance=ExtResource("9_sdew7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.9575, 1.03197, 175.15)
 ResetCameraPosition = Vector3(0, 3, -5)
 
-[node name="PlayerContainer" parent="." instance=ExtResource("1_fu0bv")]
+[node name="PlayerContainer" parent="." unique_id=1557528804 instance=ExtResource("1_fu0bv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.8437, 0.893969, -54.6018)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1617281208]
 stream = ExtResource("1_qwe3r")
 autoplay = true
 bus = &"Music"
 
-[node name="WaterPlane" type="MeshInstance3D" parent="." groups=["PlayerRespawned"]]
+[node name="WaterPlane" type="MeshInstance3D" parent="." unique_id=2002732759 groups=["PlayerRespawned"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.239, 0)
 mesh = SubResource("PlaneMesh_81cih")
 metadata/_edit_lock_ = true
 
-[node name="DeathPlane" type="Area3D" parent="."]
+[node name="DeathPlane" type="Area3D" parent="." unique_id=1925720176]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.8539, 0)
 collision_layer = 0
 collision_mask = 39
 script = ExtResource("2_xq41t")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathPlane"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathPlane" unique_id=568110826]
 shape = SubResource("BoxShape3D_wqqyb")
 debug_color = Color(0, 0.380392, 0.447059, 1)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=802370989]
 transform = Transform3D(0.79653, 0.46315, -0.388629, 0, 0.642788, 0.766044, 0.604599, -0.610177, 0.512, 0, 0, 0)
 shadow_enabled = true
 shadow_bias = 0.05
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1310397406]
 environment = SubResource("Environment_wmfxm")
 
-[node name="GUI" type="Control" parent="."]
+[node name="GUI" type="Control" parent="." unique_id=190898945]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -508,7 +507,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="CoinPanelContainer" type="PanelContainer" parent="GUI"]
+[node name="CoinPanelContainer" type="PanelContainer" parent="GUI" unique_id=138937721]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -521,7 +520,7 @@ grow_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("27_hx1fq")
 
-[node name="Label" type="Label" parent="GUI/CoinPanelContainer" node_paths=PackedStringArray("CoinSound")]
+[node name="Label" type="Label" parent="GUI/CoinPanelContainer" unique_id=1206793726 node_paths=PackedStringArray("CoinSound")]
 layout_mode = 2
 text = "Coins: 0000"
 label_settings = SubResource("LabelSettings_q6q4p")
@@ -530,22 +529,22 @@ vertical_alignment = 1
 script = ExtResource("27_1adq6")
 CoinSound = NodePath("AudioStreamPlayer")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GUI/CoinPanelContainer/Label"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GUI/CoinPanelContainer/Label" unique_id=1571397901]
 stream = ExtResource("30_qwe3r")
 volume_db = -12.0
 
-[node name="Crosshair" parent="GUI" instance=ExtResource("7_2qhh3")]
+[node name="Crosshair" parent="GUI" unique_id=933581811 instance=ExtResource("7_2qhh3")]
 visible = false
 layout_mode = 1
 
-[node name="PauseMenu" parent="GUI" instance=ExtResource("3_lnbl7")]
+[node name="PauseMenu" parent="GUI" unique_id=490394728 instance=ExtResource("3_lnbl7")]
 layout_mode = 1
 offset_left = -59.0
 offset_top = -74.5
 offset_right = 59.0
 offset_bottom = 74.5
 
-[node name="HintPanel" type="PanelContainer" parent="GUI" node_paths=PackedStringArray("hintLabel")]
+[node name="HintPanel" type="PanelContainer" parent="GUI" unique_id=595089235 node_paths=PackedStringArray("hintLabel")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -561,13 +560,13 @@ grow_vertical = 0
 script = ExtResource("21_u3x08")
 hintLabel = NodePath("RichTextLabel")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="GUI/HintPanel"]
+[node name="RichTextLabel" type="RichTextLabel" parent="GUI/HintPanel" unique_id=577099511]
 layout_mode = 2
 mouse_filter = 2
 text = "Hint Text
 "
 
-[node name="HealthBar" type="TextureProgressBar" parent="GUI"]
+[node name="HealthBar" type="TextureProgressBar" parent="GUI" unique_id=1609866336]
 visible = false
 z_index = -1
 layout_mode = 1
@@ -588,7 +587,7 @@ texture_under = ExtResource("22_wjtn7")
 texture_progress = ExtResource("23_iogn7")
 script = ExtResource("24_ges3u")
 
-[node name="FPSPanel" parent="GUI" instance=ExtResource("35_q6q4p")]
+[node name="FPSPanel" parent="GUI" unique_id=1131321587 instance=ExtResource("35_q6q4p")]
 layout_mode = 0
 
 [connection signal="area_entered" from="DeathPlane" to="DeathPlane" method="_on_area_entered"]
