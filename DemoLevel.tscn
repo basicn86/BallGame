@@ -1103,9 +1103,10 @@ ResetCameraPosition = Vector3(0, 3, -5)
 [node name="GPUParticlesCollisionHeightField3D" type="GPUParticlesCollisionHeightField3D" parent="EnemyRoom" unique_id=1285502953]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.549164, 0, 202.73051)
 size = Vector3(30, 20, 48.13)
+heightfield_mask = 1048573
 
 [node name="PlayerContainer" parent="." unique_id=1557528804 instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.8437, 0.893969, -54.6018)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.00757, 0.893969, 172.7453)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1617281208]
 stream = ExtResource("1_qwe3r")

@@ -20,6 +20,10 @@ config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 run/max_fps=60
 config/icon="res://ui/Player.png"
 
+[audio]
+
+buses/default_bus_layout="uid://d1rw777w2mcp7"
+
 [display]
 
 window/stretch/aspect="expand"
@@ -152,6 +156,7 @@ target_lock={
 
 [layer_names]
 
+3d_render/layer_2="Enemy VL"
 3d_physics/layer_1="Environment"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Entity"

@@ -24,6 +24,9 @@ public partial class RedBoxPatrolPoints : RigidBody3D
 	private PackedScene CoinScene;
 
 	[Export]
+	private PackedScene DeathParticles;
+
+	[Export]
 	private Area3D[] PatrolAreas;
 
 	private int currentPatrolIndex = 0;
@@ -118,6 +121,7 @@ public partial class RedBoxPatrolPoints : RigidBody3D
 
 		DisableProcessing();
 		SpawnCoins();
+		SpawnDeathParticles();
 	}
 
 
@@ -150,6 +154,13 @@ public partial class RedBoxPatrolPoints : RigidBody3D
 			).Normalized();
 			coin.ApplyCentralImpulse(RandomCoinDirection * 5f);
 		}
+	}
+
+	private void SpawnDeathParticles()
+	{
+		Node3D deathParticles = DeathParticles.Instantiate() as Node3D;
+		GetParent().AddChild(deathParticles);
+		deathParticles.GlobalPosition = GlobalPosition;
 	}
 
 	private void DisableProcessing()

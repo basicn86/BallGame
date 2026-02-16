@@ -48,8 +48,6 @@ public partial class FenceSpawnerPath : Node3D
 		collisionShape.Shape = FenceCollisionShape;
 		staticBody.AddChild(collisionShape);
 		collisionShape.Position = Vector3.Zero;
-
-		GD.Print("Added collision at: " + collisionShape.GlobalPosition);
 	}
 
 	private void RebuildFence()
