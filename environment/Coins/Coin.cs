@@ -16,7 +16,10 @@ public partial class Coin : Node3D
 
 	public override void _Ready()
 	{
-		if(mesh == null) QueueFree();
+		if (mesh == null) QueueFree();
+		mesh.RotateY(GD.Randf());
+
+		if(GD.Randf() > 0.5) RotationSpeed *= -1.0f;
 	}
 
 	
