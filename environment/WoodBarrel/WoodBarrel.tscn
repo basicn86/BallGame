@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://s7lyixiwg325"]
+[gd_scene format=3 uid="uid://s7lyixiwg325"]
 
-[ext_resource type="ArrayMesh" uid="uid://c7nbectkvqs0d" path="res://environment/WoodenBarrel.obj" id="1_bp842"]
+[ext_resource type="ArrayMesh" uid="uid://c7nbectkvqs0d" path="res://environment/WoodBarrel/WoodenBarrel.obj" id="1_bp842"]
 [ext_resource type="Script" uid="uid://cbwy58owe0mcp" path="res://common/ModelInterpolator.cs" id="1_wb05n"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cqre6"]

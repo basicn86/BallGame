@@ -43,6 +43,7 @@
 [ext_resource type="StyleBox" uid="uid://piglfc3byk2d" path="res://ui/CoinPanelStyle.tres" id="27_hx1fq"]
 [ext_resource type="AudioStream" uid="uid://da3ahgxu3eoul" path="res://environment/Coins/coin_2-89099.mp3" id="30_qwe3r"]
 [ext_resource type="PackedScene" uid="uid://diobrh3rolllb" path="res://ui/FpsPanel.tscn" id="35_q6q4p"]
+[ext_resource type="PackedScene" uid="uid://cq1nciftfyqqb" path="res://environment/WoodBarrel2/WoodBarrel2.tscn" id="45_dt8i1"]
 [ext_resource type="PackedScene" uid="uid://cwc0bij0033fh" path="res://DemoLevel/Terrain/DemoSpawnArea2.blend" id="65_6nk0g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sx6qo"]
@@ -1227,6 +1228,15 @@ script = ExtResource("24_ges3u")
 
 [node name="FPSPanel" parent="GUI" unique_id=1131321587 instance=ExtResource("35_q6q4p")]
 layout_mode = 0
+
+[node name="WoodBarrel2" parent="." unique_id=146772538 instance=ExtResource("45_dt8i1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.29517, 1.1275326, 187.67607)
+
+[node name="WoodBarrel3" parent="." unique_id=412106049 instance=ExtResource("45_dt8i1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.18614, 1.1275326, 189.52405)
+
+[node name="WoodBarrel4" parent="." unique_id=304242942 instance=ExtResource("45_dt8i1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.22589, 1.1275326, 191.54228)
 
 [connection signal="area_entered" from="DeathPlane" to="DeathPlane" method="_on_area_entered"]
 

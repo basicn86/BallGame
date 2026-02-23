@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene format=3 uid="uid://jc4p2lep7gmi"]
 
 [ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_sj0rc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_x0eru"]
@@ -16,7 +16,7 @@
 [ext_resource type="Shader" uid="uid://dhcsltfspc5aw" path="res://environment/TreeLeaves.gdshader" id="20_hpep5"]
 [ext_resource type="PackedScene" uid="uid://chm55taavgilw" path="res://environment/tree_2.tscn" id="21_od8pj"]
 [ext_resource type="PackedScene" uid="uid://m3ac8gckgd4j" path="res://environment/FlyingPlatform/FlyingPlatform.tscn" id="22_dypbc"]
-[ext_resource type="PackedScene" uid="uid://s7lyixiwg325" path="res://environment/WoodBarrel.tscn" id="22_ipffj"]
+[ext_resource type="PackedScene" uid="uid://s7lyixiwg325" path="res://environment/WoodBarrel/WoodBarrel.tscn" id="22_ipffj"]
 [ext_resource type="ArrayMesh" uid="uid://csxqt716caoeu" path="res://environment/Flower2/Flower2.obj" id="23_kw6hu"]
 [ext_resource type="Script" uid="uid://i2ipkoni0x7g" path="res://environment/Flower2/FlowerMultiMeshInstance3d.cs" id="24_pfpe5"]
 [ext_resource type="Material" uid="uid://trcmk7xlc61k" path="res://environment/Flower2/BluePetal.tres" id="25_5v6p0"]
