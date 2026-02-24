@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://cq1nciftfyqqb"]
 
 [ext_resource type="PackedScene" uid="uid://d2nqkk0qe6vwr" path="res://environment/WoodBarrel2/WoodenBarrel.blend" id="1_p82r0"]
-[ext_resource type="Texture2D" uid="uid://boihtu8yn6yb7" path="res://Textures/Wood/Wood_02-512x512.png" id="2_hvgql"]
+[ext_resource type="Texture2D" uid="uid://67487lnvfgbc" path="res://Textures/Wood/Wood_10-512x512.png" id="2_hvgql"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p82r0"]
 albedo_texture = ExtResource("2_hvgql")
+uv1_scale = Vector3(0.5, 6, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hvgql"]
 albedo_color = Color(0.7162962, 0.7162962, 0.7162962, 1)
@@ -26,9 +27,11 @@ angular_damp = 0.5
 [node name="WoodenBarrel" parent="." unique_id=775685385 instance=ExtResource("1_p82r0")]
 
 [node name="Cylinder" parent="WoodenBarrel" index="0" unique_id=768746788]
+layers = 4
 surface_material_override/0 = SubResource("StandardMaterial3D_p82r0")
 
 [node name="Cylinder_001" parent="WoodenBarrel" index="1" unique_id=649568559]
+layers = 4
 surface_material_override/0 = SubResource("StandardMaterial3D_hvgql")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=678986210]

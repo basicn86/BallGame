@@ -157,6 +157,7 @@ target_lock={
 [layer_names]
 
 3d_render/layer_2="Enemy VL"
+3d_render/layer_3="Entity VL"
 3d_physics/layer_1="Environment"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Entity"

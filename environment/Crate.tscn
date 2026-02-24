@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://6c54o5sjm0nm"]
+
+[ext_resource type="PackedScene" uid="uid://dwg23vw5qehm4" path="res://environment/Crate.blend" id="1_4duf3"]
+[ext_resource type="Texture2D" uid="uid://haqk6ifdqafh" path="res://Textures/Wood/Wood_16-512x512.png" id="2_63so1"]
+[ext_resource type="Texture2D" uid="uid://b3o8tsh60bm6r" path="res://Textures/Wood/Wood_06-512x512.png" id="3_kx3d2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2vbg1"]
+albedo_color = Color(1, 0.8247405, 0.5796801, 1)
+albedo_texture = ExtResource("2_63so1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_63so1"]
+albedo_texture = ExtResource("3_kx3d2")
+uv1_scale = Vector3(0.5, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_63so1"]
+size = Vector3(2, 2, 2)
+
+[node name="Crate" type="RigidBody3D" unique_id=107678221]
+physics_interpolation_mode = 1
+collision_layer = 4
+collision_mask = 39
+mass = 0.5
+
+[node name="Crate" parent="." unique_id=425750193 instance=ExtResource("1_4duf3")]
+
+[node name="Cube" parent="Crate" index="0" unique_id=1607596210]
+layers = 4
+surface_material_override/0 = SubResource("StandardMaterial3D_2vbg1")
+surface_material_override/1 = SubResource("StandardMaterial3D_63so1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1324393388]
+shape = SubResource("BoxShape3D_63so1")
+
+[editable path="Crate"]
