@@ -23,7 +23,6 @@
 [ext_resource type="ArrayMesh" uid="uid://dwbmud2kyddb" path="res://environment/Fence.obj" id="13_q6q4p"]
 [ext_resource type="Texture2D" uid="uid://qu8p2wlssugr" path="res://Textures/Dirt/Dirt_07-512x512.png" id="13_qwe3r"]
 [ext_resource type="Material" uid="uid://dcs6taqesc7qi" path="res://environment/Fence.tres" id="14_m8mxy"]
-[ext_resource type="PackedScene" uid="uid://bwothpig70ni6" path="res://DemoLevel/Terrain/EnemyIsland.blend" id="14_qwe3r"]
 [ext_resource type="Texture2D" uid="uid://b3o8tsh60bm6r" path="res://Textures/Wood/Wood_06-512x512.png" id="15_81cih"]
 [ext_resource type="Texture2D" uid="uid://crutfdek6ow1m" path="res://Textures/Bricks/Bricks_01-512x512.png" id="15_wmtx3"]
 [ext_resource type="PackedScene" uid="uid://bdwgh65g42tao" path="res://enemies/RedBox/RedBoxPatrolPoints.tscn" id="17_81cih"]
@@ -39,9 +38,13 @@
 [ext_resource type="Texture2D" uid="uid://73vvj4rcb0vx" path="res://player/HealthBarProgress.png" id="23_iogn7"]
 [ext_resource type="PackedScene" uid="uid://cl07s3vux1dhg" path="res://environment/Coins/StaticCoin2.tscn" id="23_rh67q"]
 [ext_resource type="Script" uid="uid://htw124q8ef0s" path="res://ui/HealthBar.cs" id="24_ges3u"]
+[ext_resource type="PackedScene" uid="uid://bsuvny2s2u51v" path="res://DemoLevel/Terrain/EnemyIsland2.blend" id="26_ej4ar"]
 [ext_resource type="Script" uid="uid://do8osi2v53dob" path="res://CoinCounter.cs" id="27_1adq6"]
 [ext_resource type="StyleBox" uid="uid://piglfc3byk2d" path="res://ui/CoinPanelStyle.tres" id="27_hx1fq"]
 [ext_resource type="AudioStream" uid="uid://da3ahgxu3eoul" path="res://environment/Coins/coin_2-89099.mp3" id="30_qwe3r"]
+[ext_resource type="PackedScene" uid="uid://cscnymxrj2543" path="res://environment/Boat.blend" id="31_rh67q"]
+[ext_resource type="Texture2D" uid="uid://t0rwaehxfpu2" path="res://Textures/Wood/Wood_04-512x512.png" id="32_wjtn7"]
+[ext_resource type="PackedScene" uid="uid://cjsblkorxplug" path="res://LevelExit.tscn" id="33_iogn7"]
 [ext_resource type="PackedScene" uid="uid://diobrh3rolllb" path="res://ui/FpsPanel.tscn" id="35_q6q4p"]
 [ext_resource type="PackedScene" uid="uid://cq1nciftfyqqb" path="res://environment/WoodBarrel2/WoodBarrel2.tscn" id="45_dt8i1"]
 [ext_resource type="PackedScene" uid="uid://cwc0bij0033fh" path="res://DemoLevel/Terrain/DemoSpawnArea2.blend" id="65_6nk0g"]
@@ -108,16 +111,19 @@ buffer = PackedFloat32Array(-0.69386137, 0, 0.76829064, -55.158524, 0, 1.0352362
 albedo_texture = ExtResource("13_qwe3r")
 uv1_scale = Vector3(2, 2, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oh6wr"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ej4ar"]
 albedo_texture = ExtResource("15_wmtx3")
-uv1_scale = Vector3(30, 30, 1)
+uv1_scale = Vector3(10, 10, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wmtx3"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5s2p"]
 albedo_texture = ExtResource("15_81cih")
 uv1_scale = Vector3(2, 2, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_81cih"]
 size = Vector3(2, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rh67q"]
+albedo_texture = ExtResource("32_wjtn7")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_m8mxy"]
 noise_type = 3
@@ -1037,14 +1043,12 @@ transform = Transform3D(0.7949338, 0, 0.6066962, 0, 1, 0, -0.6066962, 0, 0.79493
 [node name="EnemyRoom" type="Node3D" parent="." unique_id=1716953917]
 script = ExtResource("2_q6q4p")
 
-[node name="EnemyIsland" parent="EnemyRoom" unique_id=1127293103 instance=ExtResource("14_qwe3r")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -49.302517, -2.20764, 194.79414)
+[node name="EnemyIsland2" parent="EnemyRoom" unique_id=1216262093 instance=ExtResource("26_ej4ar")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -48.558697, -2.4253278, 194.58676)
 
-[node name="island" parent="EnemyRoom/EnemyIsland" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_oh6wr")
-
-[node name="bridge" parent="EnemyRoom/EnemyIsland" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_wmtx3")
+[node name="Island" parent="EnemyRoom/EnemyIsland2" index="0" unique_id=1675364400]
+surface_material_override/0 = SubResource("StandardMaterial3D_ej4ar")
+surface_material_override/1 = SubResource("StandardMaterial3D_m5s2p")
 
 [node name="RedBox" parent="EnemyRoom" unique_id=1087123265 node_paths=PackedStringArray("PatrolAreas") instance=ExtResource("17_81cih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.046017, 0.822468, 191.46414)
@@ -1054,7 +1058,7 @@ PatrolAreas = [NodePath("../PatrolPoints/PatrolPoint1"), NodePath("../PatrolPoin
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.17671, 0, 58.574448)
 
 [node name="PatrolPoint1" type="Area3D" parent="EnemyRoom/PatrolPoints" unique_id=153278593]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.6854, 0.831994, 133.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.6854, 0.062022865, 133.1)
 collision_layer = 32
 collision_mask = 32
 
@@ -1063,7 +1067,7 @@ shape = SubResource("BoxShape3D_81cih")
 metadata/_edit_lock_ = true
 
 [node name="PatrolPoint2" type="Area3D" parent="EnemyRoom/PatrolPoints" unique_id=1635071186]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.4879, 0.831993, 132.528)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.4879, 0.06202185, 132.528)
 collision_layer = 32
 collision_mask = 32
 
@@ -1080,7 +1084,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.17671, 0, 58.574448)
 script = ExtResource("2_q6q4p")
 
 [node name="PatrolPoint1" type="Area3D" parent="EnemyRoom/PatrolPoints2" unique_id=1709404705]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.3543, 0.831994, 151.089)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.3543, 0.09766334, 151.089)
 collision_layer = 32
 collision_mask = 32
 
@@ -1089,7 +1093,7 @@ shape = SubResource("BoxShape3D_81cih")
 metadata/_edit_lock_ = true
 
 [node name="PatrolPoint2" type="Area3D" parent="EnemyRoom/PatrolPoints2" unique_id=2118191489]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.7752, 0.831993, 151.246)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.7752, 0.09766233, 151.246)
 collision_layer = 32
 collision_mask = 32
 
@@ -1098,13 +1102,31 @@ shape = SubResource("BoxShape3D_81cih")
 metadata/_edit_lock_ = true
 
 [node name="Checkpoint" parent="EnemyRoom" unique_id=1743606061 instance=ExtResource("9_sdew7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.43522, 1.03197, 176.83914)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.62043, -0.011020899, 171.57703)
 ResetCameraPosition = Vector3(0, 3, -5)
 
 [node name="GPUParticlesCollisionHeightField3D" type="GPUParticlesCollisionHeightField3D" parent="EnemyRoom" unique_id=1285502953]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.549164, 0, 202.73051)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.549164, 0, 196.23766)
 size = Vector3(30, 20, 48.13)
 heightfield_mask = 1048573
+
+[node name="WoodBarrel2" parent="EnemyRoom" unique_id=146772538 instance=ExtResource("45_dt8i1")]
+transform = Transform3D(0.42547923, 0, 0.90496814, 0, 1, 0, -0.90496814, 0, 0.42547923, -42.785812, 1.1275321, 183.03174)
+
+[node name="WoodBarrel3" parent="EnemyRoom" unique_id=412106049 instance=ExtResource("45_dt8i1")]
+transform = Transform3D(0.42547923, 0, 0.90496814, 0, 1, 0, -0.90496814, 0, 0.42547923, -41.492542, 1.1275321, 184.62431)
+
+[node name="WoodBarrel4" parent="EnemyRoom" unique_id=304242942 instance=ExtResource("45_dt8i1")]
+transform = Transform3D(0.42547923, 0, 0.90496814, 0, 1, 0, -0.90496814, 0, 0.42547923, -40.108498, 1.1275321, 186.42398)
+
+[node name="Boat" parent="EnemyRoom" unique_id=1313348541 instance=ExtResource("31_rh67q")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, -49.954166, 9.536743e-07, 226.30272)
+
+[node name="Boat" parent="EnemyRoom/Boat" index="0" unique_id=1685947282]
+surface_material_override/0 = SubResource("StandardMaterial3D_rh67q")
+
+[node name="LevelExit" parent="EnemyRoom" unique_id=1288942418 instance=ExtResource("33_iogn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.94386, 0, 226.34705)
 
 [node name="PlayerContainer" parent="." unique_id=1557528804 instance=ExtResource("1_fu0bv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.00757, 0.893969, 172.7453)
@@ -1229,19 +1251,11 @@ script = ExtResource("24_ges3u")
 [node name="FPSPanel" parent="GUI" unique_id=1131321587 instance=ExtResource("35_q6q4p")]
 layout_mode = 0
 
-[node name="WoodBarrel2" parent="." unique_id=146772538 instance=ExtResource("45_dt8i1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.29517, 1.1275326, 187.67607)
-
-[node name="WoodBarrel3" parent="." unique_id=412106049 instance=ExtResource("45_dt8i1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.18614, 1.1275326, 189.52405)
-
-[node name="WoodBarrel4" parent="." unique_id=304242942 instance=ExtResource("45_dt8i1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.22589, 1.1275326, 191.54228)
-
 [connection signal="area_entered" from="DeathPlane" to="DeathPlane" method="_on_area_entered"]
 
 [editable path="SpawnRoom2/DemoSpawnArea2"]
 [editable path="JumpingSegment/SmallIsland"]
 [editable path="JumpingSegment/SmallIsland2"]
 [editable path="JumpingSegment/SmallIsland3"]
-[editable path="EnemyRoom/EnemyIsland"]
+[editable path="EnemyRoom/EnemyIsland2"]
+[editable path="EnemyRoom/Boat"]
