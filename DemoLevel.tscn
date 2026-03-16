@@ -1062,7 +1062,7 @@ PatrolAreas = [NodePath("../PatrolPoints/PatrolPoint1"), NodePath("../PatrolPoin
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.17671, 0, 58.574448)
 
 [node name="PatrolPoint1" type="Area3D" parent="EnemyRoom/PatrolPoints" unique_id=153278593]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.6854, 0.062022865, 133.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.999073, 0.062022865, 133.1)
 collision_layer = 32
 collision_mask = 32
 
@@ -1088,7 +1088,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.17671, 0, 58.574448)
 script = ExtResource("2_q6q4p")
 
 [node name="PatrolPoint1" type="Area3D" parent="EnemyRoom/PatrolPoints2" unique_id=1709404705]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.3543, 0.09766334, 151.089)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.83153, 0.09766334, 150.12051)
 collision_layer = 32
 collision_mask = 32
 
@@ -1097,7 +1097,7 @@ shape = SubResource("BoxShape3D_81cih")
 metadata/_edit_lock_ = true
 
 [node name="PatrolPoint2" type="Area3D" parent="EnemyRoom/PatrolPoints2" unique_id=2118191489]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.7752, 0.09766233, 151.246)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.39245, 0.09766233, 150.30978)
 collision_layer = 32
 collision_mask = 32
 
