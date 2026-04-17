@@ -177,6 +177,7 @@ sky_material = SubResource("PanoramaSkyMaterial_u6uwp")
 background_mode = 2
 background_energy_multiplier = 0.75
 sky = SubResource("Sky_p2gfp")
+sky_rotation = Vector3(0, 3.1415927, 0)
 reflected_light_source = 1
 tonemap_white = 8.0
 
@@ -1220,7 +1221,7 @@ transform = Transform3D(-0.2656066, 0, 0.9640815, 0, 1, 0, -0.9640815, 0, -0.265
 transform = Transform3D(0.9442098, 0, 0.3293446, 0, 1, 0, -0.3293446, 0, 0.9442098, -57.501434, 2.4947488, 181.01794)
 
 [node name="PlayerContainer" parent="." unique_id=1557528804 instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.00757, 0.893969, 172.7453)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.971464, 0.893969, -51.424564)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1617281208]
 stream = ExtResource("1_qwe3r")
@@ -1243,7 +1244,7 @@ shape = SubResource("BoxShape3D_wqqyb")
 debug_color = Color(0, 0.380392, 0.447059, 1)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=802370989]
-transform = Transform3D(0.79653, 0.46315, -0.388629, 0, 0.642788, 0.766044, 0.604599, -0.610177, 0.512, 0, 0, 0)
+transform = Transform3D(-0.7965298, -0.4631499, 0.38862887, 0, 0.6427877, 0.76604444, -0.6045992, 0.6101773, -0.51199955, 0, 0, 0)
 shadow_enabled = true
 shadow_bias = 0.05
 
