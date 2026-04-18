@@ -144,6 +144,9 @@ albedo_color = Color(0.57254905, 0.31764707, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ges3u"]
 albedo_texture = ExtResource("33_2ci3n")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uv337"]
+albedo_texture = ExtResource("13_qwe3r")
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_m8mxy"]
 noise_type = 3
 seed = 400
@@ -1213,6 +1216,34 @@ surface_material_override/0 = SubResource("StandardMaterial3D_iogn7")
 [node name="Hut" parent="EnemyRoom/Boat" index="3" unique_id=2126178144]
 surface_material_override/0 = SubResource("StandardMaterial3D_ges3u")
 
+[node name="Boat2" parent="EnemyRoom" unique_id=1104443509 instance=ExtResource("31_rh67q")]
+transform = Transform3D(1.1967626, 0, 3.8167734, 0, 4, 0, -3.8167734, 0, 1.1967626, -19.974375, 9.536743e-07, 165.94415)
+
+[node name="Boat" parent="EnemyRoom/Boat2" index="0" unique_id=627832704]
+surface_material_override/0 = SubResource("StandardMaterial3D_rh67q")
+surface_material_override/1 = SubResource("StandardMaterial3D_3avgc")
+surface_material_override/2 = SubResource("StandardMaterial3D_kfonh")
+
+[node name="Cube" parent="EnemyRoom/Boat2" index="2" unique_id=499516211]
+surface_material_override/0 = SubResource("StandardMaterial3D_iogn7")
+
+[node name="Hut" parent="EnemyRoom/Boat2" index="3" unique_id=2126178144]
+surface_material_override/0 = SubResource("StandardMaterial3D_ges3u")
+
+[node name="Boat3" parent="EnemyRoom" unique_id=303177207 instance=ExtResource("31_rh67q")]
+transform = Transform3D(0.83806515, 0, -3.9112208, 0, 4, 0, 3.9112208, 0, 0.83806515, -80.911156, 4.7683716e-06, 181.73936)
+
+[node name="Boat" parent="EnemyRoom/Boat3" index="0" unique_id=627832704]
+surface_material_override/0 = SubResource("StandardMaterial3D_rh67q")
+surface_material_override/1 = SubResource("StandardMaterial3D_3avgc")
+surface_material_override/2 = SubResource("StandardMaterial3D_kfonh")
+
+[node name="Cube" parent="EnemyRoom/Boat3" index="2" unique_id=499516211]
+surface_material_override/0 = SubResource("StandardMaterial3D_iogn7")
+
+[node name="Hut" parent="EnemyRoom/Boat3" index="3" unique_id=2126178144]
+surface_material_override/0 = SubResource("StandardMaterial3D_ges3u")
+
 [node name="LevelExit" parent="EnemyRoom" unique_id=1288942418 instance=ExtResource("33_iogn7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.94386, 0, 227.3039)
 
@@ -1269,6 +1300,104 @@ transform = Transform3D(-0.2656066, 0, 0.9640815, 0, 1, 0, -0.9640815, 0, -0.265
 
 [node name="Crate4" parent="EnemyRoom" unique_id=1447526937 instance=ExtResource("34_ges3u")]
 transform = Transform3D(0.9442098, 0, 0.3293446, 0, 1, 0, -0.3293446, 0, 0.9442098, -57.501434, 2.4947488, 181.01794)
+
+[node name="Islands" type="Node3D" parent="." unique_id=1383253690]
+
+[node name="SmallIsland" parent="Islands" unique_id=469884771 instance=ExtResource("13_m8mxy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.098386765, -1.6946697, -19.001804)
+
+[node name="Cylinder" parent="Islands/SmallIsland" index="0"]
+transform = Transform3D(0.85661846, 0, 0.5159503, 0, 1, 0, -0.5159503, 0, 0.85661846, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_uv337")
+metadata/_edit_lock_ = true
+
+[node name="SmallIsland2" parent="Islands" unique_id=1741936990 instance=ExtResource("13_m8mxy")]
+transform = Transform3D(0.79045445, 0, 0.6125209, 0, 1, 0, -0.6125209, 0, 0.79045445, -5.981683, -1.6946697, 8.153053)
+
+[node name="Cylinder" parent="Islands/SmallIsland2" index="0"]
+transform = Transform3D(0.85661846, 0, 0.5159503, 0, 1, 0, -0.5159503, 0, 0.85661846, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_uv337")
+metadata/_edit_lock_ = true
+
+[node name="SmallIsland3" parent="Islands" unique_id=80633799 instance=ExtResource("13_m8mxy")]
+transform = Transform3D(-0.16869584, 0, 0.9856682, 0, 1, 0, -0.9856682, 0, -0.16869584, 15.028675, -3.88626, 2.2439995)
+
+[node name="Cylinder" parent="Islands/SmallIsland3" index="0"]
+transform = Transform3D(0.85661846, 0, 0.5159503, 0, 1, 0, -0.5159503, 0, 0.85661846, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_uv337")
+metadata/_edit_lock_ = true
+
+[node name="SmallIsland4" parent="Islands" unique_id=301596187 instance=ExtResource("13_m8mxy")]
+transform = Transform3D(-0.16869584, 0, 0.9856682, 0, 1, 0, -0.9856682, 0, -0.16869584, 3.1932735, -3.5917106, 24.974318)
+
+[node name="Cylinder" parent="Islands/SmallIsland4" index="0"]
+transform = Transform3D(0.85661846, 0, 0.5159503, 0, 1, 0, -0.5159503, 0, 0.85661846, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_uv337")
+metadata/_edit_lock_ = true
+
+[node name="SmallIsland5" parent="Islands" unique_id=36391500 instance=ExtResource("13_m8mxy")]
+transform = Transform3D(-0.16869584, 0, 0.9856682, 0, 1, 0, -0.9856682, 0, -0.16869584, -7.8564987, -2.5408435, 37.442726)
+
+[node name="Cylinder" parent="Islands/SmallIsland5" index="0"]
+transform = Transform3D(0.85661846, 0, 0.5159503, 0, 1, 0, -0.5159503, 0, 0.85661846, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_uv337")
+metadata/_edit_lock_ = true
+
+[node name="SmallIsland6" parent="Islands" unique_id=2125891903 instance=ExtResource("13_m8mxy")]
+transform = Transform3D(-0.16869584, 0, 0.9856682, 0, 1, 0, -0.9856682, 0, -0.16869584, 6.2714005, -0.18452787, 50.502857)
+
+[node name="Cylinder" parent="Islands/SmallIsland6" index="0"]
+transform = Transform3D(0.85661846, 0, 0.5159503, 0, 1, 0, -0.5159503, 0, 0.85661846, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_uv337")
+metadata/_edit_lock_ = true
+
+[node name="SmallIsland7" parent="Islands" unique_id=1691388269 instance=ExtResource("13_m8mxy")]
+transform = Transform3D(-0.16869584, 0, 0.9856682, 0, 1, 0, -0.9856682, 0, -0.16869584, -10.568906, -4.064304, 58.24632)
+
+[node name="Cylinder" parent="Islands/SmallIsland7" index="0"]
+transform = Transform3D(0.85661846, 0, 0.5159503, 0, 1, 0, -0.5159503, 0, 0.85661846, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_uv337")
+metadata/_edit_lock_ = true
+
+[node name="SmallIsland8" parent="Islands" unique_id=228173593 instance=ExtResource("13_m8mxy")]
+transform = Transform3D(-0.16869584, 0, 0.9856682, 0, 1, 0, -0.9856682, 0, -0.16869584, 0.32559586, -0.3058524, 71.87085)
+
+[node name="Cylinder" parent="Islands/SmallIsland8" index="0"]
+transform = Transform3D(0.85661846, 0, 0.5159503, 0, 1, 0, -0.5159503, 0, 0.85661846, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_uv337")
+metadata/_edit_lock_ = true
+
+[node name="SmallIsland9" parent="Islands" unique_id=902463124 instance=ExtResource("13_m8mxy")]
+transform = Transform3D(-0.16869584, 0, 0.9856682, 0, 1, 0, -0.9856682, 0, -0.16869584, -6.016717, -4.3510413, 91.37991)
+
+[node name="Cylinder" parent="Islands/SmallIsland9" index="0"]
+transform = Transform3D(0.85661846, 0, 0.5159503, 0, 1, 0, -0.5159503, 0, 0.85661846, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_uv337")
+metadata/_edit_lock_ = true
+
+[node name="SmallIsland10" parent="Islands" unique_id=1847808047 instance=ExtResource("13_m8mxy")]
+transform = Transform3D(-0.16869584, 0, 0.9856682, 0, 1, 0, -0.9856682, 0, -0.16869584, 12.027907, -4.3510413, 88.45379)
+
+[node name="Cylinder" parent="Islands/SmallIsland10" index="0"]
+transform = Transform3D(0.85661846, 0, 0.5159503, 0, 1, 0, -0.5159503, 0, 0.85661846, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_uv337")
+metadata/_edit_lock_ = true
+
+[node name="SmallIsland11" parent="Islands" unique_id=716272008 instance=ExtResource("13_m8mxy")]
+transform = Transform3D(-0.16869584, 0, 0.9856682, 0, 1, 0, -0.9856682, 0, -0.16869584, 19.376034, -2.6268172, 66.23206)
+
+[node name="Cylinder" parent="Islands/SmallIsland11" index="0"]
+transform = Transform3D(0.85661846, 0, 0.5159503, 0, 1, 0, -0.5159503, 0, 0.85661846, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_uv337")
+metadata/_edit_lock_ = true
+
+[node name="SmallIsland12" parent="Islands" unique_id=1488091598 instance=ExtResource("13_m8mxy")]
+transform = Transform3D(-0.16869584, 0, 0.9856682, 0, 1, 0, -0.9856682, 0, -0.16869584, 21.987352, -1.1190925, 39.421967)
+
+[node name="Cylinder" parent="Islands/SmallIsland12" index="0"]
+transform = Transform3D(0.85661846, 0, 0.5159503, 0, 1, 0, -0.5159503, 0, 0.85661846, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_uv337")
+metadata/_edit_lock_ = true
 
 [node name="PlayerContainer" parent="." unique_id=1557528804 instance=ExtResource("1_fu0bv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.994278, 0.8939652, -55.24302)
@@ -1401,3 +1530,17 @@ layout_mode = 0
 [editable path="JumpingSegment/SmallIsland3"]
 [editable path="EnemyRoom/EnemyIsland2"]
 [editable path="EnemyRoom/Boat"]
+[editable path="EnemyRoom/Boat2"]
+[editable path="EnemyRoom/Boat3"]
+[editable path="Islands/SmallIsland"]
+[editable path="Islands/SmallIsland2"]
+[editable path="Islands/SmallIsland3"]
+[editable path="Islands/SmallIsland4"]
+[editable path="Islands/SmallIsland5"]
+[editable path="Islands/SmallIsland6"]
+[editable path="Islands/SmallIsland7"]
+[editable path="Islands/SmallIsland8"]
+[editable path="Islands/SmallIsland9"]
+[editable path="Islands/SmallIsland10"]
+[editable path="Islands/SmallIsland11"]
+[editable path="Islands/SmallIsland12"]
