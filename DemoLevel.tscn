@@ -1202,46 +1202,46 @@ transform = Transform3D(0.42547923, 0, 0.90496814, 0, 1, 0, -0.90496814, 0, 0.42
 [node name="WoodBarrel11" parent="EnemyRoom" unique_id=607387175 instance=ExtResource("45_dt8i1")]
 transform = Transform3D(0.42547923, 0, 0.90496814, 0, 1, 0, -0.90496814, 0, 0.42547923, -58.31577, 0.98631966, 209.54683)
 
-[node name="Boat" parent="EnemyRoom" unique_id=352106405 instance=ExtResource("31_rh67q")]
+[node name="Boat" parent="EnemyRoom" unique_id=230820798 instance=ExtResource("31_rh67q")]
 transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, -49.954166, 9.536743e-07, 227.25957)
 
-[node name="Boat" parent="EnemyRoom/Boat" index="0" unique_id=627832704]
+[node name="Boat" parent="EnemyRoom/Boat" index="0" unique_id=1120164931]
 surface_material_override/0 = SubResource("StandardMaterial3D_rh67q")
 surface_material_override/1 = SubResource("StandardMaterial3D_3avgc")
 surface_material_override/2 = SubResource("StandardMaterial3D_kfonh")
 
-[node name="Cube" parent="EnemyRoom/Boat" index="2" unique_id=499516211]
+[node name="Cube" parent="EnemyRoom/Boat" index="2" unique_id=490685108]
 surface_material_override/0 = SubResource("StandardMaterial3D_iogn7")
 
-[node name="Hut" parent="EnemyRoom/Boat" index="3" unique_id=2126178144]
+[node name="Hut" parent="EnemyRoom/Boat" index="3" unique_id=1629230205]
 surface_material_override/0 = SubResource("StandardMaterial3D_ges3u")
 
-[node name="Boat2" parent="EnemyRoom" unique_id=1104443509 instance=ExtResource("31_rh67q")]
+[node name="Boat2" parent="EnemyRoom" unique_id=1537695091 instance=ExtResource("31_rh67q")]
 transform = Transform3D(1.1967626, 0, 3.8167734, 0, 4, 0, -3.8167734, 0, 1.1967626, -19.974375, 9.536743e-07, 165.94415)
 
-[node name="Boat" parent="EnemyRoom/Boat2" index="0" unique_id=627832704]
+[node name="Boat" parent="EnemyRoom/Boat2" index="0" unique_id=1120164931]
 surface_material_override/0 = SubResource("StandardMaterial3D_rh67q")
 surface_material_override/1 = SubResource("StandardMaterial3D_3avgc")
 surface_material_override/2 = SubResource("StandardMaterial3D_kfonh")
 
-[node name="Cube" parent="EnemyRoom/Boat2" index="2" unique_id=499516211]
+[node name="Cube" parent="EnemyRoom/Boat2" index="2" unique_id=490685108]
 surface_material_override/0 = SubResource("StandardMaterial3D_iogn7")
 
-[node name="Hut" parent="EnemyRoom/Boat2" index="3" unique_id=2126178144]
+[node name="Hut" parent="EnemyRoom/Boat2" index="3" unique_id=1629230205]
 surface_material_override/0 = SubResource("StandardMaterial3D_ges3u")
 
-[node name="Boat3" parent="EnemyRoom" unique_id=303177207 instance=ExtResource("31_rh67q")]
+[node name="Boat3" parent="EnemyRoom" unique_id=1022563569 instance=ExtResource("31_rh67q")]
 transform = Transform3D(0.83806515, 0, -3.9112208, 0, 4, 0, 3.9112208, 0, 0.83806515, -80.911156, 4.7683716e-06, 181.73936)
 
-[node name="Boat" parent="EnemyRoom/Boat3" index="0" unique_id=627832704]
+[node name="Boat" parent="EnemyRoom/Boat3" index="0" unique_id=1120164931]
 surface_material_override/0 = SubResource("StandardMaterial3D_rh67q")
 surface_material_override/1 = SubResource("StandardMaterial3D_3avgc")
 surface_material_override/2 = SubResource("StandardMaterial3D_kfonh")
 
-[node name="Cube" parent="EnemyRoom/Boat3" index="2" unique_id=499516211]
+[node name="Cube" parent="EnemyRoom/Boat3" index="2" unique_id=490685108]
 surface_material_override/0 = SubResource("StandardMaterial3D_iogn7")
 
-[node name="Hut" parent="EnemyRoom/Boat3" index="3" unique_id=2126178144]
+[node name="Hut" parent="EnemyRoom/Boat3" index="3" unique_id=1629230205]
 surface_material_override/0 = SubResource("StandardMaterial3D_ges3u")
 
 [node name="LevelExit" parent="EnemyRoom" unique_id=1288942418 instance=ExtResource("33_iogn7")]
@@ -1400,7 +1400,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_uv337")
 metadata/_edit_lock_ = true
 
 [node name="PlayerContainer" parent="." unique_id=1557528804 instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.994278, 0.8939652, -55.24302)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.813744, 0.8939652, 174.77078)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1617281208]
 stream = ExtResource("36_ges3u")

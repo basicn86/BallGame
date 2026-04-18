@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://cq1nciftfyqqb"]
 
 [ext_resource type="PackedScene" uid="uid://d2nqkk0qe6vwr" path="res://environment/WoodBarrel2/WoodenBarrel.blend" id="1_p82r0"]
+[ext_resource type="Script" uid="uid://dogqjjpm7mh1n" path="res://environment/WoodBarrel2/WoodBarrel.cs" id="1_pqbvj"]
 [ext_resource type="Texture2D" uid="uid://67487lnvfgbc" path="res://Textures/Wood/Wood_10-512x512.png" id="2_hvgql"]
+[ext_resource type="Script" uid="uid://drxua1kmiojx7" path="res://common/DamageReceiver.cs" id="3_l0nyl"]
+[ext_resource type="PackedScene" uid="uid://db0lkkdiaofio" path="res://environment/CrateParticles.tscn" id="5_bolda"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p82r0"]
 albedo_texture = ExtResource("2_hvgql")
@@ -16,6 +19,9 @@ roughness = 0.75
 height = 2.2
 radius = 0.75
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_pqbvj"]
+size = Vector3(1.5, 2.5, 1.5)
+
 [node name="WoodBarrel2" type="RigidBody3D" unique_id=146772538]
 physics_interpolation_mode = 1
 collision_layer = 4
@@ -23,6 +29,8 @@ collision_mask = 39
 mass = 0.75
 linear_damp = 0.5
 angular_damp = 0.5
+script = ExtResource("1_pqbvj")
+ExplosionScene = ExtResource("5_bolda")
 
 [node name="WoodenBarrel" parent="." unique_id=775685385 instance=ExtResource("1_p82r0")]
 
@@ -36,5 +44,13 @@ surface_material_override/0 = SubResource("StandardMaterial3D_hvgql")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=678986210]
 shape = SubResource("CylinderShape3D_l0nyl")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1374746732]
+script = ExtResource("3_l0nyl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2075400533]
+shape = SubResource("BoxShape3D_pqbvj")
+
+[connection signal="TakeDamage" from="Area3D" to="." method="_take_damage"]
 
 [editable path="WoodenBarrel"]

@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://6c54o5sjm0nm"]
 
 [ext_resource type="PackedScene" uid="uid://dwg23vw5qehm4" path="res://environment/Crate.blend" id="1_4duf3"]
+[ext_resource type="Script" uid="uid://dogqjjpm7mh1n" path="res://environment/WoodBarrel2/WoodBarrel.cs" id="1_fthl5"]
 [ext_resource type="Texture2D" uid="uid://haqk6ifdqafh" path="res://Textures/Wood/Wood_16-512x512.png" id="2_63so1"]
+[ext_resource type="PackedScene" uid="uid://db0lkkdiaofio" path="res://environment/CrateParticles.tscn" id="2_otf4o"]
 [ext_resource type="Texture2D" uid="uid://b3o8tsh60bm6r" path="res://Textures/Wood/Wood_06-512x512.png" id="3_kx3d2"]
+[ext_resource type="Script" uid="uid://drxua1kmiojx7" path="res://common/DamageReceiver.cs" id="6_rj0bc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2vbg1"]
 albedo_color = Color(1, 0.8247405, 0.5796801, 1)
@@ -15,11 +18,16 @@ uv1_scale = Vector3(0.5, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_63so1"]
 size = Vector3(2, 2, 2)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_k4jod"]
+size = Vector3(2.1, 2.1, 2.1)
+
 [node name="Crate" type="RigidBody3D" unique_id=107678221]
 physics_interpolation_mode = 1
 collision_layer = 4
 collision_mask = 39
 mass = 0.5
+script = ExtResource("1_fthl5")
+ExplosionScene = ExtResource("2_otf4o")
 
 [node name="Crate" parent="." unique_id=425750193 instance=ExtResource("1_4duf3")]
 
@@ -30,5 +38,13 @@ surface_material_override/1 = SubResource("StandardMaterial3D_63so1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1324393388]
 shape = SubResource("BoxShape3D_63so1")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1028316623]
+script = ExtResource("6_rj0bc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D" unique_id=1669459884]
+shape = SubResource("BoxShape3D_k4jod")
+
+[connection signal="TakeDamage" from="Area3D" to="." method="_take_damage"]
 
 [editable path="Crate"]
