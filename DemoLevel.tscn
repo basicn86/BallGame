@@ -43,6 +43,7 @@
 [ext_resource type="AudioStream" uid="uid://da3ahgxu3eoul" path="res://environment/Coins/coin_2-89099.mp3" id="30_qwe3r"]
 [ext_resource type="PackedScene" uid="uid://cscnymxrj2543" path="res://environment/Boat.blend" id="31_rh67q"]
 [ext_resource type="Texture2D" uid="uid://t0rwaehxfpu2" path="res://Textures/Wood/Wood_04-512x512.png" id="32_wjtn7"]
+[ext_resource type="Texture2D" uid="uid://d75rs3i2k76m" path="res://Textures/Wood/Wood_24-512x512.png" id="33_2ci3n"]
 [ext_resource type="PackedScene" uid="uid://cjsblkorxplug" path="res://LevelExit.tscn" id="33_iogn7"]
 [ext_resource type="PackedScene" uid="uid://6c54o5sjm0nm" path="res://environment/Crate.tscn" id="34_ges3u"]
 [ext_resource type="PackedScene" uid="uid://diobrh3rolllb" path="res://ui/FpsPanel.tscn" id="35_q6q4p"]
@@ -128,6 +129,9 @@ albedo_texture = ExtResource("32_wjtn7")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iogn7"]
 albedo_color = Color(0.57254905, 0.31764707, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ges3u"]
+albedo_texture = ExtResource("33_2ci3n")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_m8mxy"]
 noise_type = 3
@@ -1154,14 +1158,17 @@ transform = Transform3D(0.42547923, 0, 0.90496814, 0, 1, 0, -0.90496814, 0, 0.42
 [node name="WoodBarrel11" parent="EnemyRoom" unique_id=607387175 instance=ExtResource("45_dt8i1")]
 transform = Transform3D(0.42547923, 0, 0.90496814, 0, 1, 0, -0.90496814, 0, 0.42547923, -58.31577, 0.98631966, 209.54683)
 
-[node name="Boat" parent="EnemyRoom" unique_id=1313348541 instance=ExtResource("31_rh67q")]
+[node name="Boat" parent="EnemyRoom" unique_id=536071223 instance=ExtResource("31_rh67q")]
 transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, -49.954166, 9.536743e-07, 227.25957)
 
-[node name="Boat" parent="EnemyRoom/Boat" index="0" unique_id=1685947282]
+[node name="Boat" parent="EnemyRoom/Boat" index="0" unique_id=1508571028]
 surface_material_override/0 = SubResource("StandardMaterial3D_rh67q")
 
-[node name="Cube" parent="EnemyRoom/Boat" index="2" unique_id=1160021211]
+[node name="Cube" parent="EnemyRoom/Boat" index="2" unique_id=1276838523]
 surface_material_override/0 = SubResource("StandardMaterial3D_iogn7")
+
+[node name="Hut" parent="EnemyRoom/Boat" index="3" unique_id=486486583]
+surface_material_override/0 = SubResource("StandardMaterial3D_ges3u")
 
 [node name="LevelExit" parent="EnemyRoom" unique_id=1288942418 instance=ExtResource("33_iogn7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.94386, 0, 227.3039)
@@ -1221,7 +1228,7 @@ transform = Transform3D(-0.2656066, 0, 0.9640815, 0, 1, 0, -0.9640815, 0, -0.265
 transform = Transform3D(0.9442098, 0, 0.3293446, 0, 1, 0, -0.3293446, 0, 0.9442098, -57.501434, 2.4947488, 181.01794)
 
 [node name="PlayerContainer" parent="." unique_id=1557528804 instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.971464, 0.893969, -51.424564)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.341064, 0.893969, 178.68787)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1617281208]
 stream = ExtResource("36_ges3u")
