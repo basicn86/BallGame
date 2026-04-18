@@ -42,8 +42,9 @@
 [ext_resource type="StyleBox" uid="uid://piglfc3byk2d" path="res://ui/CoinPanelStyle.tres" id="27_hx1fq"]
 [ext_resource type="AudioStream" uid="uid://da3ahgxu3eoul" path="res://environment/Coins/coin_2-89099.mp3" id="30_qwe3r"]
 [ext_resource type="PackedScene" uid="uid://cscnymxrj2543" path="res://environment/Boat.blend" id="31_rh67q"]
-[ext_resource type="Texture2D" uid="uid://t0rwaehxfpu2" path="res://Textures/Wood/Wood_04-512x512.png" id="32_wjtn7"]
+[ext_resource type="Texture2D" uid="uid://c02pk3l4yggnj" path="res://Textures/Metal/Metal_02-512x512.png" id="32_2ci3n"]
 [ext_resource type="Texture2D" uid="uid://d75rs3i2k76m" path="res://Textures/Wood/Wood_24-512x512.png" id="33_2ci3n"]
+[ext_resource type="Texture2D" uid="uid://bfybdpewos37" path="res://Textures/Wood/Wood_03-512x512.png" id="33_3avgc"]
 [ext_resource type="PackedScene" uid="uid://cjsblkorxplug" path="res://LevelExit.tscn" id="33_iogn7"]
 [ext_resource type="PackedScene" uid="uid://6c54o5sjm0nm" path="res://environment/Crate.tscn" id="34_ges3u"]
 [ext_resource type="PackedScene" uid="uid://diobrh3rolllb" path="res://ui/FpsPanel.tscn" id="35_q6q4p"]
@@ -125,7 +126,17 @@ uv1_scale = Vector3(2, 2, 1)
 size = Vector3(2, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rh67q"]
-albedo_texture = ExtResource("32_wjtn7")
+albedo_color = Color(0.99998814, 0.27415386, 0.21194825, 1)
+albedo_texture = ExtResource("32_2ci3n")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3avgc"]
+albedo_texture = ExtResource("33_3avgc")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3avgc"]
+load_path = "res://.godot/imported/Metal_02-512x512.png-cefa4c43e8ccef673ede7b267066e585.bptc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kfonh"]
+albedo_texture = SubResource("CompressedTexture2D_3avgc")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iogn7"]
 albedo_color = Color(0.57254905, 0.31764707, 0, 1)
@@ -397,6 +408,36 @@ transform = Transform3D(-0.225338, 0, 0.446344, 0, 0.5, 0, -0.446344, 0, -0.2253
 
 [node name="Bush" parent="SpawnRoom2/Bushes" unique_id=563084062 instance=ExtResource("1_3avgc")]
 transform = Transform3D(0.723967, 0, 0.689834, 0, 1, 0, -0.689834, 0, 0.723967, -32.6077, -0.238356, -32.0919)
+
+[node name="Bush10" parent="SpawnRoom2/Bushes" unique_id=154626955 instance=ExtResource("1_3avgc")]
+transform = Transform3D(-0.6621489, 0, 0.74937165, 0, 1, 0, -0.74937165, 0, -0.6621489, -43.513405, 3.180615, 33.062977)
+
+[node name="Bush11" parent="SpawnRoom2/Bushes" unique_id=1619810698 instance=ExtResource("1_3avgc")]
+transform = Transform3D(-0.9651897, 0, 0.26154906, 0, 1, 0, -0.26154906, 0, -0.9651897, -53.77471, 3.180615, 18.918484)
+
+[node name="Bush12" parent="SpawnRoom2/Bushes" unique_id=1370079530 instance=ExtResource("1_3avgc")]
+transform = Transform3D(-0.9651897, 0, 0.26154906, 0, 1, 0, -0.26154906, 0, -0.9651897, -53.92375, 3.180615, 30.325155)
+
+[node name="Bush13" parent="SpawnRoom2/Bushes" unique_id=2115645528 instance=ExtResource("1_3avgc")]
+transform = Transform3D(-0.9651897, 0, 0.26154906, 0, 1, 0, -0.26154906, 0, -0.9651897, -54.274258, 3.180613, 40.929153)
+
+[node name="Bush14" parent="SpawnRoom2/Bushes" unique_id=1229442097 instance=ExtResource("1_3avgc")]
+transform = Transform3D(-0.9651897, 0, 0.26154906, 0, 1, 0, -0.26154906, 0, -0.9651897, -54.784565, 3.180615, 47.62805)
+
+[node name="Bush15" parent="SpawnRoom2/Bushes" unique_id=379608102 instance=ExtResource("1_3avgc")]
+transform = Transform3D(-0.99999404, 0, -0.0032985806, 0, 1, 0, 0.0032985806, 0, -0.99999404, -48.03132, 3.180615, 64.72035)
+
+[node name="Bush16" parent="SpawnRoom2/Bushes" unique_id=1756419676 instance=ExtResource("1_3avgc")]
+transform = Transform3D(-0.99999404, 0, -0.0032985806, 0, 1, 0, 0.0032985806, 0, -0.99999404, -53.737762, 3.180615, 78.281975)
+
+[node name="Bush17" parent="SpawnRoom2/Bushes" unique_id=1805853411 instance=ExtResource("1_3avgc")]
+transform = Transform3D(-0.7912766, 0, -0.6114576, 0, 1, 0, 0.6114576, 0, -0.7912766, -57.99417, 3.1806169, 105.22659)
+
+[node name="Bush18" parent="SpawnRoom2/Bushes" unique_id=1393450894 instance=ExtResource("1_3avgc")]
+transform = Transform3D(0.6954986, 0, -0.7185267, 0, 1, 0, 0.7185267, 0, 0.6954986, -43.74013, 3.1806169, 107.881454)
+
+[node name="Bush19" parent="SpawnRoom2/Bushes" unique_id=1273546775 instance=ExtResource("1_3avgc")]
+transform = Transform3D(0.8688213, 0, 0.4951247, 0, 1, 0, -0.4951247, 0, 0.8688213, -42.871788, 3.1806169, 99.32133)
 
 [node name="Bush2" parent="SpawnRoom2/Bushes" unique_id=18794820 instance=ExtResource("1_3avgc")]
 transform = Transform3D(0.83888, 0, 0.544317, 0, 1, 0, -0.544317, 0, 0.83888, -30.7489, -0.238356, -29.9581)
@@ -1158,16 +1199,18 @@ transform = Transform3D(0.42547923, 0, 0.90496814, 0, 1, 0, -0.90496814, 0, 0.42
 [node name="WoodBarrel11" parent="EnemyRoom" unique_id=607387175 instance=ExtResource("45_dt8i1")]
 transform = Transform3D(0.42547923, 0, 0.90496814, 0, 1, 0, -0.90496814, 0, 0.42547923, -58.31577, 0.98631966, 209.54683)
 
-[node name="Boat" parent="EnemyRoom" unique_id=536071223 instance=ExtResource("31_rh67q")]
+[node name="Boat" parent="EnemyRoom" unique_id=352106405 instance=ExtResource("31_rh67q")]
 transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, -49.954166, 9.536743e-07, 227.25957)
 
-[node name="Boat" parent="EnemyRoom/Boat" index="0" unique_id=1508571028]
+[node name="Boat" parent="EnemyRoom/Boat" index="0" unique_id=627832704]
 surface_material_override/0 = SubResource("StandardMaterial3D_rh67q")
+surface_material_override/1 = SubResource("StandardMaterial3D_3avgc")
+surface_material_override/2 = SubResource("StandardMaterial3D_kfonh")
 
-[node name="Cube" parent="EnemyRoom/Boat" index="2" unique_id=1276838523]
+[node name="Cube" parent="EnemyRoom/Boat" index="2" unique_id=499516211]
 surface_material_override/0 = SubResource("StandardMaterial3D_iogn7")
 
-[node name="Hut" parent="EnemyRoom/Boat" index="3" unique_id=486486583]
+[node name="Hut" parent="EnemyRoom/Boat" index="3" unique_id=2126178144]
 surface_material_override/0 = SubResource("StandardMaterial3D_ges3u")
 
 [node name="LevelExit" parent="EnemyRoom" unique_id=1288942418 instance=ExtResource("33_iogn7")]
@@ -1228,7 +1271,7 @@ transform = Transform3D(-0.2656066, 0, 0.9640815, 0, 1, 0, -0.9640815, 0, -0.265
 transform = Transform3D(0.9442098, 0, 0.3293446, 0, 1, 0, -0.3293446, 0, 0.9442098, -57.501434, 2.4947488, 181.01794)
 
 [node name="PlayerContainer" parent="." unique_id=1557528804 instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.341064, 0.893969, 178.68787)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.994278, 0.8939652, -55.24302)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1617281208]
 stream = ExtResource("36_ges3u")
