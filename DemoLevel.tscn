@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://ct1cdqottsrdb" path="res://Bush.tscn" id="1_3avgc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
 [ext_resource type="Shader" uid="uid://c2xy5aqf4bhem" path="res://Ocean.gdshader" id="1_m8mxy"]
-[ext_resource type="AudioStream" uid="uid://cg4jni45p84ej" path="res://music/Juhani Junkala [Retro Game Music Pack] Level 1.wav" id="1_qwe3r"]
 [ext_resource type="Script" uid="uid://flhqtt5wc1vn" path="res://tools/ResetParentNodePosition.cs" id="2_q6q4p"]
 [ext_resource type="Script" uid="uid://du8cwf636gg70" path="res://environment/Spikes/SpikeArea.cs" id="2_xq41t"]
 [ext_resource type="Texture2D" uid="uid://bempk1msb3n8f" path="res://DemoLevel/Dirt_01-512x512.png" id="3_a2uqh"]
@@ -47,6 +46,7 @@
 [ext_resource type="PackedScene" uid="uid://cjsblkorxplug" path="res://LevelExit.tscn" id="33_iogn7"]
 [ext_resource type="PackedScene" uid="uid://6c54o5sjm0nm" path="res://environment/Crate.tscn" id="34_ges3u"]
 [ext_resource type="PackedScene" uid="uid://diobrh3rolllb" path="res://ui/FpsPanel.tscn" id="35_q6q4p"]
+[ext_resource type="AudioStream" uid="uid://7aebm3vrauux" path="res://music/Forest 1 (Okay).wav" id="36_ges3u"]
 [ext_resource type="PackedScene" uid="uid://cq1nciftfyqqb" path="res://environment/WoodBarrel2/WoodBarrel2.tscn" id="45_dt8i1"]
 [ext_resource type="PackedScene" uid="uid://cwc0bij0033fh" path="res://DemoLevel/Terrain/DemoSpawnArea2.blend" id="65_6nk0g"]
 
@@ -231,7 +231,7 @@ surface_material_override/1 = SubResource("StandardMaterial3D_g3lwr")
 visible = false
 
 [node name="ArrowSign" parent="SpawnRoom2" unique_id=79286525 instance=ExtResource("9_wybiu")]
-transform = Transform3D(-0.692038, 0.0120796, 0.72176, 0.0174524, 0.999848, -9.65473e-10, -0.72165, 0.0125965, -0.692143, -23.3486, 0.373715, -32.5017)
+transform = Transform3D(0.67623293, -0.011803693, -0.7365933, 0.0174524, 0.9998477, -9.87431e-09, -0.73648113, 0.012855315, -0.67633593, -30.332926, 0.373715, -31.941175)
 
 [node name="ArrowSign2" parent="SpawnRoom2" unique_id=153498588 instance=ExtResource("9_wybiu")]
 transform = Transform3D(-0.590507, 0, 0.807033, 0, 1, 0, -0.807033, 0, -0.590507, -43.7503, 3.87486, 32.4044)
@@ -1224,7 +1224,7 @@ transform = Transform3D(0.9442098, 0, 0.3293446, 0, 1, 0, -0.3293446, 0, 0.94420
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.971464, 0.893969, -51.424564)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1617281208]
-stream = ExtResource("1_qwe3r")
+stream = ExtResource("36_ges3u")
 autoplay = true
 bus = &"Music"
 
