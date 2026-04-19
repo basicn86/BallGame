@@ -5,6 +5,18 @@ public partial class MainMenu : VBoxContainer
 {
 	[Export]
 	PackedScene tutorialScene;
+
+	public override void _PhysicsProcess(double delta)
+	{
+		if (Input.IsActionJustPressed("fullscreen"))
+		{
+			if (DisplayServer.WindowGetMode() == DisplayServer.WindowMode.ExclusiveFullscreen)
+				DisplayServer.WindowSetMode(DisplayServer.WindowMode.Maximized);
+			else
+				DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
+		}
+	}
+
 	public void _tutorial_pressed()
 	{
 		//change scene to the tutorial scene
