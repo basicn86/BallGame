@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cfxsveyg5ebyx"]
+
+[ext_resource type="Script" uid="uid://cfeefw2cvmsoj" path="res://MainMenu/MainMenuBall.cs" id="1_i6qw0"]
+[ext_resource type="ArrayMesh" uid="uid://bk60o4evjj67t" path="res://player/PlayerBall.obj" id="1_vn124"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_82o4s"]
+
+[node name="MainMenuBall" type="RigidBody3D" unique_id=1616405997 node_paths=PackedStringArray("mesh")]
+mass = 0.25
+script = ExtResource("1_i6qw0")
+mesh = NodePath("MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1153062493]
+physics_interpolation_mode = 1
+mesh = ExtResource("1_vn124")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=527082371]
+shape = SubResource("SphereShape3D_82o4s")
+
+[node name="Timer" type="Timer" parent="." unique_id=1464775745]
+process_callback = 0
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

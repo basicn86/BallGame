@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://ct1cdqottsrdb" path="res://Bush.tscn" id="1_3avgc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_fu0bv"]
-[ext_resource type="Shader" uid="uid://c2xy5aqf4bhem" path="res://Ocean.gdshader" id="1_m8mxy"]
 [ext_resource type="Script" uid="uid://flhqtt5wc1vn" path="res://tools/ResetParentNodePosition.cs" id="2_q6q4p"]
 [ext_resource type="Script" uid="uid://du8cwf636gg70" path="res://environment/Spikes/SpikeArea.cs" id="2_xq41t"]
 [ext_resource type="Texture2D" uid="uid://bempk1msb3n8f" path="res://DemoLevel/Dirt_01-512x512.png" id="3_a2uqh"]
@@ -49,6 +48,7 @@
 [ext_resource type="PackedScene" uid="uid://6c54o5sjm0nm" path="res://environment/Crate.tscn" id="34_ges3u"]
 [ext_resource type="PackedScene" uid="uid://diobrh3rolllb" path="res://ui/FpsPanel.tscn" id="35_q6q4p"]
 [ext_resource type="AudioStream" uid="uid://7aebm3vrauux" path="res://music/Forest 1 (Okay).wav" id="36_ges3u"]
+[ext_resource type="PackedScene" uid="uid://b08k35ffdioru" path="res://WaterPlane.tscn" id="39_3avgc"]
 [ext_resource type="PackedScene" uid="uid://cq1nciftfyqqb" path="res://environment/WoodBarrel2/WoodBarrel2.tscn" id="45_dt8i1"]
 [ext_resource type="PackedScene" uid="uid://cwc0bij0033fh" path="res://DemoLevel/Terrain/DemoSpawnArea2.blend" id="65_6nk0g"]
 
@@ -147,41 +147,6 @@ albedo_texture = ExtResource("33_2ci3n")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uv337"]
 albedo_texture = ExtResource("13_qwe3r")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_m8mxy"]
-noise_type = 3
-seed = 400
-frequency = 0.005
-fractal_type = 2
-fractal_octaves = 1
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qwe3r"]
-width = 1024
-height = 1024
-generate_mipmaps = false
-noise = SubResource("FastNoiseLite_m8mxy")
-seamless = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_qwe3r"]
-fractal_type = 2
-fractal_octaves = 2
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_81cih"]
-noise = SubResource("FastNoiseLite_qwe3r")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m8mxy"]
-render_priority = 0
-shader = ExtResource("1_m8mxy")
-shader_parameter/noise_tex = SubResource("NoiseTexture2D_qwe3r")
-shader_parameter/noise_tex2 = SubResource("NoiseTexture2D_81cih")
-shader_parameter/wave_horizontal_scale = 0.01
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_81cih"]
-material = SubResource("ShaderMaterial_m8mxy")
-size = Vector2(800, 800)
-subdivide_width = 256
-subdivide_depth = 256
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_wqqyb"]
 size = Vector3(5000, 20, 5000)
 
@@ -196,8 +161,8 @@ background_mode = 2
 background_energy_multiplier = 0.75
 sky = SubResource("Sky_p2gfp")
 sky_rotation = Vector3(0, 3.1415927, 0)
-reflected_light_source = 1
 tonemap_white = 8.0
+glow_enabled = true
 
 [sub_resource type="LabelSettings" id="LabelSettings_q6q4p"]
 font_size = 48
@@ -1400,17 +1365,15 @@ surface_material_override/0 = SubResource("StandardMaterial3D_uv337")
 metadata/_edit_lock_ = true
 
 [node name="PlayerContainer" parent="." unique_id=1557528804 instance=ExtResource("1_fu0bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.813744, 0.8939652, 174.77078)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.855848, 0.62573856, -54.591354)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1617281208]
 stream = ExtResource("36_ges3u")
 autoplay = true
 bus = &"Music"
 
-[node name="WaterPlane" type="MeshInstance3D" parent="." unique_id=2002732759 groups=["PlayerRespawned"]]
+[node name="WaterPlane" parent="." unique_id=997116325 instance=ExtResource("39_3avgc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.239, 0)
-mesh = SubResource("PlaneMesh_81cih")
-metadata/_edit_lock_ = true
 
 [node name="DeathPlane" type="Area3D" parent="." unique_id=1925720176]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.8539, 0)
