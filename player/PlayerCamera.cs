@@ -221,8 +221,6 @@ public partial class PlayerCamera : Node3D
 
 	private void EnteringFreeLookState(double delta)
 	{
-		Crosshair.Instance.Visible = true;
-
 		pitch.RotationDegrees = new Vector3(LockOnPedestal.GlobalRotationDegrees.X + 10f, 0.0f, 0.0f);
 		_stateTransitionTimer += delta * 2.0;
 		camera.GlobalPosition = camera.GlobalPosition.Lerp(FreeLookPedestal.GlobalPosition, (float)_stateTransitionTimer);

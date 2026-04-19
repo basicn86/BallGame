@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://mbn5xemgcifr" path="res://autumn_field_puresky_4k.hdr" id="5_rh67q"]
 [ext_resource type="PackedScene" uid="uid://yhdpvdw84e3b" path="res://environment/Mushrooms/BlueMushroom.tscn" id="6_akrou"]
 [ext_resource type="Texture2D" uid="uid://bjb53if2y0rlk" path="res://Textures/Stone/Stone_15-512x512.png" id="6_bymsf"]
-[ext_resource type="PackedScene" uid="uid://ctiw3gw6hbfhh" path="res://ui/crosshair.tscn" id="7_2qhh3"]
 [ext_resource type="PackedScene" uid="uid://tidiqd1qwkgt" path="res://environment/Mushrooms/RedMushroom.tscn" id="7_bymsf"]
 [ext_resource type="Script" uid="uid://br0v0i3qutglf" path="res://GrassBladeMultiMesh.cs" id="9_nbtrp"]
 [ext_resource type="PackedScene" uid="uid://5t66n6i6dv8o" path="res://Checkpoint.tscn" id="9_sdew7"]
@@ -1427,10 +1426,6 @@ CoinSound = NodePath("AudioStreamPlayer")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GUI/CoinPanelContainer/Label" unique_id=1571397901]
 stream = ExtResource("30_qwe3r")
 volume_db = -12.0
-
-[node name="Crosshair" parent="GUI" unique_id=933581811 instance=ExtResource("7_2qhh3")]
-visible = false
-layout_mode = 1
 
 [node name="PauseMenu" parent="GUI" unique_id=490394728 instance=ExtResource("3_lnbl7")]
 layout_mode = 1
