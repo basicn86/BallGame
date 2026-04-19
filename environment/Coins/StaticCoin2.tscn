@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cl07s3vux1dhg"]
+
+[ext_resource type="Script" uid="uid://bqbrlicwibxel" path="res://environment/Coins/Coin.cs" id="1_xfv5n"]
+[ext_resource type="PackedScene" uid="uid://8iu2d8e2sdxo" path="res://environment/Coins/Gem2.blend" id="2_eipmt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xfv5n"]
+albedo_color = Color(0, 0.392157, 0.815686, 1)
+roughness = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f731l"]
+radius = 1.0
+
+[node name="Coin" type="Node3D" unique_id=1423590093 node_paths=PackedStringArray("mesh", "DetectionArea")]
+script = ExtResource("1_xfv5n")
+RotationSpeed = 3.0
+mesh = NodePath("Gem2/Cube")
+DetectionArea = NodePath("PlayerDetectionArea")
+
+[node name="Gem2" parent="." unique_id=1147693505 instance=ExtResource("2_eipmt")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="Cube" parent="Gem2" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_xfv5n")
+
+[node name="PlayerDetectionArea" type="Area3D" parent="." unique_id=1743035210]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectionArea" unique_id=199121244]
+shape = SubResource("SphereShape3D_f731l")
+
+[connection signal="body_entered" from="PlayerDetectionArea" to="." method="body_entered"]
+
+[editable path="Gem2"]

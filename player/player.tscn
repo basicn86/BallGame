@@ -1,13 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfncrprg4epon"]
+[gd_scene format=3 uid="uid://dfncrprg4epon"]
 
-[ext_resource type="Script" path="res://player/Player.cs" id="1_8wcbe"]
+[ext_resource type="Script" uid="uid://crsev7gnp4j1t" path="res://player/Player.cs" id="1_8wcbe"]
 [ext_resource type="ArrayMesh" uid="uid://bk60o4evjj67t" path="res://player/PlayerBall.obj" id="2_76w44"]
 [ext_resource type="PackedScene" uid="uid://dbv12oqcf8r40" path="res://player/landing_particles.tscn" id="2_vu4ki"]
 [ext_resource type="PackedScene" uid="uid://b25px6lkbxcw0" path="res://player/PlayerDeathParticles.tscn" id="3_jbxwk"]
-[ext_resource type="Script" path="res://player/PlayerModelComponent.cs" id="4_ie68q"]
-[ext_resource type="Script" path="res://common/HitBoxComponent.cs" id="5_rnpcn"]
+[ext_resource type="Script" uid="uid://cpam5ek1nkkld" path="res://player/PlayerModelComponent.cs" id="4_ie68q"]
+[ext_resource type="Script" uid="uid://drxua1kmiojx7" path="res://common/DamageReceiver.cs" id="5_rnpcn"]
 [ext_resource type="AudioStream" uid="uid://cppvf4iqq5i68" path="res://player/Jump.wav" id="7_5gxdp"]
 [ext_resource type="AudioStream" uid="uid://bc8c5k71teb71" path="res://player/Landing.wav" id="8_c1um3"]
+[ext_resource type="Texture2D" uid="uid://cbpi3mlj6o324" path="res://player/GroundDecal2.png" id="9_8t03j"]
+[ext_resource type="Script" uid="uid://bhjnfpnfhumt1" path="res://player/PlayerGroundDecal.cs" id="9_hg6s5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0d2g"]
 albedo_color = Color(0, 0.639216, 1, 1)
@@ -20,9 +22,10 @@ backlight = Color(1, 0, 0, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_1pijw"]
 radius = 0.6
 
-[node name="Player" type="RigidBody3D" node_paths=PackedStringArray("playerModel", "groundCast", "jumpSound", "landSound")]
+[node name="Player" type="RigidBody3D" unique_id=1850902689 node_paths=PackedStringArray("playerModel", "groundCast", "jumpSound", "landSound")]
 collision_layer = 2
 gravity_scale = 1.5
+inertia = Vector3(0.01, 0.01, 0.01)
 can_sleep = false
 continuous_cd = true
 script = ExtResource("1_8wcbe")
@@ -39,7 +42,8 @@ JumpUnheldGravityScale = 3.5
 jumpSound = NodePath("JumpingAudio")
 landSound = NodePath("LandingAudio")
 
-[node name="PlayerModel" type="MeshInstance3D" parent="." node_paths=PackedStringArray("player", "InvisibilityTimer")]
+[node name="PlayerModel" type="MeshInstance3D" parent="." unique_id=609720715 node_paths=PackedStringArray("player", "InvisibilityTimer")]
+layers = 2
 gi_mode = 2
 mesh = ExtResource("2_76w44")
 surface_material_override/0 = SubResource("StandardMaterial3D_h0d2g")
@@ -47,35 +51,48 @@ script = ExtResource("4_ie68q")
 player = NodePath("..")
 InvisibilityTimer = NodePath("InvisibilityTimer")
 
-[node name="InvisibilityTimer" type="Timer" parent="PlayerModel"]
+[node name="InvisibilityTimer" type="Timer" parent="PlayerModel" unique_id=1715302488]
 process_mode = 1
 process_callback = 0
 wait_time = 2.2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=190085145]
 shape = SubResource("SphereShape3D_08omv")
 
-[node name="GroundRaycast" type="RayCast3D" parent="."]
+[node name="GroundRaycast" type="RayCast3D" parent="." unique_id=51697175]
 top_level = true
 target_position = Vector3(0, -0.75, 0)
 collision_mask = 5
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="HitBox" type="Area3D" parent="." unique_id=1841104854]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("5_rnpcn")
+IsPlayer = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox" unique_id=630929858]
 shape = SubResource("SphereShape3D_1pijw")
 
-[node name="JumpingAudio" type="AudioStreamPlayer3D" parent="."]
+[node name="JumpingAudio" type="AudioStreamPlayer3D" parent="." unique_id=473355447]
 stream = ExtResource("7_5gxdp")
 attenuation_model = 3
-max_db = 0.0
+bus = &"Player SFX"
 
-[node name="LandingAudio" type="AudioStreamPlayer3D" parent="."]
+[node name="LandingAudio" type="AudioStreamPlayer3D" parent="." unique_id=1143208624]
 stream = ExtResource("8_c1um3")
 attenuation_model = 3
-max_db = 0.0
+bus = &"Player SFX"
+
+[node name="GroundDecal" type="Decal" parent="." unique_id=1112336989 node_paths=PackedStringArray("player", "groundCast")]
+top_level = true
+size = Vector3(0.85, 10, 0.85)
+texture_albedo = ExtResource("9_8t03j")
+lower_fade = 0.1
+script = ExtResource("9_hg6s5")
+player = NodePath("..")
+groundCast = NodePath("../GroundRaycast")
+offset = -6.0
 
 [connection signal="PlayerDied" from="." to="PlayerModel" method="_on_player_player_died"]
 [connection signal="timeout" from="PlayerModel/InvisibilityTimer" to="PlayerModel" method="_on_invisibility_timer_timeout"]
-[connection signal="TakeDamage" from="Area3D" to="." method="_on_area_3d_take_damage"]
+[connection signal="TakeDamage" from="HitBox" to="." method="_on_area_3d_take_damage"]

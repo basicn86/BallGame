@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnpb27we1lbh3"]
+[gd_scene format=3 uid="uid://cnpb27we1lbh3"]
 
-[ext_resource type="Script" path="res://PauseMenu.cs" id="1_mbcr5"]
+[ext_resource type="Script" uid="uid://cw1yyredbysu" path="res://PauseMenu.cs" id="1_mbcr5"]
 [ext_resource type="StyleBox" uid="uid://dkh88htrj522q" path="res://ui/PauseMenuPanel.tres" id="2_gbsgt"]
 [ext_resource type="PackedScene" uid="uid://dwor6aejvqbhb" path="res://ui/ChangeMenuButton.tscn" id="2_wo4me"]
-[ext_resource type="Script" path="res://ui/MSAADropdown.cs" id="3_ckwlj"]
-[ext_resource type="Script" path="res://ui/UIScaleSlider.cs" id="4_asjyt"]
-[ext_resource type="Script" path="res://ui/FPSLimiter.cs" id="5_k1w7l"]
+[ext_resource type="Script" uid="uid://xs60adn3sykm" path="res://ui/MSAADropdown.cs" id="3_ckwlj"]
+[ext_resource type="Script" uid="uid://cerxjt4vwasxf" path="res://ui/UIScaleSlider.cs" id="4_asjyt"]
+[ext_resource type="Script" uid="uid://crhfm7peqe6jr" path="res://ui/FPSLimiter.cs" id="5_k1w7l"]
+[ext_resource type="Script" uid="uid://kmsg8pxe0h0y" path="res://ui/VSyncToggle.cs" id="7_fdrbn"]
 
-[node name="PauseMenu" type="MarginContainer"]
+[node name="PauseMenu" type="MarginContainer" unique_id=907157362]
 process_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -22,44 +23,44 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mbcr5")
 
-[node name="MainContainer" type="PanelContainer" parent="."]
+[node name="MainContainer" type="PanelContainer" parent="." unique_id=248265978]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_gbsgt")
 
-[node name="MainOptions" type="VBoxContainer" parent="MainContainer"]
+[node name="MainOptions" type="VBoxContainer" parent="MainContainer" unique_id=866812221]
 layout_mode = 2
 
-[node name="ResumeButton" type="Button" parent="MainContainer/MainOptions"]
+[node name="ResumeButton" type="Button" parent="MainContainer/MainOptions" unique_id=1430435493]
 layout_mode = 2
 text = "Resume"
 
-[node name="GoToSettings" parent="MainContainer/MainOptions" node_paths=PackedStringArray("ControlToShow", "ControlToHide") instance=ExtResource("2_wo4me")]
+[node name="GoToSettings" parent="MainContainer/MainOptions" unique_id=1399644218 node_paths=PackedStringArray("ControlToShow", "ControlToHide") instance=ExtResource("2_wo4me")]
 layout_mode = 2
 text = "Settings"
 ControlToShow = NodePath("../../../SettingsPanel")
 ControlToHide = NodePath("../..")
 
-[node name="QuitButton" type="Button" parent="MainContainer/MainOptions"]
+[node name="QuitButton" type="Button" parent="MainContainer/MainOptions" unique_id=923332621]
 layout_mode = 2
 text = "Quit"
 
-[node name="SettingsPanel" type="PanelContainer" parent="."]
+[node name="SettingsPanel" type="PanelContainer" parent="." unique_id=2086390227]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_gbsgt")
 
-[node name="Settings" type="VBoxContainer" parent="SettingsPanel"]
+[node name="Settings" type="VBoxContainer" parent="SettingsPanel" unique_id=1900018917]
 layout_mode = 2
 
-[node name="UIScaleText" type="PanelContainer" parent="SettingsPanel/Settings"]
+[node name="UIScaleText" type="PanelContainer" parent="SettingsPanel/Settings" unique_id=413760479]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="SettingsPanel/Settings/UIScaleText"]
+[node name="Label" type="Label" parent="SettingsPanel/Settings/UIScaleText" unique_id=177478422]
 layout_mode = 2
 text = "UI Scale"
 horizontal_alignment = 1
 
-[node name="UIScaleSlider" type="HSlider" parent="SettingsPanel/Settings"]
+[node name="UIScaleSlider" type="HSlider" parent="SettingsPanel/Settings" unique_id=1641555505]
 custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
 min_value = 0.5
@@ -70,19 +71,19 @@ tick_count = 6
 ticks_on_borders = true
 script = ExtResource("4_asjyt")
 
-[node name="FPSLimit" type="PanelContainer" parent="SettingsPanel/Settings"]
+[node name="FPSLimit" type="PanelContainer" parent="SettingsPanel/Settings" unique_id=57779132]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/Settings/FPSLimit"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/Settings/FPSLimit" unique_id=1150233999]
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="Label" type="Label" parent="SettingsPanel/Settings/FPSLimit/HBoxContainer"]
+[node name="Label" type="Label" parent="SettingsPanel/Settings/FPSLimit/HBoxContainer" unique_id=193053999]
 layout_mode = 2
 text = "FPS Limit"
 
-[node name="LineEdit" type="LineEdit" parent="SettingsPanel/Settings/FPSLimit/HBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="SettingsPanel/Settings/FPSLimit/HBoxContainer" unique_id=2055728815]
 layout_mode = 2
 text = "60"
 alignment = 1
@@ -90,12 +91,19 @@ max_length = 3
 script = ExtResource("5_k1w7l")
 defaultValue = 160
 
-[node name="MSAA" type="OptionButton" parent="SettingsPanel/Settings"]
+[node name="VSync Toggle" type="CheckBox" parent="SettingsPanel/Settings" unique_id=1249081288]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "VSYNC"
+script = ExtResource("7_fdrbn")
+
+[node name="MSAA" type="OptionButton" parent="SettingsPanel/Settings" unique_id=1994075015]
 layout_mode = 2
 alignment = 1
 selected = 0
 item_count = 4
 popup/item_0/text = "MSAA Off"
+popup/item_0/id = 0
 popup/item_1/text = "MSAA 2x"
 popup/item_1/id = 1
 popup/item_2/text = "MSAA 4x"
@@ -104,7 +112,7 @@ popup/item_3/text = "MSAA 8x"
 popup/item_3/id = 3
 script = ExtResource("3_ckwlj")
 
-[node name="GoToMain" parent="SettingsPanel/Settings" node_paths=PackedStringArray("ControlToShow", "ControlToHide") instance=ExtResource("2_wo4me")]
+[node name="GoToMain" parent="SettingsPanel/Settings" unique_id=1966946837 node_paths=PackedStringArray("ControlToShow", "ControlToHide") instance=ExtResource("2_wo4me")]
 layout_mode = 2
 text = "Return"
 ControlToShow = NodePath("../../../MainContainer")
@@ -115,4 +123,5 @@ ControlToHide = NodePath("../..")
 [connection signal="drag_ended" from="SettingsPanel/Settings/UIScaleSlider" to="SettingsPanel/Settings/UIScaleSlider" method="_on_drag_ended"]
 [connection signal="focus_exited" from="SettingsPanel/Settings/FPSLimit/HBoxContainer/LineEdit" to="SettingsPanel/Settings/FPSLimit/HBoxContainer/LineEdit" method="_on_focus_exited"]
 [connection signal="text_submitted" from="SettingsPanel/Settings/FPSLimit/HBoxContainer/LineEdit" to="SettingsPanel/Settings/FPSLimit/HBoxContainer/LineEdit" method="_on_text_submitted"]
+[connection signal="toggled" from="SettingsPanel/Settings/VSync Toggle" to="SettingsPanel/Settings/VSync Toggle" method="_on_toggled"]
 [connection signal="item_selected" from="SettingsPanel/Settings/MSAA" to="SettingsPanel/Settings/MSAA" method="_on_item_selected"]

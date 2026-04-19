@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cnp2bm7va434i"]
+[gd_scene load_steps=10 format=3 uid="uid://cnp2bm7va434i"]
 
-[ext_resource type="Script" path="res://weapons/LaserPistol/LaserProjectile.cs" id="1_ahsb0"]
+[ext_resource type="Script" uid="uid://0yavq04eujy6" path="res://weapons/LaserPistol/LaserProjectile.cs" id="1_ahsb0"]
 [ext_resource type="PackedScene" uid="uid://bxe6dxk3uc1eq" path="res://weapons/LaserPistol/LaserParticles.tscn" id="2_6cs73"]
-[ext_resource type="Shader" path="res://weapons/LaserPistol/LaserProjectile.gdshader" id="3_fg8j6"]
-[ext_resource type="Script" path="res://weapons/LaserPistol/LaserProjectileInterpolator.cs" id="4_ca20s"]
-[ext_resource type="Script" path="res://weapons/LaserPistol/LaserPistolProjectile.cs" id="4_ri4uu"]
+[ext_resource type="Shader" uid="uid://b1octagu787gn" path="res://weapons/LaserPistol/LaserProjectile.gdshader" id="3_fg8j6"]
+[ext_resource type="Script" uid="uid://b1o3id4a7xqku" path="res://weapons/LaserPistol/LaserPistolProjectile.cs" id="4_ri4uu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2pwt"]
 cull_mode = 1
@@ -31,22 +30,24 @@ size = Vector3(0.2, 0.6, 0.2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_qe8tm"]
 size = Vector3(0.4, 1, 0.4)
 
-[node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("particleSpawnPoint", "model")]
-collision_layer = 8
+[node name="RigidBody3D" type="RigidBody3D" node_paths=PackedStringArray("particleSpawnPoint")]
+physics_interpolation_mode = 1
+top_level = true
+collision_layer = 0
+collision_mask = 9
 gravity_scale = 0.0
 can_sleep = false
+continuous_cd = true
 max_contacts_reported = 1
 script = ExtResource("1_ahsb0")
 particleSpawnPoint = NodePath("ParticleSpawnPoint")
 particleScene = ExtResource("2_6cs73")
-model = NodePath("LaserProjectile")
 
-[node name="LaserProjectile" type="MeshInstance3D" parent="." node_paths=PackedStringArray("projectile")]
+[node name="LaserProjectile" type="MeshInstance3D" parent="."]
+physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 cast_shadow = 0
 mesh = SubResource("CapsuleMesh_nt5qy")
-script = ExtResource("4_ca20s")
-projectile = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)

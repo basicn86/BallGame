@@ -13,7 +13,6 @@ public partial class LandingParticles : GpuParticles3D
 	{
 		if (!Emitting)
 		{
-			GD.Print("Particles are done emitting, removing node");
 			QueueFree();
 		}
 	}

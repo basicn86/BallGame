@@ -21,6 +21,8 @@ public partial class PlayerModelComponent : MeshInstance3D
 		TopLevel = true;
 		previousRotation = player.Quaternion;
 		currentRotation = player.Quaternion;
+		currentPos = player.GlobalPosition;
+		previousPos = player.GlobalPosition;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,6 +43,14 @@ public partial class PlayerModelComponent : MeshInstance3D
 		currentPos = player.GlobalTransform.Origin;
 
 		previousRotation = currentRotation;
+		currentRotation = player.Quaternion;
+	}
+
+	public void ResetSmoothing()
+	{
+		previousPos = player.GlobalPosition;
+		currentPos = player.GlobalPosition;
+		previousRotation = player.Quaternion;
 		currentRotation = player.Quaternion;
 	}
 

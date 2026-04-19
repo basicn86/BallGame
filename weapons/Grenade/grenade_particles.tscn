@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://ur6yyp0n0nlb"]
 
-[ext_resource type="Script" path="res://scripts/GrenadeParticles.cs" id="1_2hst6"]
+[ext_resource type="Script" uid="uid://dree6fe0d85vg" path="res://scripts/GrenadeParticles.cs" id="1_2hst6"]
 [ext_resource type="AudioStream" uid="uid://4t3movgxu1eu" path="res://Explosion.wav" id="2_k7dxy"]
 
 [sub_resource type="Gradient" id="Gradient_h5b36"]
@@ -88,8 +88,9 @@ amount = 128
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
-fixed_fps = 60
-visibility_aabb = AABB(-16, -16, -16, 32, 32, 32)
+fixed_fps = 0
+interpolate = false
+visibility_aabb = AABB(-100, -100, -100, 200, 200, 200)
 process_material = SubResource("ParticleProcessMaterial_vj5j1")
 draw_pass_1 = SubResource("BoxMesh_wb1xk")
 
@@ -99,11 +100,15 @@ amount = 64
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
-visibility_aabb = AABB(-16, -16, -16, 32, 32, 32)
+visibility_aabb = AABB(-100, -100, -100, 200, 200, 200)
 process_material = SubResource("ParticleProcessMaterial_t6dlp")
 draw_pass_1 = SubResource("SphereMesh_cbddg")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_k7dxy")
+volume_db = -6.0
+unit_size = 20.0
 max_db = -3.0
 autoplay = true
+bus = &"Explosions"
+attenuation_filter_db = 0.0

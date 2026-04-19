@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://bwlhnxskjdsj7"]
+
+[ext_resource type="Script" uid="uid://8uxd0h7wqv2c" path="res://DemoLevel/CptDetonatorBomb.cs" id="1_7enr5"]
+[ext_resource type="PackedScene" uid="uid://ur6yyp0n0nlb" path="res://weapons/Grenade/grenade_particles.tscn" id="2_h8pf8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kwqn6"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_0ho1t"]
+radial_segments = 32
+rings = 16
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jg3y4"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tecia"]
+radius = 3.0
+
+[node name="CptDetonatorBomb" type="RigidBody3D" node_paths=PackedStringArray("explosionArea")]
+physics_interpolation_mode = 1
+collision_layer = 0
+physics_material_override = SubResource("PhysicsMaterial_kwqn6")
+gravity_scale = 4.0
+script = ExtResource("1_7enr5")
+explosionScene = ExtResource("2_h8pf8")
+explosionArea = NodePath("Area3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_0ho1t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_jg3y4")
+
+[node name="ExplosionTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 7
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_tecia")
+
+[connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]

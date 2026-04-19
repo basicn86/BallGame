@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dwor6aejvqbhb"]
 
-[ext_resource type="Script" path="res://ui/ChangeMenuButton.cs" id="1_tcw3h"]
+[ext_resource type="Script" uid="uid://cw5gtlky6viu1" path="res://ui/ChangeMenuButton.cs" id="1_tcw3h"]
 
 [node name="ChangeMenuButton" type="Button"]
 script = ExtResource("1_tcw3h")

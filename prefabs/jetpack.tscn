@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dsvrwggj6oei0"]
 
 [ext_resource type="ArrayMesh" uid="uid://bl3pytr4culjv" path="res://Jetpack.obj" id="1_swgnx"]
-[ext_resource type="Script" path="res://scripts/jetpack.cs" id="2_kiapg"]
+[ext_resource type="Script" uid="uid://yjr5uhj1f8j6" path="res://scripts/jetpack.cs" id="2_kiapg"]
 
 [sub_resource type="Gradient" id="Gradient_6p1pq"]
 offsets = PackedFloat32Array(0.473934, 0.990521)

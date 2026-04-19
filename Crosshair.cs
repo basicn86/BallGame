@@ -3,10 +3,17 @@ using System;
 
 public partial class Crosshair : CenterContainer
 {
-	// Called when the node enters the scene tree for the first time.
+	
+	public static Crosshair Instance;
+
 	public override void _Ready()
 	{
-		QueueRedraw();
+		if (Instance != null)
+		{
+			QueueFree();
+			return;
+		}
+		Instance = this;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

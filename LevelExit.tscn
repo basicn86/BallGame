@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cjsblkorxplug"]
+
+[ext_resource type="PackedScene" uid="uid://s6ru3vm8ld86" path="res://environment/ExitSign.blend" id="1_arm25"]
+[ext_resource type="Script" uid="uid://cywl7kqy2w1rt" path="res://LevelExit.cs" id="1_xag1w"]
+[ext_resource type="Texture2D" uid="uid://buq46ure1mesf" path="res://Textures/Wood/Wood_22-512x512.png" id="2_n8lvt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_arm25"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8lvt"]
+albedo_texture = ExtResource("2_n8lvt")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xag1w"]
+size = Vector3(2.5, 2.5, 2.5)
+
+[node name="LevelExit" type="Node3D" unique_id=1288942418 node_paths=PackedStringArray("ExitSign")]
+script = ExtResource("1_xag1w")
+ExitSign = NodePath("ExitSign")
+
+[node name="ExitSign" parent="." unique_id=619048454 instance=ExtResource("1_arm25")]
+
+[node name="Text" parent="ExitSign" index="0" unique_id=891758838]
+surface_material_override/0 = SubResource("StandardMaterial3D_arm25")
+
+[node name="Cube" parent="ExitSign" index="1" unique_id=1264363154]
+surface_material_override/0 = SubResource("StandardMaterial3D_n8lvt")
+
+[node name="PlayerDetectionArea" type="Area3D" parent="." unique_id=913729198]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectionArea" unique_id=1447075099]
+shape = SubResource("BoxShape3D_xag1w")
+
+[connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
+
+[editable path="ExitSign"]

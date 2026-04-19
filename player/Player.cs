@@ -4,13 +4,17 @@ using System.Threading.Tasks;
 
 public partial class Player : RigidBody3D
 {
-	[ExportCategory("Player References")]
 	[Export]
-	private PlayerCamera cameraNode;
+	private PlayerCamera CameraNode;
+
+	private int health = 100;
+
 	[Export]
-	public MeshInstance3D playerModel;
+	public PlayerModelComponent playerModel;
 	[Export]
 	public RayCast3D groundCast;
+
+	[ExportGroup("Effects")]
 	[Export]
 	public PackedScene jumpParticles;
 	[Export]
@@ -28,21 +32,16 @@ public partial class Player : RigidBody3D
 	[Export]
 	public float NoInputDeceleration = 100f;
 	[Export]
+	public float JumpForce = 9f;
+	[Export]
 	public float JumpVelocityIgnoreFactor = 0.5f;
 	[Export]
 	public float JumpHeldGravityScale = 1.5f;
 	[Export]
 	public float JumpUnheldGravityScale = 2.5f;
 
-
 	private bool hasLanded = false;
 	private Vector3 respawnPos = new Vector3(0, 10, 0);
-
-	[ExportCategory("Weapons")]
-	[Export]
-	LaserPistol laserPistol;
-	[Export]
-	GrenadeThrower grenadeThrower;
 
 	[ExportCategory("Sounds")]
 	[Export]
@@ -50,42 +49,52 @@ public partial class Player : RigidBody3D
 	[Export]
 	public AudioStreamPlayer3D landSound;
 
+	public static Player Instance; //TODO: possibly remove this
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		cameraNode.PlayerRid = GetRid();
+		if (Instance != null) QueueFree();
+		Instance = this;
 
 		groundCast.TopLevel = true;
+
+		respawnPos = GlobalPosition;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		UpdateGroundCast();
-
-		TryJumping();
-
-		cameraNode.TargetPosition = playerModel.GlobalPosition;
-
-		laserPistol.UpdatePosition(GlobalPosition, cameraNode.Basis);
-		if (Input.IsActionJustPressed("attack"))
-		{
-			laserPistol.Fire(cameraNode.GetCrosshairCollisionPoint());
+		//fake stutter for debug
+		if (Input.IsKeyLabelPressed(Key.Tab)){
+			Task.Delay(500).Wait();
 		}
 
-		grenadeThrower.UpdatePosition(GlobalPosition, cameraNode.Basis);
-		if (Input.IsActionJustPressed("throw_grenade"))
+		CameraNode.TargetPosition = playerModel.GlobalPosition;
+
+		//TODO: likely remove this, no longer used.
+
+		/*
+		if (Input.IsActionJustPressed("attack")) //possibly move this to physics process
+		{
+			laserPistol.Fire(CameraNode.GetCrosshairCollisionPoint());
+		}
+
+		grenadeThrower.UpdatePosition(GlobalPosition, CameraNode.Basis);
+		if (Input.IsActionJustPressed("throw_grenade")) //possibly move this to physics process
 		{
 			grenadeThrower.Fire();
 		}
 		if(Input.IsActionJustReleased("throw_grenade"))
 		{
-			grenadeThrower.Release(cameraNode.GetCrosshairCollisionPoint());
-		}
+			grenadeThrower.Release(CameraNode.GetCrosshairCollisionPoint());
+		}*/
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
+		UpdateGroundCast();
+		TryJumping();
 		MovePlayer(delta);
 		RestrictPlayerVelocity(delta);
 	}
@@ -96,7 +105,7 @@ public partial class Player : RigidBody3D
 		Vector3 moveVector = new Vector3();
 		moveVector.X = Input.GetAxis("left", "right");
 		moveVector.Z = Input.GetAxis("forward", "backward");
-		moveVector *= cameraNode.Basis.Inverse();
+		moveVector *= CameraNode.GetCameraRotation().Inverse();
 		moveVector.Y = 0;
 
 		if (moveVector.IsZeroApprox())
@@ -121,7 +130,20 @@ public partial class Player : RigidBody3D
 	{
 		Vector3 velocity = LinearVelocity;
 		velocity.Y = 0; //don't restrict vertical velocity
-		if (velocity.Length() > MaxVelocity) ApplyCentralForce(-velocity.Normalized() * MaxVelocityPushback);
+		float speed = velocity.Length();
+		if (speed > MaxVelocity)
+		{
+			float excessVelocity = speed - MaxVelocity;
+
+			float t = Mathf.Clamp(excessVelocity, 0f, 1f);
+
+			Vector3 pushback = -velocity.Normalized() * MaxVelocityPushback * t;
+			if (groundCast.IsColliding())
+			{
+				pushback = AdjustMoveVectorBySlope(pushback, groundCast.GetCollisionNormal());
+			}
+			ApplyCentralForce(pushback);
+		}
 	}
 
 	private void TryJumping()
@@ -129,8 +151,9 @@ public partial class Player : RigidBody3D
 		if (Input.IsActionJustPressed("jump") && groundCast.IsColliding())
 		{
 			LinearVelocity = new Vector3(LinearVelocity.X, Mathf.Max(0f, LinearVelocity.Y * JumpVelocityIgnoreFactor), LinearVelocity.Z);
-			ApplyCentralImpulse(new Vector3(0, 9f, 0));
+			ApplyCentralImpulse(new Vector3(0, JumpForce, 0));
 			jumpSound.Play();
+			return;
 		}
 
 		//Let the player jump higher if the jump button is held down
@@ -138,7 +161,10 @@ public partial class Player : RigidBody3D
 		{
 			GravityScale = JumpUnheldGravityScale;
 		}
-		else
+		else if (groundCast.IsColliding())
+		{
+			GravityScale = 1.0f; //reset gravity scale when on the ground
+		} else
 		{
 			GravityScale = JumpHeldGravityScale;
 		}
@@ -181,7 +207,6 @@ public partial class Player : RigidBody3D
 		{
 			hasLanded = true;
 			SpawnLandingParticles();
-			GD.Print("Y Velocity: " + LinearVelocity.Y);
 			landSound.Play();
 		}
 		else if (!groundCast.IsColliding() && hasLanded)
@@ -190,15 +215,21 @@ public partial class Player : RigidBody3D
 		}
 	}
 
-	private void _on_area_3d_take_damage(long amount, long team)
+	private void _on_area_3d_take_damage(long amount, long team, Vector3 knockback)
 	{
 		if (team == (long)BallGame.Common.Team.Player) return;
 
-		ProcessMode = ProcessModeEnum.Disabled;
+		health -= (int)amount;
+
+		HealthBar.Instance.SetHealth(health);
+
 		Node3D _deathParticles = (Node3D)deathParticles.Instantiate();
 		GetParent().AddChild(_deathParticles);
 		_deathParticles.GlobalPosition = GlobalPosition;
+
+		ProcessMode = ProcessModeEnum.Disabled;
 		EmitSignal("PlayerDied");
+		GetTree().CallGroup("PlayerDied", "PlayerDied");
 	}
 
 	[Signal]
@@ -211,6 +242,8 @@ public partial class Player : RigidBody3D
 
 		LinearVelocity = Vector3.Zero;
 		AngularVelocity = Vector3.Zero;
+		playerModel.ResetSmoothing();
+		CameraNode.ResetCameraPosition();
 	}
 
 	public void UpdateRespawnPos(Vector3 pos)

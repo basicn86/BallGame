@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ckjg8vgokuseq"]
 
-[ext_resource type="Script" path="res://common/OneShotParticleSystem.cs" id="1_8wvor"]
+[ext_resource type="Script" uid="uid://bbcx8elr4hkcf" path="res://common/OneShotParticleSystem.cs" id="1_8wvor"]
 [ext_resource type="AudioStream" uid="uid://4t3movgxu1eu" path="res://Explosion.wav" id="2_iv72m"]
 
 [sub_resource type="Curve" id="Curve_5qbr8"]
@@ -41,12 +41,15 @@ one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
 collision_base_size = 0.1
+visibility_aabb = AABB(-100, -100, -100, 200, 200, 200)
 process_material = SubResource("ParticleProcessMaterial_h776a")
 draw_pass_1 = SubResource("BoxMesh_gyfg6")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_iv72m")
-volume_db = -10.0
+volume_db = -12.0
+unit_size = 20.0
 max_db = -3.0
 autoplay = true
+bus = &"Explosions"
 attenuation_filter_db = 0.0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bxe6dxk3uc1eq"]
 
-[ext_resource type="Script" path="res://scripts/GrenadeParticles.cs" id="1_y0wia"]
-[ext_resource type="Shader" path="res://weapons/LaserPistol/LaserProjectile.gdshader" id="2_ep10h"]
+[ext_resource type="Script" uid="uid://dree6fe0d85vg" path="res://scripts/GrenadeParticles.cs" id="1_y0wia"]
+[ext_resource type="Shader" uid="uid://b1octagu787gn" path="res://weapons/LaserPistol/LaserProjectile.gdshader" id="2_ep10h"]
 
 [sub_resource type="Curve" id="Curve_mpe8b"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.506276, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

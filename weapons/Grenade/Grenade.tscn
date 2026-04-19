@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://cmclnyunnsjjs"]
 
-[ext_resource type="Script" path="res://scripts/Grenade.cs" id="1_ys7bf"]
+[ext_resource type="Script" uid="uid://dvxgf3daekwwg" path="res://scripts/Grenade.cs" id="1_ys7bf"]
 [ext_resource type="PackedScene" uid="uid://ur6yyp0n0nlb" path="res://weapons/Grenade/grenade_particles.tscn" id="2_xa176"]
-[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="3_vt41n"]
-[ext_resource type="Script" path="res://weapons/Grenade/GrenadeTimer.cs" id="4_qtu1w"]
-[ext_resource type="Script" path="res://weapons/Grenade/GrenadeLabel.cs" id="5_7uvln"]
+[ext_resource type="Script" uid="uid://cbwy58owe0mcp" path="res://common/ModelInterpolator.cs" id="3_vt41n"]
+[ext_resource type="Script" uid="uid://0s3eoeq8sslr" path="res://weapons/Grenade/GrenadeTimer.cs" id="4_qtu1w"]
+[ext_resource type="Script" uid="uid://druh7m5263w5f" path="res://weapons/Grenade/GrenadeLabel.cs" id="5_7uvln"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1lyx3"]
 bounce = 0.2
@@ -46,7 +46,6 @@ explosionForce = 10.0
 explosionRadius = 4.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("targetRigidBody")]
-physics_interpolation_mode = 1
 mesh = SubResource("CapsuleMesh_x6pu0")
 script = ExtResource("3_vt41n")
 targetRigidBody = NodePath("..")

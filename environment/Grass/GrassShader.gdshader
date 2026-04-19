@@ -1,5 +1,4 @@
 shader_type spatial;
-render_mode unshaded;
 render_mode cull_disabled;
 render_mode world_vertex_coords;
 
@@ -12,9 +11,10 @@ varying vec3 instancePos;
 
 void vertex() {
 	instancePos = MODEL_MATRIX[3].xyz;
+	float scale = length(MODEL_MATRIX[1].xyz);
 
 
-	if(VERTEX.y > 0.25 + instancePos.y){
+	if(VERTEX.y > (0.25 * scale) + instancePos.y){
 		//VERTEX.x += sin(TIME * 5.0) / 3.0 * (instancePos.y - VERTEX.y);
 		vec2 noise_uv = vec2(instancePos.x, instancePos.z) + vec2(TIME * 0.1);
 		vec3 wave_offset = texture(waves, noise_uv).xyz - vec3(0.5);
@@ -34,7 +34,6 @@ void fragment() {
 	ALBEDO = currentColor;
 }
 
-//void light() {
-	// Called for every pixel for every light affecting the material.
-	// Uncomment to replace the default light processing function with this one.
-//}
+void light() {
+	DIFFUSE_LIGHT += ATTENUATION;
+}

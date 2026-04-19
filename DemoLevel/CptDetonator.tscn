@@ -1,0 +1,163 @@
+[gd_scene load_steps=23 format=3 uid="uid://dpgnu7m4327pr"]
+
+[ext_resource type="Script" uid="uid://crecx4ucgq01s" path="res://DemoLevel/CptDetonator.cs" id="1_mcj7g"]
+[ext_resource type="PackedScene" uid="uid://l0f51fiwyojq" path="res://SawBladeContainer.tscn" id="2_rulcr"]
+[ext_resource type="PackedScene" uid="uid://bwlhnxskjdsj7" path="res://DemoLevel/CptDetonatorBomb.tscn" id="3_8n0kg"]
+[ext_resource type="PackedScene" uid="uid://b7speov6vg6sc" path="res://DemoLevel/CptDetonatorRocket.tscn" id="4_e5mo2"]
+[ext_resource type="Material" uid="uid://b78e2fvlx1ltc" path="res://DemoLevel/GrassMaterialDemoExplosion.tres" id="5_vtdl5"]
+[ext_resource type="ArrayMesh" uid="uid://bk60o4evjj67t" path="res://player/PlayerBall.obj" id="6_38ttf"]
+[ext_resource type="Script" uid="uid://b76s8oy3lynf6" path="res://CptDetonatorEyes.cs" id="8_y36m0"]
+[ext_resource type="Script" uid="uid://du8cwf636gg70" path="res://environment/Spikes/SpikeArea.cs" id="9_e62ou"]
+[ext_resource type="Script" uid="uid://6eyvraq0iheq" path="res://LockOnArea.cs" id="10_i1iy6"]
+[ext_resource type="PackedScene" uid="uid://cg3xty8msc6nv" path="res://LockOnIndicator.tscn" id="10_mcj7g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_idmjl"]
+albedo_color = Color(0.632225, 1.9493e-06, 3.36915e-07, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ges3u"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ci3n"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3avgc"]
+material = SubResource("StandardMaterial3D_2ci3n")
+size = Vector3(0.1, 0.1, 0.3)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_taepe"]
+radius = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l3qkj"]
+radius = 1.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pbg17"]
+size = Vector3(75, 75, 75)
+
+[sub_resource type="Curve" id="Curve_ot0tx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.150628, 1), 0.0, 0.0, 0, 0, Vector2(0.799163, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_7i8pr"]
+curve = SubResource("Curve_ot0tx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_atlxl"]
+emission_shape = 3
+emission_box_extents = Vector3(2, 2, 2)
+tangential_accel_min = 15.0
+tangential_accel_max = 25.0
+scale_curve = SubResource("CurveTexture_7i8pr")
+
+[sub_resource type="BoxMesh" id="BoxMesh_8ksyu"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wtpav"]
+radius = 4.0
+
+[node name="CptDetonator" type="RigidBody3D" node_paths=PackedStringArray("nextStateTimer", "tornadoParticles", "playerDetectionNode", "eyes")]
+physics_interpolation_mode = 1
+collision_layer = 4
+collision_mask = 7
+mass = 4.0
+continuous_cd = true
+script = ExtResource("1_mcj7g")
+nextStateTimer = NodePath("StateTimer")
+sawBladeScene = ExtResource("2_rulcr")
+sawBladeCooldown = 0.2
+sawBladeAttackApproachDistance = 25.0
+bombScene = ExtResource("3_8n0kg")
+bombCooldown = 0.01
+maxBombs = 100
+maxHorizontalVelocity = 35.0
+maxVerticalVelocity = 30.0
+rocketScene = ExtResource("4_e5mo2")
+grassMaterial = ExtResource("5_vtdl5")
+tornadoParticles = NodePath("GPUParticles3D")
+playerDetectionNode = NodePath("PlayerDetectionZone")
+eyes = NodePath("EyesContainer")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = ExtResource("6_38ttf")
+surface_material_override/0 = SubResource("StandardMaterial3D_idmjl")
+
+[node name="EyesContainer" type="Node3D" parent="."]
+script = ExtResource("8_y36m0")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="EyesContainer"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.387985, 0.489494, -0.816254)
+mesh = ExtResource("6_38ttf")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="EyesContainer"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.387985, 0.489494, -0.897568)
+mesh = ExtResource("6_38ttf")
+surface_material_override/0 = SubResource("StandardMaterial3D_ges3u")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="EyesContainer"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.388, 0.489, -0.897156)
+mesh = ExtResource("6_38ttf")
+surface_material_override/0 = SubResource("StandardMaterial3D_ges3u")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="EyesContainer"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.388, 0.489, -0.815781)
+mesh = ExtResource("6_38ttf")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="EyesContainer"]
+transform = Transform3D(-4.37114e-08, -0.34202, 0.939693, 0, 0.939693, 0.34202, -1, 1.49502e-08, -4.10753e-08, 0.349823, 0.70707, -0.813873)
+mesh = SubResource("BoxMesh_3avgc")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="EyesContainer"]
+transform = Transform3D(-4.37114e-08, 0.34202, 0.939693, 0, 0.939693, -0.34202, -1, -1.49502e-08, -4.10753e-08, -0.350006, 0.707, -0.813782)
+mesh = SubResource("BoxMesh_3avgc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_taepe")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 7
+collision_mask = 7
+monitoring = false
+script = ExtResource("9_e62ou")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_l3qkj")
+
+[node name="PlayerDetectionZone" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectionZone"]
+shape = SubResource("BoxShape3D_pbg17")
+
+[node name="StateTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.183, 3.2287, 139.288)
+top_level = true
+visible = false
+amount = 512
+lifetime = 2.0
+fixed_fps = 0
+interpolate = false
+process_material = SubResource("ParticleProcessMaterial_atlxl")
+draw_pass_1 = SubResource("BoxMesh_8ksyu")
+
+[node name="LockOnArea" type="Area3D" parent="." node_paths=PackedStringArray("meshInstance")]
+collision_layer = 16
+collision_mask = 16
+monitoring = false
+monitorable = false
+script = ExtResource("10_i1iy6")
+meshInstance = NodePath("MeshInstance3D")
+meshOffset = Vector3(0, 2, 0)
+
+[node name="MeshInstance3D" parent="LockOnArea" instance=ExtResource("10_mcj7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92419, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LockOnArea"]
+shape = SubResource("SphereShape3D_wtpav")
+
+[connection signal="area_entered" from="Area3D" to="Area3D" method="_on_area_entered"]
+[connection signal="body_entered" from="PlayerDetectionZone" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="StateTimer" to="." method="_on_timer_timeout"]

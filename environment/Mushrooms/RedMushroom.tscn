@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://tidiqd1qwkgt"]
+
+[ext_resource type="PackedScene" uid="uid://bjew45mbc0d2p" path="res://environment/Mushrooms/Mushroom.blend" id="1_ttglx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_agbmi"]
+albedo_color = Color(0.411765, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21auy"]
+
+[node name="RedMushroom" type="Node3D"]
+
+[node name="Mushroom" parent="." instance=ExtResource("1_ttglx")]
+
+[node name="Cylinder" parent="Mushroom" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_agbmi")
+surface_material_override/1 = SubResource("StandardMaterial3D_21auy")
+
+[editable path="Mushroom"]

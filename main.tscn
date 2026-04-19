@@ -1,46 +1,45 @@
-[gd_scene load_steps=83 format=3 uid="uid://jc4p2lep7gmi"]
+[gd_scene format=3 uid="uid://jc4p2lep7gmi"]
 
 [ext_resource type="Texture2D" uid="uid://85ap486xpxjw" path="res://autumn_field_puresky_1k.hdr" id="1_sj0rc"]
 [ext_resource type="PackedScene" uid="uid://cit34jlsj207i" path="res://player/PlayerContainer.tscn" id="1_x0eru"]
 [ext_resource type="PackedScene" uid="uid://cmclnyunnsjjs" path="res://weapons/Grenade/Grenade.tscn" id="4_ceibg"]
-[ext_resource type="Script" path="res://Crosshair.cs" id="7_gtrsf"]
 [ext_resource type="PackedScene" uid="uid://dcojo2t0kpp15" path="res://environment/Elevator.tscn" id="7_isqio"]
+[ext_resource type="PackedScene" uid="uid://ctiw3gw6hbfhh" path="res://ui/crosshair.tscn" id="7_p7ewv"]
 [ext_resource type="PackedScene" uid="uid://mqbycbrcjyk4" path="res://PhysicsBox.tscn" id="7_xb6ro"]
-[ext_resource type="Script" path="res://scripts/ResetScene.cs" id="11_0pohk"]
-[ext_resource type="Script" path="res://FPSCounter.cs" id="11_4h4rb"]
+[ext_resource type="Script" uid="uid://cvyd01ekn6400" path="res://scripts/ResetScene.cs" id="11_0pohk"]
+[ext_resource type="Script" uid="uid://cpb4mj3q5qd8t" path="res://FPSCounter.cs" id="11_4h4rb"]
 [ext_resource type="PackedScene" uid="uid://cnpb27we1lbh3" path="res://ui/PauseMenu.tscn" id="12_elqkh"]
 [ext_resource type="PackedScene" uid="uid://c5nkr1epkcv1t" path="res://environment/Spikes/Spike.tscn" id="15_ispr2"]
-[ext_resource type="Script" path="res://environment/Spikes/SpikeArea.cs" id="16_ug8nn"]
+[ext_resource type="Script" uid="uid://du8cwf636gg70" path="res://environment/Spikes/SpikeArea.cs" id="16_ug8nn"]
 [ext_resource type="AudioStream" uid="uid://b1blbjo32ntll" path="res://music/Mega Man 7 - Slash Man.wav" id="18_0t7j3"]
 [ext_resource type="ArrayMesh" uid="uid://b068fmyqswrb8" path="res://environment/Tree1.obj" id="19_x0har"]
-[ext_resource type="Shader" path="res://environment/TreeLeaves.gdshader" id="20_hpep5"]
+[ext_resource type="Shader" uid="uid://dhcsltfspc5aw" path="res://environment/TreeLeaves.gdshader" id="20_hpep5"]
 [ext_resource type="PackedScene" uid="uid://chm55taavgilw" path="res://environment/tree_2.tscn" id="21_od8pj"]
 [ext_resource type="PackedScene" uid="uid://m3ac8gckgd4j" path="res://environment/FlyingPlatform/FlyingPlatform.tscn" id="22_dypbc"]
-[ext_resource type="PackedScene" uid="uid://s7lyixiwg325" path="res://environment/WoodBarrel.tscn" id="22_ipffj"]
+[ext_resource type="PackedScene" uid="uid://s7lyixiwg325" path="res://environment/WoodBarrel/WoodBarrel.tscn" id="22_ipffj"]
 [ext_resource type="ArrayMesh" uid="uid://csxqt716caoeu" path="res://environment/Flower2/Flower2.obj" id="23_kw6hu"]
-[ext_resource type="Script" path="res://environment/Flower2/FlowerMultiMeshInstance3d.cs" id="24_pfpe5"]
+[ext_resource type="Script" uid="uid://i2ipkoni0x7g" path="res://environment/Flower2/FlowerMultiMeshInstance3d.cs" id="24_pfpe5"]
 [ext_resource type="Material" uid="uid://trcmk7xlc61k" path="res://environment/Flower2/BluePetal.tres" id="25_5v6p0"]
 [ext_resource type="Material" uid="uid://30yd8r7leet3" path="res://environment/Flower2/Stem.tres" id="26_voeat"]
-[ext_resource type="Script" path="res://Spinner.cs" id="27_iakb2"]
+[ext_resource type="Script" uid="uid://c0r1hfvw2kw31" path="res://Spinner.cs" id="27_iakb2"]
 [ext_resource type="Material" uid="uid://gyhw1hsmjgwk" path="res://environment/Flower2/Center.tres" id="27_qvfad"]
 [ext_resource type="Material" uid="uid://b7mcadtf10vtg" path="res://environment/Grass/GrassShader.tres" id="27_uxty2"]
 [ext_resource type="ArrayMesh" uid="uid://dwju2ewaplx15" path="res://environment/Grass/GrassBlade.obj" id="28_0drbp"]
-[ext_resource type="Script" path="res://MovingPlatformAnimator.cs" id="28_ob6fv"]
-[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="28_rhn0r"]
-[ext_resource type="Script" path="res://GrassMultiMeshInstance3D.cs" id="29_1q6w2"]
-[ext_resource type="Script" path="res://Checkpoint.cs" id="29_ytvf0"]
-[ext_resource type="ArrayMesh" uid="uid://7ge6wlk33c1b" path="res://FloppyDisk.obj" id="30_qorwo"]
+[ext_resource type="Script" uid="uid://usm8k08bx6hq" path="res://MovingPlatformAnimator.cs" id="28_ob6fv"]
+[ext_resource type="Script" uid="uid://cbwy58owe0mcp" path="res://common/ModelInterpolator.cs" id="28_rhn0r"]
+[ext_resource type="Script" uid="uid://d1tvxivu1buex" path="res://GrassMultiMeshInstance3D.cs" id="29_1q6w2"]
+[ext_resource type="PackedScene" uid="uid://5t66n6i6dv8o" path="res://Checkpoint.tscn" id="29_14bmr"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1ws2m"]
 panorama = ExtResource("1_sj0rc")
 
-[sub_resource type="Sky" id="Sky_p2gfp"]
+[sub_resource type="Sky" id="Sky_aqkmj"]
 sky_material = SubResource("PanoramaSkyMaterial_1ws2m")
 
 [sub_resource type="Environment" id="Environment_jt2xw"]
 background_mode = 2
 background_energy_multiplier = 0.75
-sky = SubResource("Sky_p2gfp")
+sky = SubResource("Sky_aqkmj")
 ambient_light_sky_contribution = 0.75
 reflected_light_source = 1
 tonemap_white = 8.0
@@ -205,56 +204,15 @@ tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 4, 1, 0, 0, 0, 1, 5, 1, 0.7
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1smtt"]
 _data = {
-"RESET": SubResource("Animation_iwrx4"),
-"moveplatform": SubResource("Animation_tglca")
+&"RESET": SubResource("Animation_iwrx4"),
+&"moveplatform": SubResource("Animation_tglca")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5eosa"]
-size = Vector3(1, 4, 1)
+[sub_resource type="BoxMesh" id="BoxMesh_mdr2a"]
+size = Vector3(1, 0.2, 10)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oo3ve"]
-albedo_color = Color(0.391802, 0.248189, 0.999987, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nx6yh"]
-metallic = 0.5
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2nck"]
-metallic = 0.5
-
-[sub_resource type="Curve" id="Curve_wnuju"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25523, 1), 0.0, 0.0, 0, 0, Vector2(0.753138, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_ja0w7"]
-curve = SubResource("Curve_wnuju")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2vmkk"]
-particle_flag_rotate_y = true
-emission_shape_offset = Vector3(0, -2, 0)
-emission_shape = 6
-emission_ring_axis = Vector3(0, 1, 0)
-emission_ring_height = 0.0
-emission_ring_radius = 1.0
-emission_ring_inner_radius = 0.5
-angle_min = 1.07288e-05
-angle_max = 360.0
-direction = Vector3(0, 1, 0)
-spread = 0.0
-initial_velocity_min = 1.0
-initial_velocity_max = 2.0
-gravity = Vector3(0, 0, 0)
-scale_curve = SubResource("CurveTexture_ja0w7")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qjsr"]
-shading_mode = 0
-albedo_color = Color(1, 1, 0, 1)
-billboard_mode = 2
-billboard_keep_scale = true
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_lw46p"]
-material = SubResource("StandardMaterial3D_0qjsr")
-size = Vector2(0.04, 0.2)
-orientation = 2
+[sub_resource type="BoxShape3D" id="BoxShape3D_h2pmw"]
+size = Vector3(1, 0.2, 10)
 
 [node name="Node3D" type="Node3D"]
 
@@ -421,6 +379,16 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Slope6/StaticBody3D"]
 shape = SubResource("BoxShape3D_nil25")
 
+[node name="Slope8" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.748723, 2.0163, 22.1798)
+mesh = SubResource("BoxMesh_224x6")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Slope8"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Slope8/StaticBody3D"]
+shape = SubResource("BoxShape3D_nil25")
+
 [node name="BigBall" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.6846, 0.0310678, 0)
 mesh = SubResource("SphereMesh_mnywj")
@@ -540,6 +508,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 2, -15)
 [node name="WoodBarrel2" parent="Entities" instance=ExtResource("22_ipffj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.16644, 3.84805, 14.3224)
 
+[node name="WoodBarrel9" parent="Entities" instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.07598, 3.84805, 14.3224)
+
+[node name="WoodBarrel10" parent="Entities" instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.16644, 3.84805, 16.1394)
+
+[node name="WoodBarrel11" parent="Entities" instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.07598, 3.84805, 16.1394)
+
+[node name="WoodBarrel3" parent="Entities" instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46639, 4.35338, 24.0181)
+
+[node name="WoodBarrel4" parent="Entities" instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46639, 4.35338, 22.2867)
+
+[node name="WoodBarrel5" parent="Entities" instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46639, 4.35338, 20.2879)
+
+[node name="WoodBarrel6" parent="Entities" instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46639, 6.88706, 24.0181)
+
+[node name="WoodBarrel7" parent="Entities" instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46639, 6.88706, 22.2867)
+
+[node name="WoodBarrel8" parent="Entities" instance=ExtResource("22_ipffj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46639, 6.88706, 20.2879)
+
 [node name="GUI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -549,20 +544,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="Crosshair" type="CenterContainer" parent="GUI"]
+[node name="Crosshair" parent="GUI" instance=ExtResource("7_p7ewv")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("7_gtrsf")
 
 [node name="FPSPanel" type="Panel" parent="GUI"]
 layout_mode = 1
@@ -780,6 +763,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0579, 0.0181198, -22.2726)
 
 [node name="RigidBody3D" parent="." instance=ExtResource("22_dypbc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 15)
+ReturnForce = 4000.0
 
 [node name="FlowerContainer" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1811, 0, -22.2899)
@@ -854,46 +838,20 @@ libraries = {
 }
 script = ExtResource("28_ob6fv")
 
-[node name="Checkpoint" type="Node3D" parent="." node_paths=PackedStringArray("particles", "mesh", "lightNode")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3885, 1.37479, -8.1686)
-script = ExtResource("29_ytvf0")
-particles = NodePath("GPUParticles3D")
-mesh = NodePath("MeshInstance3D")
-lightNode = NodePath("SpotLight3D")
+[node name="Checkpoint" parent="." instance=ExtResource("29_14bmr")]
 
-[node name="Area3D" type="Area3D" parent="Checkpoint"]
-collision_layer = 0
-collision_mask = 2
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.47607, 2.81612, 19.8215)
+collision_layer = 4
+collision_mask = 7
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoint/Area3D"]
-shape = SubResource("BoxShape3D_5eosa")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2"]
+mesh = SubResource("BoxMesh_mdr2a")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Checkpoint"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-mesh = ExtResource("30_qorwo")
-surface_material_override/0 = SubResource("StandardMaterial3D_oo3ve")
-surface_material_override/1 = SubResource("StandardMaterial3D_nx6yh")
-surface_material_override/2 = SubResource("StandardMaterial3D_g2nck")
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Checkpoint"]
-cast_shadow = 0
-amount = 128
-lifetime = 3.0
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_2vmkk")
-draw_pass_1 = SubResource("PlaneMesh_lw46p")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Checkpoint"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.87664, 0)
-light_energy = 20.0
-shadow_enabled = true
-spot_range = 8.0
-spot_attenuation = 0.2
-spot_angle = 35.0
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
+shape = SubResource("BoxShape3D_h2pmw")
 
 [connection signal="area_entered" from="SpikesContainer/Spikes/Area3D" to="SpikesContainer/Spikes/Area3D" method="_on_area_entered"]
 [connection signal="area_entered" from="SpikesContainer/Spikes2/Area3D" to="SpikesContainer/Spikes2/Area3D" method="_on_area_entered"]
 [connection signal="area_entered" from="SpikesContainer/Spikes3/Area3D" to="SpikesContainer/Spikes3/Area3D" method="_on_area_entered"]
 [connection signal="area_entered" from="SpikesContainer/Spikes4/Area3D" to="SpikesContainer/Spikes4/Area3D" method="_on_area_entered"]
-[connection signal="body_entered" from="Checkpoint/Area3D" to="Checkpoint" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Checkpoint/Area3D" to="Checkpoint" method="_on_area_3d_body_exited"]

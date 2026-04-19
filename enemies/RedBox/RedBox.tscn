@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://ha5t40v1wac4"]
+
+[ext_resource type="Script" uid="uid://bs0wfsdqa0oan" path="res://enemies/RedBox/RedBox.cs" id="1_jqfd8"]
+[ext_resource type="PackedScene" uid="uid://b4pimk8uqc15v" path="res://environment/Coins/DynamicCoin.tscn" id="2_kyy54"]
+[ext_resource type="Script" uid="uid://bvdkfere7wshj" path="res://enemies/RedBox/RedBoxDamageSender.cs" id="2_ww4kn"]
+[ext_resource type="Script" uid="uid://6eyvraq0iheq" path="res://LockOnArea.cs" id="3_dmxay"]
+[ext_resource type="Script" uid="uid://drxua1kmiojx7" path="res://common/DamageReceiver.cs" id="3_hm8aq"]
+[ext_resource type="PackedScene" uid="uid://cg3xty8msc6nv" path="res://LockOnIndicator.tscn" id="4_hm8aq"]
+[ext_resource type="AudioStream" uid="uid://cppvf4iqq5i68" path="res://player/Jump.wav" id="7_7ggp8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rh67q"]
+albedo_color = Color(0.654902, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rh67q"]
+material = SubResource("StandardMaterial3D_rh67q")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rh67q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iogn7"]
+size = Vector3(20, 16, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wjtn7"]
+size = Vector3(1.2, 1.2, 1.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dmxay"]
+size = Vector3(1.2, 1.2, 1.2)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_aaymc"]
+radius = 2.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7ggp8"]
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ffk57"]
+material = SubResource("StandardMaterial3D_rh67q")
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="RedBox" type="RigidBody3D" unique_id=1909520992 node_paths=PackedStringArray("PlayerDetectionArea", "DamageSender", "JumpSound") groups=["PlayerDied"]]
+physics_interpolation_mode = 1
+collision_layer = 32
+collision_mask = 39
+script = ExtResource("1_jqfd8")
+PlayerDetectionArea = NodePath("PlayerActivationArea")
+DamageSender = NodePath("DamageSender")
+JumpSound = NodePath("AudioStreamPlayer3D")
+AttackCooldown = 2.0
+CoinScene = ExtResource("2_kyy54")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=322860632]
+mesh = SubResource("BoxMesh_rh67q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=355215162]
+shape = SubResource("BoxShape3D_rh67q")
+
+[node name="PlayerActivationArea" type="Area3D" parent="." unique_id=362665363]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerActivationArea" unique_id=738244884]
+shape = SubResource("BoxShape3D_iogn7")
+
+[node name="DamageSender" type="Area3D" parent="." unique_id=1318986303]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("2_ww4kn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageSender" unique_id=1428572543]
+shape = SubResource("BoxShape3D_wjtn7")
+
+[node name="HitBox" type="Area3D" parent="." unique_id=2123216032]
+collision_layer = 32
+collision_mask = 32
+script = ExtResource("3_hm8aq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox" unique_id=902246388]
+shape = SubResource("BoxShape3D_dmxay")
+
+[node name="LockOnArea" type="Area3D" parent="." unique_id=1375286999 node_paths=PackedStringArray("meshInstance")]
+collision_layer = 16
+collision_mask = 16
+monitoring = false
+monitorable = false
+script = ExtResource("3_dmxay")
+meshInstance = NodePath("MeshInstance3D")
+meshOffset = Vector3(0, 1.7, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LockOnArea" unique_id=1963089215]
+shape = SubResource("SphereShape3D_aaymc")
+
+[node name="MeshInstance3D" parent="LockOnArea" unique_id=844065358 instance=ExtResource("4_hm8aq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1714554310]
+stream = ExtResource("7_7ggp8")
+pitch_scale = 0.8
+bus = &"RedBoxJump"
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=430858578]
+amount = 64
+collision_base_size = 0.1
+process_material = SubResource("ParticleProcessMaterial_7ggp8")
+draw_pass_1 = SubResource("BoxMesh_ffk57")
+
+[connection signal="body_entered" from="PlayerActivationArea" to="." method="_player_area_entered"]
+[connection signal="body_exited" from="PlayerActivationArea" to="." method="_player_area_exited"]
+[connection signal="JumpedByPlayer" from="DamageSender" to="." method="jumped_by_player"]
+[connection signal="area_entered" from="DamageSender" to="DamageSender" method="_on_area_entered"]
+[connection signal="TakeDamage" from="HitBox" to="." method="take_damage"]

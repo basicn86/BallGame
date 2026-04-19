@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Diagnostics;
 
 public partial class Grenade : RigidBody3D
 {
@@ -38,10 +37,6 @@ public partial class Grenade : RigidBody3D
 
 	private void _on_timer_timeout()
 	{
-		//stopwatch start
-		Stopwatch sw = new Stopwatch();
-		sw.Start();
-
 		var bodies = explosionArea.GetOverlappingBodies();
 
 		foreach (var body in bodies)
@@ -56,9 +51,6 @@ public partial class Grenade : RigidBody3D
 				float finalForce = forceCurve.Curve.Sample(forceDirection.Length() / explosionRadius);
 
 				i.ApplyCentralImpulse(forceDirection.Normalized() * finalForce * explosionForce);
-
-				//for debug output, print the name of the object that was hit
-				GD.Print(i.Name);
 			}
 		}
 
@@ -66,9 +58,5 @@ public partial class Grenade : RigidBody3D
 		GetParent().AddChild(_explosionScene);
 		_explosionScene.GlobalPosition = GlobalPosition;
 		QueueFree();
-		
-		//stopwatch stop
-		sw.Stop();
-		GD.Print("Time elapsed to explode: " + sw.ElapsedMilliseconds + "ms");
 	}
 }

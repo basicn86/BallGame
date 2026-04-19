@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dcojo2t0kpp15"]
 
-[ext_resource type="Script" path="res://environment/Elevator.cs" id="1_ojij7"]
-[ext_resource type="Script" path="res://common/ModelInterpolator.cs" id="2_vhjx8"]
+[ext_resource type="Script" uid="uid://bs8tr00txnwxg" path="res://environment/Elevator.cs" id="1_ojij7"]
+[ext_resource type="Script" uid="uid://cbwy58owe0mcp" path="res://common/ModelInterpolator.cs" id="2_vhjx8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lmjen"]
 
