@@ -40,15 +40,8 @@ public partial class Player : RigidBody3D
 	[Export]
 	public float JumpUnheldGravityScale = 2.5f;
 
-
 	private bool hasLanded = false;
 	private Vector3 respawnPos = new Vector3(0, 10, 0);
-
-	[ExportCategory("Weapons")]
-	[Export]
-	LaserPistol laserPistol;
-	[Export]
-	GrenadeThrower grenadeThrower;
 
 	[ExportCategory("Sounds")]
 	[Export]
@@ -78,8 +71,6 @@ public partial class Player : RigidBody3D
 		}
 
 		CameraNode.TargetPosition = playerModel.GlobalPosition;
-
-		laserPistol.UpdatePosition(GlobalPosition, CameraNode.Basis);
 
 		//TODO: likely remove this, no longer used.
 

@@ -1,35 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://cit34jlsj207i"]
+[gd_scene format=3 uid="uid://cit34jlsj207i"]
 
 [ext_resource type="PackedScene" uid="uid://dfncrprg4epon" path="res://player/player.tscn" id="1_wklvn"]
 [ext_resource type="PackedScene" uid="uid://b4e4fq5r5oyg5" path="res://player/PlayerRespawner.tscn" id="2_cnp5t"]
 [ext_resource type="PackedScene" uid="uid://bycuwkrqgkrc3" path="res://player/playerCamera.tscn" id="3_tl1pj"]
-[ext_resource type="PackedScene" uid="uid://11b4biydrmn2" path="res://weapons/LaserPistol/LaserPistol.tscn" id="4_gv132"]
-[ext_resource type="PackedScene" uid="uid://csiqtfnx8jbmn" path="res://weapons/Grenade/GrenadeThrower.tscn" id="5_cwmpy"]
-[ext_resource type="PackedScene" uid="uid://cmclnyunnsjjs" path="res://weapons/Grenade/Grenade.tscn" id="6_xq3iv"]
 
-[node name="PlayerContainer" type="Node3D"]
+[node name="PlayerContainer" type="Node3D" unique_id=497404706]
 
-[node name="Player" parent="." node_paths=PackedStringArray("CameraNode", "laserPistol", "grenadeThrower") instance=ExtResource("1_wklvn")]
+[node name="Player" parent="." unique_id=494083962 node_paths=PackedStringArray("CameraNode", "laserPistol", "grenadeThrower") instance=ExtResource("1_wklvn")]
 collision_mask = 5
 CameraNode = NodePath("../CameraPivot")
 AirAcceleration = 10.0
 JumpForce = 12.0
 JumpHeldGravityScale = 2.5
 JumpUnheldGravityScale = 5.0
-laserPistol = NodePath("../LaserPistol")
-grenadeThrower = NodePath("../GrenadeThrower")
+laserPistol = NodePath("")
+grenadeThrower = NodePath("")
 
-[node name="PlayerRespawner" parent="." instance=ExtResource("2_cnp5t")]
+[node name="PlayerRespawner" parent="." unique_id=910137864 instance=ExtResource("2_cnp5t")]
 
-[node name="CameraPivot" parent="." instance=ExtResource("3_tl1pj")]
-
-[node name="GrenadeThrower" parent="." instance=ExtResource("5_cwmpy")]
-Offset = Vector3(0.35, 0, 0)
-Direction = Vector3(-50, 200, -400)
-grenadeScene = ExtResource("6_xq3iv")
-throwForce = 20.0
-
-[node name="LaserPistol" parent="." instance=ExtResource("4_gv132")]
+[node name="CameraPivot" parent="." unique_id=1948613173 instance=ExtResource("3_tl1pj")]
 
 [connection signal="PlayerDied" from="Player" to="PlayerRespawner" method="_on_player_player_died"]
 [connection signal="RespawnNow" from="PlayerRespawner" to="Player" method="_on_player_respawner_respawn_now"]
