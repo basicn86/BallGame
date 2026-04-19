@@ -80,6 +80,10 @@ public partial class Player : RigidBody3D
 		CameraNode.TargetPosition = playerModel.GlobalPosition;
 
 		laserPistol.UpdatePosition(GlobalPosition, CameraNode.Basis);
+
+		//TODO: likely remove this, no longer used.
+
+		/*
 		if (Input.IsActionJustPressed("attack")) //possibly move this to physics process
 		{
 			laserPistol.Fire(CameraNode.GetCrosshairCollisionPoint());
@@ -93,7 +97,7 @@ public partial class Player : RigidBody3D
 		if(Input.IsActionJustReleased("throw_grenade"))
 		{
 			grenadeThrower.Release(CameraNode.GetCrosshairCollisionPoint());
-		}
+		}*/
 	}
 
 	public override void _PhysicsProcess(double delta)
