@@ -176,7 +176,8 @@ public partial class PlayerCamera : Node3D
 	{
 		HandleJoystickCameraRotation(delta);
 
-		float distance = AutomaticPedestal.GlobalPosition.DistanceTo(TargetPosition + new Vector3(0, 2, 0));
+		float autoCamHeight = 3.0f;
+		float distance = AutomaticPedestal.GlobalPosition.DistanceTo(TargetPosition + new Vector3(0, autoCamHeight, 0));
 		float maxDistance = 6.0f;
 
 		if (distance > maxDistance)
@@ -184,7 +185,7 @@ public partial class PlayerCamera : Node3D
 			float speedRatio = distance - maxDistance;
 			speedRatio = Mathf.Clamp(speedRatio, 0.0f, 1.0f);
 
-			AutomaticPedestal.GlobalPosition = AutomaticPedestal.GlobalPosition.Lerp(TargetPosition + new Vector3(0, 2, 0), 2f * (float)(delta * speedRatio));
+			AutomaticPedestal.GlobalPosition = AutomaticPedestal.GlobalPosition.Lerp(TargetPosition + new Vector3(0, autoCamHeight, 0), 2f * (float)(delta * speedRatio));
 
 		} else if (distance < 3.5f)
 		{

@@ -110,7 +110,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MainMenu" type="VBoxContainer" parent="GUI" unique_id=1152867042]
+[node name="MainMenu" type="VBoxContainer" parent="GUI" unique_id=1152867042 node_paths=PackedStringArray("tutorialButton")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -121,14 +121,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_otibh")
 tutorialScene = ExtResource("2_cruaa")
+tutorialButton = NodePath("StartTutorial")
 
 [node name="StartTutorial" type="Button" parent="GUI/MainMenu" unique_id=1117237412]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../Quit")
 theme_override_font_sizes/font_size = 30
 text = "Start Tutorial"
 
 [node name="Quit" type="Button" parent="GUI/MainMenu" unique_id=1917600911]
 layout_mode = 2
+focus_neighbor_top = NodePath("../StartTutorial")
 theme_override_font_sizes/font_size = 30
 text = "Quit"
 

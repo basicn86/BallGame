@@ -6,6 +6,14 @@ public partial class MainMenu : VBoxContainer
 	[Export]
 	PackedScene tutorialScene;
 
+	[Export]
+	Button tutorialButton;
+
+	public override void _Ready()
+	{
+		tutorialButton.GrabFocus();
+	}
+
 	public override void _PhysicsProcess(double delta)
 	{
 		if (Input.IsActionJustPressed("fullscreen"))
