@@ -94,6 +94,13 @@ _data = {
 }
 point_count = 18
 
+[sub_resource type="Curve3D" id="Curve3D_2ci3n"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1.3938656, -5.865097e-05, 3.8251524),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_d8eh8"]
 size = Vector3(0.2, 1, 0.5)
 
@@ -238,6 +245,14 @@ metadata/_edit_lock_ = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.1017, 4.39584, -33.0974)
 curve = SubResource("Curve3D_wisyp")
 
+[node name="FencePath4" type="Path3D" parent="SpawnRoom2" unique_id=1841538245]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.108059, 0.45706964, -20.133446)
+curve = SubResource("Curve3D_2ci3n")
+
+[node name="FencePath5" type="Path3D" parent="SpawnRoom2" unique_id=983814906]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.937998, 1.7633975, -15.878544)
+curve = SubResource("Curve3D_2ci3n")
+
 [node name="FenceSpawner5WithPath" type="Node3D" parent="SpawnRoom2" unique_id=1704648849]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.7462, -0.407102, -34.3899)
 script = ExtResource("19_d8eh8")
@@ -270,6 +285,27 @@ Count = 320
 Rotation = 90.0
 Scale = 0.25
 PathNode = NodePath("../FencePath3")
+
+[node name="FenceSpawner5WithPath4" type="Node3D" parent="SpawnRoom2" unique_id=996311394]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.108059, 0.45706964, -20.133446)
+script = ExtResource("19_d8eh8")
+FenceMesh = ExtResource("13_q6q4p")
+FenceMaterial = ExtResource("14_m8mxy")
+FenceCollisionShape = SubResource("BoxShape3D_d8eh8")
+Rotation = 90.0
+Scale = 0.25
+PathNode = NodePath("../FencePath4")
+
+[node name="FenceSpawner5WithPath5" type="Node3D" parent="SpawnRoom2" unique_id=938332794]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.937998, 1.7633975, -15.878544)
+script = ExtResource("19_d8eh8")
+FenceMesh = ExtResource("13_q6q4p")
+FenceMaterial = ExtResource("14_m8mxy")
+FenceCollisionShape = SubResource("BoxShape3D_d8eh8")
+Count = 8
+Rotation = 90.0
+Scale = 0.25
+PathNode = NodePath("../FencePath5")
 
 [node name="GrassBladesMultiMesh" type="MultiMeshInstance3D" parent="SpawnRoom2" unique_id=1916689790]
 multimesh = SubResource("MultiMesh_wisyp")
